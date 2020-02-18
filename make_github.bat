@@ -1,2 +1,2 @@
 ./make html
-cp build/html/* docs/
+Copy-Item build/html/* -Destination docs/ -Recurse
