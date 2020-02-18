@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started - A Simple RBC Model &mdash; GDSGE  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Toolbox API" href="../../usage/functions.html" />
+    <link rel="prev" title="Indices and tables" href="../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started - A Simple RBC Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mod-file">The Mod File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dissecting-the-mod-file">Dissecting the Mod File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started - A Simple RBC Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/example/rbc/rbc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-a-simple-rbc-model">
+<h1>Getting Started - A Simple RBC Model<a class="headerlink" href="#getting-started-a-simple-rbc-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-model">
+<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
+<p>The model is a canonical complete-markets Real Business Cycle (RBC) model with a single productivity shock.
+This simple model can be approximated with linear solutions well,
+so using GDSGE to obatin global non-linear solutions is not necessary.
+Nevertheless it serves as a good starting point to illustrate the basic usage of the toolbox,
+as this model should be familiar to any macroeconomic audience.</p>
+<p>Time is discrete <span class="math notranslate nohighlight">\(t=0..\infty\)</span>. Representative households with mass one maximize utility</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E \sum_{t=0}^{\infty} \beta^t \frac{c_t^{1-\sigma}}{1-\sigma},\]</div>
+<p>where parameter <span class="math notranslate nohighlight">\(\beta&gt;0\)</span> is the discount factor, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span> is the constant relative risk aversion. <span class="math notranslate nohighlight">\(c_t\)</span> is the consumption. <span class="math notranslate nohighlight">\(\mathbb{E}\)</span> is an expectation operator integrating the productivity shock to be introduced below.</p>
+<p>Competitive representative firms produce a single output according to</p>
+<div class="math notranslate nohighlight">
+\[Y_t=z_t K_t^{\alpha} L_t^{1-\alpha},\]</div>
+<p>where parameter <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> is the capital share. <span class="math notranslate nohighlight">\(K_t\)</span> is capital, <span class="math notranslate nohighlight">\(L_t\)</span> is labor, and <span class="math notranslate nohighlight">\(z_t\in\{z_L,z_H\}\)</span> is the productivity shock which follows a two-point Markov process with the following transition matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(
+\begin{aligned}
+\pi_{LL} \quad 1-\pi_{LL}\\
+1-\pi_{HH} \quad \pi_{HH}
+\end{aligned}
+\right).\end{split}\]</div>
+<p>Capital is depreciated at rate <span class="math notranslate nohighlight">\(\delta \in (0,1)\)</span>. Investment technology can convert one unit of output to new capital:</p>
+<div class="math notranslate nohighlight">
+\[K_{t+1} = K_t(1-\delta) + I_t.\]</div>
+<p>Assets markets are complete. Households make investment decision and supply capital and labor to firms. Market clearing conditions for labor and goods are, respectively,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}L_t=1, \\
+c_t+I_t=Y_t.\end{split}\]</div>
+<p>The complete-markets equilibrium can be characterized by the Euler equation and the goods market clearing condition:</p>
+<div class="math notranslate nohighlight" id="equation-sequential-equation">
+\begin{eqnarray}
+    c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
+    c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
+\end{eqnarray}</div><p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
+<p>Definition: a recursive competitive equilibrium is functions <span class="math notranslate nohighlight">\(c(z,K), K'(z,K)\)</span> s.t.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}c(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma} \Big| z \right]
+\\
+c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
+<p>The recursive system can be solved using a time iteration procedure (see paper xxx):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}c_t(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma} \Big| z \right]
+\\
+c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
+<p>taking function <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span> as known in the period-<span class="math notranslate nohighlight">\(t\)</span> time step.</p>
+</div>
+<div class="section" id="the-mod-file">
+<h2>The Mod File<a class="headerlink" href="#the-mod-file" title="Permalink to this headline">¶</a></h2>
+<p>The recursive system can now be input to GDSGE via a mod file rbc.nmod below.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+<span class="k">parameters</span> beta sigma alpha delta;
+beta  = 0.99;		<span class="c">% discount factor</span>
+sigma = 2.0;		<span class="c">% CRRA coefficient</span>
+alpha = 0.36;		<span class="c">% capital share</span>
+delta = 0.025;		<span class="c">% depreciation rate</span>
+
+<span class="c">% Exogenous States</span>
+<span class="k">var_shock</span> z;
+<span class="k">shock_num</span> = 2;
+z_low = 0.99; z_high = 1.01;
+Pr_ll = 0.9;  Pr_hh  = 0.9;
+z = [z_low,z_high];
+<span class="k">shock_trans</span> = [
+  Pr_ll, 1-Pr_ll
+  1-Pr_hh, Pr_hh
+  ];
+
+<span class="c">% Endogenous States</span>
+<span class="k">var_state</span> K;
+Kss  = (alpha/(1/beta - 1 + delta))^(1/(1-alpha));
+KPts = 101;
+KMin = Kss*0.9;
+KMax = Kss*1.1;
+K    = linspace(KMin,KMax,KPts);
+
+<span class="c">% Interp</span>
+<span class="k">var_interp</span> c_interp;
+<span class="k">initial</span> c_interp z.*K.^alpha+(1-delta)*K;
+<span class="c">% Time iterations update</span>
+c_interp = c;
+
+<span class="c">% Endogenous variables as unknowns of equations</span>
+<span class="k">var_policy</span> c K_next;
+<span class="k">inbound</span> c       0 z.*K.^alpha+(1-delta)*K;
+<span class="k">inbound</span> K_next  0 z.*K.^alpha+(1-delta)*K;
+
+<span class="c">% Other endogenous variables</span>
+<span class="k">var_aux</span> w;
+
+<span class="k">model;</span>
+  <span class="c">% Budget constraints</span>
+  u_prime = c^(-sigma);
+  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
+  
+  <span class="c">% Evaluate the interpolation object to get future consumption</span>
+  c_future&#39; = c_interp&#39;(K_next);
+  u_prime_future&#39; = c_future&#39;^(-sigma);
+  
+  <span class="c">% Calculate residual of the equation</span>
+  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
+  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+  
+  <span class="c">% Calcualte other endogenous variables</span>
+  w = z*(1-alpha)*K^alpha;
+  
+  <span class="k">equations;</span>
+    euler_residual;
+    budget_residual;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+  <span class="k">num_periods</span> = 10000;
+  <span class="k">num_samples</span> = 100;
+  <span class="k">initial</span> K Kss;
+  <span class="k">initial</span> shock 1
+  <span class="k">var_simu</span> c K w;
+  K&#39; = K_next;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+<p>The nmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at <a class="reference external" href="http://gdsge.com/">http://gdsge.com/</a>. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
+<p>First, call iter_rbc.m in matlab to run the policy iterations, which produces</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_rbc;
+Iter:10, Metric:0.385607, maxF:9.99011e-09
+Elapsed time is 0.174117 seconds.
+
+...
+
+Iter:323, Metric:9.89183e-07, maxF:7.96886e-09
+Elapsed time is 0.027923 seconds.
+</pre></div>
+</div>
+<p>The returned IterRslt contains the converged policy and state transition functions. For example, we can plot the policy function for consumption <span class="math notranslate nohighlight">\(c\)</span>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; plot(IterRslt.var_state.K, IterRslt.var_policy.c);
+xlabel(&#39;K&#39;); title(&#39;Policy Functions for c&#39;);
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/policy_c.png"><img alt="../../_images/policy_c.png" src="../../_images/policy_c.png" style="width: 437.5px; height: 328.0px;" /></a>
+<p>We can now simulate the model by inputting IterRslt into simulate_rbc:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; SimuRslt = simulate_rbc(IterRslt);
+Periods: 1000
+   shock       K       c
+       1   38.09   2.754
+Elapsed time is 1.185821 seconds.
+
+...
+
+Periods: 10000
+   shock       K       c
+       2   37.83   2.753
+Elapsed time is 1.281338 seconds.
+</pre></div>
+</div>
+<p>The returned SimuRslt contains a panel of simulated paths with num_samples and num_periods specified in the mod file. For example, we can plot the histogram of state variable <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; histogram(SimuRslt.K); title(&#39;Histogram for K&#39;);
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/histogram_K.png"><img alt="../../_images/histogram_K.png" src="../../_images/histogram_K.png" style="width: 437.5px; height: 328.0px;" /></a>
+<p>Or we can plot the first two sample paths of wages for the first 100 periods:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; plot(SimuRslt.w(1:2,1:100)&#39;); title(&#39;Sample Paths of Wages&#39;);
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/sample_path_w.png"><img alt="../../_images/sample_path_w.png" src="../../_images/sample_path_w.png" style="width: 437.5px; height: 328.0px;" /></a>
+<p>The iter and simulate files can be reused by passing parameters to be overwritten in a struct. For example,</p>
+<div class="highlight-Matlab notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">sigma</span> <span class="p">=</span> <span class="mf">1.5</span> <span class="c">% overwrite sigma</span>
+<span class="n">options</span><span class="p">.</span><span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">1.05</span><span class="p">]</span> <span class="c">% making the shock larger</span>
+<span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_rbc</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_rbc</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">,</span><span class="n">options</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Part of the toolbox options can also be overwritten by including them in the struct. See <a class="reference internal" href="../../usage/functions.html#options"><span class="std std-ref">Options</span></a>.</p>
+</div>
+<div class="section" id="dissecting-the-mod-file">
+<h2>Dissecting the Mod File<a class="headerlink" href="#dissecting-the-mod-file" title="Permalink to this headline">¶</a></h2>
+<p>We now look into each line of rbc.nmod and describe the usage.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+<span class="k">parameters</span> beta sigma alpha delta;
+beta  = 0.99;		<span class="c">% discount factor</span>
+sigma = 2.0;		<span class="c">% CRRA coefficient</span>
+alpha = 0.36;		<span class="c">% capital share</span>
+delta = 0.025;		<span class="c">% depreciation rate</span>
+</pre></div>
+</td></tr></table></div>
+<p>A line starting with keyword <cite>parameters</cite> declares parameters.
+Parameters are variables used in the <em>model</em> block that are invariant across states or over time.
+Matlab-style inline comments can be used following a “%”.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Exogenous States</span>
+<span class="k">var_shock</span> z;
+<span class="k">shock_num</span> = 2;
+z_low = 0.99; z_high = 1.01;
+Pr_ll = 0.9;  Pr_hh  = 0.9;
+z = [z_low,z_high];
+<span class="k">shock_trans</span> = [
+  Pr_ll, 1-Pr_ll
+  1-Pr_hh, Pr_hh
+  ];
+</pre></div>
+</td></tr></table></div>
+<p>Exogenous states such as the productivity shock in the RBC model should be declared following keyword <em>var_shock</em>.
+The number of states should be specified in variable <em>shock_num</em>.
+The Markov transition matrix should be specified in variable <em>shock_trans</em>.
+Notice that any Matlab expressions such as <code class="code docutils literal notranslate"><span class="pre">z_low</span> <span class="pre">=</span> <span class="pre">0.99</span></code> can be evaluated outside the <em>model</em> block.</p>
+<p>For multi-dimension exogenous states, <em>shock_num</em> needs to be specified as the number of discretze points in the Cartesian set across
+all dimensions. <em>shock_trans</em> should be specified as the full transition matrix accordingly.
+Matlab functions <em>ndgrid</em> and <em>kron</em> can be used to construct the Cartesian set and the full transition matrix.</p>
+<p>If an exogenous state follows a continuous process such as AR(1), specify the state to be an endogenous state instead in <em>var_state</em>,
+and discretize the innovation.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Endogenous States</span>
+<span class="k">var_state</span> K;
+Kss  = (alpha/(1/beta - 1 + delta))^(1/(1-alpha));
+KPts = 101;
+KMin = Kss*0.9;
+KMax = Kss*1.1;
+K    = linspace(KMin,KMax,KPts);
+</pre></div>
+</td></tr></table></div>
+<p>Endogenous states such as capital in the RBC model should be declared following keyword <em>var_state</em>.
+Then the discretized grid for each state should be specified (e.g., <code class="code docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">linspace(KMin,KMax,KPts);</span></code> in the example).
+Notice that all Matlab expressions can be evaluated.</p>
+<p>The discretized grid will be used in fixed-grid function approximation procedures such as splines and linear interpolations.
+For adaptive grid methods, only the range of the grid will be used.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Interp</span>
+<span class="k">var_interp</span> c_interp;
+<span class="k">initial</span> c_interp z.*K.^alpha+(1-delta)*K;
+<span class="c">% Time iterations update</span>
+c_interp = c;
+</pre></div>
+</td></tr></table></div>
+<p>The time iteration procedure requires taking the state transition functions (here, implicitly defined in <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span>) as given
+when evaluating the system of equations. These state transition functions are declared following keyword <em>var_interp</em>.
+They are named <em>var_interp</em> since they are usually evaluated with some function approximation procedure such as interpolation in evaluating the system of equations.</p>
+<p>Each of the transition function needs to be initialized following keyword <em>initial</em>.
+Here <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span> is initialized as <span class="math notranslate nohighlight">\(zK^{\alpha} + (1-\delta)K\)</span> which corresponds to
+requesting the algorithm to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
+of which <span class="math notranslate nohighlight">\(c_{t+1}\)</span> is initialized to be the last-period solution—
+consumers just consume all resources that include output and non-depreciated capital.
+Notice that the Matlab “dot” operator (.*) works in the line following <em>initial</em>, and the tensor is formed automatically.</p>
+<p>In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
+Starting with a last-period problem is shown to
+deliver both good theoretical properties and robust numerical computations (Cao, 2019).
+See xxx for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a <em>model_init</em> block.</p>
+<p>The update of the transition function after a time step needs to be specified such as <code class="code docutils literal notranslate"><span class="pre">c_interp</span> <span class="pre">=</span> <span class="pre">c;</span></code>.
+The update can use any variables returned as part of the solution to the system.
+For example, here <code class="code docutils literal notranslate"><span class="pre">c_interp</span> <span class="pre">=</span> <span class="pre">c;</span></code> means that the <em>c_interp</em> variable is updated with <em>c</em> after a time iteration,
+where <em>c</em> is one of the policy variables solved by the system of equations, to be specified below.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Endogenous variables as unknowns of equations</span>
+<span class="k">var_policy</span> c K_next;
+<span class="k">inbound</span> c       0 z.*K.^alpha+(1-delta)*K;
+<span class="k">inbound</span> K_next  0 z.*K.^alpha+(1-delta)*K;
+</pre></div>
+</td></tr></table></div>
+<p>All policy variables that enter the equations as unknowns are declared following keyword <code class="xref std std-declare docutils literal notranslate"><span class="pre">var_policy</span></code>.
+For each of these variables, the bounds for where the equation solver searches the solution should be specified
+following keyword <em>inbound</em>. For variables of which the bounds cannot be determined ex-ante,
+specify tight bounds for them and use an <em>adaptive</em> option so the solver adjusts bounds automatically when it cannot find solutions
+and adapt bounds across time iterations. See <code class="xref std std-declare docutils literal notranslate"><span class="pre">var_policy</span></code> in <a class="reference internal" href="../../usage/functions.html#variable-declaration"><span class="std std-ref">Variable declaration</span></a>.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Other endogenous variables</span>
+<span class="k">var_aux</span> w;
+</pre></div>
+</td></tr></table></div>
+<p>Some policy variables can be evaluated as simple functions of states and other policy variables, so they do not have to be
+directly included in the system of equations. For example wage is determined by the marginal product of labor
+and can be evaluated according to <span class="math notranslate nohighlight">\(w=(1-\alpha)zK^{\alpha}\)</span>. These policy variables can be declared
+following keyword <code class="xref std std-declare docutils literal notranslate"><span class="pre">var_aux</span></code>.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">model;</span>
+  <span class="c">% Budget constraints</span>
+  u_prime = c^(-sigma);
+  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
+  
+  <span class="c">% Evaluate the interpolation object to get future consumption</span>
+  c_future&#39; = c_interp&#39;(K_next);
+  u_prime_future&#39; = c_future&#39;^(-sigma);
+  
+  <span class="c">% Calculate residual of the equation</span>
+  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
+  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+  
+  <span class="c">% Calcualte other endogenous variables</span>
+  w = z*(1-alpha)*K^alpha;
+  
+  <span class="k">equations;</span>
+    euler_residual;
+    budget_residual;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+<p>The <em>model;—end;</em> block defines the system of equations for each combination of endogenous states and exogenous states.
+For the current example, it simply defines the system of equations for each <span class="math notranslate nohighlight">\((z,K)\)</span>.</p>
+<p>The equations should be eventually specified in the <em>equation;—end;</em> block, in which each line corresponds to one equation in the system.
+Any calculations in order to evaluate these equations are included in the <em>model</em> block preceding the <em>equations</em> block.
+Notice the whole <em>model</em> block is parsed into C++, so all evaluations should be scalar-based: Matlab functions such as .* operator cannot be used.
+Nevertheless, the <em>model</em> block support simple control-flow blocks in Matlab-style syntax, such as if-elseif-else-end block and
+for-end block.</p>
+<p>A variable followed by a prime (‘) indicate that the variable is a vector of length <em>shock_num</em>.
+For example,</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
+</pre></div>
+</td></tr></table></div>
+<p>means that</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mpk_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
+mpk_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
+</pre></div>
+</div>
+<p>The <cite>var_shock</cite> (here <code class="code docutils literal notranslate"><span class="pre">z</span></code>), by default, is declared as a vector variable, and thus can be
+used to construct other vector variables.
+This declaration of a vector variable is useful in calculating the transition of state for each of
+realization of future exogenous states, as illustrated in the example.</p>
+<p>Any <em>var_interp</em> can be used as a function in the model block. For example,</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>47</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  c_future&#39; = c_interp&#39;(K_next);
+</pre></div>
+</td></tr></table></div>
+<p>means that calculate <span class="math notranslate nohighlight">\(c_{t+1}\)</span> based on the state transition function implied by <em>c_interp</em>, at
+the next-period endogenous state <em>K_next</em> (which is a current choice).
+Where are the next-period exogenous states? These are taken care by the prime (‘) operator
+following <em>c_interp</em>, which means that it is evaluating at each realization of the future exogenous states,
+and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared a vector,
+i.e., a variable followed by a prime (‘).</p>
+<p>The <em>model</em> block can use several utility functions for reduction operations.
+For example, the <em>GNDSGE_EXPECT{}</em> used in</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
+</pre></div>
+</td></tr></table></div>
+<p>is to calculate the conditional expectation of the object defined inside the curly brace,
+conditional on the current exogenous state, using the default Markov transition matrix <em>shock_trans</em>.
+Obviously, this function is meaningful only if it takes arguments realizations of variables across future exogenous states,
+which are defined as vector variables followed by prime (‘).</p>
+<p>This operator can also take a different transition matrix than <em>shock_trans</em>, which is used as
+<code class="code docutils literal notranslate"><span class="pre">GNDSGE_EXPECT{*|alternative_shock_trans}</span></code>. This can be used to solve models with heterogeneous beliefs.</p>
+<p>Two other reduction operations <em>GNDSGE_MAX{}</em> and <em>GNDSGE_MIN{}</em> are defined, which are to take
+the maximum and the minimum of objects inside the curly brace, respectively. See <a class="reference internal" href="../../usage/functions.html#utility-functions"><span class="std std-ref">Utility functions</span></a>.</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51
+52
+53
+54
+55
+56
+57
+58</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">simulate;</span>
+  <span class="k">num_periods</span> = 10000;
+  <span class="k">num_samples</span> = 100;
+  <span class="k">initial</span> K Kss;
+  <span class="k">initial</span> shock 1
+  <span class="k">var_simu</span> c K w;
+  K&#39; = K_next;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+<p>The simulate block defines how the file for Monte Carlo simulations should be generated.
+It should define the initial endogenous state following keyword <em>initial</em>.
+<code class="docutils literal notranslate"><span class="pre">initial</span> <span class="pre">K</span> <span class="pre">Kss;</span></code> in the example sets the endogenous state <span class="math notranslate nohighlight">\(K\)</span> to <em>Kss</em> defined before.</p>
+<p>The simulate block should define the initial exogenous state index following keyword <em>initial shock</em>.
+It should define the variables to be recorded following <em>var_simu</em>.
+It should define the transition for each state variable. <code class="docutils literal notranslate"><span class="pre">K'=K_next;</span></code> in the example
+defines that the next period endogenous state <span class="math notranslate nohighlight">\(K\)</span> should be assigned to <em>K_next</em> which is one of
+the <em>var_policy</em> solved as part of the system in the current period.</p>
+<p>The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).</p>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>Now you understand the basic usage of the toolbox.
+You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.</p>
+<p>Or you can proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../usage/functions.html" class="btn btn-neutral float-right" title="Toolbox API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Indices and tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
