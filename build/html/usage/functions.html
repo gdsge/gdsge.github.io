@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Toolbox API &mdash; GDSGE  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Getting Started - A Simple RBC Model" href="../example/rbc/rbc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../example/rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbox API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#matlab-interface">Matlab Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#variable-declaration">Variable declaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-functions">Utility functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#policy-iterations">Policy iterations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-approximations">Function approximations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equation-solver">Equation Solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#print-and-save">Print and save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug">DEBUG</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Toolbox API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usage/functions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="toolbox-api">
+<h1>Toolbox API<a class="headerlink" href="#toolbox-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="matlab-interface">
+<h2>Matlab Interface<a class="headerlink" href="#matlab-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="iter_modname">
+<code class="sig-name descname">iter_modname</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">options</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#iter_modname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run policy iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>options</strong> – a Matlab struct that contains options and parameters to be overwritten.
+Notice only options that do not require recompiling can be overwritten. See <a class="reference internal" href="#options"><span class="std std-ref">Options</span></a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a Matlab struct that contains the structure of the problem and converged policy/state transition functions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="simulate_modname">
+<code class="sig-name descname">simulate_modname</code><span class="sig-paren">(</span><em class="sig-param">IterRslt</em><span class="optional">[</span>, <em class="sig-param">options</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#simulate_modname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate models using policy/state transition functions contained in Matlab struct IterRslt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>IterRslt</strong> – results returned by the policy iteration procedure</p></li>
+<li><p><strong>options</strong> – a Matlab struct that contains options and parameters to be overwritten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a Matlab struct that contains simulated panels of variables defined in <cite>var_simu</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="variable-declaration">
+<h2>Variable declaration<a class="headerlink" href="#variable-declaration" title="Permalink to this headline">¶</a></h2>
+<dl class="declare">
+<dt id="declare-parametersvar1var2...">
+<code class="sig-name descname">parameters var1 var2 ...</code><a class="headerlink" href="#declare-parametersvar1var2..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare parameters.
+Parameters are variables that do not change across states or over time.
+A parameter can be a vector. A vector parameter can be accessed in the model block using round brackets. For example,</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">parameters</span> var1, var2;
+var1 = 1.0;         <span class="c">% Scalar parameter</span>
+var2 = [2.0,3.0];   <span class="c">% Vector parameter with two elements</span>
+...
+<span class="k">model;</span>
+    a = var1;       <span class="c">% This assigns a to scalar parameter var1 (1.0)</span>
+    b = var2(1);    <span class="c">% This assigns b to the first element of parameter var2 (2.0)</span>
+    ...
+<span class="k">end;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_shockvar1var2...">
+<code class="sig-name descname">var_shock var1 var2 ...</code><a class="headerlink" href="#declare-var_shockvar1var2..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare exogenous state variables.
+The number of elements of the cartesian set of <cite>var_shock</cite> is specified by <cite>shock_num</cite>.
+The full transition matrix is specified by <cite>shock_trans</cite></p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_statevar1var2...">
+<code class="sig-name descname">var_state var1 var2 ...</code><a class="headerlink" href="#declare-var_statevar1var2..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare endogenous state variables.
+A fixed grid for each state variable should be defined.
+The grid will be used for fixed-grid function approximations such as splines and linear interpolations.
+The range of the grid will be used for adaptive grid methods.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_interpvar1var2...">
+<code class="sig-name descname">var_interp var1 var2 ...</code><a class="headerlink" href="#declare-var_interpvar1var2..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare state transitions.
+An initial value should be specified for each <cite>var_interp</cite>.
+An update procedure should be specified for each <cite>var_interp</cite> after a policy iteration.
+<cite>var_interp</cite> can be used as functions which take values of <cite>var_state</cite> as arguments in the model block.</p>
+<p>Convergence for policy iterations is checked for <cite>var_interp</cite> across two iterations.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_policyvar1var2[len2]...">
+<code class="sig-name descname">var_policy var1 var2[len2] ...</code><a class="headerlink" href="#declare-var_policyvar1var2[len2]..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare policy variables that directly enter the system of equations.</p>
+<p>A <cite>var_policy</cite> can be declared as a vector, for example, var2 of length len2 in the example.
+To access elements of a vector <cite>var_policy</cite> in the model block, use round bracket to index
+or use the prime (‘) operator.</p>
+<p>For each <cite>var_policy</cite>, its lower and upper bounds entering the equation solver should defined as</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> var1 var1_lb var1_ub
+</pre></div>
+</div>
+<p>If the lower and upper bounds of a <cite>var_policy</cite> cannot be determined ex-ante, specify tight bounds and
+use the adaptive bound option as</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> var1 var1_lb var1_ub adaptive(2.0)
+</pre></div>
+</div>
+<p>This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration,
+if <cite>UseAdpativeBound</cite> is set as one. If option <cite>UseAdpativeBoundInSol</cite> is set to one, after a failed attempt in trying to search
+solutions within the bounds and the equation solver returns an immature step that hits the lower or upper bound,
+the bound will be expanded.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_auxvar1var2[len2]...">
+<code class="sig-name descname">var_aux var1 var2[len2] ...</code><a class="headerlink" href="#declare-var_auxvar1var2[len2]..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Some policy variables of interests are simple functions of <cite>var_state</cite> and <cite>var_policy</cite>, and thus do not need to enter the system of equations
+as unknowns. These variables can be declared as <cite>var_aux</cite>.</p>
+<p>They need to be evaluated in the model block so as to be returned.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_outputvar1var2...">
+<code class="sig-name descname">var_output var1 var2 ...</code><a class="headerlink" href="#declare-var_outputvar1var2..." title="Permalink to this definition">¶</a></dt>
+<dd><p>A subset of <cite>var_policy</cite> or <cite>var_aux</cite> of which the function approximation parameters should be constructed.
+These function approximation parameters will be used in simulations if <cite>SIMU_INTERP</cite> is set to one.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-var_othersvar1var2...">
+<code class="sig-name descname">var_others var1 var2 ...</code><a class="headerlink" href="#declare-var_othersvar1var2..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Any variables in the Matlab workspace that needs to be returned.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-model;...end;">
+<code class="sig-name descname">model; ... end;</code><a class="headerlink" href="#declare-model;...end;" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare the model block.</p>
+<p>The <em>model;…end;</em> block defines the system of equations for each collocation point of endogenous states and exogenous states.
+The equations should be eventually specified in the <em>equation;…end;</em> block, in which each line corresponds to one equation in the system.
+Any calculations in order to evaluate these equations are included in the <em>model</em> block preceding the <em>equations</em> block.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-model_init;...end;">
+<code class="sig-name descname">model_init; ... end;</code><a class="headerlink" href="#declare-model_init;...end;" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare the model_init block.</p>
+<p>Like the <em>model;…end;</em> block, but is called only once at the start of the policy iteration.
+This is often used to define a last period problem which is to solve a potentially different system of equations.</p>
+<p>Can set :rst:option:SkipModelInit=1 to skip this block, so the policy iteration starts with a WarmUp specified in the option.</p>
+</dd></dl>
+
+<dl class="declare">
+<dt id="declare-simulate;...end;">
+<code class="sig-name descname">simulate; ... end;</code><a class="headerlink" href="#declare-simulate;...end;" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare the simulate block.</p>
+<p>The simulate block should define the initial exogenous state index and endogenous states (e.g. var1 and var2) as following</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">initial</span> shock 1
+<span class="k">initial</span> var1 some_value1
+<span class="k">initial</span> var2 some_value2
+</pre></div>
+</div>
+<p>The simulate block should declare the transition of each endogenous variable as following</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>var1&#39; = some_variable1
+var2&#39; = some_variable2
+</pre></div>
+</div>
+<p>If the transition of the endogenous variable is given by indexing a vector <cite>var_policy</cite> or <cite>var_aux</cite> with the future exogenous state index,
+specify the transition as following</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>var1&#39; = some_<span class="k">var_policy</span>&#39;
+var2&#39; = some_aux_policy&#39;
+</pre></div>
+</div>
+<p>The simulate block should declare variables to be recorded following keyword <cite>var_simu</cite>.
+A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>var_aux</cite> if SIMU_RESOLVE=1, or must be contained in <cite>var_outpu</cite> if SIMU_INTERP=1.</p>
+<p>The simulate block can overwrite options num_samples (default 1) and num_periods (default 1000).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utility-functions">
+<h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">GDSGE_INVERP_VEC'(var_state1, var_state2, ...)</code></dt>
+<dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
+returned in the order defined in <em>var_interp</em>. For example,</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
+<span class="k">var_shock</span> z;
+<span class="k">var_state</span> x1 x2;
+<span class="k">var_interp</span> y1 y2 y3;
+...
+<span class="k">model;</span>
+    x1_future&#39; = z&#39;;
+    x2_future&#39; = z&#39;^2;
+    [y1_future&#39;,y2_future&#39;,y3_future&#39;] = GDSGE_INTERP_VEC&#39;(x1_future&#39;,x2_future&#39;);
+<span class="k">end;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>var_state</strong> – values of endogenous states</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">GDSGE_INVERP_VEC'[index](var_state1, var_state2, ...)</code></dt>
+<dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
+in the order defined in <em>index</em>.
+This can be used to skip evaluations of certain var_interp. For example, the following skips the evaluation of y2.</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
+<span class="k">var_shock</span> z;
+<span class="k">var_state</span> x1 x2;
+<span class="k">var_interp</span> y1 y2 y3;
+...
+<span class="k">model;</span>
+    x1_future&#39; = z&#39;;
+    x2_future&#39; = z&#39;^2;
+    [y1_future&#39;,y3_future&#39;] = GDSGE_INTERP_VEC&#39;[1,3](x1_future&#39;,x2_future&#39;);
+<span class="k">end;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_state</strong> – values of endogenous states</p></li>
+<li><p><strong>index</strong> – matlab integer vector that specifies the index of <em>var_interp</em> returned</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">GDSGE_INVERP_VEC[index](shock_idx, var_state1, var_state2, ...)</code></dt>
+<dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for exogenous state at <em>shock_idx</em>,
+in the order defined in <em>var_interp</em>. For example,</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
+<span class="k">var_shock</span> z;
+<span class="k">var_state</span> x1 x2;
+<span class="k">var_interp</span> y1 y2 y3;
+...
+<span class="k">model;</span>
+    x1_future = z;
+    x2_future = z^2;
+    [y1_future,y2_future,y3_future] = GDSGE_INTERP_VEC(shock,x1_future,x2_future);
+<span class="k">end;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shock_idx</strong> – the index of exogenous state at which the evaluation is done</p></li>
+<li><p><strong>var_state</strong> – values of endogenous states</p></li>
+<li><p><strong>index</strong> – matlab integer vector that specifies the index of <em>var_interp</em> returned.
+Return all <em>var_interp</em> if omitted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">GDSGE_EXPECT{expression | trans_matrix=shock_trans}</code></dt>
+<dd><p>Calculate the conditional expectation of an expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> – mathematical expression to be calculated</p></li>
+<li><p><strong>trans_matrix</strong> – the Markov transition matrix used to form conditional probability. Defaulted to <em>shock_trans</em> if omitted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">GDSGE_MAX{expression}</code></dt>
+<dd><p>Calculate the maximum of expression across all realizations of exogenous states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>expression</strong> – mathematical expression to be calculated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">GDSGE_MIN{expression}</code></dt>
+<dd><p>Calculate the minimum of expression across all realizations of exogenous states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>expression</strong> – mathematical expression to be calculated</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>Options named UPPER_CASE_OPTION require recompiling (via a local or remote compiler) when the the values are changed.</p>
+<p>Options named CapitalUpperCaseOption or lower_case_option do not require recompiling, and can be safely specified into an option structure to overwrite existing values. For example</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">SaveFreq</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>      <span class="c">% Change saving frequency in policy iterations</span>
+<span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_modname</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="c">...</span>
+<span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">num_samples</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>   <span class="c">% Change number of sample paths in simulations</span>
+<span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_modname</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">,</span><span class="n">options</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="policy-iterations">
+<h3>Policy iterations<a class="headerlink" href="#policy-iterations" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-SkipModelInit">
+<code class="sig-name descname">SkipModelInit</code><a class="headerlink" href="#option-SkipModelInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skip the <cite>model_init</cite> block. Start iterations with <cite>var_interp</cite> in the WarmUp.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-TolEq">
+<code class="sig-name descname">TolEq</code><a class="headerlink" href="#option-TolEq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tolerance for convergence of <em>var_interp</em> across two iterations.
+Default: 1e-6</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-MaxIter">
+<code class="sig-name descname">MaxIter</code><a class="headerlink" href="#option-MaxIter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum iterations for policy iterations. Default: inf</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-MaxMinorIter">
+<code class="sig-name descname">MaxMinorIter</code><a class="headerlink" href="#option-MaxMinorIter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum minor iterations for randomizing initial guesses when solutions are not found. Default: inf</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-UseAdaptiveBound">
+<code class="sig-name descname">UseAdaptiveBound</code><a class="headerlink" href="#option-UseAdaptiveBound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use adaptive bound specified as for example</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> x 0.0 1.0 adaptive(2)
+</pre></div>
+</div>
+<p>which expand the lower and upper bound by a factor of 2 for each state after each iteration</p>
+<p>Takes value 0 or 1 (default).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-UseAdaptiveBoundInSol">
+<code class="sig-name descname">UseAdaptiveBoundInSol</code><a class="headerlink" href="#option-UseAdaptiveBoundInSol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use adaptive bound in randomization.
+Takes value 0 (default) or 1.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="simulation">
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-SIMU_RESOLVE">
+<code class="sig-name descname">SIMU_RESOLVE</code><a class="headerlink" href="#option-SIMU_RESOLVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether resolving the system of equations in simulations.
+Takes value of 0 or 1 (default).
+Only one of <cite>SIMU_RESOLVE</cite> and <cite>SIMU_INTERP</cite> can take value one.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-SIMU_INTERP">
+<code class="sig-name descname">SIMU_INTERP</code><a class="headerlink" href="#option-SIMU_INTERP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether directly interpolating the policy and state transition functions in simulations.
+Takes value of 0 (default) or 1.
+Only one of <cite>SIMU_RESOLVE</cite> and <cite>SIMU_INTERP</cite> can take value one.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-SimuSeed">
+<code class="sig-name descname">SimuSeed</code><a class="headerlink" href="#option-SimuSeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The seed for random number generators in simulations. Default: 0823.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-EnforceSimuStateInbound">
+<code class="sig-name descname">EnforceSimuStateInbound</code><a class="headerlink" href="#option-EnforceSimuStateInbound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether enforcing endogenous states are inbound for each period, after interpolating state transition functions.
+Effective only when <cite>SIMU_INTERP</cite> = 1</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-num_samples">
+<code class="sig-name descname">num_samples</code><a class="headerlink" href="#option-num_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sample paths. Default: 1</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-num_periods">
+<code class="sig-name descname">num_periods</code><a class="headerlink" href="#option-num_periods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of periods of each sample path. Default: 1000</p>
+</dd></dl>
+
+</div>
+<div class="section" id="function-approximations">
+<h3>Function approximations<a class="headerlink" href="#function-approximations" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-USE_SPLINE">
+<code class="sig-name descname">USE_SPLINE</code><a class="headerlink" href="#option-USE_SPLINE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether using multi-dimensional linear interpolations or cubic splines with natural end conditions for function approximations.
+Takes value of 0 or 1 (default).</p>
+<p>Only one of USE_SPLINE, USE_PCHIP, USE_ASG can be set to one.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-USE_PCHIP">
+<code class="sig-name descname">USE_PCHIP</code><a class="headerlink" href="#option-USE_PCHIP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether using shape-preserving cubic interpolations for function approximations.
+Takes value of 0 (default) or 1.</p>
+<p>Only one of USE_SPLINE, USE_PCHIP, USE_ASG can be set to one.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-USE_ASG">
+<code class="sig-name descname">USE_ASG</code><a class="headerlink" href="#option-USE_ASG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether using shape-preserving cubic interpolations for function approximations.
+Takes value of 0 (default) or 1.</p>
+<p>Only one of USE_SPLINE, USE_PCHIP, USE_ASG can be set to one.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-INTERP_ORDER">
+<code class="sig-name descname">INTERP_ORDER</code><a class="headerlink" href="#option-INTERP_ORDER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes value of 2 (default) or 4.
+Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolations and INTERP_ORDER=4
+corresponds to cubic splines.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-ExtrapOrder">
+<code class="sig-name descname">ExtrapOrder</code><a class="headerlink" href="#option-ExtrapOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>The order of extrapolations when extrapolating a spline.
+Takes value of 2 (default) or 4.
+Only effective if USE_SPLINE=1 and INTERP_ORDER=4.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-AsgMaxLevel">
+<code class="sig-name descname">AsgMaxLevel</code><a class="headerlink" href="#option-AsgMaxLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum level used in the adaptive sparse grid method.  Default 10.
+Only effective if USE_ASG=1.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-AsgMinLevel">
+<code class="sig-name descname">AsgMinLevel</code><a class="headerlink" href="#option-AsgMinLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum level used in the adaptive sparse grid method.  Default 4.
+Only effective if USE_ASG=1.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-AsgThreshold">
+<code class="sig-name descname">AsgThreshold</code><a class="headerlink" href="#option-AsgThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tolerance for refinement in the adaptive sparse grid method. Default 1e-2.
+Only effective if USE_ASG=1.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-AsgOutputMaxLevel">
+<code class="sig-name descname">AsgOutputMaxLevel</code><a class="headerlink" href="#option-AsgOutputMaxLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The max level used in the adaptive sparse grid method for <cite>var_output</cite>.  Default 10.
+Only effective if USE_ASG=1.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-AsgOutputThreshold">
+<code class="sig-name descname">AsgOutputThreshold</code><a class="headerlink" href="#option-AsgOutputThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tolerance for refinement in the adaptive sparse grid method for <cite>var_output</cite>. Default MIN(1e-2, AsgThreshold).
+Only effective if USE_ASG=1.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-AsgFixGrid">
+<code class="sig-name descname">AsgFixGrid</code><a class="headerlink" href="#option-AsgFixGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether fix the adaptive grid to the one passed in struct WarmUp.
+Takes value of 0 (default) or 1.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="equation-solver">
+<h3>Equation Solver<a class="headerlink" href="#equation-solver" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-TolSol">
+<code class="sig-name descname">TolSol</code><a class="headerlink" href="#option-TolSol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Absolute residual tolerance in equation solving. Default: 1e-8</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-SolMaxIter">
+<code class="sig-name descname">SolMaxIter</code><a class="headerlink" href="#option-SolMaxIter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of function evaluations in equation solving. Default: 200</p>
+</dd></dl>
+
+</div>
+<div class="section" id="print-and-save">
+<h3>Print and save<a class="headerlink" href="#print-and-save" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-PrintFreq">
+<code class="sig-name descname">PrintFreq</code><a class="headerlink" href="#option-PrintFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency of printing information in policy iterations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-SaveFreq">
+<code class="sig-name descname">SaveFreq</code><a class="headerlink" href="#option-SaveFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency of saving in policy iterations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-SimuPrintFreq">
+<code class="sig-name descname">SimuPrintFreq</code><a class="headerlink" href="#option-SimuPrintFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency of printing information in simulations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-SimuSaveFreq">
+<code class="sig-name descname">SimuSaveFreq</code><a class="headerlink" href="#option-SimuSaveFreq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Frequency of saving in simulations</p>
+</dd></dl>
+
+</div>
+<div class="section" id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-NumThreads">
+<code class="sig-name descname">NumThreads</code><a class="headerlink" href="#option-NumThreads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of (Openmp) threads in policy iterations and simulations.
+Default: the number of cores (via Matlab function <code class="docutils literal notranslate"><span class="pre">feature('numcores')</span></code>)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="debug">
+<h3>DEBUG<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-GDSGE_DEBUG_EVAL_ONLY">
+<code class="sig-name descname">GDSGE_DEBUG_EVAL_ONLY</code><a class="headerlink" href="#option-GDSGE_DEBUG_EVAL_ONLY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only evaluate the system of equations instead of solving it.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-IterSaveAll">
+<code class="sig-name descname">IterSaveAll</code><a class="headerlink" href="#option-IterSaveAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save all variables in the workspace after policy iterations.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../example/rbc/rbc.html" class="btn btn-neutral float-left" title="Getting Started - A Simple RBC Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
