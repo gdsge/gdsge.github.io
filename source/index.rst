@@ -19,6 +19,7 @@ The toolbox can be used to solve models in macroeconomics, international finance
    :caption: Contents:
    
    example/rbc/rbc
+   example/rbc/rbcIrr
    usage/functions
 
 

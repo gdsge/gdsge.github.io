@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting Started - A Simple RBC Model &mdash; GDSGE  documentation</title>
+  <title>An Extension with Irreversible Investment &mdash; GDSGE  documentation</title>
   
 
   
@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Toolbox API" href="../../usage/functions.html" />
-    <link rel="prev" title="Indices and tables" href="../../index.html" /> 
+    <link rel="prev" title="Getting Started - A Simple RBC Model" href="rbc.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,7 +83,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started - A Simple RBC Model</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">An Extension with Irreversible Investment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-mod-file">The Mod File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dissecting-the-mod-file">Dissecting the Mod File</a></li>
@@ -136,13 +137,13 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Getting Started - A Simple RBC Model</li>
+      <li>An Extension with Irreversible Investment</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/example/rbc/rbc.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/example/rbc/rbcIrr.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -155,33 +156,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started-a-simple-rbc-model">
-<h1>Getting Started - A Simple RBC Model<a class="headerlink" href="#getting-started-a-simple-rbc-model" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="an-extension-with-irreversible-investment">
+<h1>An Extension with Irreversible Investment<a class="headerlink" href="#an-extension-with-irreversible-investment" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
-<p>The model is a canonical complete-markets Real Business Cycle (RBC) model with a single productivity shock.
-This simple model can be approximated with linear solutions well,
-so using GDSGE to obatin global non-linear solutions is not necessary.
-Nevertheless it serves as a good starting point to illustrate the basic usage of the toolbox,
-as this model should be familiar to any macroeconomic audience.</p>
-<p>Time is discrete <span class="math notranslate nohighlight">\(t=0..\infty\)</span>. Representative households with mass one maximize utility</p>
+<p>We augment the simple RBC model with two additional features.</p>
+<p>First, productivity follows a continuous AR(1) process</p>
 <div class="math notranslate nohighlight">
-\[\mathbb E \sum_{t=0}^{\infty} \beta^t \frac{c_t^{1-\sigma}}{1-\sigma},\]</div>
-<p>where parameter <span class="math notranslate nohighlight">\(\beta&gt;0\)</span> is the discount factor, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span> is the constant relative risk aversion. <span class="math notranslate nohighlight">\(c_t\)</span> is the consumption. <span class="math notranslate nohighlight">\(\mathbb{E}\)</span> is an expectation operator integrating the productivity shock to be introduced below.</p>
-<p>Competitive representative firms produce a single output according to</p>
-<div class="math notranslate nohighlight">
-\[Y_t=z_t K_t^{\alpha} L_t^{1-\alpha},\]</div>
-<p>where parameter <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> is the capital share. <span class="math notranslate nohighlight">\(K_t\)</span> is capital, <span class="math notranslate nohighlight">\(L_t\)</span> is labor, and <span class="math notranslate nohighlight">\(z_t\in\{z_L,z_H\}\)</span> is the productivity shock which follows a two-point Markov process with the following transition matrix</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\left(
-\begin{aligned}
-\pi_{LL} \quad 1-\pi_{LL}\\
-1-\pi_{HH} \quad \pi_{HH}
-\end{aligned}
-\right).\end{split}\]</div>
+\[\log z_t = \rho \log z_{t-1} + \epsilon_t\]</div>
+<p>where parameter <span class="math notranslate nohighlight">\(\rho \in \(0,1\)\)</span> is the persistence, <span class="math notranslate nohighlight">\(\epsilon_t\)</span> is an I.I.D. shock that takes on one of the two values.</p>
 <p>Capital is depreciated at rate <span class="math notranslate nohighlight">\(\delta \in (0,1)\)</span>. Investment technology can convert one unit of output to new capital:</p>
 <div class="math notranslate nohighlight">
-\[K_{t+1} = K_t(1-\delta) + I_t.\]</div>
+\[K_{t+1} = K_t(1-\delta) + I_t,\]</div>
+<p>subject to an irreversibility constraint</p>
+<div class="math notranslate nohighlight">
+\[I_t \geq 0.\]</div>
 <p>Assets markets are complete. Households make investment decision and supply capital and labor to firms. Market clearing conditions for labor and goods are, respectively,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}L_t=1, \\
@@ -191,7 +180,7 @@ c_t+I_t=Y_t.\end{split}\]</div>
 \begin{eqnarray}
     c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
     c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
-\end{eqnarray}</div><p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="rbcIrr.html#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
+\end{eqnarray}</div><p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
 <p>Definition: a recursive competitive equilibrium is functions <span class="math notranslate nohighlight">\(c(z,K), K'(z,K)\)</span> s.t.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}c(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma} \Big| z \right]
@@ -653,7 +642,7 @@ You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.<
         <a href="../../usage/functions.html" class="btn btn-neutral float-right" title="Toolbox API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../../index.html" class="btn btn-neutral float-left" title="Indices and tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="rbc.html" class="btn btn-neutral float-left" title="Getting Started - A Simple RBC Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
