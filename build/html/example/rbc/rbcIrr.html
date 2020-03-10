@@ -87,7 +87,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">An Extension with Irreversible Investment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
@@ -169,27 +168,36 @@
 \[K_{t+1} = K_t(1-\delta) + I_t,\]</div>
 <p>the reprentative firm is subject to an irreversibility constraint</p>
 <div class="math notranslate nohighlight">
-\[I_t \geq 0.\]</div>
+\[I_t \geq \phi I_{ss}.\]</div>
 <p>Let <span class="math notranslate nohighlight">\(\mu_t\)</span> denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;c_t^{-\sigma}-\mu_t=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}-(1-\delta)\mu_{t+1}\right],\\
-&amp;\mu_t (K_{t+1}-(1-\delta)K_t) = 0,\\
+\[\begin{split}&amp;c_t^{-\sigma}-\mu_t\\
+&amp;=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}-(1-\delta)\mu_{t+1}\right],\\
+&amp;\\
+&amp;\mu_t (K_{t+1}-(1-\delta)K_t-\phi I_{ss}) = 0,\\
+&amp;\\
 &amp;c_t+K_{t+1} = z_t K_t^{\alpha}+(1-\delta)K_t.\end{split}\]</div>
 <p>A recursive competitive equilibrium are functions: <span class="math notranslate nohighlight">\(c(z,K), K'(z,K), \mu(z,K)\)</span> s.t.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;c(z,K)^{-\sigma}-\mu(z,K)=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma}-(1-\delta)\mu(z',K'(z,K)) \Big| z \right]\\
-&amp;\mu(z,K)(K'(z,K)-(1-\delta)K)=0\\
+\[\begin{split}&amp;c(z,K)^{-\sigma}-\mu(z,K)\\
+&amp;=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma}-(1-\delta)\mu(z',K'(z,K)) \Big| z \right]\\
+&amp;\\
+&amp;\mu(z,K)(K'(z,K)-(1-\delta)K-\phi I_{ss})=0\\
+&amp;\\
 &amp;c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 <p>This recursive system can be solved using a time iteration procedure similar to the one for the standard RCB model:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;c_t(z,K)^{-\sigma}-\mu_t(z,K)=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma}-(1-\delta)\mu_{t+1}(z',K_t'(z,K))\Big| z \right]\\
-&amp;\mu_t(z,K)(K'_t(z,K)-(1-\delta)K)=0\\
+\[\begin{split}&amp;c_t(z,K)^{-\sigma}-\mu_t(z,K)\\
+&amp;=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma}-(1-\delta)\mu_{t+1}(z',K_t'(z,K))\Big| z \right]\\
+&amp;\\
+&amp;\mu_t(z,K)(K'_t(z,K)-(1-\delta)K-\phi I_{ss})=0\\
+&amp;\\
 &amp;c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 <p>taking functions <span class="math notranslate nohighlight">\(c_{t+1}(z,K),\mu_{t+1}(z,K)\)</span> as known in the period-<span class="math notranslate nohighlight">\(t\)</span> time step.</p>
 </div>
 <div class="section" id="the-gmod-file">
 <h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
-<p>The recursive system can now be input to GDSGE via a mod file rbcIrr.gmod below.</p>
+<p>The recursive system can now be input to the GDSGE toolbox via a mod file rbcIrr.gmod below.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -311,39 +319,15 @@
 119
 120
 121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
-<span class="k">parameters</span> beta sigma alpha delta K_min K_max rho;
+122</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+<span class="k">parameters</span> beta sigma alpha delta K_min K_max rho Imin;
 
 beta = 0.99; <span class="c">% dicount factor</span>
 sigma = 2; <span class="c">% risk aversion</span>
 alpha = 0.36; <span class="c">% capital share</span>
 delta = 0.025; <span class="c">% depreciation rate</span>
-rho = 0.90;
+rho = 0.90; <span class="c">%persistent of productivity shocks</span>
+phi = 0.975; <span class="c">%investment irreversibility constraint</span>
 
 SimuInterp = 0;
 SimuResolve = 1;
@@ -357,158 +341,114 @@ TolEq = 1e-6;
 SaveFreq = 50;
 SimuSaveFreq = 1000;
 SimuPrintFreq = 1000;
-
 NumThreads = feature(&#39;NumCores&#39;);
 
-<span class="k">var_shock</span> e;
-
 <span class="c">% Shocks</span>
+<span class="k">var_shock</span> e;
 <span class="k">shock_num</span> = 2;
 <span class="k">shock_trans</span> = [1/2.0,1/2.0;1/2.0,1/2.0];
-
 e = [-0.01,0.01]*sqrt(1-rho^2);
 
 <span class="c">% Steady state</span>
 Kss = (alpha/(1/beta - 1 + delta))^(1/(1-alpha));
-
-K_min = 0.1*Kss;
-K_max = 10*Kss;
+Iss = delta*Kss;
+Imin = phi*Iss;
+K_min = 0.5*Kss;
+K_max = 1.5*Kss;
 
 <span class="c">% States</span>
 <span class="k">var_state</span> z K;
-
 z_pts = 21;
-z = linspace(0.1,10.0,z_pts);
-
-K_pts = 21;
+z = linspace(0.9,1.1,z_pts);
+K_pts = 201;
 K = exp(linspace(log(K_min),log(K_max),K_pts));
 
 <span class="k">var_interp</span> Euler_interp muc_interp;
 
 <span class="c">% Last period</span>
 <span class="k">var_policy</span>_init c;
-
 <span class="k">inbound</span>_init c 1e-6 100;
 
 <span class="k">var_aux</span>_init Euler mu muc;
 
 model_init;
-  
   Y = z*(K^alpha);
-  
-  resid = 1 - c/Y;
+  resid = 1 - c/(Y-Imin);
   
   mu = 1;
-
   muc = mu*(c^-sigma);
-
   Euler = (c^-sigma)*(1-delta+z*alpha*K^(alpha-1));
-  
+
   <span class="k">equations;</span>
      resid;		
   <span class="k">end;</span>
 <span class="k">end;</span>
 
 <span class="k">initial</span> Euler_interp Euler;
-
 Euler_interp = Euler;
-
 <span class="k">initial</span> muc_interp muc;
-
 muc_interp = muc;
 
 % Endogenous variables, bounds, and <span class="k">initial</span> values
-
-<span class="k">var_policy</span> c Inv mu;
+<span class="k">var_policy</span> c invst mu;
 
 <span class="k">inbound</span> c 1e-6 100 adaptive(2);
-<span class="k">inbound</span> Inv 0 50 adaptive(1.5);
+<span class="k">inbound</span> invst 0 50 adaptive(1.5);
 <span class="k">inbound</span> mu 0 2 adaptive(1.5);
 
 <span class="c">% Other equilbirium variables</span>
-
-<span class="k">var_aux</span> Y Euler K_next muc z_next[2];
+<span class="k">var_aux</span> Y Euler K_next muc z_next[2] Inv;
 
 <span class="k">model;</span>
- 
+  <span class="c">%investment irreversiility constraint    </span>
+  Inv = invst + Imin;     
   K_next = Inv + (1-delta)*K;
-
   Y = z*(K^alpha);
-  
   resid  = 1 - (Inv+c)/Y;
-
-  <span class="c">% transition to z_next</span>
-
+  
+  <span class="c">%transition to z_next</span>
   z_next&#39; = exp(rho*log(z)+e&#39;);
-   
-  Euler_future&#39; = Euler_interp&#39;(z_next&#39;,K_next);
   
-  EEuler_future = GNDSGE_EXPECT{Euler_future&#39;};
-   
+  <span class="c">%interpolation of future policies </span>
+  Euler_future&#39; = Euler_interp&#39;(z_next&#39;,K_next);  
+  EEuler_future = <span class="k">GDSGE_EXPECT</span>{Euler_future&#39;};   
   muc_future&#39; = muc_interp&#39;(z_next&#39;,K_next);
-
-  Emuc_future = GNDSGE_EXPECT{muc_future&#39;};
-   
+  Emuc_future = <span class="k">GDSGE_EXPECT</span>{muc_future&#39;};
+  
   Euler = (c^-sigma)*(1-delta+z*alpha*K^(alpha-1));
-
-  <span class="c">% First order conditions for firms</span>
-  
-  foc = 1-mu - (beta*EEuler_future-beta*(1-delta)*Emuc_future)/(c^-sigma);
-  
-  comp_slack = mu*Inv;
-
   muc = mu*(c^-sigma);
+ 
+  <span class="c">% First order conditions for firms  </span>
+  foc = 1-mu - (beta*EEuler_future-beta*(1-delta)*Emuc_future)/(c^-sigma);  
+  comp_slack = mu*invst;
 
   <span class="k">equations;</span>
       foc;
       resid;
       comp_slack; 
   <span class="k">end;</span>
-
 <span class="k">end;</span>
 
 <span class="k">simulate;</span>
-
   <span class="k">num_periods</span> = 15000;
   <span class="k">num_samples</span> = 100;
   
   <span class="k">initial</span> K Kss;
   <span class="k">initial</span> z 1;
-
   <span class="k">initial</span> shock 2;
   
-  <span class="k">var_simu</span> Y c Inv;
-
+  <span class="k">var_simu</span> z K Y c Inv;
   K&#39; = K_next;
   z&#39; = z_next&#39;;
-
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<a class="reference internal image-reference" href="../../_images/policy_c.png"><img alt="../../_images/policy_c.png" src="../../_images/policy_c.png" style="width: 437.5px; height: 328.0px;" /></a>
-<p>We can now simulate the model by inputting IterRslt into simulate_rbc:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; histogram(SimuRslt.K); title(&#39;Histogram for K&#39;);
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../../_images/histogram_K.png"><img alt="../../_images/histogram_K.png" src="../../_images/histogram_K.png" style="width: 437.5px; height: 328.0px;" /></a>
-<p>Or we can plot the first two sample paths of wages for the first 100 periods:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; plot(SimuRslt.w(1:2,1:100)&#39;); title(&#39;Sample Paths of Wages&#39;);
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../../_images/sample_path_w.png"><img alt="../../_images/sample_path_w.png" src="../../_images/sample_path_w.png" style="width: 437.5px; height: 328.0px;" /></a>
-<p>The iter and simulate files can be reused by passing parameters to be overwritten in a struct. For example,</p>
-<div class="highlight-Matlab notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">sigma</span> <span class="p">=</span> <span class="mf">1.5</span> <span class="c">% overwrite sigma</span>
-<span class="n">options</span><span class="p">.</span><span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">1.05</span><span class="p">]</span> <span class="c">% making the shock larger</span>
-<span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_rbc</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
-<span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_rbc</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">,</span><span class="n">options</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="what-s-next">
-<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Now you understand the basic usage of the toolbox.
-You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.</p>
-<p>Or you can proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
+<p>The toolbox solves the model and produce the policy functions. The following figure displays the investment policy function <span class="math notranslate nohighlight">\(I(z,K)\)</span>.</p>
+<a class="reference internal image-reference" href="../../_images/policy_Inv.png"><img alt="../../_images/policy_Inv.png" src="../../_images/policy_Inv.png" style="width: 1368.0px; height: 802.0px;" /></a>
+<p>The investment irreversibility constraint tend to bind when <span class="math notranslate nohighlight">\(K\)</span> is low or <span class="math notranslate nohighlight">\(z\)</span> is low.</p>
+<p>We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the RBC model without the irreversitiliby constraint.</p>
+<a class="reference internal image-reference" href="../../_images/histogram_Inv.png"><img alt="../../_images/histogram_Inv.png" src="../../_images/histogram_Inv.png" style="width: 560.0px; height: 420.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/histogram_K1.png"><img alt="../../_images/histogram_K1.png" src="../../_images/histogram_K1.png" style="width: 560.0px; height: 420.0px;" /></a>
 </div>
 </div>
 

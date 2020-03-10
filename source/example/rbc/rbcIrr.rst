@@ -23,13 +23,16 @@ Second, when accumulating capital,
 the reprentative firm is subject to an irreversibility constraint
 
 .. math::
-    I_t \geq 0.
+    I_t \geq \phi I_{ss}.
     
 Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition
 
 .. math::
-    &c_t^{-\sigma}-\mu_t=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}-(1-\delta)\mu_{t+1}\right],\\
-    &\mu_t (K_{t+1}-(1-\delta)K_t) = 0,\\
+    &c_t^{-\sigma}-\mu_t\\
+    &=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}-(1-\delta)\mu_{t+1}\right],\\
+    &\\
+    &\mu_t (K_{t+1}-(1-\delta)K_t-\phi I_{ss}) = 0,\\
+    &\\
     &c_t+K_{t+1} = z_t K_t^{\alpha}+(1-\delta)K_t.
 
 
@@ -39,15 +42,21 @@ Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constrai
 A recursive competitive equilibrium are functions: :math:`c(z,K), K'(z,K), \mu(z,K)` s.t.
 
 .. math::
-    &c(z,K)^{-\sigma}-\mu(z,K)=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma}-(1-\delta)\mu(z',K'(z,K)) \Big| z \right]\\
-    &\mu(z,K)(K'(z,K)-(1-\delta)K)=0\\
+    &c(z,K)^{-\sigma}-\mu(z,K)\\
+    &=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma}-(1-\delta)\mu(z',K'(z,K)) \Big| z \right]\\
+    &\\
+    &\mu(z,K)(K'(z,K)-(1-\delta)K-\phi I_{ss})=0\\
+    &\\
     &c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.
 
 This recursive system can be solved using a time iteration procedure similar to the one for the standard RCB model:
 
 .. math::
-    &c_t(z,K)^{-\sigma}-\mu_t(z,K)=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma}-(1-\delta)\mu_{t+1}(z',K_t'(z,K))\Big| z \right]\\
-    &\mu_t(z,K)(K'_t(z,K)-(1-\delta)K)=0\\
+    &c_t(z,K)^{-\sigma}-\mu_t(z,K)\\
+    &=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma}-(1-\delta)\mu_{t+1}(z',K_t'(z,K))\Big| z \right]\\
+    &\\
+    &\mu_t(z,K)(K'_t(z,K)-(1-\delta)K-\phi I_{ss})=0\\
+    &\\
     &c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.
 
 taking functions :math:`c_{t+1}(z,K),\mu_{t+1}(z,K)` as known in the period-:math:`t` time step.
@@ -56,48 +65,23 @@ taking functions :math:`c_{t+1}(z,K),\mu_{t+1}(z,K)` as known in the period-:mat
 The gmod File
 ===============
 
-The recursive system can now be input to GDSGE via a mod file rbcIrr.gmod below.
+The recursive system can now be input to the GDSGE toolbox via a mod file rbcIrr.gmod below.
 
 .. literalinclude:: rbcIrr.gmod
     :linenos:
     :language: GDSGE
 
+The toolbox solves the model and produce the policy functions. The following figure displays the investment policy function :math:`I(z,K)`.  
     
-.. image:: figures/policy_c.png
+.. image:: figuresIrr/policy_Inv.png
     :scale: 50 %
 
-We can now simulate the model by inputting IterRslt into simulate_rbc:
+The investment irreversibility constraint tend to bind when :math:`K` is low or :math:`z` is low.
 
-.. code-block:: text
+We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the RBC model without the irreversitiliby constraint.
 
-    >> histogram(SimuRslt.K); title('Histogram for K');
-    
-.. image:: figures/histogram_K.png
+.. image:: figuresIrr/histogram_Inv.png
     :scale: 50 %
-
-Or we can plot the first two sample paths of wages for the first 100 periods:
-
-.. code-block:: text
-
-    >> plot(SimuRslt.w(1:2,1:100)'); title('Sample Paths of Wages');
     
-.. image:: figures/sample_path_w.png
+.. image:: figuresIrr/histogram_K.png
     :scale: 50 %
-
-The iter and simulate files can be reused by passing parameters to be overwritten in a struct. For example,
-
-.. code-block:: Matlab
-
-    >> options.sigma = 1.5 % overwrite sigma
-    options.z = [0.95,1.05] % making the shock larger
-    IterRslt = iter_rbc(options);
-    SimuRslt = simulate_rbc(IterRslt,options);
-
-=====================
-What's Next?
-=====================
-
-Now you understand the basic usage of the toolbox.
-You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.
-
-Or you can proceed to :ref:`Toolbox API`.

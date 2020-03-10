@@ -20,10 +20,12 @@ TolEq = 1e-6;
 SaveFreq = 50;
 SimuSaveFreq = 1000;
 SimuPrintFreq = 1000;
+
 NumThreads = feature('NumCores');
 
-% Shocks
 var_shock e;
+
+% Shocks
 shock_num = 2;
 shock_trans = [1/2.0,1/2.0;1/2.0,1/2.0];
 e = [-0.01,0.01]*sqrt(1-rho^2);
