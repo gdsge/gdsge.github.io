@@ -1,0 +1,448 @@
+*****************************************************************
+Heaton and Lucas (1996): Incomplete-markets with Portfolio Choice
+*****************************************************************
+
+===============
+The Model
+===============
+The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
+demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
+The model encompasses many ingredients that appear in recent macroeconomic studies, such as
+incomplete markets, portfolio choice, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
+We show how the model can be solved with wealth share or consumption share,
+two  approaches that feature prominently in the literature, and naturally fit in our toolbox framework.
+
+This is
+an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
+The aggregate state :math:`z\in\boldsymbol{Z}`, which consists of capital income share, agents' income share, and aggregate endowment growth, 
+follows a first-order Markov process. :math:`p_{t}^{s}(z^t)$ and $p_{t}^{b}(z^t)`
+denote share price and bond price at time :math:`t` and in shock history :math:`z^t=\{z_0,z_1,\dots,z_t\}`. To simplify the notations, we omit the explicit dependence on shock history. 
+
+Agent :math:`i` takes the share and bond prices as given and maximizes her inter-temporal expected utility
+
+.. math::
+    \mathcal{U}_{t}^{i}=\mathbb{E}_{t}\left[\sum_{\tau=0}^{\infty}\beta^{\tau}\frac{\left(c_{t+\tau}^{i}\right)^{1-\gamma}}{1-\gamma}\right]
+
+subject to 
+
+.. math::
+    c_{t}^{i}+p_{t}^{s}s_{t+1}^{i}+p_{t}^{b}b_{t+1}^{i}\leq(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}+Y_{t}^{i}
+
+and
+
+.. math::
+    s_{t+1}^{i} & \geq0\\
+    b_{t+1}^{i} & \geq K^b_t,
+
+where :math:`Y_t` denotes the aggregate income. :math:`d_t = \delta_t Y^a_t` is total dividend (capital income) and 
+:math:`Y^i_t = \eta^i_t Y^a_t` is labor income of agent :math:`i`. 
+Aggregate income grows at a stochastic rate :math:`\gamma_t = \frac{Y^a_t}{Y^a_{t-1}}`. :math:`z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}`
+follows a first-order Markov process estimated using U.S. data. The borrowing limit is set to be a constant fraction of per capita income, i.e., 
+:math:`K^b_t = \bar{K}^b Y_t`.
+
+In equilibrium, prices are determined such that markets clear in each
+shock history:
+
+.. math::
+    & s_{t}^{1}+s_{t}^{2}=1,\\
+    & b_{t}^{1}+b_{t}^{2}=0.
+
+We use the normalized financial wealth share
+
+.. math::
+    \omega_{t}^{i}=\frac{(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}}{p_{t}^{s}+d_{t}}
+
+as an endogenous state variable. In equilibrium, the market clearing conditions imply that :math:`\omega^1_t + \omega^2_t = 1`.
+
+For any variable :math:`x_t`, 
+let :math:`\hat{x}_t` denote the normalized variable: :math:`\hat{x}_t=\frac{x_t}{Y_t}` 
+(except :math:`b^i_t` for which :math:`\hat{b}^i_t = \frac{b^i_t}{Y^a_{t-1}}`). Using this normalization, agent i's budget constraint can be rewritten as
+
+.. math::
+    \hat{c}_{t}^{i}+\hat{p}_{t}^{s}s_{t+1}^{i}+p_{t}^{b}\hat{b}_{t+1}^{i}\leq\left(\hat{p}_{t}^{s}+\hat{d}_{t}\right)\omega_{t}^{i}+\hat{Y}_{t}^{i}.
+
+The wealth share is rewritten as 
+
+.. math::
+    \omega_{t}^{i}=\frac{(\hat{p}_{t}^{s}+\hat{d}_{t})s_{t}^{i}+\frac{\hat{b}_{t}^{i}}{\gamma^a_t}}{\hat{p}_{t}^{s}+\hat{d}_{t}}.
+
+The optimality of agent i's consumption and asset choices are captured by 
+first-order conditions in :math:`s^i_{t+1}` and :math:`b^i_{t+1}`:
+
+.. math::
+    1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{\hat{c}^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{1-\gamma}\frac{\hat{p}_{t+1}^{s}+\hat{d}_{t+1}}{\hat{p}_{t}^{s}}\right]+\hat{\mu}^{i,s}_t\\
+    1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{c^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{-\gamma}\frac{1}{p_{t}^{b}}\right]+\hat{\mu}^{i,b}_t,
+
+where :math:`\hat{\mu}^{i,s}_t` and :math:`\mu^{i,b}_t` are the Lagrangian multipliers on agent i's no short sale constraint and borrowing constraint, respectively.
+The multipliers and portfolio choices satisfy the complementary-slackness conditions: 
+
+.. math::
+    0 & =  \hat{\mu}^{i,s}_t s^i_t\\
+    0 & = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).
+
+================================
+Wealth share as endogenous state
+================================
+
+We define a recursive equilibrium with the wealth share :math:`\ometa_t` defined before. A recursive equilibrium is
+:math:`c_1(z,\omega), c_2, s'_1, s'_2, b'_1, b'_2, \mu^s_1, \mu^s_2, \mu^b_1, \mu^b_2, p^s, p^b, \omega'(z';z,\omega)` that satisfy the  where agents' optimization conditions
+and market clearing conditions stated above.
+
+We omit the explicit dependence on state :math:`(z,\omega)` except the first variable, and highlight that the
+state transition function :math:`\omega'` characterizes the implicit law of motion that should hold for each of the future exogenous state :math:`z'`.
+It should be clear at this moment that the key feature of our framework that enables to cast the equilibrium system as a single equation system,
+despite the non-trivial state-transition functions, is to include the implicit transition :math:`\omega'(z')` for each :math:`z'` as unknowns.
+
+The system can be implemented by the following HL1996.gmod code
+
+.. literalinclude:: HL1996.gnmod
+    :linenos:
+    :language: GDSGE
+
+
+
+
+With wealth share :math:`\ometa_t` defined above, the recursive equilibrium is characterized by the following equations
+
+
+
+The model is a canonical complete-markets Real Business Cycle (RBC) model with a single productivity shock.The model is a canonical complete-markets Real Business Cycle (RBC) model with a single productivity shock.
+This simple model can be approximated with linear solutions well,
+so using GDSGE to obatin global non-linear solutions is not necessary.
+Nevertheless it serves as a good starting point to illustrate the basic usage of the toolbox,
+as this model should be familiar to any macroeconomic audience.
+
+Time is discrete :math:`t=0..\infty`. Representative households with mass one maximize utility
+
+.. math::
+    \mathbb E \sum_{t=0}^{\infty} \beta^t \frac{c_t^{1-\sigma}}{1-\sigma},
+    
+where parameter :math:`\beta>0` is the discount factor, :math:`\sigma>0` is the constant relative risk aversion. :math:`c_t` is the consumption. :math:`\mathbb{E}` is an expectation operator integrating the productivity shock to be introduced below.
+
+Competitive representative firms produce a single output according to
+
+.. math::
+    Y_t=z_t K_t^{\alpha} L_t^{1-\alpha},
+
+where parameter :math:`\alpha \in (0,1)` is the capital share. :math:`K_t` is capital, :math:`L_t` is labor, and :math:`z_t\in\{z_L,z_H\}` is the productivity shock which follows a two-point Markov process with the following transition matrix
+
+.. math::
+    \left(
+    \begin{aligned}
+    \pi_{LL} \quad 1-\pi_{LL}\\
+    1-\pi_{HH} \quad \pi_{HH}
+    \end{aligned}
+    \right).
+    
+Capital is depreciated at rate :math:`\delta \in (0,1)`. Investment technology can convert one unit of output to new capital:
+
+.. math::
+    K_{t+1} = K_t(1-\delta) + I_t.
+    
+Assets markets are complete. Households make investment decision and supply capital and labor to firms. Market clearing conditions for labor and goods are, respectively,
+
+.. math::
+    L_t=1, \\
+    c_t+I_t=Y_t.
+    
+The complete-markets equilibrium can be characterized by the Euler equation and the goods market clearing condition:
+
+.. math::
+    :nowrap:
+    :label: sequential_equation
+    
+    \begin{eqnarray}
+        c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
+        c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
+    \end{eqnarray}
+
+    
+    
+
+Given :math:`K_0`, a sequential competitive equilibrium is stochastic processes :math:`(c_t,K_{t+1})` that satisfy system :eq:`sequential_equation`. To input the system into GDSGE, we need to write the system in a recursive form. 
+
+Definition: a recursive competitive equilibrium is functions :math:`c(z,K), K'(z,K)` s.t.
+
+.. math::
+    c(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma} \Big| z \right]
+    \\
+    c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.
+
+The recursive system can be solved using a time iteration procedure (see paper xxx):
+
+.. math::
+    c_t(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma} \Big| z \right]
+    \\
+    c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.
+
+taking function :math:`c_{t+1}(z,K)` as known in the period-:math:`t` time step.
+
+===============
+The Mod File
+===============
+
+The recursive system can now be input to GDSGE via a mod file rbc.nmod below.
+
+.. literalinclude:: rbc.nmod
+    :linenos:
+    :language: GDSGE
+
+The nmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at http://gdsge.com/. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
+
+First, call iter_rbc.m in matlab to run the policy iterations, which produces
+
+.. code-block:: text
+
+    >> IterRslt = iter_rbc;
+    Iter:10, Metric:0.385607, maxF:9.99011e-09
+    Elapsed time is 0.174117 seconds.
+    
+    ...
+    
+    Iter:323, Metric:9.89183e-07, maxF:7.96886e-09
+    Elapsed time is 0.027923 seconds.
+    
+The returned IterRslt contains the converged policy and state transition functions. For example, we can plot the policy function for consumption :math:`c`:
+
+.. code-block:: text
+
+    >> plot(IterRslt.var_state.K, IterRslt.var_policy.c);
+    xlabel('K'); title('Policy Functions for c');
+    
+.. image:: figures/policy_c.png
+    :scale: 50 %
+
+We can now simulate the model by inputting IterRslt into simulate_rbc:
+
+.. code-block:: text
+
+    >> SimuRslt = simulate_rbc(IterRslt);
+    Periods: 1000
+       shock       K       c
+           1   38.09   2.754
+    Elapsed time is 1.185821 seconds.
+    
+    ...
+    
+    Periods: 10000
+       shock       K       c
+           2   37.83   2.753
+    Elapsed time is 1.281338 seconds.
+    
+The returned SimuRslt contains a panel of simulated paths with num_samples and num_periods specified in the mod file. For example, we can plot the histogram of state variable :math:`K`:
+
+.. code-block:: text
+
+    >> histogram(SimuRslt.K); title('Histogram for K');
+    
+.. image:: figures/histogram_K.png
+    :scale: 50 %
+
+Or we can plot the first two sample paths of wages for the first 100 periods:
+
+.. code-block:: text
+
+    >> plot(SimuRslt.w(1:2,1:100)'); title('Sample Paths of Wages');
+    
+.. image:: figures/sample_path_w.png
+    :scale: 50 %
+
+The iter and simulate files can be reused by passing parameters to be overwritten in a struct. For example,
+
+.. code-block:: Matlab
+
+    >> options.sigma = 1.5 % overwrite sigma
+    options.z = [0.95,1.05] % making the shock larger
+    IterRslt = iter_rbc(options);
+    SimuRslt = simulate_rbc(IterRslt,options);
+
+Part of the toolbox options can also be overwritten by including them in the struct. See :ref:`Options`.
+    
+=========================
+Dissecting the Mod File
+=========================
+
+We now look into each line of rbc.nmod and describe the usage.
+
+.. literalinclude:: rbc.nmod
+    :lines: 1-6 
+    :lineno-start: 1
+    :language: GDSGE
+
+A line starting with keyword `parameters` declares parameters.
+Parameters are variables used in the *model* block that are invariant across states or over time.
+Matlab-style inline comments can be used following a "%".
+
+.. literalinclude:: rbc.nmod
+    :lines: 8-17 
+    :lineno-start: 8
+    :language: GDSGE
+
+Exogenous states such as the productivity shock in the RBC model should be declared following keyword *var_shock*.
+The number of states should be specified in variable *shock_num*.
+The Markov transition matrix should be specified in variable *shock_trans*.
+Notice that any Matlab expressions such as :code:`z_low = 0.99` can be evaluated outside the *model* block.
+
+For multi-dimension exogenous states, *shock_num* needs to be specified as the number of discretze points in the Cartesian set across
+all dimensions. *shock_trans* should be specified as the full transition matrix accordingly. 
+Matlab functions *ndgrid* and *kron* can be used to construct the Cartesian set and the full transition matrix.
+
+If an exogenous state follows a continuous process such as AR(1), specify the state to be an endogenous state instead in *var_state*,
+and discretize the innovation.
+
+.. literalinclude:: rbc.nmod
+    :lines: 19-25
+    :lineno-start: 19
+    :language: GDSGE
+
+Endogenous states such as capital in the RBC model should be declared following keyword *var_state*.
+Then the discretized grid for each state should be specified (e.g., :code:`K = linspace(KMin,KMax,KPts);` in the example).
+Notice that all Matlab expressions can be evaluated.
+
+The discretized grid will be used in fixed-grid function approximation procedures such as splines and linear interpolations.
+For adaptive grid methods, only the range of the grid will be used.
+
+.. literalinclude:: rbc.nmod
+    :lines: 27-31
+    :lineno-start: 27
+    :language: GDSGE
+
+The time iteration procedure requires taking the state transition functions (here, implicitly defined in :math:`c_{t+1}(z,K)`) as given 
+when evaluating the system of equations. These state transition functions are declared following keyword *var_interp*.
+They are named *var_interp* since they are usually evaluated with some function approximation procedure such as interpolation in evaluating the system of equations.
+
+Each of the transition function needs to be initialized following keyword *initial*.
+Here :math:`c_{t+1}(z,K)` is initialized as :math:`zK^{\alpha} + (1-\delta)K` which corresponds to 
+requesting the algorithm to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
+of which :math:`c_{t+1}` is initialized to be the last-period solution---
+consumers just consume all resources that include output and non-depreciated capital.
+Notice that the Matlab "dot" operator (.*) works in the line following *initial*, and the tensor is formed automatically.
+
+In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
+Starting with a last-period problem is shown to
+deliver both good theoretical properties and robust numerical computations (Cao, 2019). 
+See xxx for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a *model_init* block.
+
+The update of the transition function after a time step needs to be specified such as :code:`c_interp = c;`.
+The update can use any variables returned as part of the solution to the system. 
+For example, here :code:`c_interp = c;` means that the *c_interp* variable is updated with *c* after a time iteration,
+where *c* is one of the policy variables solved by the system of equations, to be specified below.
+
+.. literalinclude:: rbc.nmod
+    :lines: 33-36
+    :lineno-start: 33
+    :language: GDSGE
+
+All policy variables that enter the equations as unknowns are declared following keyword :declare:`var_policy`.
+For each of these variables, the bounds for where the equation solver searches the solution should be specified
+following keyword *inbound*. For variables of which the bounds cannot be determined ex-ante, 
+specify tight bounds for them and use an *adaptive* option so the solver adjusts bounds automatically when it cannot find solutions 
+and adapt bounds across time iterations. See :declare:`var_policy` in :ref:`Variable Declaration`.
+
+.. literalinclude:: rbc.nmod
+    :lines: 38-39
+    :lineno-start: 38
+    :language: GDSGE
+
+Some policy variables can be evaluated as simple functions of states and other policy variables, so they do not have to be
+directly included in the system of equations. For example wage is determined by the marginal product of labor
+and can be evaluated according to :math:`w=(1-\alpha)zK^{\alpha}`. These policy variables can be declared
+following keyword :declare:`var_aux`.
+
+.. literalinclude:: rbc.nmod
+    :lines: 41-61
+    :lineno-start: 41
+    :language: GDSGE
+
+The *model;---end;* block defines the system of equations for each combination of endogenous states and exogenous states. 
+For the current example, it simply defines the system of equations for each :math:`(z,K)`.
+
+The equations should be eventually specified in the *equation;---end;* block, in which each line corresponds to one equation in the system.
+Any calculations in order to evaluate these equations are included in the *model* block preceding the *equations* block.
+Notice the whole *model* block is parsed into C++, so all evaluations should be scalar-based: Matlab functions such as .* operator cannot be used. 
+Nevertheless, the *model* block support simple control-flow blocks in Matlab-style syntax, such as if-elseif-else-end block and 
+for-end block.
+
+A variable followed by a prime (') indicate that the variable is a vector of length *shock_num*. 
+For example,
+
+.. literalinclude:: rbc.nmod
+    :lines: 44-44
+    :lineno-start: 44
+    :language: GDSGE
+
+means that
+
+.. code-block:: text
+
+    mpk_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
+    mpk_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
+
+The `var_shock` (here :code:`z`), by default, is declared as a vector variable, and thus can be
+used to construct other vector variables.
+This declaration of a vector variable is useful in calculating the transition of state for each of
+realization of future exogenous states, as illustrated in the example.
+
+Any *var_interp* can be used as a function in the model block. For example,
+
+.. literalinclude:: rbc.nmod
+    :lines: 47-47
+    :lineno-start: 47
+    :language: GDSGE
+
+means that calculate :math:`c_{t+1}` based on the state transition function implied by *c_interp*, at
+the next-period endogenous state *K_next* (which is a current choice).
+Where are the next-period exogenous states? These are taken care by the prime (') operator
+following *c_interp*, which means that it is evaluating at each realization of the future exogenous states,
+and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared a vector,
+i.e., a variable followed by a prime (').
+
+The *model* block can use several utility functions for reduction operations.
+For example, the *GNDSGE_EXPECT{}* used in 
+
+.. literalinclude:: rbc.nmod
+    :lines: 51-51
+    :lineno-start: 51
+    :language: GDSGE
+
+is to calculate the conditional expectation of the object defined inside the curly brace,
+conditional on the current exogenous state, using the default Markov transition matrix *shock_trans*.
+Obviously, this function is meaningful only if it takes arguments realizations of variables across future exogenous states,
+which are defined as vector variables followed by prime (').
+
+This operator can also take a different transition matrix than *shock_trans*, which is used as
+:code:`GNDSGE_EXPECT{*|alternative_shock_trans}`. This can be used to solve models with heterogeneous beliefs.
+
+Two other reduction operations *GNDSGE_MAX{}* and *GNDSGE_MIN{}* are defined, which are to take
+the maximum and the minimum of objects inside the curly brace, respectively. See :ref:`Utility functions`.
+
+.. literalinclude:: rbc.nmod
+    :lines: 63-70
+    :lineno-start: 51
+    :language: GDSGE
+
+The simulate block defines how the file for Monte Carlo simulations should be generated.
+It should define the initial endogenous state following keyword *initial*.
+``initial K Kss;`` in the example sets the endogenous state :math:`K` to *Kss* defined before.
+
+The simulate block should define the initial exogenous state index following keyword *initial shock*.
+It should define the variables to be recorded following *var_simu*. 
+It should define the transition for each state variable. ``K'=K_next;`` in the example
+defines that the next period endogenous state :math:`K` should be assigned to *K_next* which is one of
+the *var_policy* solved as part of the system in the current period.
+
+The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).
+
+=====================
+What's Next?
+=====================
+
+Now you understand the basic usage of the toolbox.
+You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.
+
+Or you can proceed to :ref:`Toolbox API`.
+
+
+
+
+
