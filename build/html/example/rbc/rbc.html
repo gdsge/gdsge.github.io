@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Toolbox API" href="../../usage/functions.html" />
+    <link rel="next" title="An Extension with Irreversible Investment" href="rbcIrr.html" />
     <link rel="prev" title="Indices and tables" href="../../index.html" /> 
 </head>
 
@@ -90,6 +90,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="rbcIrr.html">An Extension with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete-markets with Portfolio Choice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 </ul>
 
@@ -191,7 +193,7 @@ c_t+I_t=Y_t.\end{split}\]</div>
 \begin{eqnarray}
     c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
     c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
-\end{eqnarray}</div><p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="rbcIrr.html#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
+\end{eqnarray}</div><p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
 <p>Definition: a recursive competitive equilibrium is functions <span class="math notranslate nohighlight">\(c(z,K), K'(z,K)\)</span> s.t.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}c(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma} \Big| z \right]
@@ -650,7 +652,7 @@ You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.<
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../usage/functions.html" class="btn btn-neutral float-right" title="Toolbox API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="rbcIrr.html" class="btn btn-neutral float-right" title="An Extension with Irreversible Investment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../../index.html" class="btn btn-neutral float-left" title="Indices and tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
