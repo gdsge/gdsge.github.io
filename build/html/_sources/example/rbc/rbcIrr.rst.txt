@@ -2,7 +2,7 @@
 An Extension with Irreversible Investment
 *****************************************
 
-The standard RBC model in the previous example can also be solved easily using local methods. Now we consider an exentsion which can only be solved using global method. The model feaatures an investment irreversibily constraint, which requires investment to be larger than a certain threshold.
+The standard :ref:`RBC model <Getting Started - A Simple RBC Model>` can also be solved easily using local methods. Now we consider an exentsion which can only be solved using global method. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.
 
 ===============
 The Model

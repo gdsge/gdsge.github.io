@@ -1,21 +1,20 @@
-*****************************************************************
-Heaton and Lucas (1996): Incomplete-markets with Portfolio Choice
-*****************************************************************
+******************************************************************
+Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices
+******************************************************************
+
+The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
+demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
+The model encompasses many ingredients that appear in recent macroeconomic studies, such as
+incomplete markets, portfolio choices, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
+We show how the model can be solved with wealth share or consumption share as the endogenous state, the two prominent approaches in the literature, and naturally fit in our toolbox framework.
 
 ===============
 The Model
 ===============
-The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
-demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
-The model encompasses many ingredients that appear in recent macroeconomic studies, such as
-incomplete markets, portfolio choice, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
-We show how the model can be solved with wealth share or consumption share,
-two  approaches that feature prominently in the literature, and naturally fit in our toolbox framework.
 
-This is
-an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
+This is an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
 The aggregate state :math:`z\in\boldsymbol{Z}`, which consists of capital income share, agents' income share, and aggregate endowment growth, 
-follows a first-order Markov process. :math:`p_{t}^{s}(z^t)$ and $p_{t}^{b}(z^t)`
+follows a first-order Markov process. :math:`p_{t}^{s}(z^t)` and :math:`p_{t}^{b}(z^t)`
 denote share price and bond price at time :math:`t` and in shock history :math:`z^t=\{z_0,z_1,\dots,z_t\}`. To simplify the notations, we omit the explicit dependence on shock history. 
 
 Agent :math:`i` takes the share and bond prices as given and maximizes her inter-temporal expected utility
@@ -81,7 +80,7 @@ The multipliers and portfolio choices satisfy the complementary-slackness condit
     0 & = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).
 
 ================================
-Wealth share as endogenous state
+Wealth Share as Endogenous State
 ================================
 
 We define a recursive equilibrium with the wealth share :math:`\omega_t` defined before. A recursive equilibrium is
@@ -155,7 +154,7 @@ the unknown to respect a box constraint like
 where *Kb* is the parameter governing the  borrowing constraint in fraction of endowment (:math:`b^i \geq -Kb * Y^a`), and *nb1p* is the unknown defined as
 :math:`nb^i=\hat{b}^i+Kb`, which ensures to :math:`nb^i` to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily  a boxed constraint. See example Cao and Nie (2018), which provides a global solution to the Kiyotaki-Moore model, where
+not necessarily  a boxed constraint. See example Cao and Nie (2017), which provides a global solution to the Kiyotaki-Moore model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.
 
 Some utility functions of the toolbox are used in this example.
@@ -185,7 +184,7 @@ not only enables vectorization but also allows searching the hash table only onc
 certain variables in *var_interp* when some of them are not necessary, and can be used without the prime operator but 
 explicitly specifying the exogenous state that the approximation should be evaluated. This is particularly relevant when
 expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
-See the toolbox API for details.
+See the :ref:`Toolbox API` for details.
 
 After the gmod file is parsed and compiled by a local or remote compiler, first call the iter file in matlab, which produces
 results like following:
@@ -253,7 +252,7 @@ The spikes in the ergodic distribution of wealth share at the two ends implies t
 borrowing constraints.
 
 =====================================
-Consumption share as endogenous state
+Consumption Share as Endogenous State
 =====================================
 
 The model can be solved using consumption share as the endogenous state. This is enabled by noticing the budget constraint
@@ -339,17 +338,14 @@ Through this simple example, you understand the power of the toolbox and all the
 a modern macro model.
 
 For the time-iteration algorithm to work robustly, a crucial step is to define the starting point of the iteration 
-properly. A candidate that delivers good theoretical property and proves to be numerically robust is to start from a last-period problem,
-so the algorithm can be viewed as taking the limit of a finite-horizon iterations.
+properly. A candidate that delivers good theoretical property and proves to be numerically stable is to start from a last-period problem,
+so the algorithm can be viewed as taking the limit of the solution from finite-horizon iterations.
 
-The last-period problem has been so far trivial in the RBC and Heaton and Lucas examples, but turns out to be more complex
+The last-period problem has been so far trivial in the RBC and Heaton and Lucas (1996) examples, but turns out to be more complex
 and requires to define a different system of equations than the main *model;* block. Also, at the boundary of the state space, 
 the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve 
 many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).
 
-Or you can directly proceed to :ref:`Toolbox API`.
+Or you can directly proceed to :ref:`the toolbox's API <Toolbox API>`.
 
-
-
-
-
+For an external link we can do this: See the `Python home page <http://www.python.org>`_ for info.

@@ -1,20 +1,21 @@
-******************************************************************
-Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices
-******************************************************************
-
-The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
-demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
-The model encompasses many ingredients that appear in recent macroeconomic studies, such as
-incomplete markets, portfolio choices, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
-We show how the model can be solved with wealth share or consumption share as the endogenous state, the two prominent approaches in the literature, and naturally fit in our toolbox framework.
+*****************************************************************
+Bianchi (2011): Sudden Stops in Small Open Economies
+*****************************************************************
 
 ===============
 The Model
 ===============
+The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
+demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
+The model encompasses many ingredients that appear in recent macroeconomic studies, such as
+incomplete markets, portfolio choice, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
+We show how the model can be solved with wealth share or consumption share as the endogenous state,
+two  approaches that feature prominently in the literature, and naturally fit in our toolbox framework.
 
-This is an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
+This is
+an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
 The aggregate state :math:`z\in\boldsymbol{Z}`, which consists of capital income share, agents' income share, and aggregate endowment growth, 
-follows a first-order Markov process. :math:`p_{t}^{s}(z^t)` and :math:`p_{t}^{b}(z^t)`
+follows a first-order Markov process. :math:`p_{t}^{s}(z^t)$ and $p_{t}^{b}(z^t)`
 denote share price and bond price at time :math:`t` and in shock history :math:`z^t=\{z_0,z_1,\dots,z_t\}`. To simplify the notations, we omit the explicit dependence on shock history. 
 
 Agent :math:`i` takes the share and bond prices as given and maximizes her inter-temporal expected utility
@@ -80,7 +81,7 @@ The multipliers and portfolio choices satisfy the complementary-slackness condit
     0 & = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).
 
 ================================
-Wealth Share as Endogenous State
+Wealth share as endogenous state
 ================================
 
 We define a recursive equilibrium with the wealth share :math:`\omega_t` defined before. A recursive equilibrium is
@@ -252,7 +253,7 @@ The spikes in the ergodic distribution of wealth share at the two ends implies t
 borrowing constraints.
 
 =====================================
-Consumption Share as Endogenous State
+Consumption share as endogenous state
 =====================================
 
 The model can be solved using consumption share as the endogenous state. This is enabled by noticing the budget constraint
@@ -346,6 +347,9 @@ and requires to define a different system of equations than the main *model;* bl
 the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve 
 many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).
 
-Or you can directly proceed to :ref:`the toolbox's API <Toolbox API>`.
+Or you can directly proceed to :ref:`Toolbox API`.
 
-For an external link we can do this: See the `Python home page <http://www.python.org>`_ for info.
+
+
+
+
