@@ -2,7 +2,7 @@
 Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices
 ******************************************************************
 
-The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
+The benchmark model in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ is a good starting point to
 demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
 The model encompasses many ingredients that appear in recent macroeconomic studies, such as
 incomplete markets, portfolio choices, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
@@ -341,11 +341,9 @@ For the time-iteration algorithm to work robustly, a crucial step is to define t
 properly. A candidate that delivers good theoretical property and proves to be numerically stable is to start from a last-period problem,
 so the algorithm can be viewed as taking the limit of the solution from finite-horizon iterations.
 
-The last-period problem has been so far trivial in the RBC and Heaton and Lucas (1996) examples, but turns out to be more complex
+The last-period problem has been so far trivial in the :ref:`RBC model <Getting Started - A Simple RBC Model>` and `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ examples, but turns out to be more complex
 and requires to define a different system of equations than the main *model;* block. Also, at the boundary of the state space, 
 the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve 
 many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).
 
 Or you can directly proceed to :ref:`the toolbox's API <Toolbox API>`.
-
-For an external link we can do this: See the `Python home page <http://www.python.org>`_ for info.

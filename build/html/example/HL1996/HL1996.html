@@ -159,7 +159,7 @@
             
   <div class="section" id="heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices">
 <h1>Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices<a class="headerlink" href="#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices" title="Permalink to this headline">¶</a></h1>
-<p>The benchmark model in citet{heaton:lucas:1996} is a good starting point to
+<p>The benchmark model in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> is a good starting point to
 demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions.
 The model encompasses many ingredients that appear in recent macroeconomic studies, such as
 incomplete markets, portfolio choices, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
@@ -789,12 +789,11 @@ a modern macro model.</p>
 <p>For the time-iteration algorithm to work robustly, a crucial step is to define the starting point of the iteration
 properly. A candidate that delivers good theoretical property and proves to be numerically stable is to start from a last-period problem,
 so the algorithm can be viewed as taking the limit of the solution from finite-horizon iterations.</p>
-<p>The last-period problem has been so far trivial in the RBC and Heaton and Lucas (1996) examples, but turns out to be more complex
+<p>The last-period problem has been so far trivial in the <a class="reference internal" href="../rbc/rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> and <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> examples, but turns out to be more complex
 and requires to define a different system of equations than the main <em>model;</em> block. Also, at the boundary of the state space,
 the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve
 many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">the toolbox’s API</span></a>.</p>
-<p>For an external link we can do this: See the <a class="reference external" href="http://www.python.org">Python home page</a> for info.</p>
 </div>
 </div>
 

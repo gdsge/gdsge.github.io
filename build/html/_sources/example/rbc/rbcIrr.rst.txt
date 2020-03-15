@@ -2,7 +2,7 @@
 An Extension with Irreversible Investment
 *****************************************
 
-The standard :ref:`RBC model <Getting Started - A Simple RBC Model>` can also be solved easily using local methods. Now we consider an exentsion which can only be solved using global method. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.
+The standard :ref:`RBC model <Getting Started - A Simple RBC Model>` can also be solved easily using local methods. Now we consider an exentsion which can only be solved properly using global methods. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.
 
 ===============
 The Model
@@ -25,8 +25,10 @@ Second, when accumulating capital,
 the reprentative firm is subject to an irreversibility constraint
 
 .. math::
-    I_t \geq \phi I_{ss}.
-    
+    I_t \geq \phi I_{ss},
+
+where :math:`I_{ss}` is the steady-state level of investment and parameter :math:`\phi` corresponds to the tightness of the irreversibility constraint.
+
 Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition
 
 .. math::
@@ -79,7 +81,7 @@ The toolbox solves the model and produce the policy functions. The following fig
     :height: 500px
     :width: 500px
 
-We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the RBC model without the irreversitiliby constraint.
+We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the :ref:`RBC model <Getting Started - A Simple RBC Model>` without the irreversitiliby constraint.
 
 .. image:: figuresIrr/histogram_Inv.png
     :scale: 50 %

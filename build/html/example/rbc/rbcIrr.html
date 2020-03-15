@@ -157,7 +157,7 @@
             
   <div class="section" id="an-extension-with-irreversible-investment">
 <h1>An Extension with Irreversible Investment<a class="headerlink" href="#an-extension-with-irreversible-investment" title="Permalink to this headline">¶</a></h1>
-<p>The standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> can also be solved easily using local methods. Now we consider an exentsion which can only be solved using global method. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.</p>
+<p>The standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> can also be solved easily using local methods. Now we consider an exentsion which can only be solved properly using global methods. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
 <p>We augment the simple RBC model with two additional features.</p>
@@ -170,7 +170,8 @@
 \[K_{t+1} = K_t(1-\delta) + I_t,\]</div>
 <p>the reprentative firm is subject to an irreversibility constraint</p>
 <div class="math notranslate nohighlight">
-\[I_t \geq \phi I_{ss}.\]</div>
+\[I_t \geq \phi I_{ss},\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_{ss}\)</span> is the steady-state level of investment and parameter <span class="math notranslate nohighlight">\(\phi\)</span> corresponds to the tightness of the irreversibility constraint.</p>
 <p>Let <span class="math notranslate nohighlight">\(\mu_t\)</span> denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp;c_t^{-\sigma}-\mu_t\\
@@ -447,7 +448,7 @@ muc_interp = muc;
 </td></tr></table></div>
 <p>The toolbox solves the model and produce the policy functions. The following figure displays the investment policy function <span class="math notranslate nohighlight">\(I(z,K)\)</span>. The investment irreversibility constraint tend to bind when <span class="math notranslate nohighlight">\(K\)</span> is low or <span class="math notranslate nohighlight">\(z\)</span> is low.</p>
 <a class="reference internal image-reference" href="../../_images/policy_Inv.png"><img alt="../../_images/policy_Inv.png" src="../../_images/policy_Inv.png" style="width: 500px; height: 500px;" /></a>
-<p>We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the RBC model without the irreversitiliby constraint.</p>
+<p>We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> without the irreversitiliby constraint.</p>
 <a class="reference internal image-reference" href="../../_images/histogram_Inv.png"><img alt="../../_images/histogram_Inv.png" src="../../_images/histogram_Inv.png" style="width: 560.0px; height: 420.0px;" /></a>
 <a class="reference internal image-reference" href="../../_images/histogram_K1.png"><img alt="../../_images/histogram_K1.png" src="../../_images/histogram_K1.png" style="width: 560.0px; height: 420.0px;" /></a>
 </div>
