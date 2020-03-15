@@ -1,355 +1,269 @@
 *****************************************************************
-Bianchi (2011): Sudden Stops in Small Open Economies
+Bianchi (2011): Sudden Stops in Open Economies
 *****************************************************************
+
+The benchmark model in Bianchi (2011) provides a minimal example in which the economic dynamics can be highly non-linear
+due to the presence of a borrowing constraint tied to a (commodity) price. We illustrate how to use the adaptive grid method
+with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a crude and narrow state space, 
+and then expand the state space to ensure it covers the ergodic set by reusing the compiled code.
 
 ===============
 The Model
 ===============
-The benchmark model in \citet{heaton:lucas:1996} is a good starting point to
-demonstrate the power of the current framework in dealing with endogenous state variables with implicit law of motions. 
-The model encompasses many ingredients that appear in recent macroeconomic studies, such as
-incomplete markets, portfolio choice, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
-We show how the model can be solved with wealth share or consumption share as the endogenous state,
-two  approaches that feature prominently in the literature, and naturally fit in our toolbox framework.
 
-This is
-an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
-The aggregate state :math:`z\in\boldsymbol{Z}`, which consists of capital income share, agents' income share, and aggregate endowment growth, 
-follows a first-order Markov process. :math:`p_{t}^{s}(z^t)$ and $p_{t}^{b}(z^t)`
-denote share price and bond price at time :math:`t` and in shock history :math:`z^t=\{z_0,z_1,\dots,z_t\}`. To simplify the notations, we omit the explicit dependence on shock history. 
+\cite{bianchi_overborrowing_2011} studies an incomplete-markets open economy model that can generate competitive equilibria featuring sudden stop episodes, 
+resembling those experienced by many emerging economies. 
+A sudden stop episode features a large output drop and current account reversals, 
+which are at odds with the prediction of a standard incomplete-markets model with precautionary saving motives.
+A key feature for the model in \cite{bianchi_overborrowing_2011} 
+is to introduce feedback of the  price of non-tradable goods to the borrowing constraint: a negative external shock  
+that lowers the equilibrium price of non-tradable goods tightens the borrowing constraint and forces reducing the consumption of tradable goods, 
+which further lowers the price of non-tradable goods. 
+The competitive equilibrium is inefficient since agents do not take into account the effects of non-tradable price on the borrowing constraint in the event of a sudden stop crisis. 
+This leads to ex-ante over-borrowing and calls for policy interventions.
 
-Agent :math:`i` takes the share and bond prices as given and maximizes her inter-temporal expected utility
+The borrowing constraint is occasionally binding in the equilibrium's ergodic set, 
+and the equilibrium policy and state transition functions are highly non-linear when the borrowing constraint binds. 
+Therefore, a global and non-linear solution is essential to capture the model's rich dynamics. We solve the competitive equilibrium of the benchmark model in Bianchi (2011), described below
 
-.. math::
-    \mathcal{U}_{t}^{i}=\mathbb{E}_{t}\left[\sum_{\tau=0}^{\infty}\beta^{\tau}\frac{\left(c_{t+\tau}^{i}\right)^{1-\gamma}}{1-\gamma}\right]
-
-subject to 
+Small-open economy representative consumers derive utility from consumption of tradable goods  :math:`c_t^T` and of non-tradable goods $c_t^N$ according to
 
 .. math::
-    c_{t}^{i}+p_{t}^{s}s_{t+1}^{i}+p_{t}^{b}b_{t+1}^{i}\leq(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}+Y_{t}^{i}
 
-and
+    & \mathbb E \Big\{\sum_{t=0}^{\infty} \beta^t u(c_t)\Big\}
+    \\
+    s.t. \quad
+    & c_t = [\omega (c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-\frac{1}{\eta}}
+    , \eta > -1, \omega \in (0,1) 
 
-.. math::
-    s_{t+1}^{i} & \geq0\\
-    b_{t+1}^{i} & \geq K^b_t,
+where :math:`\omega, \eta` are parameters. :math:`\beta\in(0,1)` is the discount factor. :math:`\mathbb{E}`  is the expectation operator to integrate shocks below.
 
-where :math:`Y_t` denotes the aggregate income. :math:`d_t = \delta_t Y^a_t` is total dividend (capital income) and 
-:math:`Y^i_t = \eta^i_t Y^a_t` is labor income of agent :math:`i`. 
-Aggregate income grows at a stochastic rate :math:`\gamma_t = \frac{Y^a_t}{Y^a_{t-1}}`. :math:`z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}`
-follows a first-order Markov process estimated using U.S. data. The borrowing limit is set to be a constant fraction of per capita income, i.e., 
-:math:`K^b_t = \bar{K}^b Y_t`.
-
-In equilibrium, prices are determined such that markets clear in each
-shock history:
+Borrowing is via a state non-contingent bond in tradable goods at a constant world interest :math:`r`. 
+The endowments of tradable goods :math:`y_t^T` and non-tradable goods :math:`y_t^N` follow exogenous stochastic processes. The consumer faces the following sequential budget constraint
 
 .. math::
-    & s_{t}^{1}+s_{t}^{2}=1,\\
-    & b_{t}^{1}+b_{t}^{2}=0.
 
-We use the normalized financial wealth share
+    b_{t+1} + c_t^T + p_t^N c_t^N = b_t(1+r) + y_t^T + p_t^Ny_t,
 
-.. math::
-    \omega_{t}^{i}=\frac{(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}}{p_{t}^{s}+d_{t}}
+where $b_{t+1}$ is the bond-holding determined at period $t$. Tradable good is the numeraire and :math:`p_t^N` is the equilibrium price of non-tradable goods, taken as given by consumers.
 
-as an endogenous state variable. In equilibrium, the market clearing conditions imply that :math:`\omega^1_t + \omega^2_t = 1`.
-
-For any variable :math:`x_t`, 
-let :math:`\hat{x}_t` denote the normalized variable: :math:`\hat{x}_t=\frac{x_t}{Y_t}` 
-(except :math:`b^i_t` for which :math:`\hat{b}^i_t = \frac{b^i_t}{Y^a_{t-1}}`). Using this normalization, agent i's budget constraint can be rewritten as
+A key feature of the model is that the borrowing is subject to a borrowing constraint tied to the non-tradable good price as below
 
 .. math::
-    \hat{c}_{t}^{i}+\hat{p}_{t}^{s}s_{t+1}^{i}+p_{t}^{b}\hat{b}_{t+1}^{i}\leq\left(\hat{p}_{t}^{s}+\hat{d}_{t}\right)\omega_{t}^{i}+\hat{Y}_{t}^{i}.
 
-The wealth share is rewritten as 
+    b_{t+1} \geq - (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)
 
-.. math::
-    \omega_{t}^{i}=\frac{(\hat{p}_{t}^{s}+\hat{d}_{t})s_{t}^{i}+\frac{\hat{b}_{t}^{i}}{\gamma^a_t}}{\hat{p}_{t}^{s}+\hat{d}_{t}}.
+which says that the borrowing cannot exceed the sum of :math:`\kappa^N` fraction of the value of non-tradable goods, 
+plus :math:`\kappa^T` fraction of the value of tradable goods, with parameter 
+:math:`\kappa^N>0, \kappa^T>0` determining the collaterability of the non-tradable and tradable endowments, respectively.
 
-The optimality of agent i's consumption and asset choices are captured by 
-first-order conditions in :math:`s^i_{t+1}` and :math:`b^i_{t+1}`:
+A sequential competitive equilibrium is stochastic sequences :math:`\{b_{t+1},c_t^T,c_t^N,c_t,\mu_t,\lambda_t,p_t^N\}_{t=0}^{\infty}` such that
 
-.. math::
-    1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{\hat{c}^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{1-\gamma}\frac{\hat{p}_{t+1}^{s}+\hat{d}_{t+1}}{\hat{p}_{t}^{s}}\right]+\hat{\mu}^{i,s}_t\\
-    1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{c^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{-\gamma}\frac{1}{p_{t}^{b}}\right]+\hat{\mu}^{i,b}_t,
-
-where :math:`\hat{\mu}^{i,s}_t` and :math:`\mu^{i,b}_t` are the Lagrangian multipliers on agent i's no short sale constraint and borrowing constraint, respectively.
-The multipliers and portfolio choices satisfy the complementary-slackness conditions: 
+* Consumer optimizations:
 
 .. math::
-    0 & =  \hat{\mu}^{i,s}_t s^i_t\\
-    0 & = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).
 
-================================
-Wealth share as endogenous state
-================================
+    p_t^N = \Big(\frac{1-\omega}{\omega}\Big)\Big(\frac{c_t^T}{c_t^N}\Big)^{\eta+1}
+    \\
+    \lambda_t = \beta(1+r) \mathbb{E}_t \lambda_{t+1} + \mu_t
+    \\
+    \mu_t[b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T) =0
+    \\
+    b_{t+1} + c_t^T + p_t^N c_t^N = b_t(1+r) + y_t^T + p_t^Ny_t^N
+    \\
+    c_t = [\omega(c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-1/\eta}
 
-We define a recursive equilibrium with the wealth share :math:`\omega_t` defined before. A recursive equilibrium is
-:math:`\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)` that satisfy the  where agents' optimization conditions
-and market clearing conditions stated above.
+where
 
-We omit the explicit dependence on state :math:`(z,\omega)` except the first variable, and highlight that the
-state transition function :math:`\omega'` characterizes the implicit law of motion that should hold for each of the future exogenous state :math:`z'`.
-It should be clear at this moment that the key feature of our framework that enables to cast the equilibrium system as a single equation system,
-despite the non-trivial state-transition functions, is to include the implicit transition :math:`\omega'(z')` for each :math:`z'` as unknowns.
+.. math::
 
-The system can be implemented by the following HL1996.gmod code
+    \lambda_t = u'(c_{t}) \frac{\partial c_t}{\partial c_t^T}=u'(c_t)[\omega (c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-\frac{1}{\eta}-1}\omega [c_t^T]^{-\eta-1}.
 
-.. literalinclude:: HL1996.gmod
+* Markets clearing:
+
+.. math::
+
+    & c_t^N = y_t^N
+    \\
+    & c_t^T = y_t^T+b_t(1+r)-b_{t+1} \quad \text{(Redundant by Walras' Law)}
+
+Notice we have replaced the consumer's constrained optimization problem with 
+first order conditions and complementarity conditions, which enable solving the system as equation system.
+
+To input the model into the toolbox, we need to formulate the recursive system. 
+The exogenous states are :math:`y_t^N,y_t^T`, the natural endogenous state is :math:`b_t`.
+A recursive competitive equilibrium is :math:`b'(y^N,y^T,b),c^T(y^N,y^T,b),c^N(y^N,y^T,b),c(y^N,y^T,b),\mu(y^N,y^T,b),\lambda(y^N,y^T,b),p^N(y^N,y^T,b)` that satisfy
+the optimization and markets clearing conditions.
+
+The recursive system can be solved using GDSGE with bianchi2011.gmod below
+
+.. literalinclude:: bianchi2011.gmod
     :linenos:
     :language: GDSGE
 
+Some comments on the implementations.
 
-As can be seen, the implicit law of motion is captured by the consistency equation
-
-.. literalinclude:: HL1996.gmod
-    :lines: 72-72
-    :lineno-start: 72
+.. literalinclude:: bianchi2011.gmod
+    :lines: 2-4
+    :lineno-start: 2
     :language: GDSGE
 
-which says that the induced :math:`\omega'` by current decisions of stock and bond holdings should be consistent with the
-unknowns for each of the future exogenous states state by state. Notice the unknowns :math:`omega'` are input into 
-state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in 
+These lines specify the option that the adaptive sparse grid is used for function approximations.
+The adaptive grid method is based on \cite{ma_adaptive_2009} and \cite{Brumm:ECMA2017}, 
+and features sparsity for multi-dimensional problems and thus can accommodate models with high-dimension state space.
+In the current context with one dimension continuous state space, the method works to automatically refine the discretized grid
+in the region of state space featuring high nonlinearity.
+The method is using hat functions as the basis function defined in a hierarchy structure. Option *AsgMaxLevel* specifies the
+the max level at which the refinement stops, and option *AsgThreshold* specifies the threshold below which the refinement stops. 
+See more options for the adaptive sparse grid in :ref:`Toolbox API`.
 
-.. literalinclude:: HL1996.gmod
-    :lines: 58-58
-    :lineno-start: 58
+.. literalinclude:: bianchi2011.gmod
+    :lines: 41-56
+    :lineno-start: 41
     :language: GDSGE
 
-Accordingly, :math:`\omega'` is declared to a be a vector of unknowns in 
+These lines define the starting point of the time iteration, which is based on the solution to a last-period problem. In this problem
+the last-period problem is actually trivial: it just specifies the marginal utility is deriving from consuming all endowments (of tradable and non-tradable) and bond holdings.
+One does not need to actually solve a system of equations for this, but does want to organize the calculations in a
+readable format. These lines demonstrate how such procedure can be done by defining a trivial *model_init;* block, which accepts a dummy as unknown,
+and returns variables needed in *var_aux_init*.
 
-.. literalinclude:: HL1996.gmod
-    :lines: 28-28
-    :lineno-start: 28
+.. literalinclude:: bianchi2011.gmod
+    :lines: 78-78
+    :lineno-start: 78
     :language: GDSGE
 
-and the consistency equations are declared to be part of the equation system in
+This line demonstrates how to transform the borrowing constraint tied to an endogenous asset price :math:`b_{t+1} \geq - (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)`, into a boxed constraint.
+This is done by defining :math:`nb_{t+1}=b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)`, and specifying a non-negative constraint for unknown :math:`nb_{t+1}`.
+In the evaluations of the equations, one transforms :math:`nb_{t+1}` to :math:`b_{t+1}` with the line defined above.
 
-.. literalinclude:: HL1996.gmod
-    :lines: 87-87
-    :lineno-start: 87
-    :language: GDSGE
-
-Since now the transition of endogenous state involves realizations of future exogenous states,
-in the simulation, we need to specify the transition depends on future realization like
-
-.. literalinclude:: HL1996.gmod
-    :lines: 97-97
-    :lineno-start: 97
-    :language: GDSGE
-
-Notice the prime operator in *w1n'*, which is the syntax to specify the transition's dependence on the 
-realization of future exogenous states (recall, *w1n* is a vector solved as part of the *var_policy*).
-
-Now we discuss several tricks that facilitate casting the recursive system to the toolbox, which are commonly
-used for this class of problems.
-
-Since the original problem's borrowing constraint is a fraction of the total endowments, we can always transform
-the unknown to respect a box constraint like 
-
-.. literalinclude:: HL1996.gmod
-    :lines: 65-66
-    :lineno-start: 65
-    :language: GDSGE
-
-where *Kb* is the parameter governing the  borrowing constraint in fraction of endowment (:math:`b^i \geq -Kb * Y^a`), and *nb1p* is the unknown defined as
-:math:`nb^i=\hat{b}^i+Kb`, which ensures to :math:`nb^i` to be positive. Such transformation
-remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily  a boxed constraint. See example Cao and Nie (2017), which provides a global solution to the Kiyotaki-Moore model, where
-the borrowing constraint is tied to the price of an asset in fixed supply.
-
-Some utility functions of the toolbox are used in this example.
-
-.. literalinclude:: HL1996.gmod
-    :lines: 58-58
-    :lineno-start: 58
-    :language: GDSGE
-
-*GNDSGE_INTERP_VEC* is an utility function that evaluates function approximations for implicit state transition functions 
-defined in *var_interp* once for all. The results are returned in the order of variables defined in *var_interp*.
-The prime operator following *GNDSGE_INTERP_VEC* indicates that the approximation is done for each of the exogenous states.
-Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each of the exogenous states.
-This step can be replaced by
-
-.. code-block:: GDSGE
-
-    psn' = ps_future'(w1n');
-    pbn' = pb_future'(w1n');
-    c1n' = c1_future'(w1n');
-    c2n' = c2_future'(w1n');
-
-however, at a lower speed since *GNDSGE_INTERP_VEC* evaluate function approximations with vectorization. (This is particular relevant
-when using the adaptive sparse grid method as the coefficients are stored in a table with each entry represents
-the coefficients across all vector dimension. Therefore, using *GNDSGE_INTERP_VEC* instead of individual evaluations
-not only enables vectorization but also allows searching the hash table only once). *GNDSGE_INTERP_VEC* can be also used to skip
-certain variables in *var_interp* when some of them are not necessary, and can be used without the prime operator but 
-explicitly specifying the exogenous state that the approximation should be evaluated. This is particularly relevant when
-expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
-See the :ref:`Toolbox API` for details.
-
-After the gmod file is parsed and compiled by a local or remote compiler, first call the iter file in matlab, which produces
-results like following:
+====================
+Results
+====================
+Upload and compile the gmod file through a local or remote server. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set
 
 .. code-block:: text
 
-    >> IterRslt = iter_HL1996;
-    Iter:10, Metric:0.133835, maxF:7.07521e-09
-    Elapsed time is 8.338626 seconds.
-    
+    >> options = struct;
+    options.MaxIter = 50;
+    IterRslt = iter_bianchi2011(options);
+
+    options = struct;
+    options.WarmUp = IterRslt;
+    options.SkipModelInit = 1;
+    options.bMin = -1.1;
+    options.bMax = 0.0;
+    options.b = [options.bMin,options.bMax];
+    IterRslt = iter_bianchi2011(options);
+
+As shown, the options specified in a structure can be passed into the *iter* file to overwrite existing parameters. (All parameters 
+with names CapitalUpperCaseOption can be overwritten without recompiling). *MaxIter* defines the maximum number of policy iterations before which
+the procedure stops. Since we are just warming up on a crude state space, let's set it 50. The returned IterRslt is then passed to the *iter* file again
+in a structure, in the field named *WarmUp*. This basically overwrites the starting point of the policy iteration with the solution obtained
+in the previous *iter* call. Accordingly, option *SkipModelInit* is set to one to skip the *model_init;* block as it is not used (this step is optional but can be helpful in cases
+where the last-period problem takes time to solve and is not guaranteed to find solutions in the expanded state space).
+
+Finally, we overwrite the state space to enlarge *b* to :math:`[-1.1,0.0]` which ensures it cover the ergodic set. This procedure should be done recursively:
+expanding the state space until it covers the ergodic set found in the simulations.
+
+MATLAB displays:
+
+.. clode-blocK:: text
+
+    Iter:10, Metric:0.0108667, maxF:8.75771e-09
+    Elapsed time is 0.287305 seconds.
+
     ...
-    
-    Iter:209, Metric:9.56568e-07, maxF:8.69762e-09
-    Elapsed time is 0.443740 seconds.
 
-We can inspect the policy functions (e.g., for the equity premium defined in Line 74 and included in *var_output* in Line 54):
+    Iter:71, Metric:9.22841e-07, maxF:9.56484e-09
+    Elapsed time is 0.125370 seconds.
 
-.. code-block:: text
+We can now inspect the policy functions through following:
 
-    >> figure;
-    plot(IterRslt_wealth.var_state.w1, IterRslt_wealth.var_aux.equity_premium*100,'LineWidth',1.5);
-    title('Equity Premium');
-    xlabel('Wealth Share of Agent 1');
-    ylabel('%');
+.. clode-blocK:: text
 
-which produces 
+    >> GNDSGE_ASG_INTERP = asg.construct_from_struct(IterRslt.asg_output_struct);
+    grids = GNDSGE_ASG_INTERP.get_grids_info;
+    for j=1:16
+        grid = grids{j};
+        lenGrid = length(grid);
+        bNext_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),ones(1,lenGrid),grid);
+        pN_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),2*ones(1,lenGrid),grid);
+    end
 
-.. image:: figures/policy_equity_premium.png
+    figure; 
+    subplot(2,1,1); hold on;
+    xy = sortrows([grids{1}',bNext_fval{1}']);
+    plot(xy(:,1),xy(:,2),'ro-');
+    xy = sortrows([grids{4}',bNext_fval{4}']);
+    plot(xy(:,1),xy(:,2),'kx-');
+    title('Policy functions for next period bond holding, $b''$','interpreter','latex','FontSize',12);
+    xlabel('Current bond holding, $b$','FontSize',12,'interpreter','latex');
+
+    subplot(2,1,2); hold on;
+    xy = sortrows([grids{1}',pN_fval{1}']);
+    plot(xy(:,1),xy(:,2),'ro-');
+    xy = sortrows([grids{4}',pN_fval{4}']);
+    plot(xy(:,1),xy(:,2),'kx-');
+    title('Policy functions for non-tradable goods price, $p^N$','interpreter','latex','FontSize',12);
+    xlabel('Current bond holding, $b$','FontSize',12,'interpreter','latex');
+    legend({'$y_t^T$ Lowest, $y_t^N$ Lowest','$y_t^T$ Highest, $y_t^N$ Lowest'},'Location','SouthEast','interpreter','latex','FontSize',12);
+    print('figures/policy_combined.png','-dpng');
+
+This is a bit involved than previous examples since the adaptive sparse grid method returns solutions in a structure
+that allows solutions for each exogenous shock to be defined over different grids. So the above procedure essentially unpacks the
+grid and reconstructs the values of the policy functions (using GNDSGE_ASG_INTERP.eval, where GNDSGE_ASG_INTERP is the adaptive sparse grid approximation object
+returned by the solver, the second argument corresponds to the index of policy functions corresponding to the order of variables in *var_output*). 
+These generate the following plots:
+
+.. image:: figures/policy_combined.png
     :scale: 80 %
 
-The policy functions demonstrate the non-linear and non-monotone property of the model. These non-linear regions appear with
-positive probability in the model's ergodic set as shown below.
 
-We can simulate the model using the converged policy functions contained in *IterRslt*:
+As shown, 
+the policy functions are highly nonlinear: when the borrowing constraint binds, 
+the price of non-tradable goods declines sharply in the level of exist borrowing; future borrowing declines, 
+instead of increasing, as the economy goes further in debt, implying current account reversals. 
+If the borrowing constraint does not bind, then the price movement is much milder as we vary the level of existing debt, 
+and current account reversals do not happen. 
 
-.. code-block:: text
+We can also inspect the ergodic distribution of the endogenous state variable, bond holding, by calling in MATLAB
 
-    >> SimuRslt = simulate_HL1996(IterRslt);
-    Periods: 1000
-    shock      w1      c1      c2      ps      pbequity_premium
-        1  0.7878  0.6058  0.5344    2.48  0.93240.001541
+.. clode-blocK:: text
 
-    ...
+    SimuRslt = simulate_bianchi2011(IterRslt);
 
-    Periods: 50000
-    shock      w1      c1      c2      ps      pbequity_premium
-        6  0.8655  0.6628  0.4809   2.586  0.92510.002241
-
-And inspect the simulation results:
-
-.. code-block:: text
-
-    >> figure;
-    histogram(SimuRslt.w1(:,10000:end),50,'Normalization','probability');
-    title('Histogram of Wealth Share in the Ergodic Distribution');
-    xlabel('Wealth Share of Agent 1');
-    ylabel('Fractions');
+    figure; hold on;
+    histogram(SimuRslt.b(:,500:end),50,'Normalization','pdf');
+    [density,grid] = ksdensity(reshape(SimuRslt.b(:,500:end),1,[]));
+    plot(grid,density,'r-','LineWidth',2);
+    title('Histogram and Kernel Density of Bond Holdings','interpreter','latex','FontSize',12);
+    xlabel('Bond holdings, $b$','FontSize',12,'interpreter','latex');
+    ylabel('Probability density','interpreter','latex');
+    print('figures/histogram_b.png','-dpng');
 
 which produces
 
-.. image:: figures/histogram_w1.png
+.. image:: figures/histogram_b.png
     :scale: 40 %
 
-The spikes in the ergodic distribution of wealth share at the two ends implies the occasionally binding
-borrowing constraints.
+This shows that the non-linear regions do exist in the ergodic set of the equilibrium and thus cannot be ignored, 
+but due to precautionary motives, the frequency of the economy being in these regions cannot be determined ex-ante, highlighting the necessity of using a global solution method.
 
-=====================================
-Consumption share as endogenous state
-=====================================
-
-The model can be solved using consumption share as the endogenous state. This is enabled by noticing the budget constraint
-
-.. math::
-
-    \hat{c}_{t+1}^i=s_{t+1}^i (\hat{p}_{t+1}^s + \hat{d}_{t+1})+ \frac{\hat{b}_{t+1}^i  }{g_{t+1}}+ 
-    \underbrace{\eta_{t+1}^i - \hat{p}_{t+1}^s s_{t+2}^i-p_{t+1}^b \hat{b}_{t+2}^i}_{\text{Financial Wealth}_{t+1}}
-
-is a natural consistency equation for the transition of consumption share :math:`\hat{c}^1`. Specifically, with consumption share,
-the recursive equilibrium can be defined as :math:`{s^i}'(z,\hat{c}^1),(\hat{b}^i)', \hat{p}^s,p^b, {\hat{c}^1}'(z';z,\hat{c}^1)` such that
-
-.. math::
-
-    -1+\beta  \mathbb{E}_t 
-    \Big[\gamma^{1-\gamma}_{t+1}\frac{[\hat{c}_{t+1}^i]^{-\gamma}}{[\hat{c}_t^i]^{-\gamma} }  \frac{\hat{p}_{t+1}^s + \hat{d}_{t+1}}{\hat{p}_t^s}] + \hat{\mu}^{i,s}_t=0, \forall i=1,2
-    \\
-    -1+\beta  \mathbb{E}_t 
-    \Big[\gamma_{t+1}^{-\gamma}\frac{[\hat{c}_{t+1}^i]^{-\gamma}}{[\hat{c}_t^i]^{-\gamma} }  \frac{1}{{p}_t^b}\Big] + \hat{\mu}^{i,b}_t=0, \forall i=1,2
-    \\
-    \hat{b}_{t+1}^1+\hat{b}_{t+1}^2=0
-    \\
-    s_{t+1}^1+s_{t+1}^2=1
-    \\
-    \hat{c}^1_{t+1}=s_{t+1}^i (\hat{p}_{t+1}^s + \hat{d}_{t+1})+ \frac{\hat{b}_{t+1}^i  }{\gamma_{t+1}}+ 
-    \underbrace{\eta_{t+1}^i - \hat{p}_{t+1}^s s_{t+2}^i-p_{t+1}^b \hat{b}_{t+2}^i}_{\text{Financial Wealth}_{t+1}}, \forall z_{t+1}
-
-where :math:`\hat{c}^2` (and :math:`(\hat{c}^2)'`) can be trivially backed out by the goods market clearing condition :math:`\hat{c}^1+\hat{c}^2=1 +\hat{d}`, and does 
-do not need to be defined as extra unknowns when evaluating the equation system.  The "Financial Wealth" is a function of future endogenous states, and can be part of the implicit
-state transition functions.
-
-The gmod file that implements the recursive system is 
-
-.. literalinclude:: HL1996_consumption_share.gmod
-    :linenos:
-    :language: GDSGE
-
-As shown, compared to the one with wealth share as the endogenous state, 
-the new implementation is made possible by declaring :math:`(\hat{c}_1)'(z')` by *c1n* in 
-
-.. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 28-28
-    :lineno-start: 28
-    :language: GDSGE
-
-by defining the "Financial Wealth" by *flow* as *var_interp*
-
-.. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 42-42
-    :lineno-start: 42
-    :language: GDSGE
-
-by defining the consistency equations for :math:`\hat{c}_1` in 
-
-.. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 72-72
-    :lineno-start: 72
-    :language: GDSGE
-
-and including them as part of the equation system.
-
-Finally we compare the solutions solved with wealth share as the endogenous state and consumption share as the endogenous state. 
-This can be done by projecting the solutions to the same endogenous state. For example
-
-.. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 74-74
-    :lineno-start: 74
-    :language: GDSGE
-
-constructs the wealth share from the budget constraint following the definition.
-
-.. image:: figures/policy_premium_overlapped.png
-    :scale: 80 %
-
-As shown, the two solutions (solid lines for wealth share as endogenous state and markers "X" for consumption share as endogenous state) are not visually
-distinguishable.
+The markers on the policy functions indicate the grid points automatically placed by the adaptive-grid method, 
+and show that the method adds more points to the state space where the policy and state transition functions become non-linear. 
+Importantly, the method takes care that these non-linear regions can differ across exogenous states, as shown in the figure. 
+This illustrates the effectiveness of the adaptive-grid method for this class of models, 
+as these non-linear regions of state-space cannot be determined ex-ante, and require very dense exogenous grids  or painful manual configurations. 
 
 =====================
 What's Next?
 =====================
 
-Through this simple example, you understand the power of the toolbox and all the essential ingredients to solve
-a modern macro model.
-
-For the time-iteration algorithm to work robustly, a crucial step is to define the starting point of the iteration 
-properly. A candidate that delivers good theoretical property and proves to be numerically stable is to start from a last-period problem,
-so the algorithm can be viewed as taking the limit of the solution from finite-horizon iterations.
-
-The last-period problem has been so far trivial in the RBC and Heaton and Lucas (1996) examples, but turns out to be more complex
-and requires to define a different system of equations than the main *model;* block. Also, at the boundary of the state space, 
-the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve 
-many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).
+This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid, 
+it enables to solve non-linear models with high-dimensional space. See example Cao, Evans, and Luo (2020) for a two-country Real Business Cycle model on the medium-run
+behavior of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
+goes to five.
 
 Or you can directly proceed to :ref:`Toolbox API`.
-
-
-
-
 
