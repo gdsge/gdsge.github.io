@@ -1,5 +1,5 @@
 *****************************************************************
-Heaton and Lucas (1996): Incomplete-markets with Portfolio Choice
+Bianchi (2011): Sudden Stops in Small Open Economies
 *****************************************************************
 
 ===============
