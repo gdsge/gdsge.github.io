@@ -80,13 +80,13 @@ taking function :math:`c_{t+1}(z,K)` as known in the period-:math:`t` time step.
 The Mod File
 ===============
 
-The recursive system can now be input to GDSGE via a mod file rbc.nmod below.
+The recursive system can now be input to GDSGE via a mod file :download:`rbc.gmod <rbc.gmod>` below.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :linenos:
     :language: GDSGE
 
-The nmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at http://gdsge.com/. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
+The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at http://gdsge.com/. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
 
 First, call iter_rbc.m in matlab to run the policy iterations, which produces
 
@@ -161,9 +161,9 @@ Part of the toolbox options can also be overwritten by including them in the str
 Dissecting the Mod File
 =========================
 
-We now look into each line of rbc.nmod and describe the usage.
+We now look into each line of rbc.gmod and describe the usage.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 1-6 
     :lineno-start: 1
     :language: GDSGE
@@ -172,7 +172,7 @@ A line starting with keyword `parameters` declares parameters.
 Parameters are variables used in the *model* block that are invariant across states or over time.
 Matlab-style inline comments can be used following a "%".
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 8-17 
     :lineno-start: 8
     :language: GDSGE
@@ -189,7 +189,7 @@ Matlab functions *ndgrid* and *kron* can be used to construct the Cartesian set 
 If an exogenous state follows a continuous process such as AR(1), specify the state to be an endogenous state instead in *var_state*,
 and discretize the innovation.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 19-25
     :lineno-start: 19
     :language: GDSGE
@@ -201,7 +201,7 @@ Notice that all Matlab expressions can be evaluated.
 The discretized grid will be used in fixed-grid function approximation procedures such as splines and linear interpolations.
 For adaptive grid methods, only the range of the grid will be used.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 27-31
     :lineno-start: 27
     :language: GDSGE
@@ -227,7 +227,7 @@ The update can use any variables returned as part of the solution to the system.
 For example, here :code:`c_interp = c;` means that the *c_interp* variable is updated with *c* after a time iteration,
 where *c* is one of the policy variables solved by the system of equations, to be specified below.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 33-36
     :lineno-start: 33
     :language: GDSGE
@@ -238,7 +238,7 @@ following keyword *inbound*. For variables of which the bounds cannot be determi
 specify tight bounds for them and use an *adaptive* option so the solver adjusts bounds automatically when it cannot find solutions 
 and adapt bounds across time iterations. See :declare:`var_policy` in :ref:`Variable Declaration`.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 38-39
     :lineno-start: 38
     :language: GDSGE
@@ -248,7 +248,7 @@ directly included in the system of equations. For example wage is determined by 
 and can be evaluated according to :math:`w=(1-\alpha)zK^{\alpha}`. These policy variables can be declared
 following keyword :declare:`var_aux`.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 41-61
     :lineno-start: 41
     :language: GDSGE
@@ -265,7 +265,7 @@ for-end block.
 A variable followed by a prime (') indicate that the variable is a vector of length *shock_num*. 
 For example,
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 44-44
     :lineno-start: 44
     :language: GDSGE
@@ -284,7 +284,7 @@ realization of future exogenous states, as illustrated in the example.
 
 Any *var_interp* can be used as a function in the model block. For example,
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 47-47
     :lineno-start: 47
     :language: GDSGE
@@ -299,7 +299,7 @@ i.e., a variable followed by a prime (').
 The *model* block can use several utility functions for reduction operations.
 For example, the *GNDSGE_EXPECT{}* used in 
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 51-51
     :lineno-start: 51
     :language: GDSGE
@@ -315,7 +315,7 @@ This operator can also take a different transition matrix than *shock_trans*, wh
 Two other reduction operations *GNDSGE_MAX{}* and *GNDSGE_MIN{}* are defined, which are to take
 the maximum and the minimum of objects inside the curly brace, respectively. See :ref:`Utility functions`.
 
-.. literalinclude:: rbc.nmod
+.. literalinclude:: rbc.gmod
     :lines: 63-70
     :lineno-start: 51
     :language: GDSGE
@@ -340,8 +340,3 @@ Now you understand the basic usage of the toolbox.
 You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.
 
 Or you can proceed to :ref:`Toolbox API`.
-
-
-
-
-

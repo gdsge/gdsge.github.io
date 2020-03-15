@@ -71,7 +71,7 @@ taking functions :math:`c_{t+1}(z,K),\mu_{t+1}(z,K)` as known in the period-:mat
 The gmod File
 ===============
 
-The recursive system can now be input to the GDSGE toolbox via a mod file rbcIrr.gmod below.
+The recursive system can now be input to the GDSGE toolbox via a mod file :download:`rbcIrr.gmod <rbcIrr.gmod>` below.
 
 .. literalinclude:: rbcIrr.gmod
     :linenos:

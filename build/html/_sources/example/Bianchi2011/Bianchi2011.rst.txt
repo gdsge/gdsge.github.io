@@ -2,7 +2,7 @@
 Bianchi (2011): Sudden Stops in Open Economies
 *****************************************************************
 
-The benchmark model in Bianchi (2011) provides a minimal example in which the economic dynamics can be highly non-linear
+The benchmark model in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_ provides a minimal example in which the economic dynamics can be highly non-linear
 due to the presence of a borrowing constraint tied to a (commodity) price. We illustrate how to use the adaptive grid method
 with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a crude and narrow state space, 
 and then expand the state space to ensure it covers the ergodic set by reusing the compiled code.
@@ -11,11 +11,11 @@ and then expand the state space to ensure it covers the ergodic set by reusing t
 The Model
 ===============
 
-\cite{bianchi_overborrowing_2011} studies an incomplete-markets open economy model that can generate competitive equilibria featuring sudden stop episodes, 
+`Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_ studies an incomplete-markets open economy model that can generate competitive equilibria featuring sudden stop episodes, 
 resembling those experienced by many emerging economies. 
 A sudden stop episode features a large output drop and current account reversals, 
 which are at odds with the prediction of a standard incomplete-markets model with precautionary saving motives.
-A key feature for the model in \cite{bianchi_overborrowing_2011} 
+A key feature for the model in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_
 is to introduce feedback of the  price of non-tradable goods to the borrowing constraint: a negative external shock  
 that lowers the equilibrium price of non-tradable goods tightens the borrowing constraint and forces reducing the consumption of tradable goods, 
 which further lowers the price of non-tradable goods. 
@@ -24,7 +24,8 @@ This leads to ex-ante over-borrowing and calls for policy interventions.
 
 The borrowing constraint is occasionally binding in the equilibrium's ergodic set, 
 and the equilibrium policy and state transition functions are highly non-linear when the borrowing constraint binds. 
-Therefore, a global and non-linear solution is essential to capture the model's rich dynamics. We solve the competitive equilibrium of the benchmark model in Bianchi (2011), described below
+Therefore, a global and non-linear solution is essential to capture the model's rich dynamics. We solve the competitive equilibrium of the benchmark model in 
+`Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_, described below
 
 Small-open economy representative consumers derive utility from consumption of tradable goods  :math:`c_t^T` and of non-tradable goods $c_t^N$ according to
 
@@ -45,7 +46,7 @@ The endowments of tradable goods :math:`y_t^T` and non-tradable goods :math:`y_t
 
     b_{t+1} + c_t^T + p_t^N c_t^N = b_t(1+r) + y_t^T + p_t^Ny_t,
 
-where $b_{t+1}$ is the bond-holding determined at period $t$. Tradable good is the numeraire and :math:`p_t^N` is the equilibrium price of non-tradable goods, taken as given by consumers.
+where :math:`b_{t+1}` is the bond-holding determined at period :math:`t`. Tradable good is the numeraire and :math:`p_t^N` is the equilibrium price of non-tradable goods, taken as given by consumers.
 
 A key feature of the model is that the borrowing is subject to a borrowing constraint tied to the non-tradable good price as below
 
@@ -95,7 +96,7 @@ The exogenous states are :math:`y_t^N,y_t^T`, the natural endogenous state is :m
 A recursive competitive equilibrium is :math:`b'(y^N,y^T,b),c^T(y^N,y^T,b),c^N(y^N,y^T,b),c(y^N,y^T,b),\mu(y^N,y^T,b),\lambda(y^N,y^T,b),p^N(y^N,y^T,b)` that satisfy
 the optimization and markets clearing conditions.
 
-The recursive system can be solved using GDSGE with bianchi2011.gmod below
+The recursive system can be solved using GDSGE with :download:`bianchi2011.gmod <bianchi2011.gmod>` below
 
 .. literalinclude:: bianchi2011.gmod
     :linenos:
@@ -109,7 +110,8 @@ Some comments on the implementations.
     :language: GDSGE
 
 These lines specify the option that the adaptive sparse grid is used for function approximations.
-The adaptive grid method is based on \cite{ma_adaptive_2009} and \cite{Brumm:ECMA2017}, 
+The adaptive grid method is based on `Ma and Zabaras (2009) <https://www.sciencedirect.com/science/article/pii/S002199910900028X>`_ 
+and `Brumm and Scheidegger (2017) <https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216>`_
 and features sparsity for multi-dimensional problems and thus can accommodate models with high-dimension state space.
 In the current context with one dimension continuous state space, the method works to automatically refine the discretized grid
 in the region of state space featuring high nonlinearity.
@@ -168,7 +170,7 @@ expanding the state space until it covers the ergodic set found in the simulatio
 
 MATLAB displays:
 
-.. clode-blocK:: text
+.. code-block:: text
 
     Iter:10, Metric:0.0108667, maxF:8.75771e-09
     Elapsed time is 0.287305 seconds.
@@ -180,7 +182,7 @@ MATLAB displays:
 
 We can now inspect the policy functions through following:
 
-.. clode-blocK:: text
+.. code-block:: text
 
     >> GNDSGE_ASG_INTERP = asg.construct_from_struct(IterRslt.asg_output_struct);
     grids = GNDSGE_ASG_INTERP.get_grids_info;
@@ -229,7 +231,7 @@ and current account reversals do not happen.
 
 We can also inspect the ergodic distribution of the endogenous state variable, bond holding, by calling in MATLAB
 
-.. clode-blocK:: text
+.. code-block:: text
 
     SimuRslt = simulate_bianchi2011(IterRslt);
 
@@ -245,7 +247,7 @@ We can also inspect the ergodic distribution of the endogenous state variable, b
 which produces
 
 .. image:: figures/histogram_b.png
-    :scale: 40 %
+    :scale: 50 %
 
 This shows that the non-linear regions do exist in the ergodic set of the equilibrium and thus cannot be ignored, 
 but due to precautionary motives, the frequency of the economy being in these regions cannot be determined ex-ante, highlighting the necessity of using a global solution method.
@@ -261,9 +263,9 @@ What's Next?
 =====================
 
 This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid, 
-it enables to solve non-linear models with high-dimensional space. See example Cao, Evans, and Luo (2020) for a two-country Real Business Cycle model on the medium-run
-behavior of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
-goes to five.
+it enables to solve effectively non-linear models with high-dimensional state space. See example Cao, Evans, and Luo (2020) for a two-country Real Business Cycle model on the medium-run
+dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
+goes to six.
 
 Or you can directly proceed to :ref:`Toolbox API`.
 

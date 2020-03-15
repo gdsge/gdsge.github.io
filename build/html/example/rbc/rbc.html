@@ -209,7 +209,7 @@ c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 </div>
 <div class="section" id="the-mod-file">
 <h2>The Mod File<a class="headerlink" href="#the-mod-file" title="Permalink to this headline">¶</a></h2>
-<p>The recursive system can now be input to GDSGE via a mod file rbc.nmod below.</p>
+<p>The recursive system can now be input to GDSGE via a mod file <a class="reference download internal" download="" href="../../_downloads/e69dacb1374999ac15c861c44302489a/rbc.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbc.gmod</span></code></a> below.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -351,7 +351,7 @@ c_interp = c;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>The nmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at <a class="reference external" href="http://gdsge.com/">http://gdsge.com/</a>. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
+<p>The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at <a class="reference external" href="http://gdsge.com/">http://gdsge.com/</a>. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
 <p>First, call iter_rbc.m in matlab to run the policy iterations, which produces</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_rbc;
 Iter:10, Metric:0.385607, maxF:9.99011e-09
@@ -405,7 +405,7 @@ Elapsed time is 1.281338 seconds.
 </div>
 <div class="section" id="dissecting-the-mod-file">
 <h2>Dissecting the Mod File<a class="headerlink" href="#dissecting-the-mod-file" title="Permalink to this headline">¶</a></h2>
-<p>We now look into each line of rbc.nmod and describe the usage.</p>
+<p>We now look into each line of rbc.gmod and describe the usage.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

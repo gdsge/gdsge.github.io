@@ -92,7 +92,7 @@ state transition function :math:`\omega'` characterizes the implicit law of moti
 It should be clear at this moment that the key feature of our framework that enables to cast the equilibrium system as a single equation system,
 despite the non-trivial state-transition functions, is to include the implicit transition :math:`\omega'(z')` for each :math:`z'` as unknowns.
 
-The system can be implemented by the following HL1996.gmod code
+The system can be implemented by the following :download:`HL1996.gmod <HL1996.gmod>` code
 
 .. literalinclude:: HL1996.gmod
     :linenos:
@@ -284,7 +284,7 @@ where :math:`\hat{c}^2` (and :math:`(\hat{c}^2)'`) can be trivially backed out b
 do not need to be defined as extra unknowns when evaluating the equation system.  The "Financial Wealth" is a function of future endogenous states, and can be part of the implicit
 state transition functions.
 
-The gmod file that implements the recursive system is 
+The gmod file that implements the recursive system is (:download:`HL1996.gmod <HL1996_consumption_share.gmod>`)
 
 .. literalinclude:: HL1996_consumption_share.gmod
     :linenos:
