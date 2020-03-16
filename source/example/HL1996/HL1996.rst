@@ -8,7 +8,7 @@ The model encompasses many ingredients that appear in recent macroeconomic studi
 incomplete markets, portfolio choices, occasionally binding constraint, non-stationary shock process, and asset pricing with non-trivial market-clearing conditions.
 We show how the model can be solved with wealth share or consumption share as the endogenous state, the two prominent approaches in the literature, and naturally fit in our toolbox framework.
 
-===============
+.. _HL1996:
 The Model
 ===============
 

@@ -80,13 +80,12 @@ The recursive system can now be input to the GDSGE toolbox via a mod file :downl
 The toolbox solves the model and produce the policy functions. The following figure displays the investment policy function :math:`I(z,K)`. The investment irreversibility constraint tend to bind when :math:`K` is low or :math:`z` is low.  
     
 .. image:: figuresIrr/policy_Inv.png
-    :height: 500px
-    :width: 500px
+    :scale: 20 %
 
 We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the :ref:`RBC model <Getting Started - A Simple RBC Model>` without the irreversitiliby constraint.
 
 .. image:: figuresIrr/histogram_Inv.png
-    :scale: 50 %
+    :scale: 40 %
     
 .. image:: figuresIrr/histogram_K.png
-    :scale: 50 %
+    :scale: 40 %

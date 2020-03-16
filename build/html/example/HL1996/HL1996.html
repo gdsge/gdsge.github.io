@@ -86,13 +86,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wealth-share-as-endogenous-state">Wealth Share as Endogenous State</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#consumption-share-as-endogenous-state">Consumption Share as Endogenous State</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wealth-share-as-endogenous-state">Wealth Share as Endogenous State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consumption-share-as-endogenous-state">Consumption Share as Endogenous State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barro_et_al_2017/Barro_et_al_2017.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 </ul>
 
@@ -213,9 +216,8 @@ The multipliers and portfolio choices satisfy the complementary-slackness condit
 <div class="math notranslate nohighlight">
 \[\begin{split}0 &amp; =  \hat{\mu}^{i,s}_t s^i_t\\
 0 &amp; = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).\end{split}\]</div>
-</div>
 <div class="section" id="wealth-share-as-endogenous-state">
-<h2>Wealth Share as Endogenous State<a class="headerlink" href="#wealth-share-as-endogenous-state" title="Permalink to this headline">¶</a></h2>
+<h3>Wealth Share as Endogenous State<a class="headerlink" href="#wealth-share-as-endogenous-state" title="Permalink to this headline">¶</a></h3>
 <p>We define a recursive equilibrium with the wealth share <span class="math notranslate nohighlight">\(\omega_t\)</span> defined before. A recursive equilibrium is
 <span class="math notranslate nohighlight">\(\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)\)</span> that satisfy the  where agents’ optimization conditions
 and market clearing conditions stated above.</p>
@@ -534,7 +536,7 @@ ylabel(&#39;Fractions&#39;);
 borrowing constraints.</p>
 </div>
 <div class="section" id="consumption-share-as-endogenous-state">
-<h2>Consumption Share as Endogenous State<a class="headerlink" href="#consumption-share-as-endogenous-state" title="Permalink to this headline">¶</a></h2>
+<h3>Consumption Share as Endogenous State<a class="headerlink" href="#consumption-share-as-endogenous-state" title="Permalink to this headline">¶</a></h3>
 <p>The model can be solved using consumption share as the endogenous state. This is enabled by noticing the budget constraint</p>
 <div class="math notranslate nohighlight">
 \[\hat{c}_{t+1}^i=s_{t+1}^i (\hat{p}_{t+1}^s + \hat{d}_{t+1})+ \frac{\hat{b}_{t+1}^i  }{g_{t+1}}+
@@ -784,7 +786,7 @@ This can be done by projecting the solutions to the same endogenous state. For e
 distinguishable.</p>
 </div>
 <div class="section" id="what-s-next">
-<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<h3>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h3>
 <p>Through this simple example, you understand the power of the toolbox and all the essential ingredients to solve
 a modern macro model.</p>
 <p>For the time-iteration algorithm to work robustly, a crucial step is to define the starting point of the iteration
@@ -795,6 +797,7 @@ and requires to define a different system of equations than the main <em>model;<
 the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve
 many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">the toolbox’s API</span></a>.</p>
+</div>
 </div>
 </div>
 

@@ -20,6 +20,11 @@ from pygments.lexer import RegexLexer, bygroups
 from pygments import token
 from sphinx.highlighting import lexers
 
+numfig = True
+math_numfig = True
+numfig_secnum_depth = 2
+math_eqref_format = "({number})"
+
 class BCLLexer(RegexLexer):
     name = 'GDSGE'
 	

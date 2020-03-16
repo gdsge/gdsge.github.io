@@ -67,7 +67,7 @@ Definition: a recursive competitive equilibrium is functions :math:`c(z,K), K'(z
     \\
     c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.
 
-The recursive system can be solved using a time iteration procedure (see paper xxx):
+The recursive system can be solved using a time iteration procedure:
 
 .. math::
     c_t(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma} \Big| z \right]
