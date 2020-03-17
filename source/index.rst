@@ -21,6 +21,7 @@ The toolbox can be used to solve models in macroeconomics, international finance
    example/rbc/rbc
    example/rbc/rbcIrr
    example/HL1996/HL1996
+   example/Cao2018/Cao2018
    example/Bianchi2011/Bianchi2011
    example/safe_assets/safe_assets
    usage/functions
