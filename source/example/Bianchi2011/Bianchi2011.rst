@@ -147,10 +147,14 @@ Upload and compile the gmod file through a local or remote server. We first run 
 .. code-block:: text
 
     >> options = struct;
+    shock_process = load('shock_process.mat');
+    options.shock_trans = shock_process.shock_trans;
+    options.yT = shock_process.yT;
+    options.yN = shock_process.yN;
     options.MaxIter = 50;
     IterRslt = iter_bianchi2011(options);
 
-    options = struct;
+    options.MaxIter = inf;
     options.WarmUp = IterRslt;
     options.SkipModelInit = 1;
     options.bMin = -1.1;
@@ -159,7 +163,10 @@ Upload and compile the gmod file through a local or remote server. We first run 
     IterRslt = iter_bianchi2011(options);
 
 As shown, the options specified in a structure can be passed into the *iter* file to overwrite existing parameters. (All parameters 
-with names CapitalUpperCaseOption can be overwritten without recompiling). *MaxIter* defines the maximum number of policy iterations before which
+with names CapitalUpperCaseOption can be overwritten without recompiling). We first load the exact discretized processes 
+used in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_. Make sure you have file
+:download:`shock_process.mat <shock_process.mat>` ready.
+*MaxIter* defines the maximum number of policy iterations before which
 the procedure stops. Since we are just warming up on a crude state space, let's set it 50. The returned IterRslt is then passed to the *iter* file again
 in a structure, in the field named *WarmUp*. This basically overwrites the starting point of the policy iteration with the solution obtained
 in the previous *iter* call. Accordingly, option *SkipModelInit* is set to one to skip the *model_init;* block as it is not used (this step is optional but can be helpful in cases
@@ -172,13 +179,13 @@ MATLAB displays:
 
 .. code-block:: text
 
-    Iter:10, Metric:0.0108667, maxF:8.75771e-09
-    Elapsed time is 0.287305 seconds.
+    Iter:10, Metric:0.0102609, maxF:8.68116e-09
+    Elapsed time is 0.418682 seconds.
 
     ...
 
-    Iter:71, Metric:9.22841e-07, maxF:9.56484e-09
-    Elapsed time is 0.125370 seconds.
+    Iter:75, Metric:5.17302e-07, maxF:9.71415e-09
+    Elapsed time is 0.518850 seconds.
 
 We can now inspect the policy functions through following:
 
@@ -257,6 +264,68 @@ and show that the method adds more points to the state space where the policy an
 Importantly, the method takes care that these non-linear regions can differ across exogenous states, as shown in the figure. 
 This illustrates the effectiveness of the adaptive-grid method for this class of models, 
 as these non-linear regions of state-space cannot be determined ex-ante, and require very dense exogenous grids  or painful manual configurations. 
+
+A final remark to be made here is that the toolbox by default resolves the equilibrium system at each time step of the simulation, minimizing 
+the numerical error within a period. This method turns out to be somewhat important to analyze highly non-linear models like the current one.
+One can add the following line in the gmod file (need recompile) to switch to interpolating policy and state transition functions in the simulation.
+
+.. code-block:: GDSGE
+
+    SIMU_RESOLVE=0; SIMU_INTERP=1;
+
+We plot the ergodic distribution obtained from the direct interpolation method below
+
+.. image:: figures/histogram_b_interp.png
+    :scale: 50 %
+
+As shown, it exhibits some artificial modals compared to the one obtained from solving the equilibrium system accurately at each time step.
+
+======================
+The Planner's solution
+======================
+
+The planner's solution takes care of the effect of tradable/non-tradable consumption on the relative price.
+The planner's solution differs from the competitive equilibrium by replacing the first order condition from 
+
+.. math:: 
+    \lambda_t=u'(c_{t}) \frac{\partial c_t}{\partial c_t^T}
+
+to 
+
+.. math::
+    \lambda_t=u'(c_{t}) \frac{\partial c_t}{\partial c_t^T} +
+    \mu_t \underbrace{ \kappa^N\Big(\frac{1-\omega}{\omega}\Big)  (\eta+1) [c_t^T]^{\eta} [y_t^N]^{-\eta}}_{\Psi_t}
+
+where
+
+.. math::
+    \Psi_t=\kappa^N (p_t^Nc_t^N)/(y_t^T)(1+\eta)
+
+The planner's problem can thus implemented by replacing Line 85
+
+.. literalinclude:: bianchi2011.gmod
+    :lines: 85-85
+    :lineno-start: 85
+    :language: GDSGE
+
+to the following (see full gmod file for the planner's problem :download:`bianchi2011_planner.gmod <bianchi2011_planner.gmod>`
+
+.. code-block:: GDSGE
+
+    Psi = kappaN*pN*cN / yT * (1+eta);
+    lambda = c^(-sigma)*partial_c_partial_cT + mu*Psi;
+
+As highlighted in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_,
+Since the planner takes into account the effect of cutting down tradable consumption on relative price and the borrowing constraint,
+it chooses to accumulate less debt compared to the competitive equilibrium. This can be shown below by comparing the policy functions for 
+next-period bond the distribution of bond holdings in the ergodic sets for the two economies.
+
+.. image:: figures/compare_b_policy.png
+    :scale: 50 %
+
+.. image:: figures/compare_histogram_b.png
+    :scale: 50 %
+
 
 =====================
 What's Next?

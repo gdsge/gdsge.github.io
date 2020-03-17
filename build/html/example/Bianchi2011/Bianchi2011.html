@@ -90,6 +90,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Bianchi (2011): Sudden Stops in Open Economies</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-planner-s-solution">The Planner’s solution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
@@ -516,10 +517,14 @@ In the evaluations of the equations, one transforms <span class="math notranslat
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>Upload and compile the gmod file through a local or remote server. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; options = struct;
+shock_process = load(&#39;shock_process.mat&#39;);
+options.shock_trans = shock_process.shock_trans;
+options.yT = shock_process.yT;
+options.yN = shock_process.yN;
 options.MaxIter = 50;
 IterRslt = iter_bianchi2011(options);
 
-options = struct;
+options.MaxIter = inf;
 options.WarmUp = IterRslt;
 options.SkipModelInit = 1;
 options.bMin = -1.1;
@@ -529,7 +534,10 @@ IterRslt = iter_bianchi2011(options);
 </pre></div>
 </div>
 <p>As shown, the options specified in a structure can be passed into the <em>iter</em> file to overwrite existing parameters. (All parameters
-with names CapitalUpperCaseOption can be overwritten without recompiling). <em>MaxIter</em> defines the maximum number of policy iterations before which
+with names CapitalUpperCaseOption can be overwritten without recompiling). We first load the exact discretized processes
+used in <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>. Make sure you have file
+<a class="reference download internal" download="" href="../../_downloads/c6aa4f4558622c4a3848b8951afe9ae5/shock_process.mat"><code class="xref download docutils literal notranslate"><span class="pre">shock_process.mat</span></code></a> ready.
+<em>MaxIter</em> defines the maximum number of policy iterations before which
 the procedure stops. Since we are just warming up on a crude state space, let’s set it 50. The returned IterRslt is then passed to the <em>iter</em> file again
 in a structure, in the field named <em>WarmUp</em>. This basically overwrites the starting point of the policy iteration with the solution obtained
 in the previous <em>iter</em> call. Accordingly, option <em>SkipModelInit</em> is set to one to skip the <em>model_init;</em> block as it is not used (this step is optional but can be helpful in cases
@@ -537,13 +545,13 @@ where the last-period problem takes time to solve and is not guaranteed to find 
 <p>Finally, we overwrite the state space to enlarge <em>b</em> to <span class="math notranslate nohighlight">\([-1.1,0.0]\)</span> which ensures it cover the ergodic set. This procedure should be done recursively:
 expanding the state space until it covers the ergodic set found in the simulations.</p>
 <p>MATLAB displays:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Iter:10, Metric:0.0108667, maxF:8.75771e-09
-Elapsed time is 0.287305 seconds.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Iter:10, Metric:0.0102609, maxF:8.68116e-09
+Elapsed time is 0.418682 seconds.
 
 ...
 
-Iter:71, Metric:9.22841e-07, maxF:9.56484e-09
-Elapsed time is 0.125370 seconds.
+Iter:75, Metric:5.17302e-07, maxF:9.71415e-09
+Elapsed time is 0.518850 seconds.
 </pre></div>
 </div>
 <p>We can now inspect the policy functions through following:</p>
@@ -610,6 +618,44 @@ and show that the method adds more points to the state space where the policy an
 Importantly, the method takes care that these non-linear regions can differ across exogenous states, as shown in the figure.
 This illustrates the effectiveness of the adaptive-grid method for this class of models,
 as these non-linear regions of state-space cannot be determined ex-ante, and require very dense exogenous grids  or painful manual configurations.</p>
+<p>A final remark to be made here is that the toolbox by default resolves the equilibrium system at each time step of the simulation, minimizing
+the numerical error within a period. This method turns out to be somewhat important to analyze highly non-linear models like the current one.
+One can add the following line in the gmod file (need recompile) to switch to interpolating policy and state transition functions in the simulation.</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>SIMU_RESOLVE=0; SIMU_INTERP=1;
+</pre></div>
+</div>
+<p>We plot the ergodic distribution obtained from the direct interpolation method below</p>
+<a class="reference internal image-reference" href="../../_images/histogram_b_interp.png"><img alt="../../_images/histogram_b_interp.png" src="../../_images/histogram_b_interp.png" style="width: 437.5px; height: 328.0px;" /></a>
+<p>As shown, it exhibits some artificial modals compared to the one obtained from solving the equilibrium system accurately at each time step.</p>
+</div>
+<div class="section" id="the-planner-s-solution">
+<h2>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this headline">¶</a></h2>
+<p>The planner’s solution takes care of the effect of tradable/non-tradable consumption on the relative price.
+The planner’s solution differs from the competitive equilibrium by replacing the first order condition from</p>
+<div class="math notranslate nohighlight">
+\[\lambda_t=u'(c_{t}) \frac{\partial c_t}{\partial c_t^T}\]</div>
+<p>to</p>
+<div class="math notranslate nohighlight">
+\[\lambda_t=u'(c_{t}) \frac{\partial c_t}{\partial c_t^T} +
+\mu_t \underbrace{ \kappa^N\Big(\frac{1-\omega}{\omega}\Big)  (\eta+1) [c_t^T]^{\eta} [y_t^N]^{-\eta}}_{\Psi_t}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\Psi_t=\kappa^N (p_t^Nc_t^N)/(y_t^T)(1+\eta)\]</div>
+<p>The planner’s problem can thus implemented by replacing Line 85</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>85</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  lambda = c^(-sigma)*partial_c_partial_cT;
+</pre></div>
+</td></tr></table></div>
+<p>to the following (see full gmod file for the planner’s problem <a class="reference download internal" download="" href="../../_downloads/775c1e1b19bff1391a069af591995754/bianchi2011_planner.gmod"><code class="xref download docutils literal notranslate"><span class="pre">bianchi2011_planner.gmod</span></code></a></p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>Psi = kappaN*pN*cN / yT * (1+eta);
+lambda = c^(-sigma)*partial_c_partial_cT + mu*Psi;
+</pre></div>
+</div>
+<p>As highlighted in <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>,
+Since the planner takes into account the effect of cutting down tradable consumption on relative price and the borrowing constraint,
+it chooses to accumulate less debt compared to the competitive equilibrium. This can be shown below by comparing the policy functions for
+next-period bond the distribution of bond holdings in the ergodic sets for the two economies.</p>
+<a class="reference internal image-reference" href="../../_images/compare_b_policy.png"><img alt="../../_images/compare_b_policy.png" src="../../_images/compare_b_policy.png" style="width: 437.5px; height: 328.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/compare_histogram_b.png"><img alt="../../_images/compare_histogram_b.png" src="../../_images/compare_histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
