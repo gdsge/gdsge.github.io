@@ -83,8 +83,8 @@ model;
   % Calculate Euler residuals
   c = (omega*cT^(-eta) + (1-omega)*cN^(-eta))^(-1/eta);
   partial_c_partial_cT = (omega*cT^(-eta) + (1-omega)*cN^(-eta))^(-1/eta-1) * omega * cT^(-eta-1);
-  Psi = kappaN*pN*cN / yT * (1+eta);
-  lambda = c^(-sigma)*partial_c_partial_cT + mu*Psi;
+  Psi = kappaN*pN*cN / cT * (1+eta);
+  lambda = c^(-sigma)*partial_c_partial_cT / (1-mu*Psi);
   euler_residual = 1 - beta*(1+r) * GNDSGE_EXPECT{lambdaFuture'}/lambda - mu;
   
   % Price consistent

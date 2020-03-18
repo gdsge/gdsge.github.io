@@ -224,7 +224,7 @@ c_t = [\omega(c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-1/\eta}\end{split}\]
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp; c_t^N = y_t^N
 \\
-&amp; c_t^T = y_t^T+b_t(1+r)-b_{t+1} \quad \text{(Redundant by Walras' Law)}\end{split}\]</div>
+&amp; c_t^T = y_t^T+b_t(1+r)-b_{t+1}\end{split}\]</div>
 <p>Notice we have replaced the consumer’s constrained optimization problem with
 first order conditions and complementarity conditions, which enable solving the system as equation system.</p>
 <p>To input the model into the toolbox, we need to formulate the recursive system.
@@ -640,14 +640,14 @@ The planner’s solution differs from the competitive equilibrium by replacing t
 \mu_t \underbrace{ \kappa^N\Big(\frac{1-\omega}{\omega}\Big)  (\eta+1) [c_t^T]^{\eta} [y_t^N]^{-\eta}}_{\Psi_t}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
-\[\Psi_t=\kappa^N (p_t^Nc_t^N)/(y_t^T)(1+\eta)\]</div>
+\[\Psi_t=\kappa^N (p_t^Nc_t^N)/(c_t^T)(1+\eta)\]</div>
 <p>The planner’s problem can thus implemented by replacing Line 85</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>85</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  lambda = c^(-sigma)*partial_c_partial_cT;
 </pre></div>
 </td></tr></table></div>
 <p>to the following (see full gmod file for the planner’s problem <a class="reference download internal" download="" href="../../_downloads/775c1e1b19bff1391a069af591995754/bianchi2011_planner.gmod"><code class="xref download docutils literal notranslate"><span class="pre">bianchi2011_planner.gmod</span></code></a></p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>Psi = kappaN*pN*cN / yT * (1+eta);
-lambda = c^(-sigma)*partial_c_partial_cT + mu*Psi;
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>Psi = kappaN*pN*cN / cT * (1+eta);
+lambda = c^(-sigma)*partial_c_partial_cT / (1-mu*Psi);
 </pre></div>
 </div>
 <p>As highlighted in <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>,

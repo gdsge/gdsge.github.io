@@ -86,7 +86,7 @@ where
 
     & c_t^N = y_t^N
     \\
-    & c_t^T = y_t^T+b_t(1+r)-b_{t+1} \quad \text{(Redundant by Walras' Law)}
+    & c_t^T = y_t^T+b_t(1+r)-b_{t+1}
 
 Notice we have replaced the consumer's constrained optimization problem with 
 first order conditions and complementarity conditions, which enable solving the system as equation system.
@@ -299,7 +299,7 @@ to
 where
 
 .. math::
-    \Psi_t=\kappa^N (p_t^Nc_t^N)/(y_t^T)(1+\eta)
+    \Psi_t=\kappa^N (p_t^Nc_t^N)/(c_t^T)(1+\eta)
 
 The planner's problem can thus implemented by replacing Line 85
 
@@ -312,8 +312,8 @@ to the following (see full gmod file for the planner's problem :download:`bianch
 
 .. code-block:: GDSGE
 
-    Psi = kappaN*pN*cN / yT * (1+eta);
-    lambda = c^(-sigma)*partial_c_partial_cT + mu*Psi;
+    Psi = kappaN*pN*cN / cT * (1+eta);
+    lambda = c^(-sigma)*partial_c_partial_cT / (1-mu*Psi);
 
 As highlighted in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_,
 Since the planner takes into account the effect of cutting down tradable consumption on relative price and the borrowing constraint,
