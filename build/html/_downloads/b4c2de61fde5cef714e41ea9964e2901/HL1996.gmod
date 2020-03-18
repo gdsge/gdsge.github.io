@@ -55,12 +55,12 @@ var_output c1 c2 ps pb equity_premium w1n;
 
 model;
   % Interpolation
-  [psn',pbn',c1n',c2n'] = GNDSGE_INTERP_VEC'(w1n');
+  [psn',pbn',c1n',c2n'] = GDSGE_INTERP_VEC'(w1n');
   % Expectations in Euler Equations
-  es1 = GNDSGE_EXPECT{g'^(1-gamma)*(c1n'/c1)^(-gamma)*(psn'+d')/ps};
-  es2 = GNDSGE_EXPECT{g'^(1-gamma)*(c2n'/c2)^(-gamma)*(psn'+d')/ps};
-  eb1 = GNDSGE_EXPECT{g'^(-gamma)*(c1n'/c1)^(-gamma)/pb};
-  eb2 = GNDSGE_EXPECT{g'^(-gamma)*(c2n'/c2)^(-gamma)/pb};
+  es1 = GDSGE_EXPECT{g'^(1-gamma)*(c1n'/c1)^(-gamma)*(psn'+d')/ps};
+  es2 = GDSGE_EXPECT{g'^(1-gamma)*(c2n'/c2)^(-gamma)*(psn'+d')/ps};
+  eb1 = GDSGE_EXPECT{g'^(-gamma)*(c1n'/c1)^(-gamma)/pb};
+  eb2 = GDSGE_EXPECT{g'^(-gamma)*(c2n'/c2)^(-gamma)/pb};
   % b transformation
   b1p = nb1p + Kb;  % Transform bond back
   b2p = nb2p + Kb;  
@@ -71,7 +71,7 @@ model;
   % Consistency
   w1_consis' = (s1p*(psn'+d') + b1p/g')/(psn'+d') - w1n';
   % Extra output
-  equity_premium = GNDSGE_EXPECT{(psn'+d')/ps*g'} - 1/pb;
+  equity_premium = GDSGE_EXPECT{(psn'+d')/ps*g'} - 1/pb;
   equations;
     -1+beta*es1+ms1;
     -1+beta*es2+ms2;

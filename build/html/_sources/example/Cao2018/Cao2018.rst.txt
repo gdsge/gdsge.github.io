@@ -8,7 +8,6 @@ The models that we have seen so far are models with rational expectations. Our t
 The Model
 ===============
 
-
 The model in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ is similar to the one in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ with several main differences. First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process. Therefore, it departs from the rational expectations assumption. `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ uses agent index :math:`i\in \{\text{O},\text{P}\}`, which stands for optimists or pessimists. Second, the agents  are subject to a collateral constraints, besides the short-selling constraint:
 
 .. math::
@@ -17,6 +16,29 @@ The model in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/52309
 where :math:`m\in(0,1)` denotes the margin requirement when agents purchase stock with leverage. 
 
 We use the toolbox to solve the version of the model in Example 4 in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ with :math:`m=0.1`. The constraints imply that wealth shares always lie between :math:`0` and :math:`1`. 
+
+The model is solved with :download:`Cao2018_HL.gmod <Cao2018_HL.gmod>`
+
+.. literalinclude:: Cao2018_HL.gmod
+    :linenos:
+    :language: GDSGE
+
+This should look familiar if you already came from the :ref:`Heaton and Lucas (1996)<HL1996>` example.
+The new element of the model, heterogeneous belief, is incorporated in the following two lines
+
+.. literalinclude:: Cao2018_HL.gmod
+    :lines: 89-89
+    :lineno-start: 89
+    :language: GDSGE
+
+.. literalinclude:: Cao2018_HL.gmod
+    :lines: 93-93
+    :lineno-start: 93
+    :language: GDSGE
+
+As shown, the *GDSGE_EXPECT* function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in *shock_trans*).
+In the current example, the transition matrix used by the optimists and pessimists are defined in *shock_trans1* and *shock_trans2*, respectively. Notice *shock_trans1* and 
+*shock_trans2* need to be explicitly declared as *parameters* to be used in the model block.
 
 The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists' perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.
 

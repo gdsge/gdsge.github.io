@@ -6,11 +6,19 @@
 Welcome to GDSGE's documentation! 
 
 GDSGE is a toolbox that solves nonlinear Dynamic Stochastic General Equilibrium (DSGE) models with a global method based on policy iterations
-introduced in paper xxxx.
-It provides an interface that allows users to define economic models in a compact and intuitive script.
-It parses the script into c++ files, which implement the actual computations with high performance.
+introduced in paper :download:`Cao, Luo, and Nie (2020) <paper/GDSGE_paper.pdf>`.
+It allows users to define economic models in a compact and intuitive script.
+It parses the script, implements the actual computations with high performance in C++, and provides a convenient MATLAB interface to researchers.
 
 The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, etc.
+
+Try compiling your first example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
+by uploading the mod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an online compiler server deployed at
+
+[`Windows 1 <http://122.112.231.135/>`_] [`Windows 2 <http://166.111.98.85:30000/>`_] [`MacOS <http://166.111.98.85:20000/>`_] 
+
+
+And see more examples below.
 
 =================================
 

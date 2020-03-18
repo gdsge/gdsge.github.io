@@ -425,7 +425,7 @@ var_output bNext pN;
   c = (omega*cT^(-eta) + (1-omega)*cN^(-eta))^(-1/eta);
   partial_c_partial_cT = (omega*cT^(-eta) + (1-omega)*cN^(-eta))^(-1/eta-1) * omega * cT^(-eta-1);
   lambda = c^(-sigma)*partial_c_partial_cT;
-  euler_residual = 1 - beta*(1+r) * GNDSGE_EXPECT{lambdaFuture&#39;}/lambda - mu;
+  euler_residual = 1 - beta*(1+r) * <span class="k">GDSGE_EXPECT</span>{lambdaFuture&#39;}/lambda - mu;
   
   <span class="c">% Price consistent</span>
   price_consistency = pN - ((1-omega)/omega)*(cT/cN)^(eta+1);

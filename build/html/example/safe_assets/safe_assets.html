@@ -439,13 +439,13 @@ log_u2future = log_u2;
   R2n&#39; = x2*Re_n&#39; + (1-x2)*Rf;
 
   <span class="c">% Agent 1&#39;s FOC wrt equity share:</span>
-  eq1 = GNDSGE_EXPECT{Re_n&#39;*u1n&#39;^(1-gamma1)*R1n&#39;^(-gamma1)} / GNDSGE_EXPECT{Rf*u1n&#39;^(1-gamma1)*R1n&#39;^(-gamma1)} - 1;
+  eq1 = GDSGE_EXPECT{Re_n&#39;*u1n&#39;^(1-gamma1)*R1n&#39;^(-gamma1)} / <span class="k">GDSGE_EXPECT</span>{Rf*u1n&#39;^(1-gamma1)*R1n&#39;^(-gamma1)} - 1;
 
   <span class="c">% Agent 2&#39;s FOC wrt equity share:</span>
   log_u2n_R2n_gamma&#39; = log_u2n&#39;*(1-gamma2) - log(R2n&#39;)*gamma2;
-  min_log_u2n_R2n_gamma = GNDSGE_MIN{log_u2n_R2n_gamma&#39;};
+  min_log_u2n_R2n_gamma = GDSGE_MIN{log_u2n_R2n_gamma&#39;};
   log_u2n_R2n_gamma_shifted&#39; = log_u2n_R2n_gamma&#39; - min_log_u2n_R2n_gamma;
-  eq2 = GNDSGE_EXPECT{Re_n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)} / GNDSGE_EXPECT{Rf*exp(log_u2n_R2n_gamma_shifted&#39;)} - 1;
+  eq2 = GDSGE_EXPECT{Re_n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)} / <span class="k">GDSGE_EXPECT</span>{Rf*exp(log_u2n_R2n_gamma_shifted&#39;)} - 1;
 
   <span class="c">% Consistency for omega:</span>
   omega_future_consis&#39; = K1 - nu*(K1-mu) + (1-nu)*Rf*b1/(yn&#39;*(1+pn)) - omega1n&#39;;
@@ -453,10 +453,10 @@ log_u2future = log_u2;
   <span class="c">% Update the utility functions:</span>
   ucons1 = ((rho+nu)/(1+rho))*log(c1) + ((1-nu)/(1+rho))*log(1-c1);
   ucons2 = ((rho+nu)/(1+rho))*log(c2) + ((1-nu)/(1+rho))*log(1-c2);
-  log_u1 = ucons1 + (1-nu)/(1+rho)/(1-gamma1)*log(GNDSGE_EXPECT{(R1n&#39;*u1n&#39;)^(1-gamma1)});        
-  log_u2 = ucons2 + (1-nu)/(1+rho)/(1-gamma2)*( log(GNDSGE_EXPECT{R2n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)}) + min_log_u2n_R2n_gamma );
+  log_u1 = ucons1 + (1-nu)/(1+rho)/(1-gamma1)*log(<span class="k">GDSGE_EXPECT</span>{(R1n&#39;*u1n&#39;)^(1-gamma1)});        
+  log_u2 = ucons2 + (1-nu)/(1+rho)/(1-gamma2)*( log(<span class="k">GDSGE_EXPECT</span>{R2n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)}) + min_log_u2n_R2n_gamma );
 
-  expectedRe = GNDSGE_EXPECT{Re_n&#39;};
+  expectedRe = <span class="k">GDSGE_EXPECT</span>{Re_n&#39;};
        
   <span class="k">equations;</span>
     eq1;
@@ -485,9 +485,9 @@ There are some transformations worth mentioning which facilitate solving the mod
 74
 75</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="c">% Agent 2&#39;s FOC wrt equity share:</span>
   log_u2n_R2n_gamma&#39; = log_u2n&#39;*(1-gamma2) - log(R2n&#39;)*gamma2;
-  min_log_u2n_R2n_gamma = GNDSGE_MIN{log_u2n_R2n_gamma&#39;};
+  min_log_u2n_R2n_gamma = GDSGE_MIN{log_u2n_R2n_gamma&#39;};
   log_u2n_R2n_gamma_shifted&#39; = log_u2n_R2n_gamma&#39; - min_log_u2n_R2n_gamma;
-  eq2 = GNDSGE_EXPECT{Re_n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)} / GNDSGE_EXPECT{Rf*exp(log_u2n_R2n_gamma_shifted&#39;)} - 1;
+  eq2 = GDSGE_EXPECT{Re_n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)} / <span class="k">GDSGE_EXPECT</span>{Rf*exp(log_u2n_R2n_gamma_shifted&#39;)} - 1;
 </pre></div>
 </td></tr></table></div>
 <p>These lines describe how to calculate the Euler Equation residual</p>

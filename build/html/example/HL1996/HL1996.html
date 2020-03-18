@@ -381,12 +381,12 @@ var_output c1 c2 ps pb equity_premium w1n;
 
 <span class="k">model;</span>
   <span class="c">% Interpolation</span>
-  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(w1n&#39;);
+  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);
   <span class="c">% Expectations in Euler Equations</span>
-  es1 = GNDSGE_EXPECT{g&#39;^(1-gamma)*(c1n&#39;/c1)^(-gamma)*(psn&#39;+d&#39;)/ps};
-  es2 = GNDSGE_EXPECT{g&#39;^(1-gamma)*(c2n&#39;/c2)^(-gamma)*(psn&#39;+d&#39;)/ps};
-  eb1 = GNDSGE_EXPECT{g&#39;^(-gamma)*(c1n&#39;/c1)^(-gamma)/pb};
-  eb2 = GNDSGE_EXPECT{g&#39;^(-gamma)*(c2n&#39;/c2)^(-gamma)/pb};
+  es1 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c1n&#39;/c1)^(-gamma)*(psn&#39;+d&#39;)/ps};
+  es2 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c2n&#39;/c2)^(-gamma)*(psn&#39;+d&#39;)/ps};
+  eb1 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c1n&#39;/c1)^(-gamma)/pb};
+  eb2 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c2n&#39;/c2)^(-gamma)/pb};
   <span class="c">% b transformation</span>
   b1p = nb1p + Kb;  <span class="c">% Transform bond back</span>
   b2p = nb2p + Kb;  
@@ -397,7 +397,7 @@ var_output c1 c2 ps pb equity_premium w1n;
   <span class="c">% Consistency</span>
   w1_consis&#39; = (s1p*(psn&#39;+d&#39;) + b1p/g&#39;)/(psn&#39;+d&#39;) - w1n&#39;;
   <span class="c">% Extra output</span>
-  equity_premium = GNDSGE_EXPECT{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
+  equity_premium = <span class="k">GDSGE_EXPECT</span>{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
   <span class="k">equations;</span>
     -1+beta*es1+ms1;
     -1+beta*es2+ms2;
@@ -431,7 +431,7 @@ var_output c1 c2 ps pb equity_premium w1n;
 <p>which says that the induced <span class="math notranslate nohighlight">\(\omega'\)</span> by current decisions of stock and bond holdings should be consistent with the
 unknowns for each of the future exogenous states state by state. Notice the unknowns <span class="math notranslate nohighlight">\(omega'\)</span> are input into
 state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(w1n&#39;);
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);
 </pre></div>
 </td></tr></table></div>
 <p>Accordingly, <span class="math notranslate nohighlight">\(\omega'\)</span> is declared to a be a vector of unknowns in</p>
@@ -464,7 +464,7 @@ remains trivial in the current problem, but becomes crucial when the borrowing c
 not necessarily  a boxed constraint. See example Cao and Nie (2017), which provides a global solution to the Kiyotaki-Moore model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.</p>
 <p>Some utility functions of the toolbox are used in this example.</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(w1n&#39;);
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);
 </pre></div>
 </td></tr></table></div>
 <p><em>GNDSGE_INTERP_VEC</em> is an utility function that evaluates function approximations for implicit state transition functions

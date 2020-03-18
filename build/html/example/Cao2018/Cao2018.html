@@ -167,6 +167,279 @@
 \[b^i_{t+1}+(1-m)s^i_{t+1}\min_{z^{t+1}|z^t}(p^s_{t+1}+d_{t+1})\geq0,\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\in(0,1)\)</span> denotes the margin requirement when agents purchase stock with leverage.</p>
 <p>We use the toolbox to solve the version of the model in Example 4 in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> with <span class="math notranslate nohighlight">\(m=0.1\)</span>. The constraints imply that wealth shares always lie between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>The model is solved with <a class="reference download internal" download="" href="../../_downloads/da6a4f2618ddbf62f849d72aca44485a/Cao2018_HL.gmod"><code class="xref download docutils literal notranslate"><span class="pre">Cao2018_HL.gmod</span></code></a></p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Toolbox options</span>
+SIMU_RESOLVE=0;SIMU_INTERP=1;
+
+<span class="c">% Parameters</span>
+<span class="k">parameters</span> beta1 beta2 sigma1 sigma2 shock_trans1 shock_trans2 Tg TP TO ql qh pl ph m eO;
+
+beta1 = 0.95;
+beta2 = 0.95;
+sigma1 = 1.5;
+sigma2 = 1.5;
+m = 0.1;
+
+<span class="k">var_shock</span> d e1 e2 g;
+<span class="k">shock_num</span> = 4;
+d = [0.20 0.20 0.15 0.15];
+g = [0.9904 1.0470 0.9904 1.0470];
+eO = 0.5;
+e1 = eO*ones(1,4); <span class="c">%[0.5 0.5 0.5 0.5];</span>
+e2 = (1-eO)*ones(1,4); <span class="c">%[0.5 0.5 0.5 0.5];</span>
+
+<span class="c">% bounds for asset price</span>
+ql = 1e-10*min(d)*min(beta1/(1-beta1),beta2/(1-beta2));
+qh = max(d)*max(beta1/(1-beta1),beta2/(1-beta2));
+
+pl = 1e-10*min(beta1,beta2);
+ph = 10*max(beta1,beta2);
+
+<span class="c">% States</span>
+<span class="k">var_state</span> W;
+WPts = 1000;
+WMin=0;
+WMax=1;
+W=linspace(WMin,WMax,WPts);
+
+Tg =[0.5885 0.4115;0.4115 0.5885];
+TP = [0.5 0.5;0.5 0.5];
+TO = [0.8 0.2;0.8 0.2];
+
+<span class="k">shock_trans</span> = kron(TP,Tg);
+<span class="k">shock_trans</span>1 = kron(TO,Tg);
+shock_trans2 = <span class="k">shock_trans</span>;
+
+<span class="c">% Tensor variables</span>
+var_tensor budget1 budget2 etotal;
+budget1 = e1+d.*W;
+budget2 = e2+d.*(1-W);
+etotal = e1+e2+d; <span class="c">%etotal = 1</span>
+
+% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="k">var_policy</span> p q c1 c2 lambda1 lambda2 mu1 mu2 kp1 a1 a2 Wp[4];
+
+<span class="k">inbound</span> p pl ph adaptive(2);
+<span class="k">inbound</span> q ql qh adaptive(2);
+<span class="k">inbound</span> c1 1e-10 etotal;
+<span class="k">inbound</span> c2 1e-10 etotal;
+<span class="k">inbound</span> kp1 0 1;
+<span class="k">inbound</span> lambda1 0 1;
+<span class="k">inbound</span> lambda2 0 1;
+<span class="k">inbound</span> mu1 0 1;
+<span class="k">inbound</span> mu2 0 1;
+<span class="k">inbound</span> a1 0 1;
+<span class="k">inbound</span> a2 0 1;
+<span class="k">inbound</span> Wp 0.0 1.0;
+
+<span class="k">var_aux</span> bp1 bp2 Rq[4] equity_premium_1 equity_premium_2;
+var_output q p Wp;
+
+<span class="k">var_interp</span> c1Future c2Future qFuture;
+c1Future = c1;
+c2Future = c2;
+qFuture = q;
+
+<span class="k">initial</span> c1Future budget1;
+<span class="k">initial</span> c2Future budget2;
+<span class="k">initial</span> qFuture 0;
+
+<span class="k">model;</span>
+  qp&#39; = qFuture&#39;(Wp&#39;)+d&#39;;
+  qCC = GDSGE_MIN{qp&#39;*g&#39;};
+  c1p&#39; = c1Future&#39;(Wp&#39;);
+  c2p&#39; = c2Future&#39;(Wp&#39;);
+
+  <span class="c">% Transform of variable</span>
+  bp1 = m*qCC*a1 - m*qCC*kp1;
+  bp2 = m*qCC*a2 - m*qCC*(1-kp1);
+
+  <span class="c">% Equations in text</span>
+  eq1  = -1 + lambda1 + mu1*m*qCC*p/q+ beta1*GDSGE_EXPECT{qp&#39;*((g&#39;)^(1-sigma1))*((c1p&#39;)^(-sigma1))| <span class="k">shock_trans</span>1}/(q*(c1^(-sigma1)));
+  eq2 = -1 + mu1 + beta1*GDSGE_EXPECT{((g&#39;)^(-sigma1))*((c1p&#39;)^(-sigma1))| <span class="k">shock_trans</span>1}/(p*(c1^(-sigma1)));
+  eq3 = lambda1*kp1;
+  eq4 = mu1*a1;
+  eq5  = -1 + lambda2 + mu2*m*qCC*p/q+beta2*GDSGE_EXPECT{qp&#39;*((g&#39;)^(1-sigma2))*((c2p&#39;)^(-sigma2))| <span class="k">shock_trans</span>2}/(q*(c2^(-sigma2)));
+  eq6 = -1 + mu2 + beta2*GDSGE_EXPECT{((g&#39;)^(-sigma2))*((c2p&#39;)^(-sigma2))| <span class="k">shock_trans</span>2}/(p*(c2^(-sigma2)));
+  eq7 = lambda2*(1-kp1);
+  eq8 = mu2*a2;  
+  
+  <span class="c">% market clear</span>
+  mc = 1-a1-a2;  
+  
+  equity_premium_1 = GDSGE_EXPECT{(qp&#39;)/q*g&#39; | <span class="k">shock_trans</span>1} - 1/p;
+  equity_premium_2 = GDSGE_EXPECT{(qp&#39;)/q*g&#39; | <span class="k">shock_trans</span>2} - 1/p;
+  
+  <span class="c">% Consistency</span>
+  consis&#39; = (qp&#39;*kp1+bp1/g&#39;) / qp&#39; - Wp&#39;;
+  
+  Rq&#39; = qp&#39;*g&#39;/q; 
+  <span class="k">equations;</span>
+    1 - ((q+d)*W + e1 - q*kp1 - p*bp1)/c1;
+    1 - ((q+d)*(1-W) + e2 - q*(1-kp1) - p*bp2)/c2;
+    eq1;
+    eq2;
+    eq3;
+    eq4;
+    eq5;
+    eq6;
+    eq7;
+    eq8;
+    mc;
+    consis&#39;;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+  <span class="k">num_samples</span> = 100;
+  <span class="k">num_periods</span> = 10000;
+  <span class="k">initial</span> W 0.5
+  <span class="k">initial</span> shock 1;
+  <span class="k">var_simu</span> q p;
+  W&#39;= Wp&#39;;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+<p>This should look familiar if you already came from the <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> example.
+The new element of the model, heterogeneous belief, is incorporated in the following two lines</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>89</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  eq2 = -1 + mu1 + beta1*GDSGE_EXPECT{((g&#39;)^(-sigma1))*((c1p&#39;)^(-sigma1))| <span class="k">shock_trans</span>1}/(p*(c1^(-sigma1)));
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>93</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  eq6 = -1 + mu2 + beta2*GDSGE_EXPECT{((g&#39;)^(-sigma2))*((c2p&#39;)^(-sigma2))| <span class="k">shock_trans</span>2}/(p*(c2^(-sigma2)));
+</pre></div>
+</td></tr></table></div>
+<p>As shown, the <em>GDSGE_EXPECT</em> function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in <em>shock_trans</em>).
+In the current example, the transition matrix used by the optimists and pessimists are defined in <em>shock_trans1</em> and <em>shock_trans2</em>, respectively. Notice <em>shock_trans1</em> and
+<em>shock_trans2</em> need to be explicitly declared as <em>parameters</em> to be used in the model block.</p>
 <p>The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists’ perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.</p>
 <a class="reference internal image-reference" href="../../_images/policy_equity_premium.png"><img alt="../../_images/policy_equity_premium.png" src="../../_images/policy_equity_premium.png" style="width: 473.0px; height: 406.0px;" /></a>
 <p>In the ergodic distribution of wealth share in following figure using the pessimists’ beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect.</p>
