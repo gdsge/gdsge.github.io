@@ -27,7 +27,7 @@ and the equilibrium policy and state transition functions are highly non-linear 
 Therefore, a global and non-linear solution is essential to capture the model's rich dynamics. We solve the competitive equilibrium of the benchmark model in 
 `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_, described below
 
-Small-open economy representative consumers derive utility from consumption of tradable goods  :math:`c_t^T` and of non-tradable goods $c_t^N$ according to
+Small-open economy representative consumers derive utility from consumption of tradable goods  :math:`c_t^T` and of non-tradable goods :math:`c_t^N` according to
 
 .. math::
 
@@ -332,7 +332,7 @@ What's Next?
 =====================
 
 This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid, 
-it enables to solve effectively non-linear models with high-dimensional state space. See example Cao, Evans, and Luo (2020) for a two-country Real Business Cycle model on the medium-run
+it enables to solve effectively non-linear models with high-dimensional state space. See example `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_ for a two-country Real Business Cycle model on the medium-run
 dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
 goes to six.
 

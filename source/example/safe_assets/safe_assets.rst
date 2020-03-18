@@ -250,7 +250,7 @@ What's Next?
 =====================
 
 This example illustrates that the toolbox algorithm is especially effective to solve models where portfolio choices are sensitive to the asset price,
-which are traditionally considered ill-behaved problems. In example Cao, Evans, and Luo (2020), we solve another model which is traditionally considered ill-behaved:
+which are traditionally considered ill-behaved problems. In `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_, we solve another model which is traditionally considered ill-behaved:
 a two-country DSGE model with portfolio choices in which 
 the returns to assets are close to collinear in certain region of the state space.
 
