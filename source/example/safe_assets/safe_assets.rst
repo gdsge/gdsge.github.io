@@ -155,7 +155,7 @@ consistency equation :eq:`eq_consistency_SafeAssets` to solve the
 unknowns.
 
 ========================================
-The mode File
+The Gmod File
 ========================================
 
 The model is solved with the following :download:`safe_assets.gmod <safe_assets.gmod>` file

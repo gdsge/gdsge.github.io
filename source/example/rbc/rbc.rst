@@ -77,7 +77,7 @@ The recursive system can be solved using a time iteration procedure:
 taking function :math:`c_{t+1}(z,K)` as known in the period-:math:`t` time step.
 
 ===============
-The Mod File
+The Gmod File
 ===============
 
 The recursive system can now be input to GDSGE via a mod file :download:`rbc.gmod <rbc.gmod>` below.
@@ -337,6 +337,6 @@ What's Next?
 =====================
 
 Now you understand the basic usage of the toolbox.
-You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.
+You can proceed to :ref:`an extension with investment irreversibility <A RBC Model with Irreversible Investment>` that requires a global method, or to a real example :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` in the toolbox paper.
 
 Or you can proceed to :ref:`Toolbox API`.

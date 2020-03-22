@@ -13,7 +13,7 @@ It parses the script, implements the actual computations with high performance i
 The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, etc.
 
 Try compiling your first example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
-by uploading the mod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an online compiler server deployed at
+by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an online compiler server deployed at
 
 [`Windows 1 <http://122.112.231.135/>`_] [`Windows 2 <http://166.111.98.85:30000/>`_] [`MacOS <http://166.111.98.85:20000/>`_] 
 

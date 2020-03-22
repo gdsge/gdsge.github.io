@@ -85,7 +85,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started - A Simple RBC Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-mod-file">The Mod File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The Gmod File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dissecting-the-mod-file">Dissecting the Mod File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
@@ -209,8 +209,8 @@ c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 <p>taking function <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span> as known in the period-<span class="math notranslate nohighlight">\(t\)</span> time step.</p>
 </div>
-<div class="section" id="the-mod-file">
-<h2>The Mod File<a class="headerlink" href="#the-mod-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-gmod-file">
+<h2>The Gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
 <p>The recursive system can now be input to GDSGE via a mod file <a class="reference download internal" download="" href="../../_downloads/e69dacb1374999ac15c861c44302489a/rbc.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbc.gmod</span></code></a> below.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -642,7 +642,7 @@ the <em>var_policy</em> solved as part of the system in the current period.</p>
 <div class="section" id="what-s-next">
 <h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>Now you understand the basic usage of the toolbox.
-You can proceed to a real example Heaton and Lucas (1996) in the toolbox paper.</p>
+You can proceed to <a class="reference internal" href="rbcIrr.html#a-rbc-model-with-irreversible-investment"><span class="std std-ref">an extension with investment irreversibility</span></a> that requires a global method, or to a real example <a class="reference internal" href="../HL1996/HL1996.html#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices"><span class="std std-ref">Heaton and Lucas (1996)</span></a> in the toolbox paper.</p>
 <p>Or you can proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
 </div>
 </div>
