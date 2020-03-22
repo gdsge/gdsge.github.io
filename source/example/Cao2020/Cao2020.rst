@@ -1,0 +1,54 @@
+******************************************************************
+Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)
+******************************************************************
+
+Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types. 
+However, as noted in Cao (2020), these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one Krusell and Smith (1998).
+In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
+In this example, we solve and compare the aggregate outcomes in this special case of the model in Krusell and Smith (1998) to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.
+
+.. _Cao2020:
+The Model
+===============
+
+The model in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ is similar to the one in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ with several main differences. First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process. Therefore, it departs from the rational expectations assumption. `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ uses agent index :math:`i\in \{\text{O},\text{P}\}`, which stands for optimists or pessimists. Second, the agents  are subject to a collateral constraints, besides the short-selling constraint:
+
+.. math::
+    b^i_{t+1}+(1-m)s^i_{t+1}\min_{z^{t+1}|z^t}(p^s_{t+1}+d_{t+1})\geq0,
+
+where :math:`m\in(0,1)` denotes the margin requirement when agents purchase stock with leverage. 
+
+We use the toolbox to solve the version of the model in Example 4 in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ with :math:`m=0.1`. The constraints imply that wealth shares always lie between :math:`0` and :math:`1`. 
+
+The model is solved with :download:`Cao2018_HL.gmod <Cao2018_HL.gmod>`
+
+.. literalinclude:: Cao2018_HL.gmod
+    :linenos:
+    :language: GDSGE
+
+This should look familiar if you already came from the :ref:`Heaton and Lucas (1996)<HL1996>` example.
+The new element of the model, heterogeneous belief, is incorporated in the following two lines
+
+.. literalinclude:: Cao2018_HL.gmod
+    :lines: 89-89
+    :lineno-start: 89
+    :language: GDSGE
+
+.. literalinclude:: Cao2018_HL.gmod
+    :lines: 93-93
+    :lineno-start: 93
+    :language: GDSGE
+
+As shown, the *GDSGE_EXPECT* function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in *shock_trans*).
+In the current example, the transition matrix used by the optimists and pessimists are defined in *shock_trans1* and *shock_trans2*, respectively. Notice *shock_trans1* and 
+*shock_trans2* need to be explicitly declared as *parameters* to be used in the model block.
+
+The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists' perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.
+
+.. image:: figures/policy_equity_premium.png
+    :scale: 100 %
+
+In the ergodic distribution of wealth share in following figure using the pessimists' beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect.
+
+.. image:: figures/histogram_w1.png
+    :scale: 40 %
