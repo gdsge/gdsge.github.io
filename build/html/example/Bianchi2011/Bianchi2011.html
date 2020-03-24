@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Barro et al. (2017): Safe Assets with Rare Disasters" href="../safe_assets/safe_assets.html" />
+    <link rel="next" title="Mendoza (2010): Sudden Stops with Asset Price Deflation" href="../Mendoza2010/Mendoza2010.html" />
     <link rel="prev" title="Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity" href="../Cao2018/Cao2018.html" /> 
 </head>
 
@@ -88,12 +88,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Bianchi (2011): Sudden Stops in Open Economies</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-planner-s-solution">The Planner’s solution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-planner-s-solution">The Planner’s solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 </ul>
@@ -147,8 +150,6 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/example/Bianchi2011/Bianchi2011.rst.txt" rel="nofollow"> View page source</a>
-          
         
       </li>
     
@@ -512,9 +513,8 @@ and returns variables needed in <em>var_aux_init</em>.</p>
 <p>This line demonstrates how to transform the borrowing constraint tied to an endogenous asset price <span class="math notranslate nohighlight">\(b_{t+1} \geq - (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)\)</span>, into a boxed constraint.
 This is done by defining <span class="math notranslate nohighlight">\(nb_{t+1}=b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)\)</span>, and specifying a non-negative constraint for unknown <span class="math notranslate nohighlight">\(nb_{t+1}\)</span>.
 In the evaluations of the equations, one transforms <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> with the line defined above.</p>
-</div>
 <div class="section" id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
 <p>Upload and compile the gmod file through a local or remote server. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; options = struct;
 shock_process = load(&#39;shock_process.mat&#39;);
@@ -629,7 +629,7 @@ One can add the following line in the gmod file (need recompile) to switch to in
 <p>As shown, it exhibits some artificial modals compared to the one obtained from solving the equilibrium system accurately at each time step.</p>
 </div>
 <div class="section" id="the-planner-s-solution">
-<h2>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this headline">¶</a></h2>
+<h3>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this headline">¶</a></h3>
 <p>The planner’s solution takes care of the effect of tradable/non-tradable consumption on the relative price.
 The planner’s solution differs from the competitive equilibrium by replacing the first order condition from</p>
 <div class="math notranslate nohighlight">
@@ -658,12 +658,13 @@ next-period bond the distribution of bond holdings in the ergodic sets for the t
 <a class="reference internal image-reference" href="../../_images/compare_histogram_b.png"><img alt="../../_images/compare_histogram_b.png" src="../../_images/compare_histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
 </div>
 <div class="section" id="what-s-next">
-<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<h3>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h3>
 <p>This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid,
 it enables to solve effectively non-linear models with high-dimensional state space. See example <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a> for a two-country Real Business Cycle model on the medium-run
 dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
 goes to six.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
+</div>
 </div>
 </div>
 
@@ -675,7 +676,7 @@ goes to six.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../safe_assets/safe_assets.html" class="btn btn-neutral float-right" title="Barro et al. (2017): Safe Assets with Rare Disasters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Mendoza2010/Mendoza2010.html" class="btn btn-neutral float-right" title="Mendoza (2010): Sudden Stops with Asset Price Deflation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Cao2018/Cao2018.html" class="btn btn-neutral float-left" title="Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

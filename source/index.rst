@@ -12,7 +12,7 @@ It parses the script, implements the actual computations with high performance i
 
 The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, etc.
 
-Try compiling your first example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
+Try running your first example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
 by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an online compiler server deployed at
 
 [`Windows 1 <http://122.112.231.135/>`_] [`Windows 2 <http://166.111.98.85:30000/>`_] [`MacOS <http://166.111.98.85:20000/>`_] 
@@ -31,6 +31,7 @@ And see more examples below.
    example/HL1996/HL1996
    example/Cao2018/Cao2018
    example/Bianchi2011/Bianchi2011
+   example/Mendoza2010/Mendoza2010
    example/safe_assets/safe_assets
    usage/functions
 

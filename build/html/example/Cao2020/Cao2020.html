@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998) &mdash; GDSGE  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cao-2020-continuum-vs-finite-agents-in-krusell-and-smith-1998">
+<h1>Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)<a class="headerlink" href="#cao-2020-continuum-vs-finite-agents-in-krusell-and-smith-1998" title="Permalink to this headline">¶</a></h1>
+<p>Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types.
+However, as noted in Cao (2020), these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one Krusell and Smith (1998).
+In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
+In this example, we solve and compare the aggregate outcomes in this special case of the model in Krusell and Smith (1998) to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
+<div class="section" id="the-model">
+<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
+<p>The model in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> is similar to the one in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> with several main differences. First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process. Therefore, it departs from the rational expectations assumption. <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> uses agent index <span class="math notranslate nohighlight">\(i\in \{\text{O},\text{P}\}\)</span>, which stands for optimists or pessimists. Second, the agents  are subject to a collateral constraints, besides the short-selling constraint:</p>
+<div class="math notranslate nohighlight">
+\[b^i_{t+1}+(1-m)s^i_{t+1}\min_{z^{t+1}|z^t}(p^s_{t+1}+d_{t+1})\geq0,\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\in(0,1)\)</span> denotes the margin requirement when agents purchase stock with leverage.</p>
+<p>We use the toolbox to solve the version of the model in Example 4 in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> with <span class="math notranslate nohighlight">\(m=0.1\)</span>. The constraints imply that wealth shares always lie between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>The model is solved with <code class="xref download docutils literal notranslate"><span class="pre">Cao2018_HL.gmod</span></code></p>
+<p>This should look familiar if you already came from the <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> example.
+The new element of the model, heterogeneous belief, is incorporated in the following two lines</p>
+<p>As shown, the <em>GDSGE_EXPECT</em> function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in <em>shock_trans</em>).
+In the current example, the transition matrix used by the optimists and pessimists are defined in <em>shock_trans1</em> and <em>shock_trans2</em>, respectively. Notice <em>shock_trans1</em> and
+<em>shock_trans2</em> need to be explicitly declared as <em>parameters</em> to be used in the model block.</p>
+<p>The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists’ perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.</p>
+<a class="reference internal image-reference" href="example\Cao2020\figures/policy_equity_premium.png"><img alt="example\Cao2020\figures/policy_equity_premium.png" src="example\Cao2020\figures/policy_equity_premium.png" /></a>
+<p>In the ergodic distribution of wealth share in following figure using the pessimists’ beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect.</p>
+<a class="reference internal image-reference" href="example\Cao2020\figures/histogram_w1.png"><img alt="example\Cao2020\figures/histogram_w1.png" src="example\Cao2020\figures/histogram_w1.png" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

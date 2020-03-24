@@ -7,7 +7,7 @@ due to the presence of a borrowing constraint tied to a (commodity) price. We il
 with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a crude and narrow state space, 
 and then expand the state space to ensure it covers the ergodic set by reusing the compiled code.
 
-===============
+.. _Bianchi2011:
 The Model
 ===============
 
