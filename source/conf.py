@@ -29,8 +29,8 @@ class BCLLexer(RegexLexer):
     name = 'GDSGE'
 	
     keywordListStr = """ 
-		parameters, var_shock, adaptive
-		var_output,var_aux,
+		parameters, var_shock, adaptive,
+		var_output, var_aux,
 		shock_num, shock_trans, var_state, var_policy, var_interp, model_init;, model;, end;, equations;, simulate;, initial, var_simu, num_periods, num_samples, GDSGE_EXPECT,GNDSGE_INTERP_VEC,inbound
 		"""
     keywordList = keywordListStr.split(',')
