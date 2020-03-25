@@ -246,6 +246,10 @@ Now let's run the policy iterations by calling *iter_mendoza2010.m* returned fro
     >> IterRslt = iter_mendoza2010;
     Iter:10, Metric:0.00819545, maxF:3.83276e-09
     Elapsed time is 5.885684 seconds.
+    Iter:20, Metric:0.00329338, maxF:1.72695e-09
+    Elapsed time is 2.855950 seconds.
+    Iter:30, Metric:0.00139174, maxF:1.72276e-09
+    Elapsed time is 2.474352 seconds.
 
     ...
 

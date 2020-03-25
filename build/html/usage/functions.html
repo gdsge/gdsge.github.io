@@ -265,11 +265,11 @@ or use the prime (‘) operator.</p>
 </div>
 <p>If the lower and upper bounds of a <cite>var_policy</cite> cannot be determined ex-ante, specify tight bounds and
 use the adaptive bound option as</p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> var1 var1_lb var1_ub adaptive(2.0)
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>inbound var1 var1_lb var1_ub <span class="k">adaptive</span>(2.0)
 </pre></div>
 </div>
 <p>This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration,
-if <cite>UseAdpativeBound</cite> is set as one. If option <cite>UseAdpativeBoundInSol</cite> is set to one, after a failed attempt in trying to search
+if <cite>UseAdaptiveBound</cite> is set as one. If option <cite>UseAdaptiveBoundInSol</cite> is set to one, after a failed attempt in trying to search
 solutions within the bounds and the equation solver returns an immature step that hits the lower or upper bound,
 the bound will be expanded.</p>
 </dd></dl>
@@ -502,7 +502,7 @@ Default: 1e-6</p>
 <dt id="option-UseAdaptiveBound">
 <code class="sig-name descname">UseAdaptiveBound</code><a class="headerlink" href="#option-UseAdaptiveBound" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use adaptive bound specified as for example</p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> x 0.0 1.0 adaptive(2)
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>inbound x 0.0 1.0 <span class="k">adaptive</span>(2)
 </pre></div>
 </div>
 <p>which expand the lower and upper bound by a factor of 2 for each state after each iteration</p>

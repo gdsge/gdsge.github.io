@@ -90,7 +90,7 @@ Variable declaration
         inbound var1 var1_lb var1_ub adaptive(2.0)
 
     This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration, 
-    if `UseAdpativeBound` is set as one. If option `UseAdpativeBoundInSol` is set to one, after a failed attempt in trying to search
+    if `UseAdaptiveBound` is set as one. If option `UseAdaptiveBoundInSol` is set to one, after a failed attempt in trying to search
     solutions within the bounds and the equation solver returns an immature step that hits the lower or upper bound,
     the bound will be expanded.
 
