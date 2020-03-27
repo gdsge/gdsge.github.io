@@ -88,12 +88,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Bianchi (2011): Sudden Stops in Open Economies</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-planner-s-solution">The Planner’s solution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-planner-s-solution">The Planner’s solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
@@ -233,6 +232,9 @@ first order conditions and complementarity conditions, which enable solving the 
 The exogenous states are <span class="math notranslate nohighlight">\(y_t^N,y_t^T\)</span>, the natural endogenous state is <span class="math notranslate nohighlight">\(b_t\)</span>.
 A recursive competitive equilibrium is <span class="math notranslate nohighlight">\(b'(y^N,y^T,b),c^T(y^N,y^T,b),c^N(y^N,y^T,b),c(y^N,y^T,b),\mu(y^N,y^T,b),\lambda(y^N,y^T,b),p^N(y^N,y^T,b)\)</span> that satisfy
 the optimization and markets clearing conditions.</p>
+</div>
+<div class="section" id="the-gmod-file">
+<h2>The gmod file<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
 <p>The recursive system can be solved using GDSGE with <a class="reference download internal" download="" href="../../_downloads/dc93d546c85c5e3530f9e8eccd0c4749/bianchi2011.gmod"><code class="xref download docutils literal notranslate"><span class="pre">bianchi2011.gmod</span></code></a> below</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
@@ -514,8 +516,9 @@ and returns variables needed in <em>var_aux_init</em>.</p>
 <p>This line demonstrates how to transform the borrowing constraint tied to an endogenous asset price <span class="math notranslate nohighlight">\(b_{t+1} \geq - (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)\)</span>, into a boxed constraint.
 This is done by defining <span class="math notranslate nohighlight">\(nb_{t+1}=b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)\)</span>, and specifying a non-negative constraint for unknown <span class="math notranslate nohighlight">\(nb_{t+1}\)</span>.
 In the evaluations of the equations, one transforms <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> with the line defined above.</p>
+</div>
 <div class="section" id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>Upload and compile the gmod file through a local or remote server. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; options = struct;
 shock_process = load(&#39;shock_process.mat&#39;);
@@ -630,7 +633,7 @@ One can add the following line in the gmod file (need recompile) to switch to in
 <p>As shown, it exhibits some artificial modals compared to the one obtained from solving the equilibrium system accurately at each time step.</p>
 </div>
 <div class="section" id="the-planner-s-solution">
-<h3>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this headline">¶</a></h3>
+<h2>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this headline">¶</a></h2>
 <p>The planner’s solution takes care of the effect of tradable/non-tradable consumption on the relative price.
 The planner’s solution differs from the competitive equilibrium by replacing the first order condition from</p>
 <div class="math notranslate nohighlight">
@@ -659,13 +662,12 @@ next-period bond the distribution of bond holdings in the ergodic sets for the t
 <a class="reference internal image-reference" href="../../_images/compare_histogram_b.png"><img alt="../../_images/compare_histogram_b.png" src="../../_images/compare_histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
 </div>
 <div class="section" id="what-s-next">
-<h3>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h3>
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid,
 it enables to solve effectively non-linear models with high-dimensional state space. See example <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a> for a two-country Real Business Cycle model on the medium-run
 dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
 goes to six.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
-</div>
 </div>
 </div>
 

@@ -8,6 +8,7 @@ with the toolbox to capture the non-linearity effectively. This example also int
 and then expand the state space to ensure it covers the ergodic set by reusing the compiled code.
 
 .. _Bianchi2011:
+===============
 The Model
 ===============
 
@@ -95,6 +96,10 @@ To input the model into the toolbox, we need to formulate the recursive system.
 The exogenous states are :math:`y_t^N,y_t^T`, the natural endogenous state is :math:`b_t`.
 A recursive competitive equilibrium is :math:`b'(y^N,y^T,b),c^T(y^N,y^T,b),c^N(y^N,y^T,b),c(y^N,y^T,b),\mu(y^N,y^T,b),\lambda(y^N,y^T,b),p^N(y^N,y^T,b)` that satisfy
 the optimization and markets clearing conditions.
+
+=====================
+The gmod file
+=====================
 
 The recursive system can be solved using GDSGE with :download:`bianchi2011.gmod <bianchi2011.gmod>` below
 

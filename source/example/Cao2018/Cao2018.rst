@@ -5,6 +5,7 @@ Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity
 The models that we have seen so far are models with rational expectations. Our toolbox can be used to solve models without rational expectations. A recent example is `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_.
 
 .. _Cao2018:
+===============
 The Model
 ===============
 
@@ -16,6 +17,10 @@ The model in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/52309
 where :math:`m\in(0,1)` denotes the margin requirement when agents purchase stock with leverage. 
 
 We use the toolbox to solve the version of the model in Example 4 in `Cao (2018) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_ with :math:`m=0.1`. The constraints imply that wealth shares always lie between :math:`0` and :math:`1`. 
+
+=================
+The gmod file 
+=================
 
 The model is solved with :download:`Cao2018_HL.gmod <Cao2018_HL.gmod>`
 
@@ -39,6 +44,10 @@ The new element of the model, heterogeneous belief, is incorporated in the follo
 As shown, the *GDSGE_EXPECT* function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in *shock_trans*).
 In the current example, the transition matrix used by the optimists and pessimists are defined in *shock_trans1* and *shock_trans2*, respectively. Notice *shock_trans1* and 
 *shock_trans2* need to be explicitly declared as *parameters* to be used in the model block.
+
+==================
+Results
+==================
 
 The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists' perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.
 

@@ -16,6 +16,7 @@ can handle such parameterization fairly easily and uncovers novel theoretical re
 
 
 .. _Barro2017:
+===============
 The Model
 ===============
 

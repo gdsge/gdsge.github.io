@@ -9,6 +9,7 @@ incomplete markets, portfolio choices, occasionally binding constraint, non-stat
 We show how the model can be solved with wealth share or consumption share as the endogenous state, the two prominent approaches in the literature, and naturally fit in our toolbox framework.
 
 .. _HL1996:
+===============
 The Model
 ===============
 

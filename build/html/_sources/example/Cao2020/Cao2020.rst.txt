@@ -8,6 +8,7 @@ In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smi
 In this example, we solve and compare the aggregate outcomes in this special case of the model in Krusell and Smith (1998) to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.
 
 .. _Cao2020:
+===============
 The Model
 ===============
 

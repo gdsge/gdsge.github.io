@@ -161,7 +161,7 @@ The recursive system is solved by taking :math:`d'(z,\tilde{c},k),q'(z,\tilde{c}
 these objects following their definitions.
 
 ========================
-The Mod File
+The gmod File
 ========================
 
 We use the exact specification and parameterization as in Mendoza (2010). In particular, for preference

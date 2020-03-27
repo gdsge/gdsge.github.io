@@ -88,6 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
@@ -167,6 +169,9 @@
 \[b^i_{t+1}+(1-m)s^i_{t+1}\min_{z^{t+1}|z^t}(p^s_{t+1}+d_{t+1})\geq0,\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\in(0,1)\)</span> denotes the margin requirement when agents purchase stock with leverage.</p>
 <p>We use the toolbox to solve the version of the model in Example 4 in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> with <span class="math notranslate nohighlight">\(m=0.1\)</span>. The constraints imply that wealth shares always lie between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
+<div class="section" id="the-gmod-file">
+<h2>The gmod file<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
 <p>The model is solved with <a class="reference download internal" download="" href="../../_downloads/da6a4f2618ddbf62f849d72aca44485a/Cao2018_HL.gmod"><code class="xref download docutils literal notranslate"><span class="pre">Cao2018_HL.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
@@ -440,6 +445,9 @@ The new element of the model, heterogeneous belief, is incorporated in the follo
 <p>As shown, the <em>GDSGE_EXPECT</em> function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in <em>shock_trans</em>).
 In the current example, the transition matrix used by the optimists and pessimists are defined in <em>shock_trans1</em> and <em>shock_trans2</em>, respectively. Notice <em>shock_trans1</em> and
 <em>shock_trans2</em> need to be explicitly declared as <em>parameters</em> to be used in the model block.</p>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists’ perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.</p>
 <a class="reference internal image-reference" href="../../_images/policy_equity_premium.png"><img alt="../../_images/policy_equity_premium.png" src="../../_images/policy_equity_premium.png" style="width: 473.0px; height: 406.0px;" /></a>
 <p>In the ergodic distribution of wealth share in following figure using the pessimists’ beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect.</p>
