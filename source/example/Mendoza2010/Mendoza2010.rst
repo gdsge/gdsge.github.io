@@ -16,6 +16,7 @@ may not be able to find feasible allocations. This suggests that the lower bound
 and the feasible state space is non-square. We demonstrate how such model can solved with state transformation and implicit
 state transition functions, without the hassel of determining the feasible exogeneous state space ex-ante.
 
+.. _Mendoza2010:
 ===============
 The Model
 ===============

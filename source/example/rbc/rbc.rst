@@ -77,7 +77,7 @@ The recursive system can be solved using a time iteration procedure:
 taking function :math:`c_{t+1}(z,K)` as known in the period-:math:`t` time step.
 
 ===============
-The Gmod File
+The gmod File
 ===============
 
 The recursive system can now be input to GDSGE via a mod file :download:`rbc.gmod <rbc.gmod>` below.
@@ -158,7 +158,7 @@ The iter and simulate files can be reused by passing parameters to be overwritte
 Part of the toolbox options can also be overwritten by including them in the struct. See :ref:`Options`.
     
 =========================
-Dissecting the Mod File
+Dissecting the gmod File
 =========================
 
 We now look into each line of rbc.gmod and describe the usage.
@@ -220,12 +220,12 @@ Notice that the Matlab "dot" operator (.*) works in the line following *initial*
 In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
 Starting with a last-period problem is shown to
 deliver both good theoretical properties and robust numerical computations (Cao, 2019). 
-See xxx for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a *model_init* block.
+See :ref:`Mendoza (2010) <Mendoza2010>` for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a *model_init* block.
 
 The update of the transition function after a time step needs to be specified such as :code:`c_interp = c;`.
 The update can use any variables returned as part of the solution to the system. 
 For example, here :code:`c_interp = c;` means that the *c_interp* variable is updated with *c* after a time iteration,
-where *c* is one of the policy variables solved by the system of equations, to be specified below.
+where *c* is one of the policy variables solved by the system of equations, specified in the gmod file.
 
 .. literalinclude:: rbc.gmod
     :lines: 33-36
@@ -253,7 +253,7 @@ following keyword :declare:`var_aux`.
     :lineno-start: 41
     :language: GDSGE
 
-The *model;---end;* block defines the system of equations for each combination of endogenous states and exogenous states. 
+The *model;---end;* block defines the system of equations for each collocation point of endogenous states and exogenous states. 
 For the current example, it simply defines the system of equations for each :math:`(z,K)`.
 
 The equations should be eventually specified in the *equation;---end;* block, in which each line corresponds to one equation in the system.
@@ -306,11 +306,12 @@ For example, the *GNDSGE_EXPECT{}* used in
 
 is to calculate the conditional expectation of the object defined inside the curly brace,
 conditional on the current exogenous state, using the default Markov transition matrix *shock_trans*.
-Obviously, this function is meaningful only if it takes arguments realizations of variables across future exogenous states,
+Obviously, this function is meaningful only if it takes argument the realizations of variables across future exogenous states,
 which are defined as vector variables followed by prime (').
 
 This operator can also take a different transition matrix than *shock_trans*, which is used as
-:code:`GNDSGE_EXPECT{*|alternative_shock_trans}`. This can be used to solve models with heterogeneous beliefs.
+:code:`GNDSGE_EXPECT{*|alternative_shock_trans}`. This can be used to solve models with heterogeneous beliefs. 
+See example :ref:`Cao (2018) <Cao2018>`.
 
 Two other reduction operations *GNDSGE_MAX{}* and *GNDSGE_MIN{}* are defined, which are to take
 the maximum and the minimum of objects inside the curly brace, respectively. See :ref:`Utility functions`.
@@ -328,7 +329,7 @@ The simulate block should define the initial exogenous state index following key
 It should define the variables to be recorded following *var_simu*. 
 It should define the transition for each state variable. ``K'=K_next;`` in the example
 defines that the next period endogenous state :math:`K` should be assigned to *K_next* which is one of
-the *var_policy* solved as part of the system in the current period.
+the *var_policy* solved as part of the system.
 
 The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).
 
@@ -337,6 +338,7 @@ What's Next?
 =====================
 
 Now you understand the basic usage of the toolbox.
-You can proceed to :ref:`an extension with investment irreversibility <A RBC Model with Irreversible Investment>` that requires a global method, or to a real example :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` in the toolbox paper.
+You can proceed to :ref:`an extension with investment irreversibility <A RBC Model with Irreversible Investment>` that requires a global method, 
+or to a real example :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` which is the leading example in the toolbox paper.
 
 Or you can proceed to :ref:`Toolbox API`.
