@@ -32,6 +32,7 @@ And see more examples below.
    example/Cao2018/Cao2018
    example/Bianchi2011/Bianchi2011
    example/Mendoza2010/Mendoza2010
+   example/Guvenen2009/Guvenen2009
    example/safe_assets/safe_assets
    usage/functions
 

@@ -92,6 +92,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 </ul>
@@ -347,8 +348,8 @@ etotal = e1+e2+d; <span class="c">%etotal = 1</span>
 % Endogenous variables, bounds, and <span class="k">initial</span> values
 <span class="k">var_policy</span> p q c1 c2 lambda1 lambda2 mu1 mu2 kp1 a1 a2 Wp[4];
 
-<span class="k">inbound</span> p pl ph adaptive(2);
-<span class="k">inbound</span> q ql qh adaptive(2);
+inbound p pl ph <span class="k">adaptive</span>(2);
+inbound q ql qh <span class="k">adaptive</span>(2);
 <span class="k">inbound</span> c1 1e-10 etotal;
 <span class="k">inbound</span> c2 1e-10 etotal;
 <span class="k">inbound</span> kp1 0 1;
@@ -361,7 +362,7 @@ etotal = e1+e2+d; <span class="c">%etotal = 1</span>
 <span class="k">inbound</span> Wp 0.0 1.0;
 
 <span class="k">var_aux</span> bp1 bp2 Rq[4] equity_premium_1 equity_premium_2;
-var_output q p Wp;
+<span class="k">var_output</span> q p Wp;
 
 <span class="k">var_interp</span> c1Future c2Future qFuture;
 c1Future = c1;

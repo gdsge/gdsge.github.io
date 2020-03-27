@@ -14,7 +14,8 @@ nested fixed point solution method becomes unstable,  since agents' portfolio ch
 Nevertheless, the toolbox, which solves the equilibrium as one single system of equations, 
 can handle such parameterization fairly easily and uncovers novel theoretical results.
 
-===============
+
+.. _Barro2017:
 The Model
 ===============
 
@@ -155,7 +156,7 @@ consistency equation :eq:`eq_consistency_SafeAssets` to solve the
 unknowns.
 
 ========================================
-The Gmod File
+The gmod File
 ========================================
 
 The model is solved with the following :download:`safe_assets.gmod <safe_assets.gmod>` file

@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 </ul>
@@ -360,8 +361,8 @@ w1 = linspace(-0.05,1.05,201);
 <span class="k">inbound</span> ms2 0 1;
 <span class="k">inbound</span> mb1 0 1;
 <span class="k">inbound</span> mb2 0 1;
-<span class="k">inbound</span> ps 0 3 adaptive(1.5);
-<span class="k">inbound</span> pb 0 3 adaptive(1.5);
+inbound ps 0 3 <span class="k">adaptive</span>(1.5);
+inbound pb 0 3 <span class="k">adaptive</span>(1.5);
 <span class="k">inbound</span> w1n -0.5 1.5;
 <span class="c">% Extra output variables</span>
 <span class="k">var_aux</span> equity_premium;
@@ -376,7 +377,7 @@ pb_future = pb;
 c1_future = c1;
 c2_future = c2;
 <span class="c">% Variables to be used in simulation</span>
-var_output c1 c2 ps pb equity_premium w1n;
+<span class="k">var_output</span> c1 c2 ps pb equity_premium w1n;
 
 <span class="k">model;</span>
   <span class="c">% Interpolation</span>
@@ -694,8 +695,8 @@ c1 = linspace(0.2,0.8,101);
 <span class="k">inbound</span> ms2 0 1;
 <span class="k">inbound</span> mb1 0 1;
 <span class="k">inbound</span> mb2 0 1;
-<span class="k">inbound</span> ps 0 3 adaptive(1.5);
-<span class="k">inbound</span> pb 0 3 adaptive(1.5);
+inbound ps 0 3 <span class="k">adaptive</span>(1.5);
+inbound pb 0 3 <span class="k">adaptive</span>(1.5);
 <span class="k">inbound</span> c1n 0.0 1.0;
 <span class="c">% Extra output variables</span>
 <span class="k">var_aux</span> equity_premium c2 w1 flow;
@@ -708,7 +709,7 @@ ps_future = ps;
 pb_future = pb;
 flow_future = flow;
 <span class="c">% Variables to be used in simulation</span>
-var_output c2 w1 ps pb equity_premium c1n;
+<span class="k">var_output</span> c2 w1 ps pb equity_premium c1n;
 
 <span class="k">model;</span>
   <span class="c">% Interpolation</span>

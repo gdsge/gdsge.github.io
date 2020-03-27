@@ -467,7 +467,7 @@ by allowing defining a different system of equations for problems at the boundar
 The policy functions in the current example are highly nonlinear. We learned how to start with a crude grid and refine the solution with finer grids. A more effective approach
 is to let the toolbox to automatically adapt the grids to increase points in regions that are nonlinear.
 The example in :ref:`Bianchi (2011) <Bianchi2011>` shows how to use adaptive grids for an one-dimensional problem.
-The current model can also solved with adaptive grids by specifying one option in the gmod file, which we leave as homework.
+The current model can also solved with adaptive grids by specifying one option in the gmod file, which we leave as an exercise.
 
 Or you can directly proceed to :ref:`Toolbox API`.
 
