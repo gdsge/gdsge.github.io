@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity" href="../Cao2018/Cao2018.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,16 +81,21 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Additional/AdditionalExamples.html">Additional Examples:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -160,21 +166,79 @@ In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smi
 In this example, we solve and compare the aggregate outcomes in this special case of the model in Krusell and Smith (1998) to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
-<p>The model in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> is similar to the one in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> with several main differences. First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process. Therefore, it departs from the rational expectations assumption. <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> uses agent index <span class="math notranslate nohighlight">\(i\in \{\text{O},\text{P}\}\)</span>, which stands for optimists or pessimists. Second, the agents  are subject to a collateral constraints, besides the short-selling constraint:</p>
+<p>There are two representative agents <span class="math notranslate nohighlight">\(h\in\left\{ 1,2\right\}\)</span> in
+the economy of mass <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> each. The agents share the same
+inter-temporal expected utility</p>
 <div class="math notranslate nohighlight">
-\[b^i_{t+1}+(1-m)s^i_{t+1}\min_{z^{t+1}|z^t}(p^s_{t+1}+d_{t+1})\geq0,\]</div>
-<p>where <span class="math notranslate nohighlight">\(m\in(0,1)\)</span> denotes the margin requirement when agents purchase stock with leverage.</p>
-<p>We use the toolbox to solve the version of the model in Example 4 in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> with <span class="math notranslate nohighlight">\(m=0.1\)</span>. The constraints imply that wealth shares always lie between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>.</p>
-<p>The model is solved with <code class="xref download docutils literal notranslate"><span class="pre">Cao2018_HL.gmod</span></code></p>
-<p>This should look familiar if you already came from the <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> example.
-The new element of the model, heterogeneous belief, is incorporated in the following two lines</p>
-<p>As shown, the <em>GDSGE_EXPECT</em> function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in <em>shock_trans</em>).
-In the current example, the transition matrix used by the optimists and pessimists are defined in <em>shock_trans1</em> and <em>shock_trans2</em>, respectively. Notice <em>shock_trans1</em> and
-<em>shock_trans2</em> need to be explicitly declared as <em>parameters</em> to be used in the model block.</p>
-<p>The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists’ perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.</p>
-<a class="reference internal image-reference" href="example\Cao2020\figures/policy_equity_premium.png"><img alt="example\Cao2020\figures/policy_equity_premium.png" src="example\Cao2020\figures/policy_equity_premium.png" /></a>
-<p>In the ergodic distribution of wealth share in following figure using the pessimists’ beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect.</p>
-<a class="reference internal image-reference" href="example\Cao2020\figures/histogram_w1.png"><img alt="example\Cao2020\figures/histogram_w1.png" src="example\Cao2020\figures/histogram_w1.png" /></a>
+\[\mathbb{E}_{0}\left[\sum_{t=0}^{\infty}\beta^{t}\log c_{t}^{h}\right].\]</div>
+<p>In each period, the exogenous aggregate state of the economy is a
+pair of states <span class="math notranslate nohighlight">\(\left(s,i\right)\)</span> where <span class="math notranslate nohighlight">\(s\in\left\{ b,g\right\}\)</span>
+and <span class="math notranslate nohighlight">\(i\in\left\{ 0,1\right\}\)</span>. State <span class="math notranslate nohighlight">\(s\)</span> determines the aggregate
+productivity <span class="math notranslate nohighlight">\(A(s)\)</span> and aggregate labor supply <span class="math notranslate nohighlight">\(L(s)\)</span>. The aggregate
+production function is Cobb-Douglas, eqref{eq:Cobb-Douglas}.</p>
+<p>State <span class="math notranslate nohighlight">\(i\)</span> determines which agent is employed. If <span class="math notranslate nohighlight">\(i=0\)</span> then agent
+<span class="math notranslate nohighlight">\(1\)</span> is unemployed and agent <span class="math notranslate nohighlight">\(2\)</span> is employed, and vice versa for
+<span class="math notranslate nohighlight">\(i=1\)</span>. This approximation of a fully idiosyncratic income process using a
+two agent income process is similar to the approximation in Heaton
+and Lucas (1996). The employed agent has <span class="math notranslate nohighlight">\(2(1-\upsilon)L(s)\)</span> units of labor and the
+unemployed agent has <span class="math notranslate nohighlight">\(2\upsilon L(s)\)</span> units of labor. <span class="math notranslate nohighlight">\(\upsilon\)</span>
+stands for unemployment transfers by the government and is set at
+<span class="math notranslate nohighlight">\(7\%\)</span>.</p>
+<p>The parameters are taken from citet[Section 2]{krusell:smith:JPE:1998}
+in particular, the discount rate and the production parameters are:</p>
+<div class="math notranslate nohighlight">
+\[\beta=0.99\ \ \ \delta=0.025\ \ \ \alpha=0.36.\]</div>
+<p>The aggregate productivity and aggregate labor supply are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{bmatrix}A(b) &amp; A(g)\end{bmatrix}=\begin{bmatrix}0.99 &amp; 1.01\end{bmatrix}\ \ \ \text{and}\ \ \ \begin{bmatrix}L(b) &amp; L(g)\end{bmatrix}=\begin{bmatrix}0.2944 &amp; 0.3140\end{bmatrix},\]</div>
+<p>with the transition matrix <span class="math notranslate nohighlight">\(\pi=\left[\pi_{ss'ii'}\right]\)</span>, directly
+taken from citet[Section 2]{krusell:smith:JPE:1998}:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pi=\begin{bmatrix}0.5250 &amp; 0.3500 &amp; 0.0312 &amp; 0.0938\\0.0389 &amp; 0.8361 &amp; 0.0021 &amp; 0.1229\\0.0938 &amp; 0.0312 &amp; 0.2917 &amp; 0.5833\\0.0091 &amp; 0.1159 &amp; 0.0243 &amp; 0.8507\end{bmatrix}\end{split}\]</div>
+<p>In this transition matrix, we use the rows and columns <span class="math notranslate nohighlight">\(\left\{ 1,2,3,4\right\}\)</span> correspond to states <span class="math notranslate nohighlight">\(\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}\)</span>.</p>
+<p>The following figure shows next period aggregate capital,
+<span class="math notranslate nohighlight">\(K_{t+1}\)</span> as a function of current period aggregate capital, <span class="math notranslate nohighlight">\(K_t\)</span>,
+in current state <span class="math notranslate nohighlight">\(\left(b,0\right)\)</span>, for two different values of <span class="math notranslate nohighlight">\(\omega\)</span>: <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\omega=1\)</span>. The figure shows that future aggregate
+capital depends on not only current aggregate capital but also on
+current wealth share <span class="math notranslate nohighlight">\(\omega\)</span> of agent <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<a class="reference internal image-reference" href="../../_images/KpPolicy.png"><img alt="../../_images/KpPolicy.png" src="../../_images/KpPolicy.png" style="width: 448.0px; height: 336.0px;" /></a>
+<p>Given the global nonlinear solution for <span class="math notranslate nohighlight">\(\varphi_{\infty}\)</span>, we can
+also simulate forward and carry out a regression exercise as in citet*{krusell:smith:JPE:1998}.
+From <span class="math notranslate nohighlight">\(10,000\)</span>-period simulation (with the first <span class="math notranslate nohighlight">\(1000\)</span> periods dropped),
+we obtain the following regression results:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0438+0.9832\log K; &amp;  &amp; R^{2}=0.999223
+\end{align*}\]</div>
+<p>in good times and</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0167+0.9923\log K; &amp;  &amp; R^{2}=0.997372
+\end{align*}\]</div>
+<p>in bad times. These regression results tell us that, in the simulated
+paths of the economy, current aggregate capital seems to be a sufficient
+state variable to forecast future aggregate capital, which citeauthor*{krusell:smith:JPE:1998}
+call an <a href="#id1"><span class="problematic" id="id2">``</span></a>approximate aggregation’’ property. However, Figure ref{capital wealth share}
+tells us that this property does not hold globally.</p>
+<p>As a comparison, we also solve the citeauthor*{krusell:smith:JPE:1998}’s
+model, with the exact parameters above, but in which idiosyncratic
+shocks are truly idiosyncratic. We obtain the following regression
+results:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0906+0.9631\log K; &amp;  &amp; R^{2}=0.999999
+\end{align*}\]</div>
+<p>in good times</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0807+0.9651\log K; &amp;  &amp; R^{2}=0.999999
+\end{align*}\]</div>
+<p>and in bad times.</p>
+<p>The approximate evolution of aggregate capital is not too different
+in the two-agent economy compared to the citeauthor*{krusell:smith:JPE:1998}’s
+economy. But we observe that the auto-correlation coefficients for
+log aggregate capital are lower than those in the two-agent economy.
+The <span class="math notranslate nohighlight">\(R^{2}\)</span> are also slightly higher than in the two-agent economy.</p>
 </div>
 </div>
 
@@ -183,6 +247,13 @@ In the current example, the transition matrix used by the optimists and pessimis
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../Cao2018/Cao2018.html" class="btn btn-neutral float-left" title="Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

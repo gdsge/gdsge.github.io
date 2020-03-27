@@ -17,8 +17,8 @@ We illustrate how to use parameterized expectation with the toolbox in this exam
 The Model
 ===============
 
-There are two types of infinitely-lived agents: stock\emph{h}olders
-(:math:`h`) with measure :math:`\mu`, and \emph{n}on-stockholders (:math:`n`) with
+There are two types of infinitely-lived agents: stockholders
+(:math:`h`) with measure :math:`\mu`, and non-stockholders (:math:`n`) with
 measure :math:`1-\mu`. Agents have Epstein-Zin utility functions 
 
 .. math::
@@ -160,7 +160,7 @@ The auxiliary variables can be determined by the utility function, market cleari
 
 .. math::
 
-    \beta\frac{\Lambda_{i,t+1}}{\Lambda_{i,t}} =\beta^{\frac{1-\alpha}{1-\rho^{i}}}\left(\frac{c_{i,t+1}}{c_{i,t}}\right)^{-\rho^{i}}\left[\frac{\frac{U_{i,t+1}}{c_{i,t}}}{\left[\left(\frac{U_{i,t}}{c_{i,t}}\right)^{1-\rho^{i}}-\frac{\rho}{1+\rho}\right]^{1/\left(1-\rho^{i}\right)}}\right]^{\rho^{i}-\alpha}.
+    \beta\frac{\Lambda_{i,t+1}}{\Lambda_{i,t}} =\beta^{\frac{1-\alpha}{1-\rho^{i}}}\left(\frac{c_{i,t+1}}{c_{i,t}}\right)^{-\rho^{i}}\left[\frac{\frac{U_{i,t+1}}{c_{i,t}}}{\left[\left(\frac{U_{i,t}}{c_{i,t}}\right)^{1-\rho^{i}}-(1-\beta)\right]^{1/\left(1-\rho^{i}\right)}}\right]^{\rho^{i}-\alpha}.
 
 In period :math:`t`, the 6 future variables in use: :math:`c_{h,t+1}`, :math:`c_{n,t+1}`, :math:`P_{t+1}^{s}+D_{t+1}`,
 :math:`I_{t+1}/K_{t+1}`, :math:`U_{h,t+1}` and :math:`U_{n,t+1}` are functions of
