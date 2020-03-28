@@ -219,7 +219,7 @@ Notice that the Matlab "dot" operator (.*) works in the line following *initial*
 
 In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
 Starting with a last-period problem is shown to
-deliver both good theoretical properties and robust numerical computations (Cao, 2019). 
+deliver both good theoretical properties and robust numerical computations (`Cao, 2018 <https://academic.oup.com/ej/article/128/614/2258/5230957>`_). 
 See :ref:`Mendoza (2010) <Mendoza2010>` for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a *model_init* block.
 
 The update of the transition function after a time step needs to be specified such as :code:`c_interp = c;`.

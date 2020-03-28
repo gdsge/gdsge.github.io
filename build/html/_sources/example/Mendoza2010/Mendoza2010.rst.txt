@@ -463,7 +463,7 @@ This example illustrates how to solve a model with two endogenous state variable
 The crucial step is to find transform the boundary condition to that of an endogenous state variable which makes the state space square. In the current problem, the 
 feasible debt level is high so the model can be solved directly over the natural state space---bond and capital. Such transformation 
 becomes relevant for more complex problems, and sometimes the boundary condition needs to be solved for a different equilibrium system. The toolbox accommodates this 
-by allowing defining a different system of equations for problems at the boundary. See example Cao and Nie (2017).
+by allowing defining a different system of equations for problems at the boundary. See example :ref:`Cao and Nie (2017) <CaoNie2017>`.
 
 The policy functions in the current example are highly nonlinear. We learned how to start with a crude grid and refine the solution with finer grids. A more effective approach
 is to let the toolbox to automatically adapt the grids to increase points in regions that are nonlinear.

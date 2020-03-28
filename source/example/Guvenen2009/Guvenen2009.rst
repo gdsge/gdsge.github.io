@@ -387,7 +387,7 @@ The finite-agent asset pricing model is an important class in the Macro and Macr
 Since the framework of the toolbox solves allocations and prices jointly respecting the optimality and market clearing conditions,
 it is able to deal with setups which are 
 traditionally regarded as ill-conditioned, such as models with very high risk aversion levels (see example 
-:ref:`Barro et al. (2017) <Barro2017>`) or models with equilibrium asset returns that are close to collinear (see example Cao, Evans, and Luo (2020)).
+:ref:`Barro et al. (2017) <Barro2017>`) or models with equilibrium asset returns that are close to collinear (see example `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_)
 
 Or you can directly proceed to :ref:`Toolbox API`.
 

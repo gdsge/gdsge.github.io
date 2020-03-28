@@ -155,7 +155,7 @@ the unknown to respect a box constraint like
 where *Kb* is the parameter governing the  borrowing constraint in fraction of endowment (:math:`b^i \geq -Kb * Y^a`), and *nb1p* is the unknown defined as
 :math:`nb^i=\hat{b}^i+Kb`, which ensures to :math:`nb^i` to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily  a boxed constraint. See example Cao and Nie (2017), which provides a global solution to the Kiyotaki-Moore model, where
+not necessarily  a boxed constraint. See example :ref:`Cao and Nie (2017) <CaoNie2017>`, which provides a global solution to the Kiyotaki-Moore model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.
 
 Some utility functions of the toolbox are used in this example.
@@ -345,6 +345,7 @@ so the algorithm can be viewed as taking the limit of the solution from finite-h
 The last-period problem has been so far trivial in the :ref:`RBC model <Getting Started - A Simple RBC Model>` and `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ examples, but turns out to be more complex
 and requires to define a different system of equations than the main *model;* block. Also, at the boundary of the state space, 
 the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve 
-many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example Cao and Nie (2017).
+many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example
+:ref:`Cao and Nie (2017) <CaoNie2017>`.
 
 Or you can directly proceed to :ref:`the toolbox's API <Toolbox API>`.

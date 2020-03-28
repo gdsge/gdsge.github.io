@@ -11,9 +11,10 @@ the boundary condition right is crucial in solving the model, which can be imple
 
 Please see the paper for the details of the model.
 
-=============
+.. _CaoNie2017:
+===============
 The gmod file
-=============
+===============
 
 :download:`CaoNie2017.gmod <CaoNie2017.gmod>`
 
