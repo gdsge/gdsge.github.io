@@ -161,9 +161,9 @@
   <div class="section" id="cao-2020-continuum-vs-finite-agents-in-krusell-and-smith-1998">
 <h1>Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)<a class="headerlink" href="#cao-2020-continuum-vs-finite-agents-in-krusell-and-smith-1998" title="Permalink to this headline">¶</a></h1>
 <p>Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types.
-However, as noted in Cao (2020), these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one Krusell and Smith (1998).
+However, as noted in <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022053119301255">Cao (2020)</a>, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one Krusell and Smith (1998).
 In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
-In this example, we solve and compare the aggregate outcomes in this special case of the model in Krusell and Smith (1998) to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
+In this example, we solve and compare the aggregate outcomes in this special case of the model in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a> to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
 <p>There are two representative agents <span class="math notranslate nohighlight">\(h\in\left\{ 1,2\right\}\)</span> in
@@ -175,7 +175,9 @@ inter-temporal expected utility</p>
 pair of states <span class="math notranslate nohighlight">\(\left(s,i\right)\)</span> where <span class="math notranslate nohighlight">\(s\in\left\{ b,g\right\}\)</span>
 and <span class="math notranslate nohighlight">\(i\in\left\{ 0,1\right\}\)</span>. State <span class="math notranslate nohighlight">\(s\)</span> determines the aggregate
 productivity <span class="math notranslate nohighlight">\(A(s)\)</span> and aggregate labor supply <span class="math notranslate nohighlight">\(L(s)\)</span>. The aggregate
-production function is Cobb-Douglas, eqref{eq:Cobb-Douglas}.</p>
+production function is Cobb-Douglas:</p>
+<div class="math notranslate nohighlight">
+\[F(s,K,L) = A(s)K^\alpha L^{1-\alpha}.\]</div>
 <p>State <span class="math notranslate nohighlight">\(i\)</span> determines which agent is employed. If <span class="math notranslate nohighlight">\(i=0\)</span> then agent
 <span class="math notranslate nohighlight">\(1\)</span> is unemployed and agent <span class="math notranslate nohighlight">\(2\)</span> is employed, and vice versa for
 <span class="math notranslate nohighlight">\(i=1\)</span>. This approximation of a fully idiosyncratic income process using a
@@ -184,7 +186,7 @@ and Lucas (1996). The employed agent has <span class="math notranslate nohighlig
 unemployed agent has <span class="math notranslate nohighlight">\(2\upsilon L(s)\)</span> units of labor. <span class="math notranslate nohighlight">\(\upsilon\)</span>
 stands for unemployment transfers by the government and is set at
 <span class="math notranslate nohighlight">\(7\%\)</span>.</p>
-<p>The parameters are taken from citet[Section 2]{krusell:smith:JPE:1998}
+<p>The parameters are taken from <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998, Section 2)</a>
 in particular, the discount rate and the production parameters are:</p>
 <div class="math notranslate nohighlight">
 \[\beta=0.99\ \ \ \delta=0.025\ \ \ \alpha=0.36.\]</div>
@@ -192,7 +194,7 @@ in particular, the discount rate and the production parameters are:</p>
 <div class="math notranslate nohighlight">
 \[\begin{bmatrix}A(b) &amp; A(g)\end{bmatrix}=\begin{bmatrix}0.99 &amp; 1.01\end{bmatrix}\ \ \ \text{and}\ \ \ \begin{bmatrix}L(b) &amp; L(g)\end{bmatrix}=\begin{bmatrix}0.2944 &amp; 0.3140\end{bmatrix},\]</div>
 <p>with the transition matrix <span class="math notranslate nohighlight">\(\pi=\left[\pi_{ss'ii'}\right]\)</span>, directly
-taken from citet[Section 2]{krusell:smith:JPE:1998}:</p>
+taken from Section 2 in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\pi=\begin{bmatrix}0.5250 &amp; 0.3500 &amp; 0.0312 &amp; 0.0938\\0.0389 &amp; 0.8361 &amp; 0.0021 &amp; 0.1229\\0.0938 &amp; 0.0312 &amp; 0.2917 &amp; 0.5833\\0.0091 &amp; 0.1159 &amp; 0.0243 &amp; 0.8507\end{bmatrix}\end{split}\]</div>
 <p>In this transition matrix, we use the rows and columns <span class="math notranslate nohighlight">\(\left\{ 1,2,3,4\right\}\)</span> correspond to states <span class="math notranslate nohighlight">\(\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}\)</span>.</p>
@@ -203,7 +205,7 @@ capital depends on not only current aggregate capital but also on
 current wealth share <span class="math notranslate nohighlight">\(\omega\)</span> of agent <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <a class="reference internal image-reference" href="../../_images/KpPolicy.png"><img alt="../../_images/KpPolicy.png" src="../../_images/KpPolicy.png" style="width: 448.0px; height: 336.0px;" /></a>
 <p>Given the global nonlinear solution for <span class="math notranslate nohighlight">\(\varphi_{\infty}\)</span>, we can
-also simulate forward and carry out a regression exercise as in citet*{krusell:smith:JPE:1998}.
+also simulate forward and carry out a regression exercise as in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>.
 From <span class="math notranslate nohighlight">\(10,000\)</span>-period simulation (with the first <span class="math notranslate nohighlight">\(1000\)</span> periods dropped),
 we obtain the following regression results:</p>
 <div class="math notranslate nohighlight">
@@ -217,10 +219,9 @@ we obtain the following regression results:</p>
 \end{align*}\]</div>
 <p>in bad times. These regression results tell us that, in the simulated
 paths of the economy, current aggregate capital seems to be a sufficient
-state variable to forecast future aggregate capital, which citeauthor*{krusell:smith:JPE:1998}
-call an <a href="#id1"><span class="problematic" id="id2">``</span></a>approximate aggregation’’ property. However, Figure ref{capital wealth share}
-tells us that this property does not hold globally.</p>
-<p>As a comparison, we also solve the citeauthor*{krusell:smith:JPE:1998}’s
+state variable to forecast future aggregate capital, which <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>
+call an <a href="#id3"><span class="problematic" id="id4">``</span></a>approximate aggregation’’ property. However, the figure tells us that this property does not hold globally.</p>
+<p>As a comparison, we also solve the <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>’s
 model, with the exact parameters above, but in which idiosyncratic
 shocks are truly idiosyncratic. We obtain the following regression
 results:</p>
@@ -235,11 +236,11 @@ results:</p>
 \end{align*}\]</div>
 <p>and in bad times.</p>
 <p>The approximate evolution of aggregate capital is not too different
-in the two-agent economy compared to the citeauthor*{krusell:smith:JPE:1998}’s
+in the two-agent economy compared to the <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>’s
 economy. But we observe that the auto-correlation coefficients for
 log aggregate capital are lower than those in the two-agent economy.
 The <span class="math notranslate nohighlight">\(R^{2}\)</span> are also slightly higher than in the two-agent economy.</p>
-<p>We can also solve the finite-agent version of the model with stochastic discount rates in citet[Section 3]{krusell:smith:JPE:1998}.
+<p>We can also solve the finite-agent version of the model with stochastic discount rates in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998, Section 3)</a>.
 In their model, agents face idiosyncratic shocks
 that determine their discount rate. The discount factor can be low
 (<span class="math notranslate nohighlight">\(\underline{\beta}\)</span>) or high (<span class="math notranslate nohighlight">\(\bar{\beta}\)</span>), where:</p>
@@ -279,7 +280,7 @@ results:</p>
 on current aggregate capital, the fitness of the linear regressions
 are very high.</p>
 <p>As in the previous example, these regression results are comparable
-to the ones in citet*{krusell:smith:JPE:1998}’s model in which the
+to the ones in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>’s model in which the
 discount rates are truly idiosyncratic:</p>
 <div class="math notranslate nohighlight">
 \[\begin{align*}
