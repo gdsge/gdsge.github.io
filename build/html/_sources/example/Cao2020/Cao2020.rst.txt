@@ -108,9 +108,9 @@ economy. But we observe that the auto-correlation coefficients for
 log aggregate capital are lower than those in the two-agent economy.
 The :math:`R^{2}` are also slightly higher than in the two-agent economy.
 
-We can also solve the finite-agent version of the model with stochastic discount rates in `Krusell and Smith (1998, Section 3) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
+We can also solve the finite-agent version of the model with stochastic discount factors in `Krusell and Smith (1998, Section 3) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
 In their model, agents face idiosyncratic shocks
-that determine their discount rate. The discount factor can be low
+that determine their discount factor. The discount factor can be low
 (:math:`\underline{\beta}`) or high (:math:`\bar{\beta}`), where:
 
 .. math::
@@ -120,7 +120,7 @@ The transition from one to the other is determined such that
 the average duration for individual :math:`\beta` is :math:`50` years, which
 corresponds to agents' lifetime. 
 
-In the two-agent version of the model, we assume that each agent's discount rate follows this stochastic process. But the two agents' discount rates are perfectly negatively correlated.
+In the two-agent version of the model, we assume that each agent's discount factor follows this stochastic process. But the two agents' discount factors are perfectly negatively correlated.
 To simplify the exercise, we assume that the two agents have the same labor productivity, which varies
 with the aggregate state :math:`s`. The evolution of the aggregate
 state is the same as in the previous example. The other aggregate
