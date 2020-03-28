@@ -173,7 +173,7 @@ model with no leverage (:math:`\chi=0`, :math:`\underline{B}=0`).
 The gmod File
 ========================================
 
-The model can be solved with the following :download:`guvenen2009.gmod <guvenen2009.gmod>` file
+The model can be solved with the following :download:`guvenen2009.gmod <guvenen2009.gmod>` file (you also need :download:`tauchen.m <tauchen.m>`)
 
 .. literalinclude:: guvenen2009.gmod
     :linenos:

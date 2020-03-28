@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint &mdash; GDSGE  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mendoza (2010): Sudden Stops with Asset Price Deflation" href="../Mendoza2010/Mendoza2010.html" />
+    <link rel="prev" title="Additional Examples:" href="../AdditionalExamples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-gmod-file">The gmod file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cao2020/Cao2020.html">Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../AdditionalExamples.html">Additional Examples:</a> &raquo;</li>
+        
+      <li>Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cao-and-nie-2017-amplification-and-asymmetry-with-and-without-collateral-constraint">
+<h1>Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint<a class="headerlink" href="#cao-and-nie-2017-amplification-and-asymmetry-with-and-without-collateral-constraint" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/mac.20150219">Cao and Nie (2017)</a> studies a two-agent model with a borrowing constraint tied to the price of a fixed-supply asset.
+It is well known that the existence of collateral constraint will amplify aggregate shocks when the shock pushes the constraint to binding.
+They show that the incomplete-markets structure of the model already delivers asymmetric response of the model to productivity shocks, even there is no collateral constraint.</p>
+<p>The model is a good example that getting the starting point of policy iterations and
+the boundary condition right is crucial in solving the model, which can be implemented very conveniently with the toolbox.</p>
+<p>Please see the paper for the details of the model.</p>
+<div class="section" id="the-gmod-file">
+<h2>The gmod file<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference download internal" download="" href="../../_downloads/2520afc2870d0fc941e41863831bd158/CaoNie2017.gmod"><code class="xref download docutils literal notranslate"><span class="pre">CaoNie2017.gmod</span></code></a></p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+<span class="k">parameters</span> H beta2 beta1 sigma1 sigma2 sigmah eta m phi nu ABad AGood;
+H = 1;
+beta1 = 0.98;
+beta2 = 0.99;
+sigma1 = 1;
+sigma2 = 1;
+sigmah = 1;
+eta = 1;
+m = 0.89;
+phi = 0.057143;
+nu = 0.041224;
+
+PrintFreq = 100;
+SaveFreq = 100;
+
+<span class="c">% States</span>
+<span class="k">var_state</span> X;
+XPts = 701;
+XMin=0.0;
+XMax=1;
+X=linspace(XMin,XMax,XPts);
+
+<span class="c">% Shocks</span>
+<span class="k">shock_num</span>=3;
+
+<span class="k">var_shock</span> A;
+ABad = 0.97;
+AGood = 1.03;
+A = [ABad 1 AGood];
+
+<span class="c">% From Equation (17)</span>
+<span class="k">shock_trans</span> = [
+  0.7204 1-0.7204 0.0
+  (1-0.872)/2 0.872 (1-0.872)/2
+  0.0 1-0.7204 0.7204
+  ];
+
+<span class="c">% Tensor variables</span>
+var_tensor;
+
+<span class="c">% Variable for the last period</span>
+<span class="k">var_policy</span>_init h L;
+<span class="k">inbound</span>_init h 1e-20 H;
+<span class="k">inbound</span>_init L 1e-20 2;
+
+<span class="k">var_aux</span>_init c cp q;
+<span class="k">model_init;</span>
+  Y = A*h^nu * L^(1-nu);
+  q = nu*A*h^(nu-1)*L^(1-nu);
+  w = (1-nu)*A*h^nu*L^(-nu);
+  
+  c = q*H*X;
+  cp = Y-q*H*X;
+  hp = H-h;
+  
+  foc_hp = -1 + phi*hp^(-sigmah)/(q*cp^(-sigma2));
+  foc_L = -1 + w*cp^(-sigma2)/(L^(eta-1));
+  
+  <span class="k">equations;</span>
+    foc_hp;
+    foc_L;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="k">var_policy</span> p q c h a cp L mu Xp[3];
+inbound p 0 2 <span class="k">adaptive</span>(1.5);
+inbound q 0 2 <span class="k">adaptive</span>(1.5);
+inbound c 0.0 2 <span class="k">adaptive</span>(1.5);
+<span class="k">inbound</span> h 1e-20 1;
+inbound a 1e-20 2 <span class="k">adaptive</span>(1.5);
+inbound L 1e-20 2 <span class="k">adaptive</span>(1.5);
+<span class="k">inbound</span> mu 0.0 1;
+inbound cp 0.0 2 <span class="k">adaptive</span>(1.5);
+<span class="k">inbound</span> Xp 0.0 1.2;
+
+<span class="k">var_aux</span> Y YTilde b bp hp;
+
+<span class="k">var_interp</span> cFuture cpFuture qFuture;
+cFuture = c;
+cpFuture = cp;
+qFuture = q;
+<span class="c">% Initialize using model_init</span>
+<span class="k">initial</span> cFuture c;
+<span class="k">initial</span> cpFuture cp;
+<span class="k">initial</span> qFuture q;
+
+<span class="c">%</span>
+<span class="k">var_output</span> Xp Y YTilde p q;
+
+model(X&gt;0);
+  Y = A*h^nu * L^(1-nu);
+  <span class="c">% eq9</span>
+  w = (1-nu)*A * h^nu * L^(-nu);
+  profit = (Y-w*L)/h;
+  
+  [cNext&#39;,cpNext&#39;,qp&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(Xp&#39;);
+  
+  Eqp = GNDSGE_EXPECT{qp&#39;};
+  
+  <span class="c">% Transform of variable</span>
+  b = a - m*Eqp*h;
+  
+  <span class="c">% Implied by market clear</span>
+  bp = -b;
+  hp = H-h;
+  
+  <span class="c">% Implied by budget constraint</span>
+  budget1 = c-(q*X*H + Y-w*L - q*h - p*b);
+  budget2 = cp-(q*(1-X)*H + w*L - q*hp - p*bp);
+  
+  YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
+
+  <span class="c">% Equations in text</span>
+  eq10 = -1 + mu*m*Eqp*p/(q-profit) + beta1*GNDSGE_EXPECT{qp&#39;*cNext&#39;^(-sigma1)} / ((q-profit)*c^(-sigma1));
+  eq11 = mu*a;
+  eq12 = -1 + mu + beta1 * GNDSGE_EXPECT{ cNext&#39;^(-sigma1) } / (p*c^(-sigma1));
+  eq13 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2*GNDSGE_EXPECT{ qp&#39;*cpNext&#39;^(-sigma2) } / (q*cp^(-sigma2));
+  eq14 = -1 + beta2 * GNDSGE_EXPECT{ cpNext&#39;^(-sigma2) } / (p*cp^(-sigma2));
+  eq15 = -1 + L^(eta-1) / (w*cp^(-sigma2));
+  
+  <span class="c">% Consistency</span>
+  consis1 = (qp(1)*h+b) / (qp(1)*H) / Xp(1) - 1;
+  consis2 = (qp(2)*h+b) / (qp(2)*H) / Xp(2) - 1;
+  consis3 = (qp(3)*h+b) / (qp(3)*H) / Xp(3) - 1;
+  
+  <span class="k">equations;</span>
+    <span class="c">% budget</span>
+    budget1;
+    budget2;
+  
+    <span class="c">% Optimality condition</span>
+    eq10;
+    eq11;
+    eq12;
+    eq13;
+    eq14;
+    eq15;
+    
+    <span class="c">% Consistency</span>
+    if A==AGood
+      Xp(1);
+    else
+      consis1;
+    end
+    
+    consis2;
+    
+    if A==ABad
+      Xp(3);
+    else
+      consis3;
+    end
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+model(X==0);
+  Y = A*h^nu * L^(1-nu);
+  w = (1-nu)*A * h^nu * L^(-nu);
+  profit = (Y-w*L)/h;
+  
+  [cNext&#39;,cpNext&#39;,qp&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(Xp&#39;);
+  
+  Eqp = GNDSGE_EXPECT{qp&#39;};
+  
+  <span class="c">% Transform of variable</span>
+  b = a - m*Eqp*h;
+  
+  <span class="c">% Implied by market clear</span>
+  bp = -b;
+  hp = H-h;
+  
+  <span class="c">% Implied by budget constraint</span>
+  budget2 = cp-(q*(1-X)*H + w*L - q*hp - p*bp);
+  
+  YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
+
+  <span class="c">% Equations in Guangyu&#39;s new note</span>
+  eq7 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2 * GNDSGE_EXPECT{ qp&#39;*cpNext&#39;^(-sigma2) } / (q*cp^(-sigma2));
+  eq8 = -1 + beta2 * GNDSGE_EXPECT{ cpNext&#39;^(-sigma2) } / (p*cp^(-sigma2));
+  eq9 = -1 + L^(eta-1) / (w*cp^(-sigma2));
+  eq11 = -1 + (q - profit)/(m*Eqp*p);
+  
+  <span class="c">% Consistency</span>
+  consis1 = (qp(1)*h+b) / (qp(1)*H) / Xp(1) - 1;
+  consis2 = (qp(2)*h+b) / (qp(2)*H) / Xp(2) - 1;
+  consis3 = (qp(3)*h+b) / (qp(3)*H) / Xp(3) - 1;
+  
+  <span class="k">equations;</span>
+    <span class="c">% budget constraint</span>
+    eq11; <span class="c">% This is equivalent to enterpreneur&#39;s budget when c and X = 0</span>
+    budget2;
+  
+    <span class="c">% Optimality condition</span>
+    c-0;
+    mu-0; <span class="c">% I have set mu=0, though mu is not known ex-ante.</span>
+    a-0;
+    eq7;
+    eq8;
+    eq9;
+    
+    <span class="c">% Consistency</span>
+    if A==AGood
+      Xp(1);
+    else
+      consis1;
+    end
+    
+    consis2;
+    
+    if A==ABad
+      Xp(3);
+    else
+      consis3;
+    end
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+  <span class="k">num_periods</span> = 10000;
+  <span class="k">num_samples</span> = 100;
+  <span class="k">initial</span> X 0.5
+  <span class="k">initial</span> shock 1;
+  <span class="k">var_simu</span> Y YTilde;
+  X&#39; = Xp&#39;;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Mendoza2010/Mendoza2010.html" class="btn btn-neutral float-right" title="Mendoza (2010): Sudden Stops with Asset Price Deflation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../AdditionalExamples.html" class="btn btn-neutral float-left" title="Additional Examples:" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
