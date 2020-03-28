@@ -239,6 +239,58 @@ in the two-agent economy compared to the citeauthor*{krusell:smith:JPE:1998}’s
 economy. But we observe that the auto-correlation coefficients for
 log aggregate capital are lower than those in the two-agent economy.
 The <span class="math notranslate nohighlight">\(R^{2}\)</span> are also slightly higher than in the two-agent economy.</p>
+<p>We can also solve the finite-agent version of the model with stochastic discount rates in citet[Section 3]{krusell:smith:JPE:1998}.
+In their model, agents face idiosyncratic shocks
+that determine their discount rate. The discount factor can be low
+(<span class="math notranslate nohighlight">\(\underline{\beta}\)</span>) or high (<span class="math notranslate nohighlight">\(\bar{\beta}\)</span>), where:</p>
+<div class="math notranslate nohighlight">
+\[\underline{\beta}=0.9858\ \ \ \text{and}\ \ \ \bar{\beta}=0.9930,\]</div>
+<p>The transition from one to the other is determined such that
+the average duration for individual <span class="math notranslate nohighlight">\(\beta\)</span> is <span class="math notranslate nohighlight">\(50\)</span> years, which
+corresponds to agents’ lifetime.</p>
+<p>In the two-agent version of the model, we assume that each agent’s discount rate follows this stochastic process. But the two agents’ discount rates are perfectly negatively correlated.
+To simplify the exercise, we assume that the two agents have the same labor productivity, which varies
+with the aggregate state <span class="math notranslate nohighlight">\(s\)</span>. The evolution of the aggregate
+state is the same as in the previous example. The other aggregate
+state <span class="math notranslate nohighlight">\(i\)</span> determines the agents’ discount rate (<span class="math notranslate nohighlight">\(i=0\)</span> agent 1
+has low discount factor and agent 2 has high discount factor and vice
+versa for <span class="math notranslate nohighlight">\(i=1\)</span>). The evolution of aggregate state <span class="math notranslate nohighlight">\(i\)</span> is independent
+of the evolution of aggregate state <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<p>The following figure shows next period aggregate
+capital, <span class="math notranslate nohighlight">\(K_{t=1}\)</span> as a function of current period aggregate capital,
+<span class="math notranslate nohighlight">\(K\)</span>, in state <span class="math notranslate nohighlight">\(\left(b,0\right)\)</span>, for two different values of <span class="math notranslate nohighlight">\(\omega\)</span>:
+<span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\omega=1\)</span>. The figure shows that future aggregate
+capital depends mostly on current aggregate capital and does not vary
+visibly with the current wealth share <span class="math notranslate nohighlight">\(\omega\)</span> of agent 1.</p>
+<a class="reference internal image-reference" href="../../_images/KpPolicyBetas.png"><img alt="../../_images/KpPolicyBetas.png" src="../../_images/KpPolicyBetas.png" style="width: 448.0px; height: 336.0px;" /></a>
+<p>As in the previous example, from <span class="math notranslate nohighlight">\(10,000\)</span>-period simulation (with
+the first <span class="math notranslate nohighlight">\(1000\)</span> periods dropped), we obtain the following regression
+results:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0916+0.9633\log K; &amp;  &amp; R^{2}=0.999999
+\end{align*}\]</div>
+<p>in good times</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0789+0.9662\log K; &amp;  &amp; R^{2}=0.999999
+\end{align*}\]</div>
+<p>and in bad times. Because future aggregate capital depends mostly
+on current aggregate capital, the fitness of the linear regressions
+are very high.</p>
+<p>As in the previous example, these regression results are comparable
+to the ones in citet*{krusell:smith:JPE:1998}’s model in which the
+discount rates are truly idiosyncratic:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0871+0.9662\log K; &amp;  &amp; R^{2}=0.999981
+\end{align*}\]</div>
+<p>in good times and</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\log K'=0.0836+0.9670\log K; &amp;  &amp; R^{2}=0.999976
+\end{align*}\]</div>
+<p>in bad times.</p>
 </div>
 </div>
 
