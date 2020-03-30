@@ -336,7 +336,7 @@ var2&#39; = some_aux_policy&#39;
 </pre></div>
 </div>
 <p>The simulate block should declare variables to be recorded following keyword <cite>var_simu</cite>.
-A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>var_aux</cite> if SIMU_RESOLVE=1, or must be contained in <cite>var_outpu</cite> if SIMU_INTERP=1.</p>
+A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>var_aux</cite> if SIMU_RESOLVE=1, or must be contained in <cite>var_output</cite> if SIMU_INTERP=1.</p>
 <p>The simulate block can overwrite options num_samples (default 1) and num_periods (default 1000).</p>
 </dd></dl>
 
@@ -345,7 +345,7 @@ A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>va
 <h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt>
-<code class="sig-name descname">GDSGE_INVERP_VEC'(var_state1, var_state2, ...)</code></dt>
+<code class="sig-name descname">GDSGE_INTERP_VEC'(var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
 returned in the order defined in <em>var_interp</em>. For example,</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
@@ -369,7 +369,7 @@ returned in the order defined in <em>var_interp</em>. For example,</p>
 
 <dl class="function">
 <dt>
-<code class="sig-name descname">GDSGE_INVERP_VEC'[index](var_state1, var_state2, ...)</code></dt>
+<code class="sig-name descname">GDSGE_INTERP_VEC'[index](var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
 in the order defined in <em>index</em>.
 This can be used to skip evaluations of certain var_interp. For example, the following skips the evaluation of y2.</p>
@@ -397,7 +397,7 @@ This can be used to skip evaluations of certain var_interp. For example, the fol
 
 <dl class="function">
 <dt>
-<code class="sig-name descname">GDSGE_INVERP_VEC[index](shock_idx, var_state1, var_state2, ...)</code></dt>
+<code class="sig-name descname">GDSGE_INTERP_VEC[index](shock_idx, var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for exogenous state at <em>shock_idx</em>,
 in the order defined in <em>var_interp</em>. For example,</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...

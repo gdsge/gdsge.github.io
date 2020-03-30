@@ -160,7 +160,7 @@ The model block
         var2' = some_aux_policy'
 
     The simulate block should declare variables to be recorded following keyword `var_simu`. 
-    A `var_simu` must be contained in `var_policy` or `var_aux` if SIMU_RESOLVE=1, or must be contained in `var_outpu` if SIMU_INTERP=1.
+    A `var_simu` must be contained in `var_policy` or `var_aux` if SIMU_RESOLVE=1, or must be contained in `var_output` if SIMU_INTERP=1.
 
     The simulate block can overwrite options num_samples (default 1) and num_periods (default 1000).
 
@@ -168,7 +168,7 @@ The model block
 Utility functions
 ======================================
 
-.. function:: GDSGE_INVERP_VEC'(var_state1, var_state2, ...)
+.. function:: GDSGE_INTERP_VEC'(var_state1, var_state2, ...)
 
     Return each *var_interp* evaluated at (var_state1, var_state2, ...) for each realization of exogenous states, 
     returned in the order defined in *var_interp*. For example,
@@ -189,7 +189,7 @@ Utility functions
     :param var_state: values of endogenous states
 
 
-.. function:: GDSGE_INVERP_VEC'[index](var_state1, var_state2, ...)
+.. function:: GDSGE_INTERP_VEC'[index](var_state1, var_state2, ...)
 
     Return each *var_interp* evaluated at (var_state1, var_state2, ...) for each realization of exogenous states, 
     in the order defined in *index*. 
@@ -211,7 +211,7 @@ Utility functions
     :param var_state: values of endogenous states
     :param index: matlab integer vector that specifies the index of *var_interp* returned
 
-.. function:: GDSGE_INVERP_VEC[index](shock_idx, var_state1, var_state2, ...)
+.. function:: GDSGE_INTERP_VEC[index](shock_idx, var_state1, var_state2, ...)
 
     Return each *var_interp* evaluated at (var_state1, var_state2, ...) for exogenous state at *shock_idx*, 
     in the order defined in *var_interp*. For example,
