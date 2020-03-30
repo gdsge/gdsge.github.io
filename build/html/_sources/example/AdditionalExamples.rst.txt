@@ -5,8 +5,9 @@ Additional Examples:
    :maxdepth: 2
    :caption: Contents:
 
-   CaoNie2017/CaoNie2017
+   KS1998/KS1998
    Mendoza2010/Mendoza2010
+   CaoNie2017/CaoNie2017
    Cao2018/Cao2018
    Cao2020/Cao2020
-   KS1998/KS1998
+   

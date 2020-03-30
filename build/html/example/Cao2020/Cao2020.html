@@ -36,7 +36,6 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" href="../KS1998/KS1998.html" />
     <link rel="prev" title="Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity" href="../Cao2018/Cao2018.html" /> 
 </head>
 
@@ -91,14 +90,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-model">The Model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
 </ul>
 </li>
 </ul>
@@ -168,7 +167,7 @@
   <div class="section" id="cao-2020-continuum-vs-finite-agents-in-krusell-and-smith-1998">
 <h1>Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)<a class="headerlink" href="#cao-2020-continuum-vs-finite-agents-in-krusell-and-smith-1998" title="Permalink to this headline">¶</a></h1>
 <p>Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types.
-However, as noted in <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022053119301255">Cao (2020)</a>, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one Krusell and Smith (1998).
+However, as noted in <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022053119301255">Cao (2020)</a>, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>.
 In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
 In this example, we solve and compare the aggregate outcomes in this special case of the model in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a> to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
 <div class="section" id="the-model">
@@ -211,7 +210,7 @@ in current state <span class="math notranslate nohighlight">\(\left(b,0\right)\)
 capital depends on not only current aggregate capital but also on
 current wealth share <span class="math notranslate nohighlight">\(\omega\)</span> of agent <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <a class="reference internal image-reference" href="../../_images/KpPolicy.png"><img alt="../../_images/KpPolicy.png" src="../../_images/KpPolicy.png" style="width: 448.0px; height: 336.0px;" /></a>
-<p>Given the global nonlinear solution for <span class="math notranslate nohighlight">\(\varphi_{\infty}\)</span>, we can
+<p>Given the global solution for the recursive equilibrium of the model, we can
 also simulate forward and carry out a regression exercise as in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>.
 From <span class="math notranslate nohighlight">\(10,000\)</span>-period simulation (with the first <span class="math notranslate nohighlight">\(1000\)</span> periods dropped),
 we obtain the following regression results:</p>
@@ -227,7 +226,7 @@ we obtain the following regression results:</p>
 <p>in bad times. These regression results tell us that, in the simulated
 paths of the economy, current aggregate capital seems to be a sufficient
 state variable to forecast future aggregate capital, which <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>
-call an <a href="#id3"><span class="problematic" id="id4">``</span></a>approximate aggregation’’ property. However, the figure tells us that this property does not hold globally.</p>
+call an <a href="#id4"><span class="problematic" id="id5">``</span></a>approximate aggregation’’ property. However, the figure tells us that this property does not hold globally.</p>
 <p>As a comparison, we also solve the <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>’s
 model, with the exact parameters above, but in which idiosyncratic
 shocks are truly idiosyncratic. We obtain the following regression
@@ -309,8 +308,6 @@ discount rates are truly idiosyncratic:</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../KS1998/KS1998.html" class="btn btn-neutral float-right" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Cao2018/Cao2018.html" class="btn btn-neutral float-left" title="Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

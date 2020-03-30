@@ -3,7 +3,7 @@ Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)
 ******************************************************************
 
 Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types. 
-However, as noted in `Cao (2020) <https://www.sciencedirect.com/science/article/pii/S0022053119301255>`_, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one Krusell and Smith (1998).
+However, as noted in `Cao (2020) <https://www.sciencedirect.com/science/article/pii/S0022053119301255>`_, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
 In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
 In this example, we solve and compare the aggregate outcomes in this special case of the model in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_ to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.
 
@@ -65,7 +65,7 @@ current wealth share :math:`\omega` of agent :math:`1`.
 .. image:: figures/KpPolicy.png
     :scale: 40 %
 
-Given the global nonlinear solution for :math:`\varphi_{\infty}`, we can
+Given the global solution for the recursive equilibrium of the model, we can
 also simulate forward and carry out a regression exercise as in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
 From :math:`10,000`-period simulation (with the first :math:`1000` periods dropped),
 we obtain the following regression results:

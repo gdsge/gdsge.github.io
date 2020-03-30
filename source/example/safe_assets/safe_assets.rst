@@ -61,8 +61,8 @@ is
     A_{it}=\left(Y_{t}+P_{t}\right)\left[K_{it-1}-\upsilon\left(K_{it-1}-\mu_{i}\right)\right]+\left(1-\upsilon\right)R_{t}^{f}B_{it-1}.
 
 
-We can normalize the utility :math:`U_{it}` and consumption :math:`C_{it}` by
-:math:`A_{it}` and write equation \eqref{eq:utility SafeAssets} as follows:
+As in `Cao (2018, Appendix C.3, Extension 3) <https://academic.oup.com/ej/article/128/614/2258/5230957>`_, we can normalize the utility :math:`U_{it}` and consumption :math:`C_{it}` by
+:math:`A_{it}` and write recursive utility as follows:
 
 .. math::
     u_{it}^{1-\theta}=\frac{\rho+\upsilon}{1+\rho}c_{i,t}^{1-\theta}+\frac{1-\upsilon}{1+\rho}\left(1-c_{it}\right)^{1-\theta}\left(\mathbb{E}_{t}\left[\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right]\right)^{\frac{1-\theta}{1-\gamma_{i}}},
