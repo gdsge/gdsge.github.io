@@ -21,7 +21,7 @@ state transition functions, without the hassel of determining the feasible exoge
 The Model
 ===============
 
-There is a single consumption good. Preference
+There is a single consumption good. Preference reads
 
 .. math::
 
@@ -44,10 +44,10 @@ where :math:`A_t` is productivity which follows an exogenous Markov process. :ma
 
     q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) \geq-\kappa q_{t} k_{t+1},
 
-which says that the borrowing plus the finance for working capital cannot exceed the :math:`\kappa` fraction of the value of the next period capital :math:`k_{t+1}`, 
+which says that the borrowing plus the finance for working capital cannot exceed :math:`\kappa` fraction of the value of the next period capital :math:`k_{t+1}`, 
 where :math:`p_t` is intermediate goods price following an exogenous process, 
 :math:`w_t` is wage and :math:`q_t` is the endogenous asset price of the next period capital determined below. 
-It should be clear that the binding collateral constraint affects the financing of both working capital and investment.
+It should be clear that the binding collateral constraint will affect the financing of working capital.
 
 Investment is subject to convex adjustment cost
 
@@ -84,7 +84,7 @@ s.t.
     \\
     i_{t}=k_{t+1} - (1-\delta)k_t+\frac{1}{2} a^2 \frac{(k_{t+1}-k_t)^{2}}{k_t}.
 
-taking exogenous processes :math:`A_t,R_t,p_t` and :math:`q_t^b(=1/R_t)`, and endogenous prices :math:`w_t` and :math:`q_t` as given. Denote :math:`\lambda_t` as the multiplier for the budget constraint and :math:`\mu_t` as the multiplier for the collateral constraint, the first order conditions and complementarity slackness conditions read:
+taking exogenous processes :math:`A_t,R_t,p_t` and :math:`q_t^b(=1/R_t)`, and equilibrium prices :math:`w_t` and :math:`q_t` as given. Denote :math:`\lambda_t` as the multiplier for the budget constraint and :math:`\mu_t` as the multiplier for the collateral constraint, the first order conditions and complementarity slackness conditions read:
 
 .. math::
 
@@ -101,14 +101,15 @@ taking exogenous processes :math:`A_t,R_t,p_t` and :math:`q_t^b(=1/R_t)`, and en
     \\
     & \{c_t\}: u'(c_t-N(L_t)) = \lambda_t(1+\tau) 
 
-The exogenous states are :math:`z=(A,R,p)`. The natural endogenous states are :math:`(k,b)`. A recursive equilibrium  is functions :math:`b'(z,k,b), k',\mu,L,v,c,\lambda,q,w` that satisfy the above equations. The system can be further simplified. Before doing so, we introduce the state transformation to ensure the feasible state space is a square.
+The exogenous states are :math:`z=(A,R,p)`. The natural endogenous states are :math:`(k,b)`. A recursive equilibrium  is functions :math:`b'(z,k,b), k',\mu,L,v,c,\lambda,q,w` that satisfy the above equations. The system can be further simplified. Before doing so, we introduce the state transformation to ensure the 
+feasible state space is square.
 
 ==========================
 State Space Transformation
 ==========================
 If the economy is too much in debt, it may never be able to finance positive consumption subject to the current collateral constraint, and the equilibrium does not exist. 
 Therefore, the lower bound of bond of the state space depends on the exogenous shocks and capital, rendering the feasible state space non-square. 
-This non-square state space cannot be determined ex-ante either, since the collateral constraint depends on endogenous capital price. 
+This non-square state space cannot be determined ex-ante either, since the collateral constraint depends on the endogenous capital price. 
 This is a well-known challenge encountered by many researchers studying models with a borrowing constraint tied to an asset price. 
 The challenge can be solved by noticing the exact boundary condition of the initial problem: 
 the boundary of the feasible state space is such that consumption (more precisely, the GHH consumption-labor bundle) is zero.
@@ -120,7 +121,7 @@ Define the GHH consumption-labor bundle as
 
     \tilde{c}_t \equiv c_t-N(L_t).
 
-With such state transformation, we write down the minimum recursive system. A recursive equilibrium is functions :math:`k'(z,\tilde{c},k)`,
+With such state transformation, we write down the minimum recursive system that represents the equilibrium. A recursive equilibrium is functions :math:`k'(z,\tilde{c},k)`,
 :math:`b'(z,\tilde{c},k)`, :math:`L(z,\tilde{c},k)`, :math:`v(z,\tilde{c},k)`,
 :math:`\mu(z,\tilde{c},k)`, :math:`\tilde{c}'(z';z,\tilde{c},k)` such that (omitting the dependence on :math:`(z,\tilde{c},k)` when there is no confusion)
 
@@ -158,7 +159,7 @@ The last equation :math:`(1+\tau)\tilde{c}'(z')=B'(z',\tilde{c}'(z'),k')  +  b'`
 
 Notice, how the the budget constraint is taken off by :math:`(1+\tau)N(L_{t+1})` so that this becomes a consistency equation for :math:`\tilde{c}_{t+1}`.
 
-The recursive system is solved by taking :math:`d'(z,\tilde{c},k),q'(z,\tilde{c},k),B'(z,\tilde{c},k)` as known at each time iteration, and updating
+The recursive system is solved by taking :math:`d'(z,\tilde{c},k),q'(z,\tilde{c},k),B'(z,\tilde{c},k)` as known at each time iteration step, and updating
 these objects following their definitions.
 
 ========================
@@ -210,16 +211,16 @@ and including them in the system of equations in Line 156
     :lineno-start: 156
     :language: GDSGE
 
-We also discuss the transformation when solving the system of equations with potentially non-box constraint
-(i.e., the collateral constraint which specifies the borrowing cannot exceed a fraction of the value of capital that depends on endogenous capital price).
-This should be familiar to you if you already came from the :ref:`Bianchi (2011) <Bianchi2011>` or :ref:`Heaton and Lucas (1996) <HL1996>` examples.
+We also discuss the necessary transformation when solving the system of equations with potentially non-box constraints
+(i.e., the collateral constraint which specifies that borrowing cannot exceed a fraction of the value of capital that depends on the endogenous capital price).
+This should be familiar if readers already came from the :ref:`Bianchi (2011) <Bianchi2011>` or :ref:`Heaton and Lucas (1996) <HL1996>` examples.
 This is done by defining a variable and including it as unknown
 
 .. math::
     
     nb_{t+1}=q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) +\kappa q_{t} k_{t+1}
 
-so the collateral constraint becomes :math:`nb_{t+1} \geq 0`. And transform :math:`nb_{t+1}` to :math:`b_{t+1}` in Line
+so the collateral constraint becomes :math:`nb_{t+1} \geq 0`. And transform :math:`nb_{t+1}` back to :math:`b_{t+1}` in Line
 
 .. literalinclude:: mendoza2010.gmod
     :lines: 125-125
@@ -234,10 +235,10 @@ For example, the Euler equation for bond is written as
 
     -1 +\mu_t / \lambda_t +\beta \mathbb{E}_t \lambda_{t+1} / (\lambda_t q_t^b) = 0
 
-so the equation takes value between [0,1]. Accordingly, we have defined the multiplier for collateral constraint to be normalized by the marginal utility 
+so the equation takes value between [0,1]. Accordingly, we have defined the multiplier for the collateral constraint to be normalized by the marginal utility 
 :math:`\hat{\mu}_t=\mu_t/\lambda_t` (:math:`\mu` in the code actually corresponds to 
-:math:`\hat{\mu}`), so from the bond Euler equation we know :math:`\hat{\mu}` must lie in [0,1], which is specified as the bound for :math:`\mu` for the equation solver.
-These procedures are not necessary but are simple but effective ways to solve the system faster and more accurately.
+:math:`\hat{\mu}`), so from the bond Euler equation we know :math:`\hat{\mu}` must lie in [0,1], which is specified as the bound for :math:`\mu` entering the equation solver.
+These procedures are not necessary but are simple and effective ways to solve the system faster and more accurately.
 
 
 Now let's run the policy iterations by calling *iter_mendoza2010.m* returned from a local or remote GDSGE compiler, which produces output
@@ -346,16 +347,16 @@ when bond is low (borrowing is high).
 And capital price falls rapidly in borrowing when the collateral constraint binds.
 
 With the converged policy and state transition functions, we can simulate the economy's ergodic set.
-To remind readers, we directly interpolate the state transition and policy functions to simulate, which is faster 
+To remind readers, here we directly interpolate the state transition and policy functions to simulate, which is faster 
 than resolving the system (the simulation with 
-24 paths of 50,000 periods completes in less than 10 seconds on a regular laptop), by specifying in the gmod file
+24 paths of 50,000 periods completes in less than half a minute on a regular laptop). This is done by specifying in the gmod file
 
 .. literalinclude:: mendoza2010.gmod
     :lines: 22-22
     :lineno-start: 22
     :language: GDSGE
 
-The variables to be recorded in the simulation needs to be explicitly specified in *var_output*
+Under this case, the variables to be recorded in the simulation needs to be explicitly specified in *var_output*
 
 .. literalinclude:: mendoza2010.gmod
     :lines: 107-107
@@ -460,15 +461,15 @@ What's Next?
 =====================
 
 This example illustrates how to solve a model with two endogenous state variables of which the exogenous feasible state space may be non-square and hard to determine ex-ante.
-The crucial step is to find transform the boundary condition to that of an endogenous state variable which makes the state space square. In the current problem, the 
+The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the state space square. In the current example, the 
 feasible debt level is high so the model can be solved directly over the natural state space---bond and capital. Such transformation 
-becomes relevant for more complex problems, and sometimes the boundary condition needs to be solved for a different equilibrium system. The toolbox accommodates this 
+becomes essential for more complex problems, and sometimes the boundary condition needs to be solved for a different equilibrium system. The toolbox accommodates this 
 by allowing defining a different system of equations for problems at the boundary. See example :ref:`Cao and Nie (2017) <CaoNie2017>`.
 
 The policy functions in the current example are highly nonlinear. We learned how to start with a crude grid and refine the solution with finer grids. A more effective approach
-is to let the toolbox to automatically adapt the grids to increase points in regions that are nonlinear.
-The example in :ref:`Bianchi (2011) <Bianchi2011>` shows how to use adaptive grids for an one-dimensional problem.
-The current model can also solved with adaptive grids by specifying one option in the gmod file, which we leave as an exercise.
+is to let the toolbox automatically adapt the grids to increase points in regions that are nonlinear.
+The example in :ref:`Bianchi (2011) <Bianchi2011>` shows how to use adaptive grids for a model with a single-dimension endogenous state.
+The current model can also solved with adaptive grids by simply specifying one option in the gmod file, which we leave as an exercise.
 
 Or you can directly proceed to :ref:`Toolbox API`.
 

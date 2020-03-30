@@ -9,8 +9,8 @@ Zin (1989) <https://www.jstor.org/stable/1913778?seq=1#metadata_info_tab_content
 `Weil (1990) <https://www.jstor.org/stable/2937817?seq=1#metadata_info_tab_contents>`_, which is a common preference specification in the asset pricing and 
 macro finance literature. The example also demonstrates that the solution method can handle
 ill-behaved equilibrium systems robustly: in the context of `Barro et al. (2017) <https://www.nber.org/papers/w20652>`_, when the risk aversion level is set very high
-(e.g., with coefficient of Relative Risk Aversion up to 100),the traditional
-nested fixed point solution method becomes unstable,  since agents' portfolio choice becomes super sensitive to the pricing function.
+(e.g., with coefficient of Relative Risk Aversion up to 100), the traditional
+nested fixed point solution method becomes unstable, since agents' portfolio choice becomes super sensitive to the pricing function.
 Nevertheless, the toolbox, which solves the equilibrium as one single system of equations, 
 can handle such parameterization fairly easily and uncovers novel theoretical results.
 
@@ -129,7 +129,7 @@ and :eq:`eq_MC_bond`,
     \omega_{1t}+\omega_{2t}=1,\:\forall t.
 
 For much of the analysis in `Barro et al. (2017) <https://www.nber.org/papers/w20652>`_, the intertemporal
-elasticity of substitution :math:`theta` is set at :math:`1`. In this case,
+elasticity of substitution :math:`\theta` is set at :math:`1`. In this case,
 agents consume a constant share of their wealth, and equation :eq:`eq_Euler_equation_SafeAssets`
 is replaced by 
 
@@ -166,7 +166,8 @@ The model is solved with the following :download:`safe_assets.gmod <safe_assets.
     :linenos:
     :language: GDSGE
 
-There is not too much new about the usage of the toolbox if you already came from examples :ref:`Heaton and Lucas (1996) <HL1996>` and Guvenen (2009).
+There is not too much new about the usage of the toolbox if you already came from examples :ref:`Heaton and Lucas (1996) <HL1996>` and 
+:ref:`Guvenen (2009) <Guvenen2009>`.
 There are some transformations worth mentioning which facilitate solving the model.
 
 .. literalinclude:: safe_assets.gmod
@@ -180,30 +181,30 @@ These lines describe how to calculate the Euler Equation residual
 
     \mathbb{E}_{t}\left[\frac{\left(R_{t+1}^{e}-R_{t+1}^{f}\right)u_{it+1}}{\left(R_{i,t+1}u_{it+1}\right)^{\gamma_{i}}}\right]=0
 
-when the CRRA coefficient :math:`\gamma_2` is very large: tracking and calculating the log level of utility instead of the level of utility.
+when the CRRA coefficient :math:`\gamma_2` is very large: by tracking and calculating the log level of utility instead of the level of utility.
 This procedure proves to be essential in solving models with :math:`\gamma_2` very high, as :math:`u` can easily fall below 
 the smallest number permitted by double precision.
 
 Like previous examples, we can inspect the policy functions and ergodic sets after solving policy iterations and simulations. Here, we focus on
 how to construct generalized impulse responses using the model simulations. Since the equilibrium concept involves an ergodic distribution of state, instead of a 
-deterministic steady state. The proper concepts of impulse responses are sampling responses from ergodic sets, and take their averages and standard deviations.
-The sampling procedure can be done on sub population of the ergodic set,  generating conditional impulse responses which will be of particular interests since 
+deterministic steady state, the proper concepts of impulse responses are sampling responses from the ergodic set, and taking their averages and standard deviations.
+The sampling procedure can be done on a sub-population of the ergodic set,  generating conditional impulse responses which will be of particular interests since 
 the non-linear models may feature different dynamics starting from different part of the state space.
 
-The procedures goes as follows: 
+The procedure for constructing generalized impulse responses goes as follows: 
 
-1. Simulate an ergodic set, which can be done by simulating one or multiple samples for long-period of time 
+1. Simulate an ergodic set, which can be done by simulating one or multiple samples for a long-period of time,
 according to the Ergodic theorem. 
 
-2. Replicate the ergodic set into two. For one of the two, turn the shock to "on" (the exact procedure depends on the model context,
-for example, in the current example, "on" corresponds to the rare diaster state); for the other set, keep the shock unchanged.
+2. Replicate the ergodic set into two. For one of the two, turn the shock to "on". The exact procedure depends on the model context.
+In the current example, "on" corresponds to the rare diaster state. For the other set, keep the shock unchanged.
 
 3. Simulate the two sets, keeping the transitions of the exogenous shocks on. This procedure essentially captures the effect of the switching of the shock in the initial period
 on subsequent dynamics. 
 
 4. Calculate the mean and s.d. of the difference between simulated time series of the two sets. These arrive at the mean impulse responses and 
-the standard deviations. Again, the above procedure can be conditional on a sub population of the ergodic set so as to compute 
-conditional impulse responses starting from states with certain characteristics.
+the standard deviations. Again, the above procedure can be conditional on a sub-population of the ergodic set so as to compute 
+conditional impulse responses starting from states with certain properties of interests.
 
 .. image:: figures/irf.png
     :scale: 40 %
@@ -215,11 +216,11 @@ and :math:`\gamma_{2}=5.6`. Growth rate in normal times is :math:`0.025`. Rare
 disaster happens with probability 4\%, and once it happens, productivity
 drops by 32\%. The model period is one quarter.) As shown, the rare disaster shock redistributes
 wealth from the less risk averse agent (Agent 1) to that of the more risk averse one (Agent 2). This leads to
-more safe assets demanded compared, and a higher equilibrium quantity and price (lower interest rate) of the safe asset.
+more safe assets demanded, and a higher equilibrium quantity and price (lower interest rate) of the safe asset.
 
 A final remark is on the price of safe assets, which exhibits non-monotonicity as the risk aversion level of Agent 2
-:math:`\gamma_2`, as shown in the figure below.
-This non-monotonicity usually overlooked and uncovered by our solution method that  solves models with high :math:`\gamma_2` robustly and accurately.
+:math:`\gamma_2` increases, as shown in the figure below.
+This non-monotonicity is usually overlooked in the literature and uncovered by our solution method that can solve models with high :math:`\gamma_2` robustly and accurately.
 
 .. image:: figures/figure_Rf.png
     :scale: 50 %
@@ -252,9 +253,10 @@ What's Next?
 =====================
 
 This example illustrates that the toolbox algorithm is especially effective to solve models where portfolio choices are sensitive to the asset price,
-which are traditionally considered ill-behaved problems. In `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_, we solve another model which is traditionally considered ill-behaved:
+which are traditionally considered ill-behaved problems. In `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_, 
+we solve another model which is traditionally considered ill-behaved:
 a two-country DSGE model with portfolio choices in which 
-the returns to assets are close to collinear in certain region of the state space.
+the returns to assets are close to collinear in certain regions of the state space.
 
 Or you can directly proceed to :ref:`Toolbox API`.
 

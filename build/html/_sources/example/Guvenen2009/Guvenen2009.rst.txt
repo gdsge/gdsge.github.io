@@ -13,9 +13,10 @@ When all endogenous states are pre-determined, such as capital and bond share in
 variables can be parameterized and integrated before solving the system of equation, which greatly speeds up the computation.
 We illustrate how to use parameterized expectation with the toolbox in this example.
 
-===============
+.. _Guvenen2009:
+================
 The Model
-===============
+================
 
 There are two types of infinitely-lived agents: stockholders
 (:math:`h`) with measure :math:`\mu`, and non-stockholders (:math:`n`) with

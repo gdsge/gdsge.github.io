@@ -121,7 +121,7 @@ model;
   b_h = (1-bn_shr)*chi*Kss/mu;
   b_n = bn_shr*chi*Kss/(1-mu);
     
-  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GNDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
+  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
   EPD_square_future = EPD_square_future*varianceScale;
   
   vh =  ((1-beta)*(c_h^(1-thetah)) + beta*(Evh_future^((1-thetah)/(1-gamma))))^(1/(1-thetah));
@@ -142,7 +142,7 @@ model;
   Rs = EPD_future/Ps;
   R_ep = Rs - 1/Pf;
   % The following inline implements 
-  % std_ExcessR = (GNDSGE_EXPECT{(PD_future'/Ps - Rs)^2})^0.5;
+  % std_ExcessR = (GDSGE_EXPECT{(PD_future'/Ps - Rs)^2})^0.5;
   std_ExcessR = (EPD_square_future/(Ps^2) + Rs^2 - 2*EPD_future*Rs/Ps)^0.5;
   SharpeRatio = R_ep/std_ExcessR;
 

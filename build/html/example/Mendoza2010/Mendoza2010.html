@@ -184,7 +184,7 @@ and the feasible state space is non-square. We demonstrate how such model can so
 state transition functions, without the hassel of determining the feasible exogeneous state space ex-ante.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
-<p>There is a single consumption good. Preference</p>
+<p>There is a single consumption good. Preference reads</p>
 <div class="math notranslate nohighlight">
 \[\mathbb E_{0}
 \sum_{t=0}^{\infty}  \beta^t[ u\left(c_{t}-N\left(L_{t}\right)\right)]\]</div>
@@ -196,10 +196,10 @@ state transition functions, without the hassel of determining the feasible exoge
 <p><span class="math notranslate nohighlight">\(\phi\)</span> fraction of the cost of hiring <span class="math notranslate nohighlight">\(L_t\)</span> and <span class="math notranslate nohighlight">\(v_t\)</span> needs to be financed externally, at a (world) gross interest rate <span class="math notranslate nohighlight">\(R_t\)</span> that follows an exogenous process. The economy can trade a state non-contingent bond <span class="math notranslate nohighlight">\(b_{t+1}\)</span> (negative denotes borrowing) with the world, but borrowing is subject to the following constraint</p>
 <div class="math notranslate nohighlight">
 \[q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) \geq-\kappa q_{t} k_{t+1},\]</div>
-<p>which says that the borrowing plus the finance for working capital cannot exceed the <span class="math notranslate nohighlight">\(\kappa\)</span> fraction of the value of the next period capital <span class="math notranslate nohighlight">\(k_{t+1}\)</span>,
+<p>which says that the borrowing plus the finance for working capital cannot exceed <span class="math notranslate nohighlight">\(\kappa\)</span> fraction of the value of the next period capital <span class="math notranslate nohighlight">\(k_{t+1}\)</span>,
 where <span class="math notranslate nohighlight">\(p_t\)</span> is intermediate goods price following an exogenous process,
 <span class="math notranslate nohighlight">\(w_t\)</span> is wage and <span class="math notranslate nohighlight">\(q_t\)</span> is the endogenous asset price of the next period capital determined below.
-It should be clear that the binding collateral constraint affects the financing of both working capital and investment.</p>
+It should be clear that the binding collateral constraint will affect the financing of working capital.</p>
 <p>Investment is subject to convex adjustment cost</p>
 <div class="math notranslate nohighlight">
 \[i_{t}=k_{t+1} - (1-\delta)k_t+\frac{1}{2} a \frac{(k_{t+1}-k_t)^{2}}{k_t},\]</div>
@@ -219,7 +219,7 @@ It should be clear that the binding collateral constraint affects the financing 
 q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) \geq-\kappa q_{t} k_{t+1}
 \\
 i_{t}=k_{t+1} - (1-\delta)k_t+\frac{1}{2} a^2 \frac{(k_{t+1}-k_t)^{2}}{k_t}.\end{split}\]</div>
-<p>taking exogenous processes <span class="math notranslate nohighlight">\(A_t,R_t,p_t\)</span> and <span class="math notranslate nohighlight">\(q_t^b(=1/R_t)\)</span>, and endogenous prices <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(q_t\)</span> as given. Denote <span class="math notranslate nohighlight">\(\lambda_t\)</span> as the multiplier for the budget constraint and <span class="math notranslate nohighlight">\(\mu_t\)</span> as the multiplier for the collateral constraint, the first order conditions and complementarity slackness conditions read:</p>
+<p>taking exogenous processes <span class="math notranslate nohighlight">\(A_t,R_t,p_t\)</span> and <span class="math notranslate nohighlight">\(q_t^b(=1/R_t)\)</span>, and equilibrium prices <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(q_t\)</span> as given. Denote <span class="math notranslate nohighlight">\(\lambda_t\)</span> as the multiplier for the budget constraint and <span class="math notranslate nohighlight">\(\mu_t\)</span> as the multiplier for the collateral constraint, the first order conditions and complementarity slackness conditions read:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp; \{b_{t+1}\}:
 -q_t^b\lambda_t+\mu_tq_t^b+\beta \mathbb{E}_t \lambda_{t+1}=0
@@ -233,13 +233,14 @@ i_{t}=k_{t+1} - (1-\delta)k_t+\frac{1}{2} a^2 \frac{(k_{t+1}-k_t)^{2}}{k_t}.\end
 &amp; \{v_t\}: A_{t}F_3(k_t,L_t,v_t)=p_{t}(1+\phi(R_t-1)+\frac{\mu_t}{\lambda_t} \phi R_t)
 \\
 &amp; \{c_t\}: u'(c_t-N(L_t)) = \lambda_t(1+\tau)\end{split}\]</div>
-<p>The exogenous states are <span class="math notranslate nohighlight">\(z=(A,R,p)\)</span>. The natural endogenous states are <span class="math notranslate nohighlight">\((k,b)\)</span>. A recursive equilibrium  is functions <span class="math notranslate nohighlight">\(b'(z,k,b), k',\mu,L,v,c,\lambda,q,w\)</span> that satisfy the above equations. The system can be further simplified. Before doing so, we introduce the state transformation to ensure the feasible state space is a square.</p>
+<p>The exogenous states are <span class="math notranslate nohighlight">\(z=(A,R,p)\)</span>. The natural endogenous states are <span class="math notranslate nohighlight">\((k,b)\)</span>. A recursive equilibrium  is functions <span class="math notranslate nohighlight">\(b'(z,k,b), k',\mu,L,v,c,\lambda,q,w\)</span> that satisfy the above equations. The system can be further simplified. Before doing so, we introduce the state transformation to ensure the
+feasible state space is square.</p>
 </div>
 <div class="section" id="state-space-transformation">
 <h2>State Space Transformation<a class="headerlink" href="#state-space-transformation" title="Permalink to this headline">¶</a></h2>
 <p>If the economy is too much in debt, it may never be able to finance positive consumption subject to the current collateral constraint, and the equilibrium does not exist.
 Therefore, the lower bound of bond of the state space depends on the exogenous shocks and capital, rendering the feasible state space non-square.
-This non-square state space cannot be determined ex-ante either, since the collateral constraint depends on endogenous capital price.
+This non-square state space cannot be determined ex-ante either, since the collateral constraint depends on the endogenous capital price.
 This is a well-known challenge encountered by many researchers studying models with a borrowing constraint tied to an asset price.
 The challenge can be solved by noticing the exact boundary condition of the initial problem:
 the boundary of the feasible state space is such that consumption (more precisely, the GHH consumption-labor bundle) is zero.
@@ -247,7 +248,7 @@ Therefore, if we transform the state space to consumption and capital, then the 
 <p>Define the GHH consumption-labor bundle as</p>
 <div class="math notranslate nohighlight">
 \[\tilde{c}_t \equiv c_t-N(L_t).\]</div>
-<p>With such state transformation, we write down the minimum recursive system. A recursive equilibrium is functions <span class="math notranslate nohighlight">\(k'(z,\tilde{c},k)\)</span>,
+<p>With such state transformation, we write down the minimum recursive system that represents the equilibrium. A recursive equilibrium is functions <span class="math notranslate nohighlight">\(k'(z,\tilde{c},k)\)</span>,
 <span class="math notranslate nohighlight">\(b'(z,\tilde{c},k)\)</span>, <span class="math notranslate nohighlight">\(L(z,\tilde{c},k)\)</span>, <span class="math notranslate nohighlight">\(v(z,\tilde{c},k)\)</span>,
 <span class="math notranslate nohighlight">\(\mu(z,\tilde{c},k)\)</span>, <span class="math notranslate nohighlight">\(\tilde{c}'(z';z,\tilde{c},k)\)</span> such that (omitting the dependence on <span class="math notranslate nohighlight">\((z,\tilde{c},k)\)</span> when there is no confusion)</p>
 <div class="math notranslate nohighlight">
@@ -275,7 +276,7 @@ Therefore, if we transform the state space to consumption and capital, then the 
 &amp;=\underbrace{A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right)-q_{t+1}^{b} b_{t+2}-i_{t+1}-(1+\tau)N(L_{t+1})}
 _{B_{t+1}}+b_{t}.\end{split}\]</div>
 <p>Notice, how the the budget constraint is taken off by <span class="math notranslate nohighlight">\((1+\tau)N(L_{t+1})\)</span> so that this becomes a consistency equation for <span class="math notranslate nohighlight">\(\tilde{c}_{t+1}\)</span>.</p>
-<p>The recursive system is solved by taking <span class="math notranslate nohighlight">\(d'(z,\tilde{c},k),q'(z,\tilde{c},k),B'(z,\tilde{c},k)\)</span> as known at each time iteration, and updating
+<p>The recursive system is solved by taking <span class="math notranslate nohighlight">\(d'(z,\tilde{c},k),q'(z,\tilde{c},k),B'(z,\tilde{c},k)\)</span> as known at each time iteration step, and updating
 these objects following their definitions.</p>
 </div>
 <div class="section" id="the-gmod-file">
@@ -643,13 +644,13 @@ are implemented by including <span class="math notranslate nohighlight">\(\tilde
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>156</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    cTilde_consis&#39;;
 </pre></div>
 </td></tr></table></div>
-<p>We also discuss the transformation when solving the system of equations with potentially non-box constraint
-(i.e., the collateral constraint which specifies the borrowing cannot exceed a fraction of the value of capital that depends on endogenous capital price).
-This should be familiar to you if you already came from the <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi (2011)</span></a> or <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> examples.
+<p>We also discuss the necessary transformation when solving the system of equations with potentially non-box constraints
+(i.e., the collateral constraint which specifies that borrowing cannot exceed a fraction of the value of capital that depends on the endogenous capital price).
+This should be familiar if readers already came from the <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi (2011)</span></a> or <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> examples.
 This is done by defining a variable and including it as unknown</p>
 <div class="math notranslate nohighlight">
 \[nb_{t+1}=q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) +\kappa q_{t} k_{t+1}\]</div>
-<p>so the collateral constraint becomes <span class="math notranslate nohighlight">\(nb_{t+1} \geq 0\)</span>. And transform <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> in Line</p>
+<p>so the collateral constraint becomes <span class="math notranslate nohighlight">\(nb_{t+1} \geq 0\)</span>. And transform <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> back to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> in Line</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>125</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  bNext = (nbNext + phi*R*(w*L+p*v) - kappa*q*kNext)/qb;
 </pre></div>
 </td></tr></table></div>
@@ -658,10 +659,10 @@ This is done by defining a variable and including it as unknown</p>
 For example, the Euler equation for bond is written as</p>
 <div class="math notranslate nohighlight">
 \[-1 +\mu_t / \lambda_t +\beta \mathbb{E}_t \lambda_{t+1} / (\lambda_t q_t^b) = 0\]</div>
-<p>so the equation takes value between [0,1]. Accordingly, we have defined the multiplier for collateral constraint to be normalized by the marginal utility
+<p>so the equation takes value between [0,1]. Accordingly, we have defined the multiplier for the collateral constraint to be normalized by the marginal utility
 <span class="math notranslate nohighlight">\(\hat{\mu}_t=\mu_t/\lambda_t\)</span> (<span class="math notranslate nohighlight">\(\mu\)</span> in the code actually corresponds to
-<span class="math notranslate nohighlight">\(\hat{\mu}\)</span>), so from the bond Euler equation we know <span class="math notranslate nohighlight">\(\hat{\mu}\)</span> must lie in [0,1], which is specified as the bound for <span class="math notranslate nohighlight">\(\mu\)</span> for the equation solver.
-These procedures are not necessary but are simple but effective ways to solve the system faster and more accurately.</p>
+<span class="math notranslate nohighlight">\(\hat{\mu}\)</span>), so from the bond Euler equation we know <span class="math notranslate nohighlight">\(\hat{\mu}\)</span> must lie in [0,1], which is specified as the bound for <span class="math notranslate nohighlight">\(\mu\)</span> entering the equation solver.
+These procedures are not necessary but are simple and effective ways to solve the system faster and more accurately.</p>
 <p>Now let’s run the policy iterations by calling <em>iter_mendoza2010.m</em> returned from a local or remote GDSGE compiler, which produces output</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_mendoza2010</span><span class="p">;</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00819545</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">3.83276e-09</span>
@@ -749,13 +750,13 @@ the current debt to be higher. However, determining this lower bound of bond lev
 when bond is low (borrowing is high).
 And capital price falls rapidly in borrowing when the collateral constraint binds.</p>
 <p>With the converged policy and state transition functions, we can simulate the economy’s ergodic set.
-To remind readers, we directly interpolate the state transition and policy functions to simulate, which is faster
+To remind readers, here we directly interpolate the state transition and policy functions to simulate, which is faster
 than resolving the system (the simulation with
-24 paths of 50,000 periods completes in less than 10 seconds on a regular laptop), by specifying in the gmod file</p>
+24 paths of 50,000 periods completes in less than half a minute on a regular laptop). This is done by specifying in the gmod file</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>22</pre></div></td><td class="code"><div class="highlight"><pre><span></span>SIMU_RESOLVE=0; SIMU_INTERP=1; <span class="c">% Use interp for fast simulation</span>
 </pre></div>
 </td></tr></table></div>
-<p>The variables to be recorded in the simulation needs to be explicitly specified in <em>var_output</em></p>
+<p>Under this case, the variables to be recorded in the simulation needs to be explicitly specified in <em>var_output</em></p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>107</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">var_output</span> c Y cTildeNext q mu inv kNext bNext b v nx gdp b_gdp nx_gdp lev wkcptl;
 </pre></div>
 </td></tr></table></div>
@@ -1024,14 +1025,14 @@ negative bond/gdp ratio. These differences are also noted in <a class="reference
 <div class="section" id="what-s-next">
 <h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>This example illustrates how to solve a model with two endogenous state variables of which the exogenous feasible state space may be non-square and hard to determine ex-ante.
-The crucial step is to find transform the boundary condition to that of an endogenous state variable which makes the state space square. In the current problem, the
+The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the state space square. In the current example, the
 feasible debt level is high so the model can be solved directly over the natural state space—bond and capital. Such transformation
-becomes relevant for more complex problems, and sometimes the boundary condition needs to be solved for a different equilibrium system. The toolbox accommodates this
+becomes essential for more complex problems, and sometimes the boundary condition needs to be solved for a different equilibrium system. The toolbox accommodates this
 by allowing defining a different system of equations for problems at the boundary. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>.</p>
 <p>The policy functions in the current example are highly nonlinear. We learned how to start with a crude grid and refine the solution with finer grids. A more effective approach
-is to let the toolbox to automatically adapt the grids to increase points in regions that are nonlinear.
-The example in <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi (2011)</span></a> shows how to use adaptive grids for an one-dimensional problem.
-The current model can also solved with adaptive grids by specifying one option in the gmod file, which we leave as an exercise.</p>
+is to let the toolbox automatically adapt the grids to increase points in regions that are nonlinear.
+The example in <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi (2011)</span></a> shows how to use adaptive grids for a model with a single-dimension endogenous state.
+The current model can also solved with adaptive grids by simply specifying one option in the gmod file, which we leave as an exercise.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
 </div>
 </div>

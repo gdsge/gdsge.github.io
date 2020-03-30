@@ -584,7 +584,7 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
   b_h = (1-bn_shr)*chi*Kss/mu;
   b_n = bn_shr*chi*Kss/(1-mu);
     
-  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = <span class="k">GNDSGE_INTERP_VEC</span>(shock,Knext,bn_shr_next);
+  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
   EPD_square_future = EPD_square_future*varianceScale;
   
   vh =  ((1-beta)*(c_h^(1-thetah)) + beta*(Evh_future^((1-thetah)/(1-gamma))))^(1/(1-thetah));
@@ -605,7 +605,7 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
   Rs = EPD_future/Ps;
   R_ep = Rs - 1/Pf;
   <span class="c">% The following inline implements </span>
-  <span class="c">% std_ExcessR = (GNDSGE_EXPECT{(PD_future&#39;/Ps - Rs)^2})^0.5;</span>
+  % std_ExcessR = (<span class="k">GDSGE_EXPECT</span>{(PD_future&#39;/Ps - Rs)^2})^0.5;
   std_ExcessR = (EPD_square_future/(Ps^2) + Rs^2 - 2*EPD_future*Rs/Ps)^0.5;
   SharpeRatio = R_ep/std_ExcessR;
 
@@ -699,7 +699,7 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
 </pre></div>
 </td></tr></table></div>
 <p>and evaluating the approximation at the current <em>shock</em> only when evaluating the system of equations</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>124</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = <span class="k">GNDSGE_INTERP_VEC</span>(shock,Knext,bn_shr_next);
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>124</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
 </pre></div>
 </td></tr></table></div>
 <p>where the <em>GDSGE_INTERP_VEC</em> takes the first argument <em>shock</em>, a reserved keyword referring
