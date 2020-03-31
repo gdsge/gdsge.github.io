@@ -1,11 +1,9 @@
 % Toolbox options
 INTERP_ORDER = 4; ExtrapOrder = 4;
 SIMU_RESOLVE = 0; SIMU_INTERP = 1;
-SaveFreq = inf; PrintFreq = 100;
-TolEq = 1e-5;
+SaveFreq = inf; PrintFreq = 100; TolEq = 1e-5;
 % Parameters
 parameters alpha delta phi kMin;
-% beta = 0.99;    % discount factor
 alpha = 0.36;   % capital share in production
 delta = 0.025;  % depreciation rate
 % phi_k_1 phi_k_0 phi_l_1 phi_l_0; for z in {bad, good}
@@ -13,13 +11,11 @@ phi = [
       0.96053     0.095014            0      -1.2228
       0.96072     0.099212            0      -1.1583
     ]';
-
 % States, use the ones as in Krusell and Smith (1998)
 var_state kbar k;
 kbar = [11.1 11.52 11.94 12.36];
 k = csvread('points.kgd');
 kMin = k(1);
-
 % Shock process in Krusell and Smith (1998)
 var_shock beta e unemp z z_idx;
 shock_num = 12;
@@ -35,7 +31,6 @@ beta_trans = [
     0.0000 0.0050 0.9950
     ];
 shock_trans = kron(ez_trans,beta_trans);
-
 z_idx_grid = [0, 1];
 z_grid = [0.99, 1.01];
 e_grid = [0.00, 0.3271];
@@ -69,10 +64,8 @@ budget = k.*(1+r) + e.*w + unemp;
 var_policy k_next lambda;
 inbound k_next kMin budget;
 inbound lambda 0 1.0;
-
 % Other variables out of the block
 var_aux c vp v l;
-
 % Used in simulation
 var_output c k_next l;
 
@@ -85,16 +78,10 @@ model;
   vp = (1+r)*u_prime;
   v = log(c) + beta*Ev_future;
   l = e;
-  
   equations;
     euler_residual;
     lambda*(k_next-kMin);
   end;
-end;
-
-post_simulate_iter;
-  SimuRslt.kbar(:,GDSGE_t+1) = mean(SimuRslt.k(:,GDSGE_t+1));
-  SimuRslt.lbar(:,GNDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
 end;
 
 simulate;
@@ -106,4 +93,8 @@ simulate;
   var_simu c l;
   k' = k_next;
   kbar' = k_next;    % A place holder
+end;
+post_simulate_iter;
+  SimuRslt.kbar(:,GDSGE_t+1) = mean(SimuRslt.k(:,GDSGE_t+1));
+  SimuRslt.lbar(:,GNDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
 end;

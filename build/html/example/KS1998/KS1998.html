@@ -276,23 +276,12 @@ We present the heterogeneous-beta version of the model below.</p>
  97
  98
  99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Toolbox options</span>
+100</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Toolbox options</span>
 INTERP_ORDER = 4; ExtrapOrder = 4;
 SIMU_RESOLVE = 0; SIMU_INTERP = 1;
-SaveFreq = inf; PrintFreq = 100;
-TolEq = 1e-5;
+SaveFreq = inf; PrintFreq = 100; TolEq = 1e-5;
 <span class="c">% Parameters</span>
 <span class="k">parameters</span> alpha delta phi kMin;
-<span class="c">% beta = 0.99;    % discount factor</span>
 alpha = 0.36;   <span class="c">% capital share in production</span>
 delta = 0.025;  <span class="c">% depreciation rate</span>
 <span class="c">% phi_k_1 phi_k_0 phi_l_1 phi_l_0; for z in {bad, good}</span>
@@ -300,13 +289,11 @@ phi = [
       0.96053     0.095014            0      -1.2228
       0.96072     0.099212            0      -1.1583
     ]&#39;;
-
 <span class="c">% States, use the ones as in Krusell and Smith (1998)</span>
 <span class="k">var_state</span> kbar k;
 kbar = [11.1 11.52 11.94 12.36];
 k = csvread(&#39;points.kgd&#39;);
 kMin = k(1);
-
 <span class="c">% Shock process in Krusell and Smith (1998)</span>
 <span class="k">var_shock</span> beta e unemp z z_idx;
 <span class="k">shock_num</span> = 12;
@@ -322,7 +309,6 @@ beta_trans = [
     0.0000 0.0050 0.9950
     ];
 <span class="k">shock_trans</span> = kron(ez_trans,beta_trans);
-
 z_idx_grid = [0, 1];
 z_grid = [0.99, 1.01];
 e_grid = [0.00, 0.3271];
@@ -356,10 +342,8 @@ budget = k.*(1+r) + e.*w + unemp;
 <span class="k">var_policy</span> k_next lambda;
 <span class="k">inbound</span> k_next kMin budget;
 <span class="k">inbound</span> lambda 0 1.0;
-
 <span class="c">% Other variables out of the block</span>
 <span class="k">var_aux</span> c vp v l;
-
 <span class="c">% Used in simulation</span>
 <span class="k">var_output</span> c k_next l;
 
@@ -372,16 +356,10 @@ budget = k.*(1+r) + e.*w + unemp;
   vp = (1+r)*u_prime;
   v = log(c) + beta*Ev_future;
   l = e;
-  
   <span class="k">equations;</span>
     euler_residual;
     lambda*(k_next-kMin);
   <span class="k">end;</span>
-<span class="k">end;</span>
-
-post_simulate_iter;
-  SimuRslt.kbar(:,GDSGE_t+1) = mean(SimuRslt.k(:,GDSGE_t+1));
-  SimuRslt.lbar(:,GNDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
 <span class="k">end;</span>
 
 <span class="k">simulate;</span>
@@ -393,6 +371,10 @@ post_simulate_iter;
   <span class="k">var_simu</span> c l;
   k&#39; = k_next;
   kbar&#39; = k_next;    <span class="c">% A place holder</span>
+<span class="k">end;</span>
+post_simulate_iter;
+  SimuRslt.kbar(:,GDSGE_t+1) = mean(SimuRslt.k(:,GDSGE_t+1));
+  SimuRslt.lbar(:,GNDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
