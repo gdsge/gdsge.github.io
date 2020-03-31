@@ -26,16 +26,55 @@ productivity :math:`A(s)` and aggregate labor supply :math:`L(s)`. The aggregate
 production function is Cobb-Douglas:
 
 .. math::
-    F(s,K,L) = A(s)K^\alpha L^{1-\alpha}.
+    F(s,K,L) = A(s)K^\alpha L^{1-\alpha},
+where :math:`K` and :math:`L` are aggregate capital and labor.
 
 State :math:`i` determines which agent is employed. If :math:`i=0` then agent
 :math:`1` is unemployed and agent :math:`2` is employed, and vice versa for
 :math:`i=1`. This approximation of a fully idiosyncratic income process using a
-two agent income process is similar to the approximation in Heaton
-and Lucas (1996). The employed agent has :math:`2(1-\upsilon)L(s)` units of labor and the
+two agent income process is similar to the approximation in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_. The employed agent has :math:`2(1-\upsilon)L(s)` units of labor and the
 unemployed agent has :math:`2\upsilon L(s)` units of labor. :math:`\upsilon`
 stands for unemployment transfers by the government and is set at
 :math:`7\%`.
+
+Markets are incomplete as agents can only invest in capital, subject to short-sale constraint.
+So the sequential budget constraint of the agents is:
+
+.. math::
+    &c^h_t + k^h_{t+1} \leq (1-\delta+r_t)k^h_t + w_t l^h_t,\\
+    &0\leq k^h_{t+1},
+where :math:`r_t` and :math:`w_t` are market rental rate of capital and wage.
+
+Because the agents' problems are concave maximization problems, the first-order conditions are necessary and sufficient for optimality.
+In particular, let :math:`\lambda^h_t` denote the Lagrange multiplier on agent :math:`h` short-sale constraint, then the Euler's equation and complementary-slackness condition should hold in equilibrium:
+
+.. math::
+    &\frac{1}{c^h_t} = \beta\mathbb{E}\left[(1-\delta+r_{t+1})\frac{1}{c^h_{t+1}}\right]+\lambda^h_t,\\
+    &\lambda^h_t k^h_{t+1} = 0.
+
+In equilibrium, markets for capital and labor clear (and the good market clears by Walras' law):
+
+.. math::
+    &K_t = k^1_t + k^2_t,\\
+    &L_t = l^1_t + l^2_t.
+
+To solve for recursive equilibrium in this economy, we use aggregate capital :math:`K_t` and the wealth share of agent's 1, :math:`\omega_t = \frac{k^1_t}{K_t}`, as endogenous state variables.
+
+=================
+The gmod file 
+=================
+
+The model is solved with :download:`Cao2020KS.gmod <Cao2020KS.gmod>`
+
+.. literalinclude:: Cao2020KS.gmod
+    :linenos:
+    :language: GDSGE
+
+
+
+==================
+Results
+==================
 
 The parameters are taken from `Krusell and Smith (1998, Section 2) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_ 
 in particular, the discount rate and the production parameters are:

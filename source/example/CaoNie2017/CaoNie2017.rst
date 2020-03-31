@@ -1,6 +1,6 @@
-**************************************************************************************
-Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint
-**************************************************************************************
+*****************************************************************************
+Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint
+*****************************************************************************
 
 `Cao and Nie (2017) <https://www.aeaweb.org/articles?id=10.1257/mac.20150219>`_ studies a two-agent model with a borrowing constraint tied to the price of a fixed-supply asset.
 It is well known that the existence of collateral constraint amplifies aggregate productivity shocks when the shock pushes the constraint to bind.

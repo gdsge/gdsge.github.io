@@ -7,16 +7,16 @@ algorithm can be implemented with the toolbox, by transforming the optimization 
 
 Though the toolbox is not designed for solving the equilibrium of this type of model directly,
 since the decision problem is characterized by an equation system with state transition functions, it readily fits in the toolbox's framework.
-One just needs to update the equilibrium object manually. In Krusell and Smith (1998), the equilibrium objects are the aggregate state transition coefficients.
+One just needs to update the equilibrium object manually. In `Krusell and Smith (1998) <https://www.jstor.org/stable/10.1086/250034>`_, the equilibrium objects are the aggregate state transition coefficients.
 
-The model can be solved within around 100 lines of GDSGE code plus 100 lines of MATLAB code.
+The model can be solved within 100 lines of GDSGE code plus 100 lines of MATLAB code.
 We present the heterogeneous-beta version of the model below. 
 
 =============================
 The gmod file and MATLAB file
 =============================
 
-:download:`ks1998.gmod <ks1998.gmod>` (you also need the file for grid points from Krusell and Smith (1998) :download:`points.kgd <points.kgd>`)
+:download:`ks1998.gmod <ks1998.gmod>` (you also need the file for grid points from `Krusell and Smith (1998) <https://www.jstor.org/stable/10.1086/250034>`_ :download:`points.kgd <points.kgd>`)
 
 .. literalinclude:: ks1998.gmod
     :linenos:

@@ -89,13 +89,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-model">The Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-gmod-file">The gmod file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -145,7 +147,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../AdditionalExamples.html">Additional Examples:</a> &raquo;</li>
+          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
         
       <li>Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</li>
     
@@ -183,15 +185,281 @@ and <span class="math notranslate nohighlight">\(i\in\left\{ 0,1\right\}\)</span
 productivity <span class="math notranslate nohighlight">\(A(s)\)</span> and aggregate labor supply <span class="math notranslate nohighlight">\(L(s)\)</span>. The aggregate
 production function is Cobb-Douglas:</p>
 <div class="math notranslate nohighlight">
-\[F(s,K,L) = A(s)K^\alpha L^{1-\alpha}.\]</div>
+\[F(s,K,L) = A(s)K^\alpha L^{1-\alpha},\]</div>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(L\)</span> are aggregate capital and labor.</p>
 <p>State <span class="math notranslate nohighlight">\(i\)</span> determines which agent is employed. If <span class="math notranslate nohighlight">\(i=0\)</span> then agent
 <span class="math notranslate nohighlight">\(1\)</span> is unemployed and agent <span class="math notranslate nohighlight">\(2\)</span> is employed, and vice versa for
 <span class="math notranslate nohighlight">\(i=1\)</span>. This approximation of a fully idiosyncratic income process using a
-two agent income process is similar to the approximation in Heaton
-and Lucas (1996). The employed agent has <span class="math notranslate nohighlight">\(2(1-\upsilon)L(s)\)</span> units of labor and the
+two agent income process is similar to the approximation in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a>. The employed agent has <span class="math notranslate nohighlight">\(2(1-\upsilon)L(s)\)</span> units of labor and the
 unemployed agent has <span class="math notranslate nohighlight">\(2\upsilon L(s)\)</span> units of labor. <span class="math notranslate nohighlight">\(\upsilon\)</span>
 stands for unemployment transfers by the government and is set at
 <span class="math notranslate nohighlight">\(7\%\)</span>.</p>
+<p>Markets are incomplete as agents can only invest in capital, subject to short-sale constraint.
+So the sequential budget constraint of the agents is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;c^h_t + k^h_{t+1} \leq (1-\delta+r_t)k^h_t + w_t l^h_t,\\
+&amp;0\leq k^h_{t+1},\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r_t\)</span> and <span class="math notranslate nohighlight">\(w_t\)</span> are market rental rate of capital and wage.</p>
+<p>Because the agents’ problems are concave maximization problems, the first-order conditions are necessary and sufficient for optimality.
+In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</span> denote the Lagrange multiplier on agent <span class="math notranslate nohighlight">\(h\)</span> short-sale constraint, then the Euler’s equation and complementary-slackness condition should hold in equilibrium:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\frac{1}{c^h_t} = \beta\mathbb{E}\left[(1-\delta+r_{t+1})\frac{1}{c^h_{t+1}}\right]+\lambda^h_t,\\
+&amp;\lambda^h_t k^h_{t+1} = 0.\end{split}\]</div>
+<p>In equilibrium, markets for capital and labor clear (and the good market clears by Walras’ law):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;K_t = k^1_t + k^2_t,\\
+&amp;L_t = l^1_t + l^2_t.\end{split}\]</div>
+<p>To solve for recursive equilibrium in this economy, we use aggregate capital <span class="math notranslate nohighlight">\(K_t\)</span> and the wealth share of agent’s 1, <span class="math notranslate nohighlight">\(\omega_t = \frac{k^1_t}{K_t}\)</span>, as endogenous state variables.</p>
+</div>
+<div class="section" id="the-gmod-file">
+<h2>The gmod file<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
+<p>The model is solved with <a class="reference download internal" download="" href="../../_downloads/62081483c0401e6a20dc1712899e03f2/Cao2020KS.gmod"><code class="xref download docutils literal notranslate"><span class="pre">Cao2020KS.gmod</span></code></a></p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+<span class="k">parameters</span> beta delta alpha sigma shock_trans2;
+beta=0.99; <span class="c">% discount factor</span>
+delta=0.025;
+alpha=0.36;
+sigma=1.0;
+InterpOrder = 4;
+NumThreads = feature(&#39;numCores&#39;);
+PrintFreq = 10;
+SaveFreq = 50;
+
+<span class="c">% States</span>
+<span class="k">var_state</span> K X;
+XPts = 21;
+XMin=0.0;
+XMax=1.0;
+X=linspace(XMin,XMax,XPts);
+
+KPts = 21;
+KMin=5.0;
+KMax=50.0;
+K=exp(linspace(log(KMin), log(KMax), KPts));
+
+<span class="c">% Shocks</span>
+<span class="k">shock_num</span> = 4;
+
+<span class="k">var_shock</span> z e1 e2 L;
+% Set the length to be <span class="k">shock_num</span>
+z=[0.99 1.01 0.99 1.01];
+L=[0.2944 0.3140 0.2944 0.3140];
+e1=[0.07*2*L(1) 0.07*2*L(2) 0.93*2*L(1) 0.93*2*L(2)];
+e2=[0.93*2*L(1) 0.93*2*L(2) 0.07*2*L(1) 0.07*2*L(2)];
+
+<span class="c">% Any intermediate steps can be done</span>
+EZTrans =  [
+    0.5250, 0.3500, 0.0312, 0.0938;
+    0.0389, 0.8361, 0.0021, 0.1229;
+    0.0938, 0.0312, 0.2917, 0.5833;
+    0.0091, 0.1159, 0.0243, 0.8507
+    ];
+<span class="c">% Convert to Pr((z,e)-&gt;(z&#39;,e&#39;))</span>
+EZTrans = reshape(EZTrans,[2 2 2 2]);
+ZETrans = permute(EZTrans,[2 1 4 3]);
+ZETrans = reshape(ZETrans,[4 4]);
+<span class="k">shock_trans</span> = ZETrans;
+
+<span class="c">% Tensor variables</span>
+var_tensor r w budget1 budget2;
+<span class="c">% Notice use dot operator</span>
+r = alpha*z.*(K./L).^(alpha-1);
+w = (1-alpha)*z.*(K./L).^alpha;
+budget1 = (1-delta+r).*(2*K).*(1-X) + w.*e1;
+budget2 = (1-delta+r).*(2*K).*X + w.*e2;
+
+% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="k">var_policy</span> c1 c2 Kp Xp lambda1 lambda2;
+<span class="c">% Set bound of endogenous variable</span>
+<span class="c">% note var_tensor can be used (budget1 budget2)</span>
+<span class="c">% note scalar defined before can be used (KMax)</span>
+<span class="k">inbound</span> c1 0 budget1;
+<span class="k">inbound</span> c2 0 budget2;
+<span class="k">inbound</span> Kp 1e-12 10*KMax;
+<span class="k">inbound</span> Xp 0 1;
+<span class="k">inbound</span> lambda1 0 1;
+<span class="k">inbound</span> lambda2 0 1;
+
+<span class="k">initial</span> c1 budget1;
+<span class="k">initial</span> c2 budget2;
+<span class="k">initial</span> Kp (KMin+KMax)/2;
+<span class="k">initial</span> Xp 0.5;
+
+<span class="k">var_aux</span> kp1 kp2;
+
+<span class="k">var_interp</span> c1Future c2Future;
+<span class="k">initial</span> c1Future budget1
+<span class="k">initial</span> c2Future budget2
+c1Future = c1;
+c2Future = c2;
+
+<span class="k">model;</span>
+  <span class="c">% Budget constraints</span>
+  kp1 = budget1 - c1;
+  kp2 = budget2 - c2;
+  
+  <span class="c">% Flow marginal utility</span>
+  upC1 = c1^-sigma;
+  upC2 = c2^-sigma;
+  
+  <span class="c">% rhs of the Euler equation</span>
+  rhs1 = lambda1;
+  rhs2 = lambda2;
+  
+  <span class="c">% Variable with prime is future variable</span>
+  r&#39; = alpha*z&#39;*(Kp/L&#39;)^(alpha-1);
+  <span class="c">% Vector interpolation</span>
+  [c1Next&#39;,c2Next&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(Kp,Xp);
+  <span class="c">% Note how to use the NDSGE_EXPECT operator</span>
+  rhs1 = rhs1 + GNDSGE_EXPECT{ beta*(1-delta+r&#39;)*c1Next&#39;^(-sigma)/upC1} ;
+  rhs2 = rhs2 + GNDSGE_EXPECT{ beta*(1-delta+r&#39;)*c2Next&#39;^(-sigma)/upC2} ;
+  
+  <span class="k">equations;</span>
+    <span class="c">% Evolution of Kp</span>
+    1 - (kp1+kp2)/(Kp*2);
+    <span class="c">% Evolution of Xp</span>
+    Xp - kp2/(Kp*2);
+    1 - rhs1;
+    1 - rhs2;
+    kp1 / (2*Kp) * lambda1;
+    kp2 / (2*Kp) * lambda2;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+  <span class="k">num_periods</span> = 10000;
+  <span class="k">initial</span> K 10
+  <span class="k">initial</span> X 0.5
+  <span class="k">initial</span> shock 1
+  <span class="k">var_simu</span> kp1 kp2;
+  K&#39; = Kp;
+  X&#39; = Xp;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>The parameters are taken from <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998, Section 2)</a>
 in particular, the discount rate and the production parameters are:</p>
 <div class="math notranslate nohighlight">

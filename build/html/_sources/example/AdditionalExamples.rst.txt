@@ -1,6 +1,6 @@
-********************
-Additional Examples:
-********************
+*******************
+Additional Examples
+*******************
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
