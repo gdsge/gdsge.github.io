@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint" href="../CaoNie2017/CaoNie2017.html" />
+    <link rel="next" title="Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint" href="../CaoNie2017/CaoNie2017.html" />
     <link rel="prev" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" href="../KS1998/KS1998.html" /> 
 </head>
 
@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mendoza (2010): Sudden Stops with Asset Price Deflation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-model">The Model</a></li>
@@ -99,7 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Cao2020/Cao2020.html">Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)</a></li>
 </ul>
@@ -149,7 +149,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../AdditionalExamples.html">Additional Examples:</a> &raquo;</li>
+          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
         
       <li>Mendoza (2010): Sudden Stops with Asset Price Deflation</li>
     
@@ -272,9 +272,11 @@ Therefore, if we transform the state space to consumption and capital, then the 
 &amp; \lambda'= u'(\tilde{c}'(z'))\end{split}\]</div>
 <p>The last equation <span class="math notranslate nohighlight">\((1+\tau)\tilde{c}'(z')=B'(z',\tilde{c}'(z'),k')  +  b'\)</span> specifies the consistency equation for <span class="math notranslate nohighlight">\(\tilde{c}_{t+1}\)</span>, which is simply the period-<span class="math notranslate nohighlight">\((t+1)\)</span> budget constraint:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp; (1+\tau)\underbrace{[c_{t+1}-N(L_{t+1})]}_{\tilde{c}_{t+1}}\\
-&amp;=\underbrace{A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right)-q_{t+1}^{b} b_{t+2}-i_{t+1}-(1+\tau)N(L_{t+1})}
-_{B_{t+1}}+b_{t}.\end{split}\]</div>
+\[(1+\tau)\underbrace{[c_{t+1}-N(L_{t+1})]}_{\tilde{c}_{t+1}}=B_{t+1} + b_t.\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B_{t+1}&amp;=&amp;A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right)\\
+&amp;&amp;A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right).\end{split}\]</div>
 <p>Notice, how the the budget constraint is taken off by <span class="math notranslate nohighlight">\((1+\tau)N(L_{t+1})\)</span> so that this becomes a consistency equation for <span class="math notranslate nohighlight">\(\tilde{c}_{t+1}\)</span>.</p>
 <p>The recursive system is solved by taking <span class="math notranslate nohighlight">\(d'(z,\tilde{c},k),q'(z,\tilde{c},k),B'(z,\tilde{c},k)\)</span> as known at each time iteration step, and updating
 these objects following their definitions.</p>
@@ -1045,7 +1047,7 @@ The current model can also solved with adaptive grids by simply specifying one o
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../CaoNie2017/CaoNie2017.html" class="btn btn-neutral float-right" title="Cao and Nie (2017): Amplification and Asymmetry with and without collateral constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../CaoNie2017/CaoNie2017.html" class="btn btn-neutral float-right" title="Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../KS1998/KS1998.html" class="btn btn-neutral float-left" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

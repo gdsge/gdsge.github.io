@@ -152,10 +152,12 @@ where :math:`\lambda,w,q,\lambda'` are intermediate variables and can be evaluat
 The last equation :math:`(1+\tau)\tilde{c}'(z')=B'(z',\tilde{c}'(z'),k')  +  b'` specifies the consistency equation for :math:`\tilde{c}_{t+1}`, which is simply the period-:math:`(t+1)` budget constraint:
 
 .. math::
+    (1+\tau)\underbrace{[c_{t+1}-N(L_{t+1})]}_{\tilde{c}_{t+1}}=B_{t+1} + b_t.
+where
 
-    & (1+\tau)\underbrace{[c_{t+1}-N(L_{t+1})]}_{\tilde{c}_{t+1}}\\
-    &=\underbrace{A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right)-q_{t+1}^{b} b_{t+2}-i_{t+1}-(1+\tau)N(L_{t+1})}
-    _{B_{t+1}}+b_{t}.
+.. math::
+    B_{t+1}&=&A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right)\\
+    &&A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right).
 
 Notice, how the the budget constraint is taken off by :math:`(1+\tau)N(L_{t+1})` so that this becomes a consistency equation for :math:`\tilde{c}_{t+1}`.
 
