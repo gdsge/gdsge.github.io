@@ -1,0 +1,214 @@
+******************************************************************
+Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)
+******************************************************************
+
+Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types. 
+However, as noted in `Cao (2020) <https://www.sciencedirect.com/science/article/pii/S0022053119301255>`_, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
+In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
+In this example, we solve and compare the aggregate outcomes in this special case of the model in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_ to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.
+
+.. _Cao2020:
+=========
+The Model
+=========
+
+There are two representative agents :math:`h\in\left\{ 1,2\right\}` in
+the economy of mass :math:`\frac{1}{2}` each. The agents share the same
+inter-temporal expected utility
+
+.. math::
+    \mathbb{E}_{0}\left[\sum_{t=0}^{\infty}\beta^{t}\log c_{t}^{h}\right].
+
+In each period, the exogenous aggregate state of the economy is a
+pair of states :math:`\left(s,i\right)` where :math:`s\in\left\{ b,g\right\}`
+and :math:`i\in\left\{ 0,1\right\}`. State :math:`s` determines the aggregate
+productivity :math:`A(s)` and aggregate labor supply :math:`L(s)`. The aggregate
+production function is Cobb-Douglas:
+
+.. math::
+    F(s,K,L) = A(s)K^\alpha L^{1-\alpha},
+where :math:`K` and :math:`L` are aggregate capital and labor.
+
+State :math:`i` determines which agent is employed. If :math:`i=0` then agent
+:math:`1` is unemployed and agent :math:`2` is employed, and vice versa for
+:math:`i=1`. This approximation of a fully idiosyncratic income process using a
+two agent income process is similar to the approximation in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_. The employed agent has :math:`2(1-\upsilon)L(s)` units of labor and the
+unemployed agent has :math:`2\upsilon L(s)` units of labor. :math:`\upsilon`
+stands for unemployment transfers by the government and is set at
+:math:`7\%`.
+
+Markets are incomplete as agents can only invest in capital, subject to short-sale constraint.
+So the sequential budget constraint of the agents is:
+
+.. math::
+    &c^h_t + k^h_{t+1} \leq (1-\delta+r_t)k^h_t + w_t l^h_t,\\
+    &0\leq k^h_{t+1},
+where :math:`r_t` and :math:`w_t` are market rental rate of capital and wage.
+
+Because the agents' problems are concave maximization problems, the first-order conditions are necessary and sufficient for optimality.
+In particular, let :math:`\lambda^h_t` denote the Lagrange multiplier on agent :math:`h` short-sale constraint, then the Euler's equation and complementary-slackness condition should hold in equilibrium:
+
+.. math::
+    &\frac{1}{c^h_t} = \beta\mathbb{E}\left[(1-\delta+r_{t+1})\frac{1}{c^h_{t+1}}\right]+\lambda^h_t,\\
+    &\lambda^h_t k^h_{t+1} = 0.
+
+In equilibrium, markets for capital and labor clear (and the good market clears by Walras' law):
+
+.. math::
+    &K_t = k^1_t + k^2_t,\\
+    &L_t = l^1_t + l^2_t.
+
+To solve for recursive equilibrium in this economy, we use aggregate capital :math:`K_t` and the wealth share of agent's 1, :math:`\omega_t = \frac{k^1_t}{K_t}`, as endogenous state variables.
+
+=================
+The gmod file 
+=================
+
+The model is solved with :download:`Cao2020KS.gmod <Cao2020KS.gmod>`
+
+.. literalinclude:: Cao2020KS.gmod
+    :linenos:
+    :language: GDSGE
+
+
+
+==================
+Results
+==================
+
+The parameters are taken from `Krusell and Smith (1998, Section 2) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_ 
+in particular, the discount rate and the production parameters are:
+
+.. math::
+    \beta=0.99\ \ \ \delta=0.025\ \ \ \alpha=0.36.
+
+The aggregate productivity and aggregate labor supply are:
+
+.. math::
+    \begin{bmatrix}A(b) & A(g)\end{bmatrix}=\begin{bmatrix}0.99 & 1.01\end{bmatrix}\ \ \ \text{and}\ \ \ \begin{bmatrix}L(b) & L(g)\end{bmatrix}=\begin{bmatrix}0.2944 & 0.3140\end{bmatrix},
+
+with the transition matrix :math:`\pi=\left[\pi_{ss'ii'}\right]`, directly
+taken from Section 2 in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_:
+
+.. math::
+    \pi=\begin{bmatrix}0.5250 & 0.3500 & 0.0312 & 0.0938\\0.0389 & 0.8361 & 0.0021 & 0.1229\\0.0938 & 0.0312 & 0.2917 & 0.5833\\0.0091 & 0.1159 & 0.0243 & 0.8507\end{bmatrix}
+
+In this transition matrix, we use the rows and columns :math:`\left\{ 1,2,3,4\right\}` correspond to states :math:`\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}`.
+
+The following figure shows next period aggregate capital,
+:math:`K_{t+1}` as a function of current period aggregate capital, :math:`K_t`,
+in current state :math:`\left(b,0\right)`, for two different values of :math:`\omega`: :math:`\omega=0` and :math:`\omega=1`. The figure shows that future aggregate
+capital depends on not only current aggregate capital but also on
+current wealth share :math:`\omega` of agent :math:`1`.
+
+.. image:: figures/KpPolicy.png
+    :scale: 40 %
+
+Given the global solution for the recursive equilibrium of the model, we can
+also simulate forward and carry out a regression exercise as in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
+From :math:`10,000`-period simulation (with the first :math:`1000` periods dropped),
+we obtain the following regression results:
+
+.. math::
+    \begin{align*}
+    \log K'=0.0438+0.9832\log K; &  & R^{2}=0.999223
+    \end{align*}
+in good times and
+
+.. math::
+    \begin{align*}
+    \log K'=0.0167+0.9923\log K; &  & R^{2}=0.997372
+    \end{align*}
+in bad times. These regression results tell us that, in the simulated
+paths of the economy, current aggregate capital seems to be a sufficient
+state variable to forecast future aggregate capital, which `Krusell and Smith <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_
+call an ``approximate aggregation'' property. However, the figure tells us that this property does not hold globally.
+
+As a comparison, we also solve the `Krusell and Smith <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_'s
+model, with the exact parameters above, but in which idiosyncratic
+shocks are truly idiosyncratic. We obtain the following regression
+results:
+
+.. math::
+    \begin{align*}
+    \log K'=0.0906+0.9631\log K; &  & R^{2}=0.999999
+    \end{align*}
+in good times
+
+.. math::
+    \begin{align*}
+    \log K'=0.0807+0.9651\log K; &  & R^{2}=0.999999
+    \end{align*}
+and in bad times.
+
+The approximate evolution of aggregate capital is not too different
+in the two-agent economy compared to the `Krusell and Smith <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_'s
+economy. But we observe that the auto-correlation coefficients for
+log aggregate capital are lower than those in the two-agent economy.
+The :math:`R^{2}` are also slightly higher than in the two-agent economy.
+
+We can also solve the finite-agent version of the model with stochastic discount factors in `Krusell and Smith (1998, Section 3) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
+In their model, agents face idiosyncratic shocks
+that determine their discount factor. The discount factor can be low
+(:math:`\underline{\beta}`) or high (:math:`\bar{\beta}`), where:
+
+.. math::
+    \underline{\beta}=0.9858\ \ \ \text{and}\ \ \ \bar{\beta}=0.9930,
+
+The transition from one to the other is determined such that
+the average duration for individual :math:`\beta` is :math:`50` years, which
+corresponds to agents' lifetime. 
+
+In the two-agent version of the model, we assume that each agent's discount factor follows this stochastic process. But the two agents' discount factors are perfectly negatively correlated.
+To simplify the exercise, we assume that the two agents have the same labor productivity, which varies
+with the aggregate state :math:`s`. The evolution of the aggregate
+state is the same as in the previous example. The other aggregate
+state :math:`i` determines the agents' discount rate (:math:`i=0` agent 1
+has low discount factor and agent 2 has high discount factor and vice
+versa for :math:`i=1`). The evolution of aggregate state :math:`i` is independent
+of the evolution of aggregate state :math:`s`.
+
+The following figure shows next period aggregate
+capital, :math:`K_{t=1}` as a function of current period aggregate capital,
+:math:`K`, in state :math:`\left(b,0\right)`, for two different values of :math:`\omega`:
+:math:`\omega=0` and :math:`\omega=1`. The figure shows that future aggregate
+capital depends mostly on current aggregate capital and does not vary
+visibly with the current wealth share :math:`\omega` of agent 1.
+
+.. image:: figures/KpPolicyBetas.png
+    :scale: 40 %
+
+
+As in the previous example, from :math:`10,000`-period simulation (with
+the first :math:`1000` periods dropped), we obtain the following regression
+results:
+
+.. math::
+    \begin{align*}
+    \log K'=0.0916+0.9633\log K; &  & R^{2}=0.999999
+    \end{align*}
+in good times
+
+.. math::
+    \begin{align*}
+    \log K'=0.0789+0.9662\log K; &  & R^{2}=0.999999
+    \end{align*}
+and in bad times. Because future aggregate capital depends mostly
+on current aggregate capital, the fitness of the linear regressions
+are very high.
+
+As in the previous example, these regression results are comparable
+to the ones in `Krusell and Smith <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_'s model in which the
+discount rates are truly idiosyncratic:
+
+.. math::
+    \begin{align*}
+    \log K'=0.0871+0.9662\log K; &  & R^{2}=0.999981
+    \end{align*}
+in good times and
+
+.. math::
+    \begin{align*}
+    \log K'=0.0836+0.9670\log K; &  & R^{2}=0.999976
+    \end{align*}
+in bad times.

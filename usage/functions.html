@@ -36,7 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Getting Started - A Simple RBC Model" href="../example/rbc/rbc.html" /> 
+    <link rel="next" title="Additional Examples:" href="../example/AdditionalExamples.html" />
+    <link rel="prev" title="Barro et al. (2017): Safe Assets with Rare Disasters" href="../example/safe_assets/safe_assets.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,6 +84,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../example/rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example/rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example/HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example/Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example/Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example/safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbox API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#matlab-interface">Matlab Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variable-declaration">Variable declaration</a></li>
@@ -99,6 +105,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../example/AdditionalExamples.html">Additional Examples:</a></li>
 </ul>
 
             
@@ -150,8 +157,6 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/usage/functions.rst.txt" rel="nofollow"> View page source</a>
-          
         
       </li>
     
@@ -261,11 +266,11 @@ or use the prime (‘) operator.</p>
 </div>
 <p>If the lower and upper bounds of a <cite>var_policy</cite> cannot be determined ex-ante, specify tight bounds and
 use the adaptive bound option as</p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> var1 var1_lb var1_ub adaptive(2.0)
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>inbound var1 var1_lb var1_ub <span class="k">adaptive</span>(2.0)
 </pre></div>
 </div>
 <p>This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration,
-if <cite>UseAdpativeBound</cite> is set as one. If option <cite>UseAdpativeBoundInSol</cite> is set to one, after a failed attempt in trying to search
+if <cite>UseAdaptiveBound</cite> is set as one. If option <cite>UseAdaptiveBoundInSol</cite> is set to one, after a failed attempt in trying to search
 solutions within the bounds and the equation solver returns an immature step that hits the lower or upper bound,
 the bound will be expanded.</p>
 </dd></dl>
@@ -331,7 +336,7 @@ var2&#39; = some_aux_policy&#39;
 </pre></div>
 </div>
 <p>The simulate block should declare variables to be recorded following keyword <cite>var_simu</cite>.
-A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>var_aux</cite> if SIMU_RESOLVE=1, or must be contained in <cite>var_outpu</cite> if SIMU_INTERP=1.</p>
+A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>var_aux</cite> if SIMU_RESOLVE=1, or must be contained in <cite>var_output</cite> if SIMU_INTERP=1.</p>
 <p>The simulate block can overwrite options num_samples (default 1) and num_periods (default 1000).</p>
 </dd></dl>
 
@@ -340,7 +345,7 @@ A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>va
 <h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt>
-<code class="sig-name descname">GDSGE_INVERP_VEC'(var_state1, var_state2, ...)</code></dt>
+<code class="sig-name descname">GDSGE_INTERP_VEC'(var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
 returned in the order defined in <em>var_interp</em>. For example,</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
@@ -364,7 +369,7 @@ returned in the order defined in <em>var_interp</em>. For example,</p>
 
 <dl class="function">
 <dt>
-<code class="sig-name descname">GDSGE_INVERP_VEC'[index](var_state1, var_state2, ...)</code></dt>
+<code class="sig-name descname">GDSGE_INTERP_VEC'[index](var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
 in the order defined in <em>index</em>.
 This can be used to skip evaluations of certain var_interp. For example, the following skips the evaluation of y2.</p>
@@ -392,7 +397,7 @@ This can be used to skip evaluations of certain var_interp. For example, the fol
 
 <dl class="function">
 <dt>
-<code class="sig-name descname">GDSGE_INVERP_VEC[index](shock_idx, var_state1, var_state2, ...)</code></dt>
+<code class="sig-name descname">GDSGE_INTERP_VEC[index](shock_idx, var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for exogenous state at <em>shock_idx</em>,
 in the order defined in <em>var_interp</em>. For example,</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
@@ -498,7 +503,7 @@ Default: 1e-6</p>
 <dt id="option-UseAdaptiveBound">
 <code class="sig-name descname">UseAdaptiveBound</code><a class="headerlink" href="#option-UseAdaptiveBound" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use adaptive bound specified as for example</p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">inbound</span> x 0.0 1.0 adaptive(2)
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>inbound x 0.0 1.0 <span class="k">adaptive</span>(2)
 </pre></div>
 </div>
 <p>which expand the lower and upper bound by a factor of 2 for each state after each iteration</p>
@@ -720,8 +725,10 @@ Default: the number of cores (via Matlab function <code class="docutils literal 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../example/AdditionalExamples.html" class="btn btn-neutral float-right" title="Additional Examples:" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="../example/rbc/rbc.html" class="btn btn-neutral float-left" title="Getting Started - A Simple RBC Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="../example/safe_assets/safe_assets.html" class="btn btn-neutral float-left" title="Barro et al. (2017): Safe Assets with Rare Disasters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
