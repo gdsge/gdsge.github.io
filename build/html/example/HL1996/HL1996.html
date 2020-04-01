@@ -96,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
 </ul>
 
             
@@ -182,22 +182,21 @@ denote share price and bond price at time <span class="math notranslate nohighli
 <div class="math notranslate nohighlight">
 \[\begin{split}s_{t+1}^{i} &amp; \geq0\\
 b_{t+1}^{i} &amp; \geq K^b_t,\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(Y_t\)</span> denotes the aggregate income. <span class="math notranslate nohighlight">\(d_t = \delta_t Y^a_t\)</span> is total dividend (capital income) and
-<span class="math notranslate nohighlight">\(Y^i_t = \eta^i_t Y^a_t\)</span> is labor income of agent <span class="math notranslate nohighlight">\(i\)</span>.
-Aggregate income grows at a stochastic rate <span class="math notranslate nohighlight">\(\gamma_t = \frac{Y^a_t}{Y^a_{t-1}}\)</span>. <span class="math notranslate nohighlight">\(z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}\)</span>
+<p>where <span class="math notranslate nohighlight">\(Y^a_t\)</span> denotes the aggregate income. <span class="math notranslate nohighlight">\(d_t = \delta_t Y^a_t\)</span> is total dividend (capital income) and
+<span class="math notranslate nohighlight">\(Y^i_t = \eta^i_t Y^a_t\)</span> is labor income of agent <span class="math notranslate nohighlight">\(i\)</span>. Aggregate income grows at a stochastic rate <span class="math notranslate nohighlight">\(\gamma^a_t = \frac{Y^a_t}{Y^a_{t-1}}\)</span>. <span class="math notranslate nohighlight">\(z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}\)</span>
 follows a first-order Markov process estimated using U.S. data. The borrowing limit is set to be a constant fraction of per capita income, i.e.,
-<span class="math notranslate nohighlight">\(K^b_t = \bar{K}^b Y_t\)</span>.</p>
+<span class="math notranslate nohighlight">\(K^b_t = \bar{K}^b Y^a_t\)</span>.</p>
 <p>In equilibrium, prices are determined such that markets clear in each
 shock history:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp; s_{t}^{1}+s_{t}^{2}=1,\\
 &amp; b_{t}^{1}+b_{t}^{2}=0.\end{split}\]</div>
-<p>We use the normalized financial wealth share</p>
+<p>We use the financial wealth share</p>
 <div class="math notranslate nohighlight">
 \[\omega_{t}^{i}=\frac{(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}}{p_{t}^{s}+d_{t}}\]</div>
 <p>as an endogenous state variable. In equilibrium, the market clearing conditions imply that <span class="math notranslate nohighlight">\(\omega^1_t + \omega^2_t = 1\)</span>.</p>
 <p>For any variable <span class="math notranslate nohighlight">\(x_t\)</span>,
-let <span class="math notranslate nohighlight">\(\hat{x}_t\)</span> denote the normalized variable: <span class="math notranslate nohighlight">\(\hat{x}_t=\frac{x_t}{Y_t}\)</span>
+let <span class="math notranslate nohighlight">\(\hat{x}_t\)</span> denote the normalized variable: <span class="math notranslate nohighlight">\(\hat{x}_t=\frac{x_t}{Y^a_t}\)</span>
 (except <span class="math notranslate nohighlight">\(b^i_t\)</span> for which <span class="math notranslate nohighlight">\(\hat{b}^i_t = \frac{b^i_t}{Y^a_{t-1}}\)</span>). Using this normalization, agent i’s budget constraint can be rewritten as</p>
 <div class="math notranslate nohighlight">
 \[\hat{c}_{t}^{i}+\hat{p}_{t}^{s}s_{t+1}^{i}+p_{t}^{b}\hat{b}_{t+1}^{i}\leq\left(\hat{p}_{t}^{s}+\hat{d}_{t}\right)\omega_{t}^{i}+\hat{Y}_{t}^{i}.\]</div>
@@ -427,7 +426,7 @@ c2_future = c2;
 </pre></div>
 </td></tr></table></div>
 <p>which says that the induced <span class="math notranslate nohighlight">\(\omega'\)</span> by current decisions of stock and bond holdings should be consistent with the
-unknowns for each of the future exogenous states state by state. Notice the unknowns <span class="math notranslate nohighlight">\(omega'\)</span> are input into
+unknowns for each of the future exogenous states state by state. Notice the unknowns <span class="math notranslate nohighlight">\(\omega\)</span> are input into
 state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);
 </pre></div>
@@ -459,7 +458,7 @@ the unknown to respect a box constraint like</p>
 <p>where <em>Kb</em> is the parameter governing the  borrowing constraint in fraction of endowment (<span class="math notranslate nohighlight">\(b^i \geq -Kb * Y^a\)</span>), and <em>nb1p</em> is the unknown defined as
 <span class="math notranslate nohighlight">\(nb^i=\hat{b}^i+Kb\)</span>, which ensures to <span class="math notranslate nohighlight">\(nb^i\)</span> to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily  a boxed constraint. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to the Kiyotaki-Moore model, where
+not necessarily  a boxed constraint. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to a <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki-Moore</a> type model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.</p>
 <p>Some utility functions of the toolbox are used in this example.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);

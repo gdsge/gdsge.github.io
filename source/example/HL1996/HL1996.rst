@@ -16,7 +16,7 @@ The Model
 This is an incomplete-markets model with two representative agents :math:`i\in\mathcal{I}=\{1,2\}` who trade in equity shares and bonds. 
 The aggregate state :math:`z\in\boldsymbol{Z}`, which consists of capital income share, agents' income share, and aggregate endowment growth, 
 follows a first-order Markov process. :math:`p_{t}^{s}(z^t)` and :math:`p_{t}^{b}(z^t)`
-denote share price and bond price at time :math:`t` and in shock history :math:`z^t=\{z_0,z_1,\dots,z_t\}`. To simplify the notations, we omit the explicit dependence on shock history. 
+denote share price and bond price at time :math:`t` and in shock history :math:`z^t=\{z_0,z_1,\dots,z_t\}`. To simplify the notations, we omit the explicit dependence on shock history.
 
 Agent :math:`i` takes the share and bond prices as given and maximizes her inter-temporal expected utility
 
@@ -34,11 +34,10 @@ and
     s_{t+1}^{i} & \geq0\\
     b_{t+1}^{i} & \geq K^b_t,
 
-where :math:`Y_t` denotes the aggregate income. :math:`d_t = \delta_t Y^a_t` is total dividend (capital income) and 
-:math:`Y^i_t = \eta^i_t Y^a_t` is labor income of agent :math:`i`. 
-Aggregate income grows at a stochastic rate :math:`\gamma_t = \frac{Y^a_t}{Y^a_{t-1}}`. :math:`z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}`
+where :math:`Y^a_t` denotes the aggregate income. :math:`d_t = \delta_t Y^a_t` is total dividend (capital income) and 
+:math:`Y^i_t = \eta^i_t Y^a_t` is labor income of agent :math:`i`. Aggregate income grows at a stochastic rate :math:`\gamma^a_t = \frac{Y^a_t}{Y^a_{t-1}}`. :math:`z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}`
 follows a first-order Markov process estimated using U.S. data. The borrowing limit is set to be a constant fraction of per capita income, i.e., 
-:math:`K^b_t = \bar{K}^b Y_t`.
+:math:`K^b_t = \bar{K}^b Y^a_t`.
 
 In equilibrium, prices are determined such that markets clear in each
 shock history:
@@ -47,7 +46,7 @@ shock history:
     & s_{t}^{1}+s_{t}^{2}=1,\\
     & b_{t}^{1}+b_{t}^{2}=0.
 
-We use the normalized financial wealth share
+We use the financial wealth share
 
 .. math::
     \omega_{t}^{i}=\frac{(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}}{p_{t}^{s}+d_{t}}
@@ -55,7 +54,7 @@ We use the normalized financial wealth share
 as an endogenous state variable. In equilibrium, the market clearing conditions imply that :math:`\omega^1_t + \omega^2_t = 1`.
 
 For any variable :math:`x_t`, 
-let :math:`\hat{x}_t` denote the normalized variable: :math:`\hat{x}_t=\frac{x_t}{Y_t}` 
+let :math:`\hat{x}_t` denote the normalized variable: :math:`\hat{x}_t=\frac{x_t}{Y^a_t}` 
 (except :math:`b^i_t` for which :math:`\hat{b}^i_t = \frac{b^i_t}{Y^a_{t-1}}`). Using this normalization, agent i's budget constraint can be rewritten as
 
 .. math::
@@ -108,7 +107,7 @@ As can be seen, the implicit law of motion is captured by the consistency equati
     :language: GDSGE
 
 which says that the induced :math:`\omega'` by current decisions of stock and bond holdings should be consistent with the
-unknowns for each of the future exogenous states state by state. Notice the unknowns :math:`omega'` are input into 
+unknowns for each of the future exogenous states state by state. Notice the unknowns :math:`\omega` are input into 
 state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in 
 
 .. literalinclude:: HL1996.gmod
@@ -155,7 +154,7 @@ the unknown to respect a box constraint like
 where *Kb* is the parameter governing the  borrowing constraint in fraction of endowment (:math:`b^i \geq -Kb * Y^a`), and *nb1p* is the unknown defined as
 :math:`nb^i=\hat{b}^i+Kb`, which ensures to :math:`nb^i` to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily  a boxed constraint. See example :ref:`Cao and Nie (2017) <CaoNie2017>`, which provides a global solution to the Kiyotaki-Moore model, where
+not necessarily  a boxed constraint. See example :ref:`Cao and Nie (2017) <CaoNie2017>`, which provides a global solution to a `Kiyotaki-Moore <https://www.journals.uchicago.edu/doi/abs/10.1086/262072>`_ type model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.
 
 Some utility functions of the toolbox are used in this example.
