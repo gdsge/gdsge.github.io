@@ -6,7 +6,7 @@
 Welcome to GDSGE's documentation! 
 
 GDSGE is a toolbox that solves nonlinear Dynamic Stochastic General Equilibrium (DSGE) models with a global method based on policy iterations
-introduced in paper :download:`Cao, Luo, and Nie (2020) <paper/GDSGE_paper.pdf>`.
+introduced in paper :download:`Cao, Luo, and Nie (2020) <paper/GDSGEv15.pdf>`.
 It allows users to define economic models in a compact and intuitive script.
 It parses the script, implements the actual computations with high performance in C++, and provides a convenient MATLAB interface to researchers.
 
