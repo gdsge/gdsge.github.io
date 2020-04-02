@@ -55,7 +55,9 @@ A recursive competitive equilibrium are functions: :math:`c(z,K), K'(z,K), \mu(z
     &\\
     &c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.
 
-This recursive system can be solved using a time iteration procedure similar to the one for the standard RCB model:
+This recursive system can be solved using a time iteration procedure similar to the one for the standard :ref:`RBC model <Getting Started - A Simple RBC Model>`.
+In the period-:math:`t` time step, we take functions :math:`c_{t+1}(z,K),\mu_{t+1}(z,K)` as known, 
+and solve for :math:`c_t,\mu_t,K'_t` from the system of three equations:
 
 .. math::
     &c_t(z,K)^{-\sigma}-\mu_t(z,K)\\
@@ -65,7 +67,7 @@ This recursive system can be solved using a time iteration procedure similar to 
     &\\
     &c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.
 
-taking functions :math:`c_{t+1}(z,K),\mu_{t+1}(z,K)` as known in the period-:math:`t` time step.
+We keep iterating until convergence.
 
 ===============
 The gmod File

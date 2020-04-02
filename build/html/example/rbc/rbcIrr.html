@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
 </ul>
 
             
@@ -191,7 +191,9 @@
 &amp;\mu(z,K)(K'(z,K)-(1-\delta)K-\phi I_{ss})=0\\
 &amp;\\
 &amp;c(z,K)+K'(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
-<p>This recursive system can be solved using a time iteration procedure similar to the one for the standard RCB model:</p>
+<p>This recursive system can be solved using a time iteration procedure similar to the one for the standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a>.
+In the period-<span class="math notranslate nohighlight">\(t\)</span> time step, we take functions <span class="math notranslate nohighlight">\(c_{t+1}(z,K),\mu_{t+1}(z,K)\)</span> as known,
+and solve for <span class="math notranslate nohighlight">\(c_t,\mu_t,K'_t\)</span> from the system of three equations:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp;c_t(z,K)^{-\sigma}-\mu_t(z,K)\\
 &amp;=\beta \mathbb{E}\left[ \left (\alpha z' [K_t'(z,K)]^{\alpha-1}+(1-\delta)\right)[c_{t+1}(z',K_t'(z,K))]^{-\sigma}-(1-\delta)\mu_{t+1}(z',K_t'(z,K))\Big| z \right]\\
@@ -199,7 +201,7 @@
 &amp;\mu_t(z,K)(K'_t(z,K)-(1-\delta)K-\phi I_{ss})=0\\
 &amp;\\
 &amp;c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
-<p>taking functions <span class="math notranslate nohighlight">\(c_{t+1}(z,K),\mu_{t+1}(z,K)\)</span> as known in the period-<span class="math notranslate nohighlight">\(t\)</span> time step.</p>
+<p>We keep iterating until convergence.</p>
 </div>
 <div class="section" id="the-gmod-file">
 <h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
