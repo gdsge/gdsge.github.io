@@ -83,6 +83,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started - A Simple RBC Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
@@ -96,7 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
 </ul>
 
             
@@ -168,10 +169,10 @@ This simple model can be approximated with linear solutions well,
 so using GDSGE to obatin global non-linear solutions is not necessary.
 Nevertheless it serves as a good starting point to illustrate the basic usage of the toolbox,
 as this model should be familiar to any macroeconomic audience.</p>
-<p>Time is discrete <span class="math notranslate nohighlight">\(t=0..\infty\)</span>. Representative households with mass one maximize utility</p>
+<p>Time is discrete <span class="math notranslate nohighlight">\(t=0...\infty\)</span>. Representative households with mass one maximize utility</p>
 <div class="math notranslate nohighlight">
 \[\mathbb E \sum_{t=0}^{\infty} \beta^t \frac{c_t^{1-\sigma}}{1-\sigma},\]</div>
-<p>where parameter <span class="math notranslate nohighlight">\(\beta&gt;0\)</span> is the discount factor, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span> is the constant relative risk aversion. <span class="math notranslate nohighlight">\(c_t\)</span> is the consumption. <span class="math notranslate nohighlight">\(\mathbb{E}\)</span> is an expectation operator integrating the productivity shock to be introduced below.</p>
+<p>where parameter <span class="math notranslate nohighlight">\(\beta&gt;0\)</span> is the discount factor, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span> is the coefficient of relative risk aversion. <span class="math notranslate nohighlight">\(c_t\)</span> is the consumption. <span class="math notranslate nohighlight">\(\mathbb{E}\)</span> is an expectation operator integrating the productivity shock to be introduced below.</p>
 <p>Competitive representative firms produce a single output according to</p>
 <div class="math notranslate nohighlight">
 \[Y_t=z_t K_t^{\alpha} L_t^{1-\alpha},\]</div>
@@ -183,7 +184,7 @@ as this model should be familiar to any macroeconomic audience.</p>
 1-\pi_{HH} \quad \pi_{HH}
 \end{aligned}
 \right).\end{split}\]</div>
-<p>Capital is depreciated at rate <span class="math notranslate nohighlight">\(\delta \in (0,1)\)</span>. Investment technology can convert one unit of output to new capital:</p>
+<p>Capital depreciates at rate <span class="math notranslate nohighlight">\(\delta \in (0,1)\)</span>. Investment technology can convert one unit of output to new capital:</p>
 <div class="math notranslate nohighlight">
 \[K_{t+1} = K_t(1-\delta) + I_t.\]</div>
 <p>Assets markets are complete. Households make investment decision and supply capital and labor to firms. Market clearing conditions for labor and goods are, respectively,</p>
@@ -192,10 +193,9 @@ as this model should be familiar to any macroeconomic audience.</p>
 c_t+I_t=Y_t.\end{split}\]</div>
 <p>The complete-markets equilibrium can be characterized by the Euler equation and the goods market clearing condition:</p>
 <div class="math notranslate nohighlight" id="equation-sequential-equation">
-\begin{eqnarray}
-    c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
-    c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
-\end{eqnarray}</div><p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
+<span class="eqno">(1)<a class="headerlink" href="#equation-sequential-equation" title="Permalink to this equation">¶</a></span>\[\begin{split}c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
+c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.\end{split}\]</div>
+<p>Given <span class="math notranslate nohighlight">\(K_0\)</span>, a sequential competitive equilibrium is stochastic processes <span class="math notranslate nohighlight">\((c_t,K_{t+1})\)</span> that satisfy system <a class="reference internal" href="#equation-sequential-equation">(1)</a>. To input the system into GDSGE, we need to write the system in a recursive form.</p>
 <p>Definition: a recursive competitive equilibrium is functions <span class="math notranslate nohighlight">\(c(z,K), K'(z,K)\)</span> s.t.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}c(z,K)^{-\sigma}=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma} \Big| z \right]
@@ -346,13 +346,15 @@ c_interp = c;
   <span class="k">num_periods</span> = 10000;
   <span class="k">num_samples</span> = 100;
   <span class="k">initial</span> K Kss;
-  <span class="k">initial</span> shock 1
+  <span class="k">initial</span> shock 1;
   <span class="k">var_simu</span> c K w;
   K&#39; = K_next;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at <a class="reference external" href="http://gdsge.com/">http://gdsge.com/</a>. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
+<p>The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at <a class="reference external" href="http://www.gdsge.com/">http://www.gdsge.com/</a> (Remember also to download the necessary runtime files following the instruction
+on the compiler website).
+The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
 <p>First, call iter_rbc.m in matlab to run the policy iterations, which produces</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_rbc;
 Iter:10, Metric:0.385607, maxF:9.99011e-09
@@ -488,10 +490,10 @@ c_interp = c;
 when evaluating the system of equations. These state transition functions are declared following keyword <em>var_interp</em>.
 They are named <em>var_interp</em> since they are usually evaluated with some function approximation procedure such as interpolation in evaluating the system of equations.</p>
 <p>Each of the transition function needs to be initialized following keyword <em>initial</em>.
-Here <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span> is initialized as <span class="math notranslate nohighlight">\(zK^{\alpha} + (1-\delta)K\)</span> which corresponds to
-requesting the algorithm to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
-of which <span class="math notranslate nohighlight">\(c_{t+1}\)</span> is initialized to be the last-period solution—
-consumers just consume all resources that include output and non-depreciated capital.
+Here <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span> is initialized as <span class="math notranslate nohighlight">\(zK^{\alpha} + (1-\delta)K\)</span> which means that consumers just
+consumer all resources that include output and non-depreciated capital. This initialization basically
+requests the toolbox to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
+of which <span class="math notranslate nohighlight">\(c_{t+1}\)</span> is initialized to be the last-period solution.
 Notice that the Matlab “dot” operator (.*) works in the line following <em>initial</em>, and the tensor is formed automatically.</p>
 <p>In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
 Starting with a last-period problem is shown to
@@ -568,13 +570,13 @@ following keyword <code class="xref std std-declare docutils literal notranslate
 </pre></div>
 </td></tr></table></div>
 <p>The <em>model;—end;</em> block defines the system of equations for each collocation point of endogenous states and exogenous states.
-For the current example, it simply defines the system of equations for each <span class="math notranslate nohighlight">\((z,K)\)</span>.</p>
+For the current example, it simply defines the system of equations for each collocation point <span class="math notranslate nohighlight">\((z,K)\)</span>.</p>
 <p>The equations should be eventually specified in the <em>equation;—end;</em> block, in which each line corresponds to one equation in the system.
 Any calculations in order to evaluate these equations are included in the <em>model</em> block preceding the <em>equations</em> block.
 Notice the whole <em>model</em> block is parsed into C++, so all evaluations should be scalar-based: Matlab functions such as .* operator cannot be used.
-Nevertheless, the <em>model</em> block support simple control-flow blocks in Matlab-style syntax, such as if-elseif-else-end block and
+Nevertheless, the <em>model</em> block supports simple control-flow blocks in Matlab-style syntax, such as if-elseif-else-end block and
 for-end block.</p>
-<p>A variable followed by a prime (‘) indicate that the variable is a vector of length <em>shock_num</em>.
+<p>A variable followed by a prime (‘) indicates that the variable is a vector of length <em>shock_num</em>.
 For example,</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
 </pre></div>
@@ -584,34 +586,35 @@ For example,</p>
 mpk_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
 </pre></div>
 </div>
-<p>The <cite>var_shock</cite> (here <code class="code docutils literal notranslate"><span class="pre">z</span></code>), by default, is declared as a vector variable, and thus can be
-used to construct other vector variables.
-This declaration of a vector variable is useful in calculating the transition of state for each of
-realization of future exogenous states, as illustrated in the example.</p>
-<p>Any <em>var_interp</em> can be used as a function in the model block. For example,</p>
+<p>A <cite>var_shock</cite> (here <code class="code docutils literal notranslate"><span class="pre">z</span></code>), when used followed by a prime (‘), corresponds to the vector of the variable across all possible exogenous states, and thus can be
+used to construct other vector variables. Notice when a <cite>var_shock</cite> is used not followed by a prime, it corresponds to the exogenous state at the current collocation point, e.g., <code class="code docutils literal notranslate"><span class="pre">z</span></code> in</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>52</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+</pre></div>
+</td></tr></table></div>
+<p>Any <em>var_interp</em> declared before can be used as a function in the model block. For example,</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>47</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  c_future&#39; = c_interp&#39;(K_next);
 </pre></div>
 </td></tr></table></div>
-<p>means that calculate <span class="math notranslate nohighlight">\(c_{t+1}\)</span> based on the state transition function implied by <em>c_interp</em>, at
-the next-period endogenous state <em>K_next</em> (which is a current choice).
-Where are the next-period exogenous states? These are taken care by the prime (‘) operator
+<p>means calculating <span class="math notranslate nohighlight">\(c_{t+1}\)</span> based on the state transition function implied by <em>c_interp</em>, at
+the next-period endogenous state <em>K_next</em> (which is a current policy variable).
+Where are the next-period exogenous states? These are taken care of by the prime (‘) operator
 following <em>c_interp</em>, which means that it is evaluating at each realization of the future exogenous states,
-and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared a vector,
+and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared as a vector,
 i.e., a variable followed by a prime (‘).</p>
-<p>The <em>model</em> block can use several utility functions for reduction operations.
+<p>The <em>model</em> block can use several built-in functions for reduction operations.
 For example, the <em>GNDSGE_EXPECT{}</em> used in</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
 </pre></div>
 </td></tr></table></div>
-<p>is to calculate the conditional expectation of the object defined inside the curly brace,
+<p>is to calculate the conditional expectation of the object defined inside the curly braces,
 conditional on the current exogenous state, using the default Markov transition matrix <em>shock_trans</em>.
-Obviously, this function is meaningful only if it takes argument the realizations of variables across future exogenous states,
+Obviously, this function is meaningful only if it takes as argument the realizations of variables across future exogenous states,
 which are defined as vector variables followed by prime (‘).</p>
 <p>This operator can also take a different transition matrix than <em>shock_trans</em>, which is used as
 <code class="code docutils literal notranslate"><span class="pre">GNDSGE_EXPECT{*|alternative_shock_trans}</span></code>. This can be used to solve models with heterogeneous beliefs.
 See example <a class="reference internal" href="../Cao2018/Cao2018.html#cao2018"><span class="std std-ref">Cao (2018)</span></a>.</p>
 <p>Two other reduction operations <em>GNDSGE_MAX{}</em> and <em>GNDSGE_MIN{}</em> are defined, which are to take
-the maximum and the minimum of objects inside the curly brace, respectively. See <a class="reference internal" href="../../usage/functions.html#utility-functions"><span class="std std-ref">Utility functions</span></a>.</p>
+the maximum and the minimum of objects inside the curly braces, respectively. See <a class="reference internal" href="../../usage/functions.html#built-in-functions"><span class="std std-ref">Built-in functions</span></a>.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51
 52
 53
@@ -623,7 +626,7 @@ the maximum and the minimum of objects inside the curly brace, respectively. See
   <span class="k">num_periods</span> = 10000;
   <span class="k">num_samples</span> = 100;
   <span class="k">initial</span> K Kss;
-  <span class="k">initial</span> shock 1
+  <span class="k">initial</span> shock 1;
   <span class="k">var_simu</span> c K w;
   K&#39; = K_next;
 <span class="k">end;</span>
@@ -636,7 +639,10 @@ It should define the initial endogenous state following keyword <em>initial</em>
 It should define the variables to be recorded following <em>var_simu</em>.
 It should define the transition for each state variable. <code class="docutils literal notranslate"><span class="pre">K'=K_next;</span></code> in the example
 defines that the next period endogenous state <span class="math notranslate nohighlight">\(K\)</span> should be assigned to <em>K_next</em> which is one of
-the <em>var_policy</em> solved as part of the system.</p>
+the <em>var_policy</em> solved as part of the system. Notice the prime operator (‘) following <em>K</em>
+indicates that the line is to specify the transition of an endogenous state variable in the simulation,
+which has a different meaning than the prime operator (‘) used in the <em>model</em> block.
+Nevertheless, the prime operator (‘) in both places is associated with the transition to a future state, and thus motivates such a design.</p>
 <p>The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).</p>
 </div>
 <div class="section" id="what-s-next">

@@ -26,6 +26,7 @@ And see more examples below.
    :maxdepth: 2
    :caption: Contents:
    
+   Home <self>
    example/rbc/rbc
    example/rbc/rbcIrr
    example/HL1996/HL1996

@@ -83,6 +83,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a><ul>
@@ -180,7 +181,7 @@ denote share price and bond price at time <span class="math notranslate nohighli
 \[c_{t}^{i}+p_{t}^{s}s_{t+1}^{i}+p_{t}^{b}b_{t+1}^{i}\leq(p_{t}^{s}+d_{t})s_{t}^{i}+b_{t}^{i}+Y_{t}^{i}\]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}s_{t+1}^{i} &amp; \geq0\\
+\[\begin{split}s_{t+1}^{i} &amp; \geq0, \\
 b_{t+1}^{i} &amp; \geq K^b_t,\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Y^a_t\)</span> denotes the aggregate income. <span class="math notranslate nohighlight">\(d_t = \delta_t Y^a_t\)</span> is total dividend (capital income) and
 <span class="math notranslate nohighlight">\(Y^i_t = \eta^i_t Y^a_t\)</span> is labor income of agent <span class="math notranslate nohighlight">\(i\)</span>. Aggregate income grows at a stochastic rate <span class="math notranslate nohighlight">\(\gamma^a_t = \frac{Y^a_t}{Y^a_{t-1}}\)</span>. <span class="math notranslate nohighlight">\(z_t = \{\gamma^a_t,\delta_t,\eta^1_t\}\)</span>
@@ -211,13 +212,13 @@ first-order conditions in <span class="math notranslate nohighlight">\(s^i_{t+1}
 <p>where <span class="math notranslate nohighlight">\(\hat{\mu}^{i,s}_t\)</span> and <span class="math notranslate nohighlight">\(\mu^{i,b}_t\)</span> are the Lagrangian multipliers on agent i’s no short sale constraint and borrowing constraint, respectively.
 The multipliers and portfolio choices satisfy the complementary-slackness conditions:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}0 &amp; =  \hat{\mu}^{i,s}_t s^i_t\\
-0 &amp; = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).\end{split}\]</div>
+\[\begin{split}0 &amp; =  \hat{\mu}^{i,s}_t s^i_{t+1}, \\
+0 &amp; = \hat{\mu}^{i,b}_t (\hat{b}^i_{t+1} - \bar{K}^b).\end{split}\]</div>
 </div>
 <div class="section" id="wealth-share-as-endogenous-state">
 <h2>Wealth Share as Endogenous State<a class="headerlink" href="#wealth-share-as-endogenous-state" title="Permalink to this headline">¶</a></h2>
 <p>We define a recursive equilibrium with the wealth share <span class="math notranslate nohighlight">\(\omega_t\)</span> defined before. A recursive equilibrium is
-<span class="math notranslate nohighlight">\(\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)\)</span> that satisfy the  where agents’ optimization conditions
+<span class="math notranslate nohighlight">\(\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)\)</span> that satisfy the agents’ optimization conditions
 and market clearing conditions stated above.</p>
 <p>We omit the explicit dependence on state <span class="math notranslate nohighlight">\((z,\omega)\)</span> except the first variable, and highlight that the
 state transition function <span class="math notranslate nohighlight">\(\omega'\)</span> characterizes the implicit law of motion that should hold for each of the future exogenous state <span class="math notranslate nohighlight">\(z'\)</span>.

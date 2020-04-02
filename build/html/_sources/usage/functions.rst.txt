@@ -165,7 +165,7 @@ The model block
     The simulate block can overwrite options num_samples (default 1) and num_periods (default 1000).
 
 ======================================
-Utility functions
+Built-in functions
 ======================================
 
 .. function:: GDSGE_INTERP_VEC'(var_state1, var_state2, ...)

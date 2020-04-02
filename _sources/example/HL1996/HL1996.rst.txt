@@ -31,7 +31,7 @@ subject to
 and
 
 .. math::
-    s_{t+1}^{i} & \geq0\\
+    s_{t+1}^{i} & \geq0, \\
     b_{t+1}^{i} & \geq K^b_t,
 
 where :math:`Y^a_t` denotes the aggregate income. :math:`d_t = \delta_t Y^a_t` is total dividend (capital income) and 
@@ -76,15 +76,15 @@ where :math:`\hat{\mu}^{i,s}_t` and :math:`\mu^{i,b}_t` are the Lagrangian multi
 The multipliers and portfolio choices satisfy the complementary-slackness conditions: 
 
 .. math::
-    0 & =  \hat{\mu}^{i,s}_t s^i_t\\
-    0 & = \hat{\mu}^{i,b}_t (\hat{b}^i_t + \bar{K}^b).
+    0 & =  \hat{\mu}^{i,s}_t s^i_{t+1}, \\
+    0 & = \hat{\mu}^{i,b}_t (\hat{b}^i_{t+1} - \bar{K}^b).
 
 ================================
 Wealth Share as Endogenous State
 ================================
 
 We define a recursive equilibrium with the wealth share :math:`\omega_t` defined before. A recursive equilibrium is
-:math:`\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)` that satisfy the  where agents' optimization conditions
+:math:`\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)` that satisfy the agents' optimization conditions
 and market clearing conditions stated above.
 
 We omit the explicit dependence on state :math:`(z,\omega)` except the first variable, and highlight that the

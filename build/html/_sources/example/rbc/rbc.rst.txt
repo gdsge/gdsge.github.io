@@ -11,12 +11,12 @@ so using GDSGE to obatin global non-linear solutions is not necessary.
 Nevertheless it serves as a good starting point to illustrate the basic usage of the toolbox,
 as this model should be familiar to any macroeconomic audience.
 
-Time is discrete :math:`t=0..\infty`. Representative households with mass one maximize utility
+Time is discrete :math:`t=0...\infty`. Representative households with mass one maximize utility
 
 .. math::
     \mathbb E \sum_{t=0}^{\infty} \beta^t \frac{c_t^{1-\sigma}}{1-\sigma},
     
-where parameter :math:`\beta>0` is the discount factor, :math:`\sigma>0` is the constant relative risk aversion. :math:`c_t` is the consumption. :math:`\mathbb{E}` is an expectation operator integrating the productivity shock to be introduced below.
+where parameter :math:`\beta>0` is the discount factor, :math:`\sigma>0` is the coefficient of relative risk aversion. :math:`c_t` is the consumption. :math:`\mathbb{E}` is an expectation operator integrating the productivity shock to be introduced below.
 
 Competitive representative firms produce a single output according to
 
@@ -33,7 +33,7 @@ where parameter :math:`\alpha \in (0,1)` is the capital share. :math:`K_t` is ca
     \end{aligned}
     \right).
     
-Capital is depreciated at rate :math:`\delta \in (0,1)`. Investment technology can convert one unit of output to new capital:
+Capital depreciates at rate :math:`\delta \in (0,1)`. Investment technology can convert one unit of output to new capital:
 
 .. math::
     K_{t+1} = K_t(1-\delta) + I_t.
@@ -47,17 +47,11 @@ Assets markets are complete. Households make investment decision and supply capi
 The complete-markets equilibrium can be characterized by the Euler equation and the goods market clearing condition:
 
 .. math::
-    :nowrap:
+    c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
+    c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
     :label: sequential_equation
-    
-    \begin{eqnarray}
-        c_t^{-\sigma}=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}\right], \\
-        c_t+K_{t+1} = z_tK_t^{\alpha}+(1-\delta)K_t.
-    \end{eqnarray}
 
     
-    
-
 Given :math:`K_0`, a sequential competitive equilibrium is stochastic processes :math:`(c_t,K_{t+1})` that satisfy system :eq:`sequential_equation`. To input the system into GDSGE, we need to write the system in a recursive form. 
 
 Definition: a recursive competitive equilibrium is functions :math:`c(z,K), K'(z,K)` s.t.
@@ -86,7 +80,9 @@ The recursive system can now be input to GDSGE via a mod file :download:`rbc.gmo
     :linenos:
     :language: GDSGE
 
-The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at http://gdsge.com/. The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
+The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at http://www.gdsge.com/ (Remember also to download the necessary runtime files following the instruction
+on the compiler website). 
+The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
 
 First, call iter_rbc.m in matlab to run the policy iterations, which produces
 
@@ -211,10 +207,10 @@ when evaluating the system of equations. These state transition functions are de
 They are named *var_interp* since they are usually evaluated with some function approximation procedure such as interpolation in evaluating the system of equations.
 
 Each of the transition function needs to be initialized following keyword *initial*.
-Here :math:`c_{t+1}(z,K)` is initialized as :math:`zK^{\alpha} + (1-\delta)K` which corresponds to 
-requesting the algorithm to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
-of which :math:`c_{t+1}` is initialized to be the last-period solution---
-consumers just consume all resources that include output and non-depreciated capital.
+Here :math:`c_{t+1}(z,K)` is initialized as :math:`zK^{\alpha} + (1-\delta)K` which means that consumers just 
+consumer all resources that include output and non-depreciated capital. This initialization basically 
+requests the toolbox to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
+of which :math:`c_{t+1}` is initialized to be the last-period solution.
 Notice that the Matlab "dot" operator (.*) works in the line following *initial*, and the tensor is formed automatically.
 
 In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
@@ -254,15 +250,15 @@ following keyword :declare:`var_aux`.
     :language: GDSGE
 
 The *model;---end;* block defines the system of equations for each collocation point of endogenous states and exogenous states. 
-For the current example, it simply defines the system of equations for each :math:`(z,K)`.
+For the current example, it simply defines the system of equations for each collocation point :math:`(z,K)`.
 
 The equations should be eventually specified in the *equation;---end;* block, in which each line corresponds to one equation in the system.
 Any calculations in order to evaluate these equations are included in the *model* block preceding the *equations* block.
 Notice the whole *model* block is parsed into C++, so all evaluations should be scalar-based: Matlab functions such as .* operator cannot be used. 
-Nevertheless, the *model* block support simple control-flow blocks in Matlab-style syntax, such as if-elseif-else-end block and 
+Nevertheless, the *model* block supports simple control-flow blocks in Matlab-style syntax, such as if-elseif-else-end block and 
 for-end block.
 
-A variable followed by a prime (') indicate that the variable is a vector of length *shock_num*. 
+A variable followed by a prime (') indicates that the variable is a vector of length *shock_num*. 
 For example,
 
 .. literalinclude:: rbc.gmod
@@ -277,26 +273,29 @@ means that
     mpk_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
     mpk_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
 
-The `var_shock` (here :code:`z`), by default, is declared as a vector variable, and thus can be
-used to construct other vector variables.
-This declaration of a vector variable is useful in calculating the transition of state for each of
-realization of future exogenous states, as illustrated in the example.
+A `var_shock` (here :code:`z`), when used followed by a prime ('), corresponds to the vector of the variable across all possible exogenous states, and thus can be
+used to construct other vector variables. Notice when a `var_shock` is used not followed by a prime, it corresponds to the exogenous state at the current collocation point, e.g., :code:`z` in
 
-Any *var_interp* can be used as a function in the model block. For example,
+.. literalinclude:: rbc.gmod
+    :lines: 52-52
+    :lineno-start: 52
+    :language: GDSGE
+
+Any *var_interp* declared before can be used as a function in the model block. For example,
 
 .. literalinclude:: rbc.gmod
     :lines: 47-47
     :lineno-start: 47
     :language: GDSGE
 
-means that calculate :math:`c_{t+1}` based on the state transition function implied by *c_interp*, at
-the next-period endogenous state *K_next* (which is a current choice).
-Where are the next-period exogenous states? These are taken care by the prime (') operator
+means calculating :math:`c_{t+1}` based on the state transition function implied by *c_interp*, at
+the next-period endogenous state *K_next* (which is a current policy variable).
+Where are the next-period exogenous states? These are taken care of by the prime (') operator
 following *c_interp*, which means that it is evaluating at each realization of the future exogenous states,
-and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared a vector,
+and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared as a vector,
 i.e., a variable followed by a prime (').
 
-The *model* block can use several utility functions for reduction operations.
+The *model* block can use several built-in functions for reduction operations.
 For example, the *GNDSGE_EXPECT{}* used in 
 
 .. literalinclude:: rbc.gmod
@@ -304,9 +303,9 @@ For example, the *GNDSGE_EXPECT{}* used in
     :lineno-start: 51
     :language: GDSGE
 
-is to calculate the conditional expectation of the object defined inside the curly brace,
+is to calculate the conditional expectation of the object defined inside the curly braces,
 conditional on the current exogenous state, using the default Markov transition matrix *shock_trans*.
-Obviously, this function is meaningful only if it takes argument the realizations of variables across future exogenous states,
+Obviously, this function is meaningful only if it takes as argument the realizations of variables across future exogenous states,
 which are defined as vector variables followed by prime (').
 
 This operator can also take a different transition matrix than *shock_trans*, which is used as
@@ -314,7 +313,7 @@ This operator can also take a different transition matrix than *shock_trans*, wh
 See example :ref:`Cao (2018) <Cao2018>`.
 
 Two other reduction operations *GNDSGE_MAX{}* and *GNDSGE_MIN{}* are defined, which are to take
-the maximum and the minimum of objects inside the curly brace, respectively. See :ref:`Utility functions`.
+the maximum and the minimum of objects inside the curly braces, respectively. See :ref:`Built-in functions`.
 
 .. literalinclude:: rbc.gmod
     :lines: 63-70
@@ -329,7 +328,10 @@ The simulate block should define the initial exogenous state index following key
 It should define the variables to be recorded following *var_simu*. 
 It should define the transition for each state variable. ``K'=K_next;`` in the example
 defines that the next period endogenous state :math:`K` should be assigned to *K_next* which is one of
-the *var_policy* solved as part of the system.
+the *var_policy* solved as part of the system. Notice the prime operator (') following *K* 
+indicates that the line is to specify the transition of an endogenous state variable in the simulation, 
+which has a different meaning than the prime operator (') used in the *model* block. 
+Nevertheless, the prime operator (') in both places is associated with the transition to a future state, and thus motivates such a design.
 
 The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).
 
