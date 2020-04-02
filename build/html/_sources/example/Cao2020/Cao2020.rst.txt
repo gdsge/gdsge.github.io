@@ -1,6 +1,6 @@
-******************************************************************
-Cao (2020): Continuum vs Finite Agents in Krusell and Smith (1998)
-******************************************************************
+**********************************************************************
+Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)
+**********************************************************************
 
 Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types. 
 However, as noted in `Cao (2020) <https://www.sciencedirect.com/science/article/pii/S0022053119301255>`_, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
