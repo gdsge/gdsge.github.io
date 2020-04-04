@@ -296,7 +296,7 @@ The gmod file that implements the recursive system is (:download:`HL1996_consump
     :language: GDSGE
 
 As shown, compared to the one with wealth share as the endogenous state, 
-the new implementation is made possible by declaring :math:`(\hat{c}_1)'(z')` by *c1n* in 
+the new implementation is made possible by declaring :math:`{\hat{c}_1}'(z')` with *c1n* in 
 
 .. literalinclude:: HL1996_consumption_share.gmod
     :lines: 28-28
