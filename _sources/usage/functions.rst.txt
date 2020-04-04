@@ -170,7 +170,7 @@ Built-in functions
 
 .. function:: GDSGE_INTERP_VEC[vec_index](shock, var_state1, var_state2, ...)
 
-    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for exogenous state at the index of shock referred by *shock*, 
+    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for the exogenous shock index referred by argument *shock*, 
     in the order defined in *var_interp*. For example,
 
     .. code-block:: GDSGE

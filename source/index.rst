@@ -8,7 +8,7 @@ Welcome to GDSGE's documentation!
 GDSGE is a toolbox that solves nonlinear Dynamic Stochastic General Equilibrium (DSGE) models with a global method based on policy iterations
 introduced in :download:`Cao, Luo, and Nie (2020) <paper/GDSGEv15.pdf>`.
 It allows users to define economic models in compact and intuitive scripts, called gmod files (gmod stands for global model).
-It parses the script into dynamic libraries which implement the actual computations (policy function iterations) efficiently in C++, and provides a convenient MATLAB interface to researchers.
+It parses the script into dynamic libraries which implement the actual computations (policy function iterations and Monte Carlo simulations) efficiently in C++, and provides a convenient MATLAB interface to researchers.
 
 The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, and related fields.
 
