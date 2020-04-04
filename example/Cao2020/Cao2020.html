@@ -170,7 +170,7 @@
   <div class="section" id="cao-2020-continuum-versus-finite-agents-in-krusell-and-smith-1998">
 <h1>Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)<a class="headerlink" href="#cao-2020-continuum-versus-finite-agents-in-krusell-and-smith-1998" title="Permalink to this headline">¶</a></h1>
 <p>Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types.
-However, as noted in <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022053119301255">Cao (2020)</a>, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>.
+However, as noted in <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022053119301255">Cao (2020)</a>, these models are important special cases of fully heterogenous agent models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>.
 In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
 In this example, we solve and compare the aggregate outcomes in this special case of the model in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a> to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
 <div class="section" id="the-model">
@@ -202,7 +202,7 @@ So the sequential budget constraint of the agents is:</p>
 &amp;0\leq k^h_{t+1},\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(r_t\)</span> and <span class="math notranslate nohighlight">\(w_t\)</span> are market rental rate of capital and wage.</p>
 <p>Because the agents’ problems are concave maximization problems, the first-order conditions are necessary and sufficient for optimality.
-In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</span> denote the Lagrange multiplier on agent <span class="math notranslate nohighlight">\(h\)</span> short-sale constraint, then the Euler’s equation and complementary-slackness condition should hold in equilibrium:</p>
+In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</span> denote the Lagrange multiplier on agent <span class="math notranslate nohighlight">\(h\)</span>’s short-sale constraint, then the Euler’s equation and complementary-slackness condition should hold in equilibrium:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp;\frac{1}{c^h_t} = \beta\mathbb{E}\left[(1-\delta+r_{t+1})\frac{1}{c^h_{t+1}}\right]+\lambda^h_t,\\
 &amp;\lambda^h_t k^h_{t+1} = 0.\end{split}\]</div>
@@ -461,8 +461,8 @@ c2Future = c2;
 </div>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
-<p>The parameters are taken from <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998, Section 2)</a>
-in particular, the discount rate and the production parameters are:</p>
+<p>The parameters are taken from <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998, Section 2)</a>.
+In particular, the discount rate and the production parameters are:</p>
 <div class="math notranslate nohighlight">
 \[\beta=0.99\ \ \ \delta=0.025\ \ \ \alpha=0.36.\]</div>
 <p>The aggregate productivity and aggregate labor supply are:</p>
@@ -472,11 +472,11 @@ in particular, the discount rate and the production parameters are:</p>
 taken from Section 2 in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\pi=\begin{bmatrix}0.5250 &amp; 0.3500 &amp; 0.0312 &amp; 0.0938\\0.0389 &amp; 0.8361 &amp; 0.0021 &amp; 0.1229\\0.0938 &amp; 0.0312 &amp; 0.2917 &amp; 0.5833\\0.0091 &amp; 0.1159 &amp; 0.0243 &amp; 0.8507\end{bmatrix}\end{split}\]</div>
-<p>In this transition matrix, we use the rows and columns <span class="math notranslate nohighlight">\(\left\{ 1,2,3,4\right\}\)</span> correspond to states <span class="math notranslate nohighlight">\(\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}\)</span>.</p>
+<p>In this transition matrix, the rows and columns <span class="math notranslate nohighlight">\(\left\{ 1,2,3,4\right\}\)</span> correspond to states <span class="math notranslate nohighlight">\(\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}\)</span>.</p>
 <p>The following figure shows next period aggregate capital,
 <span class="math notranslate nohighlight">\(K_{t+1}\)</span> as a function of current period aggregate capital, <span class="math notranslate nohighlight">\(K_t\)</span>,
 in current state <span class="math notranslate nohighlight">\(\left(b,0\right)\)</span>, for two different values of <span class="math notranslate nohighlight">\(\omega\)</span>: <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\omega=1\)</span>. The figure shows that future aggregate
-capital depends on not only current aggregate capital but also on
+capital depends not only on current aggregate capital but also on
 current wealth share <span class="math notranslate nohighlight">\(\omega\)</span> of agent <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <a class="reference internal image-reference" href="../../_images/KpPolicy.png"><img alt="../../_images/KpPolicy.png" src="../../_images/KpPolicy.png" style="width: 448.0px; height: 336.0px;" /></a>
 <p>Given the global solution for the recursive equilibrium of the model, we can
@@ -520,7 +520,7 @@ In their model, agents face idiosyncratic shocks
 that determine their discount factor. The discount factor can be low
 (<span class="math notranslate nohighlight">\(\underline{\beta}\)</span>) or high (<span class="math notranslate nohighlight">\(\bar{\beta}\)</span>), where:</p>
 <div class="math notranslate nohighlight">
-\[\underline{\beta}=0.9858\ \ \ \text{and}\ \ \ \bar{\beta}=0.9930,\]</div>
+\[\underline{\beta}=0.9858\ \ \ \text{and}\ \ \ \bar{\beta}=0.9930.\]</div>
 <p>The transition from one to the other is determined such that
 the average duration for individual <span class="math notranslate nohighlight">\(\beta\)</span> is <span class="math notranslate nohighlight">\(50\)</span> years, which
 corresponds to agents’ lifetime.</p>
@@ -533,8 +533,8 @@ has low discount factor and agent 2 has high discount factor and vice
 versa for <span class="math notranslate nohighlight">\(i=1\)</span>). The evolution of aggregate state <span class="math notranslate nohighlight">\(i\)</span> is independent
 of the evolution of aggregate state <span class="math notranslate nohighlight">\(s\)</span>.</p>
 <p>The following figure shows next period aggregate
-capital, <span class="math notranslate nohighlight">\(K_{t=1}\)</span> as a function of current period aggregate capital,
-<span class="math notranslate nohighlight">\(K\)</span>, in state <span class="math notranslate nohighlight">\(\left(b,0\right)\)</span>, for two different values of <span class="math notranslate nohighlight">\(\omega\)</span>:
+capital, <span class="math notranslate nohighlight">\(K_{t+1}\)</span> as a function of current period aggregate capital,
+<span class="math notranslate nohighlight">\(K_t\)</span>, in state <span class="math notranslate nohighlight">\(\left(b,0\right)\)</span>, for two different values of <span class="math notranslate nohighlight">\(\omega\)</span>:
 <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\omega=1\)</span>. The figure shows that future aggregate
 capital depends mostly on current aggregate capital and does not vary
 visibly with the current wealth share <span class="math notranslate nohighlight">\(\omega\)</span> of agent 1.</p>
@@ -553,7 +553,7 @@ results:</p>
 \end{align*}\]</div>
 <p>and in bad times. Because future aggregate capital depends mostly
 on current aggregate capital, the fitness of the linear regressions
-are very high.</p>
+is very high.</p>
 <p>As in the previous example, these regression results are comparable
 to the ones in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith</a>’s model in which the
 discount rates are truly idiosyncratic:</p>

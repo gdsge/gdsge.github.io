@@ -3,7 +3,7 @@ Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)
 **********************************************************************
 
 Our toolbox is designed to solve models with only a finite number of agents, or more precisely, a finite number of agent types. 
-However, as noted in `Cao (2020) <https://www.sciencedirect.com/science/article/pii/S0022053119301255>`_, these models are important special cases of fully models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
+However, as noted in `Cao (2020) <https://www.sciencedirect.com/science/article/pii/S0022053119301255>`_, these models are important special cases of fully heterogenous agent models with a continuum of agents subject to both idiosyncratic and aggregate shocks such as the one `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_.
 In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
 In this example, we solve and compare the aggregate outcomes in this special case of the model in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_ to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.
 
@@ -46,7 +46,7 @@ So the sequential budget constraint of the agents is:
 where :math:`r_t` and :math:`w_t` are market rental rate of capital and wage.
 
 Because the agents' problems are concave maximization problems, the first-order conditions are necessary and sufficient for optimality.
-In particular, let :math:`\lambda^h_t` denote the Lagrange multiplier on agent :math:`h` short-sale constraint, then the Euler's equation and complementary-slackness condition should hold in equilibrium:
+In particular, let :math:`\lambda^h_t` denote the Lagrange multiplier on agent :math:`h`'s short-sale constraint, then the Euler's equation and complementary-slackness condition should hold in equilibrium:
 
 .. math::
     &\frac{1}{c^h_t} = \beta\mathbb{E}\left[(1-\delta+r_{t+1})\frac{1}{c^h_{t+1}}\right]+\lambda^h_t,\\
@@ -76,8 +76,8 @@ The model is solved with :download:`Cao2020KS.gmod <Cao2020KS.gmod>`
 Results
 ==================
 
-The parameters are taken from `Krusell and Smith (1998, Section 2) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_ 
-in particular, the discount rate and the production parameters are:
+The parameters are taken from `Krusell and Smith (1998, Section 2) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_. 
+In particular, the discount rate and the production parameters are:
 
 .. math::
     \beta=0.99\ \ \ \delta=0.025\ \ \ \alpha=0.36.
@@ -93,12 +93,12 @@ taken from Section 2 in `Krusell and Smith (1998) <https://www.journals.uchicago
 .. math::
     \pi=\begin{bmatrix}0.5250 & 0.3500 & 0.0312 & 0.0938\\0.0389 & 0.8361 & 0.0021 & 0.1229\\0.0938 & 0.0312 & 0.2917 & 0.5833\\0.0091 & 0.1159 & 0.0243 & 0.8507\end{bmatrix}
 
-In this transition matrix, we use the rows and columns :math:`\left\{ 1,2,3,4\right\}` correspond to states :math:`\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}`.
+In this transition matrix, the rows and columns :math:`\left\{ 1,2,3,4\right\}` correspond to states :math:`\left\{ \left(b,0\right),\left(b,1\right),\left(g,0\right),\left(g,1\right)\right\}`.
 
 The following figure shows next period aggregate capital,
 :math:`K_{t+1}` as a function of current period aggregate capital, :math:`K_t`,
 in current state :math:`\left(b,0\right)`, for two different values of :math:`\omega`: :math:`\omega=0` and :math:`\omega=1`. The figure shows that future aggregate
-capital depends on not only current aggregate capital but also on
+capital depends not only on current aggregate capital but also on
 current wealth share :math:`\omega` of agent :math:`1`.
 
 .. image:: figures/KpPolicy.png
@@ -153,7 +153,7 @@ that determine their discount factor. The discount factor can be low
 (:math:`\underline{\beta}`) or high (:math:`\bar{\beta}`), where:
 
 .. math::
-    \underline{\beta}=0.9858\ \ \ \text{and}\ \ \ \bar{\beta}=0.9930,
+    \underline{\beta}=0.9858\ \ \ \text{and}\ \ \ \bar{\beta}=0.9930.
 
 The transition from one to the other is determined such that
 the average duration for individual :math:`\beta` is :math:`50` years, which
@@ -169,8 +169,8 @@ versa for :math:`i=1`). The evolution of aggregate state :math:`i` is independen
 of the evolution of aggregate state :math:`s`.
 
 The following figure shows next period aggregate
-capital, :math:`K_{t=1}` as a function of current period aggregate capital,
-:math:`K`, in state :math:`\left(b,0\right)`, for two different values of :math:`\omega`:
+capital, :math:`K_{t+1}` as a function of current period aggregate capital,
+:math:`K_t`, in state :math:`\left(b,0\right)`, for two different values of :math:`\omega`:
 :math:`\omega=0` and :math:`\omega=1`. The figure shows that future aggregate
 capital depends mostly on current aggregate capital and does not vary
 visibly with the current wealth share :math:`\omega` of agent 1.
@@ -195,7 +195,7 @@ in good times
     \end{align*}
 and in bad times. Because future aggregate capital depends mostly
 on current aggregate capital, the fitness of the linear regressions
-are very high.
+is very high.
 
 As in the previous example, these regression results are comparable
 to the ones in `Krusell and Smith <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_'s model in which the

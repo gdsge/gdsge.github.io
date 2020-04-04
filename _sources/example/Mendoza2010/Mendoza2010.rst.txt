@@ -4,7 +4,7 @@ Mendoza (2010): Sudden Stops with Asset Price Deflation
 
 `Mendoza (2010) <https://www.aeaweb.org/articles?id=10.1257/aer.100.5.1941>`_  studies an open economy model with
 a borrowing constraint tied to the capital price. A negative shock that lowers the capital price 
-tightens the collateral constraint, leading to deleverage and reductions in financing for both investment and working capital, so the effect of the shock gets amplified.
+tightens the collateral constraint, leading to deleveraging and reductions in financing for both investment and working capital, so the effect of the shock gets amplified.
 The model generates financial crises with current account reversals resembling those experienced by many emerging economies.
 The collateral constraints are occasionally binding in the ergodic set.
 The equilibrium policy and state transition functions are highly nonlinear. The model has two endogenous states, capital and bond, and can be solved
@@ -13,15 +13,15 @@ using the toolbox very easily (in 200 lines of GDSGE code and within a minute on
 Though the model can be directly solved over the natural state space (capital, bond) using the toolbox, practically it is sometimes difficult
 to determine the feasible state space over which an equilibrium exists. For example,  in the current context, given capital stock, an economy too much in debt
 may not be able to find feasible allocations. This suggests that the lower bound of bond depends on the capital stock
-and the feasible state space is non-square. We demonstrate how such model can solved with state transformation and implicit
-state transition functions, without the hassel of determining the feasible exogeneous state space ex-ante.
+and the feasible state space is not a simple box. We demonstrate how such a model can solved with state transformation and implicit
+state transition functions, without the hassle of determining the feasible endogeneous state space ex-ante.
 
 .. _Mendoza2010:
 ===============
 The Model
 ===============
 
-There is a single consumption good. Preference reads
+There is a single consumption good. The inter-temporal expected utility is given by
 
 .. math::
 
@@ -30,7 +30,7 @@ There is a single consumption good. Preference reads
 
 where :math:`\beta` is the discount factor, :math:`c_t` is consumption, :math:`L_t` is labor supply. :math:`u(\cdot)` is the utility function.
 
-Production reads
+The production function is
 
 .. math::
 
@@ -38,7 +38,8 @@ Production reads
 
 where :math:`A_t` is productivity which follows an exogenous Markov process. :math:`F` is a constant-return-to-scale production function. :math:`k_t` is capital, :math:`L_t` is labor, and :math:`v_t` is intermediate goods used.
 
-:math:`\phi` fraction of the cost of hiring :math:`L_t` and :math:`v_t` needs to be financed externally, at a (world) gross interest rate :math:`R_t` that follows an exogenous process. The economy can trade a state non-contingent bond :math:`b_{t+1}` (negative denotes borrowing) with the world, but borrowing is subject to the following constraint
+:math:`\phi` fraction of the cost of hiring :math:`L_t` and :math:`v_t` needs to be financed externally, at a (world) gross interest rate :math:`R_t` that follows an exogenous process. 
+The economy can trade a state non-contingent bond :math:`b_{t+1}` (who negative values imply borrowing) with the world, but borrowing is subject to the following constraint
 
 .. math::
 
@@ -49,7 +50,7 @@ where :math:`p_t` is intermediate goods price following an exogenous process,
 :math:`w_t` is wage and :math:`q_t` is the endogenous asset price of the next period capital determined below. 
 It should be clear that the binding collateral constraint will affect the financing of working capital.
 
-Investment is subject to convex adjustment cost
+Investment is subject to a convex adjustment cost
 
 .. math::
 
@@ -65,24 +66,19 @@ We also write down the shadow price of current capital
 
 .. math::
 
-    q_t+d_t \equiv A_tF_1(k_t,L_t,v_t)-\frac{\partial i_t}{\partial k_{t}}=A_tF_1(k_t,L_t,v_t)-  (1-\delta) -a\frac{k_{t+1}-k_t}{k_t}- \frac{a}{2}\frac{(k_{t+1}-k_t)^{2}}{k_t^2} 
+    q_t+d_t & \equiv A_tF_1(k_t,L_t,v_t)-\frac{\partial i_t}{\partial k_{t}}\\
+    &=A_tF_1(k_t,L_t,v_t)-  (1-\delta) -a\frac{k_{t+1}-k_t}{k_t}- \frac{a}{2}\frac{(k_{t+1}-k_t)^{2}}{k_t^2}. 
 
 
-Under the competitive equilibrium, the agent solves
-
-.. math::
-
-    \mathbb E_{0} \sum_{t=0}^{\infty} \exp \beta^t[ u\left(c_{t}-N\left(L_{t}\right)\right)]
-
-s.t.
+Under the competitive equilibrium, the agent maximizes the inter-temporal expected utility subject to
 
 .. math::
 
-    (1+\tau)c_{t}+i_{t}=A_t F\left(k_{t}, L_{t}, v_{t}\right)-p_{t} v_{t}-\phi\left(R_{t}-1\right)\left(w_{t} L_{t}+p_{t} v_{t}\right)-q_{t}^{b} b_{t+1}+b_{t}
+    (1+\tau)c_{t}+i_{t}=A_t F\left(k_{t}, L_{t}, v_{t}\right)-p_{t} v_{t}-\phi\left(R_{t}-1\right)\left(w_{t} L_{t}+p_{t} v_{t}\right)-q_{t}^{b} b_{t+1}+b_{t},
     \\
-    q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) \geq-\kappa q_{t} k_{t+1}
+    q_{t}^{b} b_{t+1}-\phi R_{t}\left(w_{t} L_{t}+p_{t} v_{t}\right) \geq-\kappa q_{t} k_{t+1},
     \\
-    i_{t}=k_{t+1} - (1-\delta)k_t+\frac{1}{2} a^2 \frac{(k_{t+1}-k_t)^{2}}{k_t}.
+    i_{t}=k_{t+1} - (1-\delta)k_t+\frac{1}{2} a^2 \frac{(k_{t+1}-k_t)^{2}}{k_t},
 
 taking exogenous processes :math:`A_t,R_t,p_t` and :math:`q_t^b(=1/R_t)`, and equilibrium prices :math:`w_t` and :math:`q_t` as given. Denote :math:`\lambda_t` as the multiplier for the budget constraint and :math:`\mu_t` as the multiplier for the collateral constraint, the first order conditions and complementarity slackness conditions read:
 
@@ -107,13 +103,13 @@ feasible state space is square.
 ==========================
 State Space Transformation
 ==========================
-If the economy is too much in debt, it may never be able to finance positive consumption subject to the current collateral constraint, and the equilibrium does not exist. 
-Therefore, the lower bound of bond of the state space depends on the exogenous shocks and capital, rendering the feasible state space non-square. 
-This non-square state space cannot be determined ex-ante either, since the collateral constraint depends on the endogenous capital price. 
+If the economy is too indebted, it may never be able to finance positive consumption subject to the current collateral constraint, and the equilibrium does not exist. 
+Therefore, the lower bound of the bond holding of the feasible state space depends on the exogenous shocks and capital, rendering the feasible state space non-rectangle. 
+This non-rectangle state space also cannot be determined ex-ante, since the collateral constraint depends on the endogenous capital price. 
 This is a well-known challenge encountered by many researchers studying models with a borrowing constraint tied to an asset price. 
 The challenge can be solved by noticing the exact boundary condition of the initial problem: 
 the boundary of the feasible state space is such that consumption (more precisely, the GHH consumption-labor bundle) is zero.
-Therefore, if we transform the state space to consumption and capital, then the feasible state space will be square.
+Therefore, if we transform the state space to consumption and capital, then the feasible state space will be a simple rectangle.
 
 Define the GHH consumption-labor bundle as
 
@@ -159,7 +155,7 @@ where
     B_{t+1}&=&A_{t+1} F\left(k_{t+1}, L_{t+1}, v_{t+1}\right)-p_{t+1} v_{t+1}-\phi\left(R_{t+1}-1\right)\left(w_{t+1} L_{t+1}+p_{t+1} v_{t+1}\right)\\
     &&-q_{t+1}^{b} b_{t+2}-i_{t+1}-(1+\tau)N(L_{t+1}).
 
-Notice, how the the budget constraint is taken off by :math:`(1+\tau)N(L_{t+1})` so that this becomes a consistency equation for :math:`\tilde{c}_{t+1}`.
+Notice, how the budget constraint is decreased by :math:`(1+\tau)N(L_{t+1})` so that this becomes a consistency equation for :math:`\tilde{c}_{t+1}`.
 
 The recursive system is solved by taking :math:`d'(z,\tilde{c},k),q'(z,\tilde{c},k),B'(z,\tilde{c},k)` as known at each time iteration step, and updating
 these objects following their definitions.
@@ -168,7 +164,8 @@ these objects following their definitions.
 The gmod File
 ========================
 
-We use the exact specification and parameterization as in Mendoza (2010). In particular, for preference
+We use the exact specification and parameterization as in `Mendoza (2010) <https://www.aeaweb.org/articles?id=10.1257/aer.100.5.1941>`_. 
+In particular, for preference
 
 .. math::
 
@@ -178,7 +175,7 @@ We use the exact specification and parameterization as in Mendoza (2010). In par
 
     N(L) = L^{\omega}/\omega.
 
-And production function is Cobb-Douglas:
+The production function is Cobb-Douglas:
 
 .. math::
 
@@ -263,7 +260,7 @@ Now let's run the policy iterations by calling *iter_mendoza2010.m* returned fro
 Notice so far, relatively crude grids for the state space are specified in the gmod file. 
 We can refine the solution on finer grids starting from a previously converged solutions, by simply
 specifying the converged solution as a *WarmUp*. Here we enlarge the state space to have 80 grid points along both :math:`\tilde{c}` and :math:`k` space, 
-increasing the number of exogenous states
+increasing the number of (exogenous and endogenous) states
 to :math:`8\times 80\times 80 = 51200`.
 
 .. code-block:: MATLAB
@@ -296,7 +293,7 @@ of the solution of a model,
 and refine it using the crude solution as a WarmUp.
 
 Now we inspect the policy functions. We first come back to our motivation for state space transformation: the natural state space
-:math:`(k,b)` is non-square. This can be verified by projecting the state variable :math:`\tilde{c}` onto policy :math:`b` and state variable :math:`k`.
+:math:`(k,b)` is non-rectangle. This can be verified by projecting the state variable :math:`\tilde{c}` onto policy :math:`b` and state variable :math:`k`.
 
 .. code-block:: MATLAB
 
@@ -311,7 +308,7 @@ Now we inspect the policy functions. We first come back to our motivation for st
 .. image:: figures/policy_cTilde_feasible.png
     :scale: 60 %
 
-As shown, the level of bond that gives a same lower bound of consumption (here :math:`\tilde{c}` equal to 100) is declining in capital, suggesting that a higher capital allows
+As shown in the figure, the level of bond that gives a same lower bound of consumption (here :math:`\tilde{c}` equal to 100) is declining in capital, suggesting that a higher capital allows
 the current debt to be higher. However, determining this lower bound of bond level is difficult; but determining the boundary condition for consumption is much easier
 (:math:`\tilde{c}=0`). 
 
@@ -358,7 +355,7 @@ than resolving the system (the simulation with
     :lineno-start: 22
     :language: GDSGE
 
-Under this case, the variables to be recorded in the simulation needs to be explicitly specified in *var_output*
+In this case, the variables to be recorded in the simulation need to be explicitly specified in *var_output*
 
 .. literalinclude:: mendoza2010.gmod
     :lines: 107-107
@@ -398,7 +395,7 @@ Calling simulate_mnendoza2010 produces the following
         5   149.8   741.1   262.8   423.8  0.9844   61.04  -33.48  -31.26   42.34   13.19   381.7-0.08769 0.03455 -0.1525    74.4
 
 
-We can inspect the histogram of the natural state variable :math:`(k,b)` by calling in MATLAB:
+We can inspect the histogram of the natural state variables :math:`(k,b)` by calling in MATLAB:
 
 .. code-block:: MATLAB
 
@@ -413,7 +410,7 @@ We can inspect the histogram of the natural state variable :math:`(k,b)` by call
 .. image:: figures/histogram_b_k.png
     :scale: 60 %
 
-We are interested in the fraction of time that the economy is in a crisis (i.e., with a binding collateral constraint):
+We are interested in the fraction of time that the economy spends in a crisis, i.e., states with binding collateral constraint:
 
 .. code-block:: MATLAB
 
@@ -453,25 +450,24 @@ We can calculate the unconditional moments:
 .. csv-table:: Unconditional Business Cycle Moments
    :file: tables/all_stats_formatted.csv
 
-Most statistics are similar to Mendoza (2010) except that Mendoza (2010) uses a Stationary Cardinal Utility (SCU) utility function and 
+Most statistics are similar to `Mendoza (2010) <https://www.aeaweb.org/articles?id=10.1257/aer.100.5.1941>`_ except that `Mendoza (2010) <https://www.aeaweb.org/articles?id=10.1257/aer.100.5.1941>`_ uses a Stationary Cardinal Utility (SCU) utility function and 
 solves the model by solving a quasi social planner's problem which produces
 (1) less persistent leverage and bond, and (2) higher leverage and more
-negative bond/gdp ratio. These differences are also noted in `Mendoza and Villalvazo (2020) <https://www.sciencedirect.com/science/article/pii/S1094202520300028>`_. 
+negative bond/gdp ratio. These differences are also noted in `Mendoza and Villalvazo (2020) <https://www.sciencedirect.com/science/article/pii/S1094202520300028>`_.
 
 =====================
 What's Next?
 =====================
 
-This example illustrates how to solve a model with two endogenous state variables of which the exogenous feasible state space may be non-square and hard to determine ex-ante.
-The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the state space square. In the current example, the 
+This example illustrates how to solve a model with two endogenous state variables of which the exogenous feasible state space may be non-rectangle and hard to determine ex-ante.
+The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the state space a simple rectangle. In the current example, the 
 feasible debt level is high so the model can be solved directly over the natural state space---bond and capital. Such transformation 
-becomes essential for more complex problems, and sometimes the boundary condition needs to be solved for a different equilibrium system. The toolbox accommodates this 
-by allowing defining a different system of equations for problems at the boundary. See example :ref:`Cao and Nie (2017) <CaoNie2017>`.
+becomes essential for more complex problems, and sometimes the boundary condition needs to be solved using a different equilibrium system. The toolbox accommodates this 
+by allowing a different system of equations for problems at the boundary. See :ref:`Cao and Nie (2017) <CaoNie2017>` for such an example, in which consumption is zero and the Inada condition is violated at the boundary.
 
 The policy functions in the current example are highly nonlinear. We learned how to start with a crude grid and refine the solution with finer grids. A more effective approach
 is to let the toolbox automatically adapt the grids to increase points in regions that are nonlinear.
 The example in :ref:`Bianchi (2011) <Bianchi2011>` shows how to use adaptive grids for a model with a single-dimension endogenous state.
-The current model can also solved with adaptive grids by simply specifying one option in the gmod file, which we leave as an exercise.
+The current model can also be solved with adaptive grids by simply specifying one option in the gmod file, which we leave as an exercise.
 
 Or you can directly proceed to :ref:`Toolbox API`.
-

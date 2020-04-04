@@ -243,7 +243,7 @@ dominates and :math:`\bar{R}^{f}` is increasing in :math:`\gamma_{2}`. When
 :math:`\gamma_{2}`, since the wealth distribution :math:`\omega_{1}` is almost
 degenerated to its upper limit. 
 
-The figure below provides a comparison of two cases: :math:`\gamma_{2}=8` versus :math:`\gamma_{2}=10`. As :math:`\gamma_2` increases, the wealth share of Agent 1 tend to be larger.
+The figure below provides a comparison of two cases: :math:`\gamma_{2}=8` versus :math:`\gamma_{2}=10`. As :math:`\gamma_2` increases, the wealth share of Agent 1 tends to be larger.
 
 .. image:: figures/dist_Rf.png
     :scale: 50 %

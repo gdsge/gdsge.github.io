@@ -173,7 +173,11 @@
 <p>The models that we have seen so far are models with rational expectations. Our toolbox can be used to solve models without rational expectations. A recent example is <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a>.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
-<p>The model in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> is similar to the one in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> with several main differences. First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process. Therefore, it departs from the rational expectations assumption. <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> uses agent index <span class="math notranslate nohighlight">\(i\in \{\text{O},\text{P}\}\)</span>, which stands for optimists or pessimists. Second, the agents  are subject to a collateral constraints, besides the short-selling constraint:</p>
+<p>The model in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> is
+similar to the one in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> with several main differences.
+First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process.
+Therefore, it departs from the rational expectations assumption. <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> uses agent index <span class="math notranslate nohighlight">\(i\in \{\text{O},\text{P}\}\)</span>, which stands for optimists or pessimists.
+Second, the agents  are subject to a collateral constraint, besides the short-selling constraint:</p>
 <div class="math notranslate nohighlight">
 \[b^i_{t+1}+(1-m)s^i_{t+1}\min_{z^{t+1}|z^t}(p^s_{t+1}+d_{t+1})\geq0,\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\in(0,1)\)</span> denotes the margin requirement when agents purchase stock with leverage.</p>
@@ -443,7 +447,8 @@ qFuture = q;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>This should look familiar if you already came from the <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> example.
+<p>This should look familiar if you already saw the <a class="reference internal" href="../HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a> example
+(our toolbox algorithm to solve their model is also different from their original algorithm).
 The new element of the model, heterogeneous belief, is incorporated in the following two lines</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>89</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  eq2 = -1 + mu1 + beta1*GDSGE_EXPECT{((g&#39;)^(-sigma1))*((c1p&#39;)^(-sigma1))| <span class="k">shock_trans</span>1}/(p*(c1^(-sigma1)));
 </pre></div>
@@ -451,7 +456,8 @@ The new element of the model, heterogeneous belief, is incorporated in the follo
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>93</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  eq6 = -1 + mu2 + beta2*GDSGE_EXPECT{((g&#39;)^(-sigma2))*((c2p&#39;)^(-sigma2))| <span class="k">shock_trans</span>2}/(p*(c2^(-sigma2)));
 </pre></div>
 </td></tr></table></div>
-<p>As shown, the <em>GDSGE_EXPECT</em> function takes an optional argument following operator | to explicitly specify the transition matrix (with default specified in <em>shock_trans</em>).
+<p>As shown, the <em>GDSGE_EXPECT</em> function takes an optional argument following operator | to explicitly specify the transition matrix
+(with the default option given by <em>shock_trans</em>).
 In the current example, the transition matrix used by the optimists and pessimists are defined in <em>shock_trans1</em> and <em>shock_trans2</em>, respectively. Notice <em>shock_trans1</em> and
 <em>shock_trans2</em> need to be explicitly declared as <em>parameters</em> to be used in the model block.</p>
 </div>
@@ -459,7 +465,7 @@ In the current example, the transition matrix used by the optimists and pessimis
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>The following figure shows the equity premium as perceived by the optimists and the pessimists. The optimists believe that the likelihood of high dividend payment is higher than the pessimists do. Therefore, the optimists’ perceived equity premium is always higher, and they borrow from the pessimists to invest in stock.</p>
 <a class="reference internal image-reference" href="../../_images/policy_equity_premium.png"><img alt="../../_images/policy_equity_premium.png" src="../../_images/policy_equity_premium.png" style="width: 473.0px; height: 406.0px;" /></a>
-<p>In the ergodic distribution of wealth share in following figure using the pessimists’ beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect.</p>
+<p>In the ergodic distribution of wealth share in the following figure, using the pessimists’ beliefs as the correct beliefs, the optimists own large fractions of total wealth despite the fact that their beliefs are incorrect (because return to equity is higher than return to bond when the optimists’ wealth share is relatively low).</p>
 <a class="reference internal image-reference" href="../../_images/histogram_w1.png"><img alt="../../_images/histogram_w1.png" src="../../_images/histogram_w1.png" style="width: 620.8000000000001px; height: 500.8px;" /></a>
 </div>
 </div>

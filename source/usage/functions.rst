@@ -12,7 +12,7 @@ Matlab Interface
 
     :param options: a Matlab struct that contains options and parameters to be overwritten. 
         Notice only options that do not require recompiling can be overwritten. See :ref:`Options`
-    :return: a Matlab struct that contains the structure of the problem and converged policy/state transition functions
+    :return: a Matlab struct that contains the structure of the problem and converged policy and state transition functions
 
 .. function:: simulate_modname(IterRslt[,options])
 
@@ -50,7 +50,7 @@ Variable declaration
 
     Declare exogenous state variables.
     The number of elements of the cartesian set of `var_shock` is specified by `shock_num`.
-    The full transition matrix is specified by `shock_trans`
+    The full transition matrix is specified by `shock_trans`.
 
 .. declare:: var_state var1 var2 ...
 
@@ -76,22 +76,22 @@ Variable declaration
     To access elements of a vector `var_policy` in the model block, use round bracket to index
     or use the prime (') operator.
 
-    For each `var_policy`, its lower and upper bounds entering the equation solver should defined as
+    For each `var_policy`, its lower and upper bounds entering the equation solver should be defined as
 
     .. code-block:: GDSGE
 
-        inbound var1 var1_lb var1_ub
+        inbound var1 var1_lb var1_ub;
 
     If the lower and upper bounds of a `var_policy` cannot be determined ex-ante, specify tight bounds and
     use the adaptive bound option as 
 
     .. code-block:: GDSGE
 
-        inbound var1 var1_lb var1_ub adaptive(2.0)
+        inbound var1 var1_lb var1_ub adaptive(2.0);
 
     This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration, 
-    if `UseAdaptiveBound` is set as one. If option `UseAdaptiveBoundInSol` is set to one, after a failed attempt in trying to search
-    solutions within the bounds and the equation solver returns an immature step that hits the lower or upper bound,
+    if `UseAdaptiveBound` is set as one. If option `UseAdaptiveBoundInSol` is set to one, after a failed attempt in finding
+    a solution within the bounds and the equation solver returns a failed solution that hits the lower or upper bound,
     the bound will be expanded.
 
 .. declare:: var_aux var1 var2[len2] ...
@@ -130,34 +130,34 @@ The model block
     Like the *model;...end;* block, but is called only once at the start of the policy iteration.
     This is often used to define a last period problem which is to solve a potentially different system of equations.
 
-    Can set :rst:option:SkipModelInit=1 to skip this block, so the policy iteration starts with a WarmUp specified in the option.
+    Can set *option:SkipModelInit=1* to skip this block, so the policy iteration starts with a WarmUp specified in the option.
 
 .. declare:: simulate; ... end;
 
-    Declare the simulate block.
+    Declare the simulation block.
 
-    The simulate block should define the initial exogenous state index and endogenous states (e.g. var1 and var2) as following
+    The simulation block should define the initial exogenous state index and endogenous states (e.g. var1 and var2) as follows:
 
     .. code-block:: GDSGE
         
-        initial shock 1
-        initial var1 some_value1
-        initial var2 some_value2
+        initial shock 1;
+        initial var1 some_value1;
+        initial var2 some_value2;
 
-    The simulate block should declare the transition of each endogenous variable as following
-
-    .. code-block:: GDSGE
-
-        var1' = some_variable1
-        var2' = some_variable2
-
-    If the transition of the endogenous variable is given by indexing a vector `var_policy` or `var_aux` with the future exogenous state index,
-    specify the transition as following
+    The simulation block should declare the transition of each endogenous variable as follows:
 
     .. code-block:: GDSGE
 
-        var1' = some_var_policy'
-        var2' = some_aux_policy'
+        var1' = some_variable1;
+        var2' = some_variable2;
+
+    If the transition of an endogenous variable is given by indexing a vector `var_policy` or `var_aux` with the future exogenous state index,
+    specify the transition as follows:
+
+    .. code-block:: GDSGE
+
+        var1' = some_var_policy';
+        var2' = some_aux_policy';
 
     The simulate block should declare variables to be recorded following keyword `var_simu`. 
     A `var_simu` must be contained in `var_policy` or `var_aux` if SIMU_RESOLVE=1, or must be contained in `var_output` if SIMU_INTERP=1.
@@ -240,7 +240,7 @@ Built-in functions
     Calculate the conditional expectation of an expression.
 
     :param expression: mathematical expression to be calculated
-    :param trans_matrix: the Markov transition matrix used to form conditional probability. Defaulted to *shock_trans* if omitted
+    :param trans_matrix: the Markov transition matrix used to form conditional probability. The default value is *shock_trans*.
 
 
 .. function:: GDSGE_MAX{expression}
@@ -260,9 +260,9 @@ Built-in functions
 Options
 ======================================
 
-Options named UPPER_CASE_OPTION require recompiling (via a local or remote compiler) when the the values are changed.
+Options named UPPER_CASE_OPTION require recompiling (via a local or remote compiler) when the values are changed.
 
-Options named CapitalUpperCaseOption or lower_case_option do not require recompiling, and can be safely specified into an option structure to overwrite existing values. For example
+Options named CapitalUpperCaseOption or lower_case_option do not require recompiling, and can be safely specified through an option structure to overwrite existing values. For example:
 
 .. code-block:: MATLAB
 
@@ -296,13 +296,13 @@ Policy iterations
 
 .. option:: UseAdaptiveBound
 
-    Use adaptive bound specified as for example
+    Use adaptive bound specifies solution intervals as in this example,
 
     .. code-block:: GDSGE
 
-        inbound x 0.0 1.0 adaptive(2)
+        inbound x 0.0 1.0 adaptive(2);
 
-    which expand the lower and upper bound by a factor of 2 for each state after each iteration
+    which expand the lower and upper bounds by a factor of 2 for each state after each iteration.
 
     Takes value 0 or 1 (default).
 
@@ -335,7 +335,7 @@ Simulation
 .. option:: EnforceSimuStateInbound
 
     Whether enforcing endogenous states are inbound for each period, after interpolating state transition functions.
-    Effective only when `SIMU_INTERP` = 1
+    Effective only when `SIMU_INTERP` = 1.
 
 .. option:: num_samples
 
@@ -375,8 +375,8 @@ Function approximations
 .. option:: INTERP_ORDER
 
     Takes value of 2 (default) or 4.
-    Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolations and INTERP_ORDER=4
-    corresponds to cubic splines.
+    Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolation and INTERP_ORDER=4
+    corresponds to cubic splines interpolation.
 
 .. option:: ExtrapOrder
 
