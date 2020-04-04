@@ -91,7 +91,7 @@ model;
 end;
 
 simulate;
-  num_periods = 50000;
+  num_periods = 10000;
   num_samples = 24;
   initial c1 0.5;
   initial shock 1;
