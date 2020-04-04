@@ -96,5 +96,5 @@ simulate;
 end;
 post_simulate_iter;
   SimuRslt.kbar(:,GDSGE_t+1) = mean(SimuRslt.k(:,GDSGE_t+1));
-  SimuRslt.lbar(:,GNDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
+  SimuRslt.lbar(:,GDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
 end;

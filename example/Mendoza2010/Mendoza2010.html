@@ -589,13 +589,13 @@ inbound cTildeNext 0.0 500 <span class="k">adaptive</span>(ADAPTIVE_FACTOR);
   bNext = (nbNext + phi*R*(w*L+p*v) - kappa*q*kNext)/qb;
   
   <span class="c">% Interpolation</span>
-  [flow_future&#39;,q_plus_d_future&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(cTildeNext&#39;,kNext);
+  [flow_future&#39;,q_plus_d_future&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(cTildeNext&#39;,kNext);
   flow_future&#39; = flow_future&#39;*flow_scale;
 
   <span class="c">% some named equations</span>
   lambda_future&#39; = cTildeNext&#39;^(-sigma)/(1+tau);
-  euler_bond_residual = -1 + mu + beta*GNDSGE_EXPECT{lambda_future&#39;}/(qb*lambda);
-  euler_capital_residual = -1 + kappa*mu + beta*GNDSGE_EXPECT{lambda_future&#39;*q_plus_d_future&#39;}/(q*lambda);
+  euler_bond_residual = -1 + mu + beta*<span class="k">GDSGE_EXPECT</span>{lambda_future&#39;}/(qb*lambda);
+  euler_capital_residual = -1 + kappa*mu + beta*<span class="k">GDSGE_EXPECT</span>{lambda_future&#39;*q_plus_d_future&#39;}/(q*lambda);
   <span class="c">% consistency equation</span>
   cTilde_consis&#39; = flow_future&#39; + bNext - cTildeNext&#39;*(1+tau);
   
