@@ -9,8 +9,8 @@ Zin (1989) <https://www.jstor.org/stable/1913778?seq=1#metadata_info_tab_content
 `Weil (1990) <https://www.jstor.org/stable/2937817?seq=1#metadata_info_tab_contents>`_, which is a common preference specification in the asset pricing and 
 macro finance literature. The example also demonstrates that the solution method can handle
 ill-behaved equilibrium systems robustly: in the context of `Barro et al. (2017) <https://www.nber.org/papers/w20652>`_, when the risk aversion level is set very high
-(e.g., with coefficient of Relative Risk Aversion up to 100), the traditional
-nested fixed point solution method becomes unstable, since agents' portfolio choice becomes super sensitive to the pricing function.
+(e.g., with coefficient of relative risk aversion up to 100), the traditional
+nested fixed point solution method becomes unstable, since agents' portfolio choice becomes very sensitive to the pricing function.
 Nevertheless, the toolbox, which solves the equilibrium as one single system of equations, 
 can handle such parameterization fairly easily and uncovers novel theoretical results.
 
@@ -92,8 +92,8 @@ and
     \mathbb{E}_{t}\left[\frac{\left(R_{t+1}^{e}-R_{t+1}^{f}\right)u_{it+1}}{\left(R_{i,t+1}u_{it+1}\right)^{\gamma_{i}}}\right]=0.
     :label: eq_FOC_portfolio_choice
 
-The choice of :math:`c_{it}` and :math:`x_{it}` are identical across agents
-of the same type :math:`i`, and the portfolio choices of agent :math:`i` is
+The choices of :math:`c_{it}` and :math:`x_{it}` are identical across agents
+of the same type :math:`i`, and the portfolio choices of agent :math:`i` are
 
 .. math:: 
     K_{it} & =x_{it}\left(1-c_{it}\right)\left(1+p_{t}\right)/p_{t}\omega_{it},\\
@@ -147,8 +147,8 @@ The utility function :eq:`eq_normalized_utility_SafeAssets` is
 replaced by 
 
 .. math::
-    \ln u_{it}= & \frac{\rho+\upsilon}{1+\rho}\ln c_{it}+\frac{1-\upsilon}{1+\rho}\ln\left(1-c_{it}\right)\label{eq:normalized log utility SafeAssets}\\
-    & +\frac{1-\upsilon}{1+\rho}\frac{1}{1-\gamma_{i}}\ln\left[\mathbb{E}_{t}\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right].
+    \log u_{it}= & \frac{\rho+\upsilon}{1+\rho}\log c_{it}+\frac{1-\upsilon}{1+\rho}\log\left(1-c_{it}\right)\\
+    & +\frac{1-\upsilon}{1+\rho}\frac{1}{1-\gamma_{i}}\log\left[\mathbb{E}_{t}\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right].
 
 The state variable is :math:`\omega_{1t}`. The unknowns are :math:`\left\{ x_{1t},x_{2t},R_{t}^{f},\omega_{it+1}\left(z_{t+1}\right)\right\}`.
 We have 4 equations: :eq:`eq_FOC_portfolio_choice` for :math:`i=1,2`,
@@ -166,7 +166,7 @@ The model is solved with the following :download:`safe_assets.gmod <safe_assets.
     :linenos:
     :language: GDSGE
 
-There is not too much new about the usage of the toolbox if you already came from examples :ref:`Heaton and Lucas (1996) <HL1996>` and 
+There is not too much new about the usage of the toolbox if you already saw examples :ref:`Heaton and Lucas (1996) <HL1996>` and 
 :ref:`Guvenen (2009) <Guvenen2009>`.
 There are some transformations worth mentioning which facilitate solving the model.
 
@@ -185,7 +185,7 @@ when the CRRA coefficient :math:`\gamma_2` is very large: by tracking and calcul
 This procedure proves to be essential in solving models with :math:`\gamma_2` very high, as :math:`u` can easily fall below 
 the smallest number permitted by double precision.
 
-Like previous examples, we can inspect the policy functions and ergodic sets after solving policy iterations and simulations. Here, we focus on
+As in previous examples, we can inspect the policy functions and ergodic sets after solving policy iterations and simulations. Here, we focus on
 how to construct generalized impulse responses using the model simulations. Since the equilibrium concept involves an ergodic distribution of state, instead of a 
 deterministic steady state, the proper concepts of impulse responses are sampling responses from the ergodic set, and taking their averages and standard deviations.
 The sampling procedure can be done on a sub-population of the ergodic set,  generating conditional impulse responses which will be of particular interests since 
@@ -196,13 +196,13 @@ The procedure for constructing generalized impulse responses goes as follows:
 1. Simulate an ergodic set, which can be done by simulating one or multiple samples for a long-period of time,
 according to the Ergodic theorem. 
 
-2. Replicate the ergodic set into two. For one of the two, turn the shock to "on". The exact procedure depends on the model context.
+2. Replicate the ergodic set to get two identical sets. For one of the two, turn the shock to "on". The exact procedure depends on the model.
 In the current example, "on" corresponds to the rare diaster state. For the other set, keep the shock unchanged.
 
 3. Simulate the two sets, keeping the transitions of the exogenous shocks on. This procedure essentially captures the effect of the switching of the shock in the initial period
 on subsequent dynamics. 
 
-4. Calculate the mean and s.d. of the difference between simulated time series of the two sets. These arrive at the mean impulse responses and 
+4. Calculate the mean and standard deviation of the differences between simulated time series of the two sets. These arrive at the mean impulse responses and 
 the standard deviations. Again, the above procedure can be conditional on a sub-population of the ergodic set so as to compute 
 conditional impulse responses starting from states with certain properties of interests.
 
@@ -214,11 +214,11 @@ a one-time disaster using the baseline parameters in `Barro et al. (2017) <https
 (For annual data, :math:`\rho=0.02`, :math:`\upsilon=0.02`, :math:`\mu=0.5`, :math:`\gamma_{1}=3.3`,
 and :math:`\gamma_{2}=5.6`. Growth rate in normal times is :math:`0.025`. Rare
 disaster happens with probability 4\%, and once it happens, productivity
-drops by 32\%. The model period is one quarter.) As shown, the rare disaster shock redistributes
-wealth from the less risk averse agent (Agent 1) to that of the more risk averse one (Agent 2). This leads to
-more safe assets demanded, and a higher equilibrium quantity and price (lower interest rate) of the safe asset.
+drops by 32\%. The model period is one quarter.) As shown in the figure, the rare disaster shock redistributes
+wealth from the less risk averse agents (Agent 1) to the more risk averse agents (Agent 2). This leads to
+more demand for safe asset, and a higher equilibrium quantity and price (lower interest rate) of the safe asset.
 
-A final remark is on the price of safe assets, which exhibits non-monotonicity as the risk aversion level of Agent 2
+A final remark is on the price of safe assets, which exhibits non-monotonicity as the risk aversion of Agent 2
 :math:`\gamma_2` increases, as shown in the figure below.
 This non-monotonicity is usually overlooked in the literature and uncovered by our solution method that can solve models with high :math:`\gamma_2` robustly and accurately.
 
@@ -234,15 +234,16 @@ and become more leveraged. Since the return of equity is higher than
 bond, the average wealth share of agent 1, :math:`\omega_{1}` becomes larger.
 Larger :math:`\omega_{1}` leads to more relative supply of safe asset and
 pushes up :math:`\bar{R}^{f}`. Whether :math:`\bar{R}^{f}` decreases or increases
-in :math:`\gamma_{2}` depends on which force dominates. Figure below
+in :math:`\gamma_{2}` depends on which force dominates. The figure 
 shows that when :math:`\gamma_{2}` is below :math:`8` the first force dominates
 and :math:`\bar{R}^{f}` is decreasing in :math:`\gamma_{2}` as assumed in `Barro et al. (2017) <https://www.nber.org/papers/w20652>`_.
 However, when :math:`\gamma_{2}` is larger than :math:`8`, the second force
 dominates and :math:`\bar{R}^{f}` is increasing in :math:`\gamma_{2}`. When
 :math:`\gamma_{2}` is larger than 20, :math:`\bar{R}^{f}` is not responsive to
 :math:`\gamma_{2}`, since the wealth distribution :math:`\omega_{1}` is almost
-degenerated to its upper limit. See the figure below
-as a comparison of two cases: :math:`\gamma_{2}=8` versus :math:`\gamma_{2}=10`.
+degenerated to its upper limit. 
+
+The figure below provides a comparison of two cases: :math:`\gamma_{2}=8` versus :math:`\gamma_{2}=10`. As :math:`\gamma_2` increases, the wealth share of Agent 1 tend to be larger.
 
 .. image:: figures/dist_Rf.png
     :scale: 50 %
@@ -254,9 +255,8 @@ What's Next?
 
 This example illustrates that the toolbox algorithm is especially effective to solve models where portfolio choices are sensitive to the asset price,
 which are traditionally considered ill-behaved problems. In `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_, 
-we solve another model which is traditionally considered ill-behaved:
+we solve another model which is traditionally considered ill-behaved: 
 a two-country DSGE model with portfolio choices in which 
 the returns to assets are close to collinear in certain regions of the state space.
 
 Or you can directly proceed to :ref:`Toolbox API`.
-

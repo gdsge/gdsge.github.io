@@ -2,7 +2,7 @@
 A RBC Model with Irreversible Investment
 ****************************************
 
-The standard :ref:`RBC model <Getting Started - A Simple RBC Model>` can also be solved easily using local methods. Now we consider an exentsion which can only be solved properly using global methods. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.
+The standard :ref:`RBC model <Getting Started - A Simple RBC Model>` can also be solved easily using local methods. Now we consider an extension which can only be solved properly using global methods. The model features an investment irreversibility constraint, which requires investment to be larger than a certain threshold.
 
 ===============
 The Model
@@ -15,23 +15,23 @@ First, productivity follows a continuous AR(1) process
 .. math::
     \log z_t = \rho \log z_{t-1} + \epsilon_t
     
-where parameter :math:`\rho \in (0,1)` is the persistence, :math:`\epsilon_t` is an I.I.D. shock that takes on one of the two values :math:`-e` or :math:`+e` with equal probabilities.
+where parameter :math:`\rho \in (0,1)` is the persistence, :math:`\epsilon_t` is an I.I.D. shock.
     
 Second, when accumulating capital,
 
 .. math::
     K_{t+1} = K_t(1-\delta) + I_t,
 
-the reprentative firm is subject to an irreversibility constraint
+the representative firm is subject to an irreversibility constraint
 
 .. math::
     I_t \geq \phi I_{ss},
 
 where :math:`I_{ss}` is the steady-state level of investment and parameter :math:`\phi` corresponds to the tightness of the irreversibility constraint.
 
-These features require us to keep track of two continuous state variable: exogenous :math:`z_t` and endogenous :math:`K_t`. The toolbox is well designed to handle models with more than one continuous state variables like the present model.
+These features require us to keep track of two continuous state variables: exogenous :math:`z_t` and endogenous :math:`K_t`. The toolbox is well designed to handle models with more than one continuous state variables like the present model.
 
-Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition
+Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition:
 
 .. math::
     &c_t^{-\sigma}-\mu_t\\
@@ -41,11 +41,7 @@ Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constrai
     &\\
     &c_t+K_{t+1} = z_t K_t^{\alpha}+(1-\delta)K_t.
 
-
-
-
-
-A recursive competitive equilibrium are functions: :math:`c(z,K), K'(z,K), \mu(z,K)` s.t.
+A recursive competitive equilibrium consists of functions: :math:`c(z,K), K'(z,K), \mu(z,K)` s.t.
 
 .. math::
     &c(z,K)^{-\sigma}-\mu(z,K)\\
@@ -79,12 +75,14 @@ The recursive system can now be input to the GDSGE toolbox via a mod file :downl
     :linenos:
     :language: GDSGE
 
-The toolbox solves the model and produce the policy functions. The following figure displays the investment policy function :math:`I(z,K)`. The investment irreversibility constraint tend to bind when :math:`K` is low or :math:`z` is low.  
+The toolbox solves the model and produces the policy functions. The following figure displays the investment policy function :math:`I(z,K)`. The investment irreversibility constraint tends to bind when :math:`K` is low or :math:`z` is low.  
     
 .. image:: figuresIrr/policy_Inv.png
     :scale: 20 %
 
-We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the :ref:`RBC model <Getting Started - A Simple RBC Model>` without the irreversitiliby constraint.
+We then use the policy functions to simulate the model. The following figures show the long run distributions of investment and capital. 
+The investment irreversibility constraint binds around 20% of the times. 
+The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the :ref:`RBC model <Getting Started - A Simple RBC Model>` without the irreversibility constraint.
 
 .. image:: figuresIrr/histogram_Inv.png
     :scale: 40 %

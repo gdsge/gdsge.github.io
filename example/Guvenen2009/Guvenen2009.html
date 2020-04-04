@@ -164,11 +164,11 @@
 <p><a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658">Guvenen (2009)</a> constructs a two-agent model to account for several
 salient features of asset pricing moments, such as high risk premium,
 low and relatively smooth interest rate, and countercyclical movements
-in risk premium and Sharpe ratio. Two key ingredients of his model
+in risk premium and Sharpe ratio. The two key ingredients of his model
 are limited stock market participation and heterogeneity in the elasticity
 of inter-temporal substitution in consumption (EIS).</p>
 <p>When all endogenous states are pre-determined, such as capital and bond share in the current example, the expectation of future
-variables can be parameterized and integrated before solving the system of equation, which greatly speeds up the computation.
+variables can be parameterized and integrated before solving the system of equilibrium equations, which greatly speeds up the computation.
 We illustrate how to use parameterized expectation with the toolbox in this example.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
@@ -179,7 +179,7 @@ measure <span class="math notranslate nohighlight">\(1-\mu\)</span>. Agents have
 \[U_{i,t}=\left\{ \left(1-\beta\right)c_{i,t}^{1-\rho^{i}}+\beta\left[\mathbb{E}_{t}\left(U_{i,t+1}^{1-\alpha}\right)\right]^{\frac{1-\rho^{i}}{1-\alpha}}\right\} ^{1/\left(1-\rho^{i}\right)}.\label{eq:utility Guv}\]</div>
 <p>for <span class="math notranslate nohighlight">\(i=h,n\)</span>. Most importantly, <span class="math notranslate nohighlight">\(\rho^{h}&lt;\rho^{n}\)</span>, i.e., the non-stockholders
 have lower EIS which is inversely proportional to <span class="math notranslate nohighlight">\(\rho^{i}\)</span>, and
-thus they have higher desire for consumption smoothness. Each agent
+thus they have higher desire for consumption smoothness over time. Each agent
 has one unit of labor endowment.</p>
 <p>Stockholders can trade stock <span class="math notranslate nohighlight">\(s_{t}\)</span> and bond <span class="math notranslate nohighlight">\(b_{h,t}\)</span> at prices
 <span class="math notranslate nohighlight">\(P_{t}^{s}\)</span> and <span class="math notranslate nohighlight">\(P_{t}^{f}\)</span> respectively. Their budget constraint
@@ -271,9 +271,8 @@ capital formation equation and satisfies</p>
 <p>In period <span class="math notranslate nohighlight">\(t\)</span>, the 6 future variables in use: <span class="math notranslate nohighlight">\(c_{h,t+1}\)</span>, <span class="math notranslate nohighlight">\(c_{n,t+1}\)</span>, <span class="math notranslate nohighlight">\(P_{t+1}^{s}+D_{t+1}\)</span>,
 <span class="math notranslate nohighlight">\(I_{t+1}/K_{t+1}\)</span>, <span class="math notranslate nohighlight">\(U_{h,t+1}\)</span> and <span class="math notranslate nohighlight">\(U_{n,t+1}\)</span> are functions of
 <span class="math notranslate nohighlight">\(\left\{ K_{t+1},B_{t+1}^{n},Z_{t+1}\right\}\)</span> and are solved from
-the previous iteration. Similar to Guvenen (2009), the initial
-guess for these functions are obtained by solving a version of the
-model with no leverage (<span class="math notranslate nohighlight">\(\chi=0\)</span>, <span class="math notranslate nohighlight">\(\underline{B}=0\)</span>).</p>
+the previous iteration. Similar to <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658">Guvenen (2009)</a>, the initial
+guesses for these functions are obtained by solving a version of the model with no leverage.</p>
 </div>
 <div class="section" id="the-gmod-file">
 <h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
@@ -650,8 +649,8 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
 </pre></div>
 </td></tr></table></div>
 <p>The implementation uses the exact parameterization and specification (number of grid points, domains of endogenous state variables,
-number of discretized exogenous shocks, the cubic spline approximation, etc.) in Guvenen (2009). However, the algorithm differs from his. His is based on the algorithm
-in Krusell and Smith (1998): starting from a conjectured law of motion for state-variables and pricing functions,
+number of discretized exogenous shocks, the cubic spline approximation, etc.) in <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658">Guvenen (2009)</a>. However, the algorithm differs from his. His is based on the algorithm
+in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a>: starting from a conjectured law of motion for state-variables and pricing functions,
 he solves the agents’ Bellman equation and the agents’ policy functions using standard value function iterations.
 Then he uses these policy functions and temporary market clearing conditions to obtain a new law of motions
 and new pricing functions. The current algorithm, like other examples, utilizes the fact that agents’ optimization is concave,
@@ -726,9 +725,9 @@ to the index of the current exogenous shock.</p>
 </div>
 <p>We first solve a simple version of the problem as a warm-up. This simple problem has a lower aggregate net supply of bond
 (<span class="math notranslate nohighlight">\(\chi=0.005\)</span>) and a tighter borrowing constraint (<span class="math notranslate nohighlight">\(\bar{B}\)</span>). This ensures that starting from a last period solution
-the equilibrium exists, which is also noted in Guvenen (2009).</p>
-<p>Starting with the warm-up solution, we now change the parameters, increase <span class="math notranslate nohighlight">\(\chi\)</span> to the parameter in the paper
-<span class="math notranslate nohighlight">\(0.15\)</span> and specify a much more relaxed borrowing constraint (<span class="math notranslate nohighlight">\(\bar{B}\)</span>). This can be done very conveniently with
+the equilibrium exists, which is also noted in <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658">Guvenen (2009)</a>.</p>
+<p>Starting with the warm-up solution, we now change the parameters, increase <span class="math notranslate nohighlight">\(\chi\)</span> to <span class="math notranslate nohighlight">\(0.15\)</span>,
+its value in the paper, and specify a much more relaxed borrowing constraint (<span class="math notranslate nohighlight">\(\bar{B}\)</span>). This can be done very conveniently with
 the toolbox by specifying the new parameters into a structure, and the warm-up solution as a field named <em>WarmUp</em> into the structure.</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">beta</span> <span class="p">=</span> <span class="mf">0.9967</span><span class="p">;</span>      <span class="c">% discount factor</span>
 <span class="n">alpha</span> <span class="p">=</span> <span class="mf">.3</span><span class="p">;</span>         <span class="c">% capital share</span>
@@ -783,8 +782,8 @@ the toolbox by specifying the new parameters into a structure, and the warm-up s
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/policy_guv.png"><img alt="../../_images/policy_guv.png" src="../../_images/policy_guv.png" style="width: 585.2px; height: 250.0px;" /></a>
-<p>As shown, given capital, as the bond of non-stock holders increases, the demand for bond increases and for stock decreases,
-which results in a lower interest rate,  higher stock price and lower equity premium.</p>
+<p>As shown, given capital, as the bond holding of non-stock holders increases, the demand for bond increases and for stock decreases,
+which results in a lower interest rate,  lower stock price and lower equity premium.</p>
 <p>We can then simulate the economy</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_guvenen2009</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">1000</span>
@@ -801,7 +800,7 @@ which results in a lower interest rate,  higher stock price and lower equity pre
 <span class="n">Elapsed </span><span class="s">time is 14.973382 seconds.</span><span class="p"></span>
 </pre></div>
 </div>
-<p>And inspect the distribution of state variables in the ergodic set</p>
+<p>and inspect the distribution of state variables in the ergodic set</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="n">startPeriods</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>
 <span class="n">Kss</span> <span class="p">=</span> <span class="n">IterRslt</span><span class="p">.</span><span class="n">params</span><span class="p">.</span><span class="n">Kss</span><span class="p">;</span>
 <span class="n">K</span> <span class="p">=</span> <span class="n">SimuRslt</span><span class="p">.</span><span class="n">K</span><span class="p">(:,</span><span class="n">startPeriods</span><span class="p">:</span><span class="k">end</span><span class="p">);</span>
@@ -833,7 +832,7 @@ The finite-agent asset pricing model is an important class in the Macro and Macr
 Since the framework of the toolbox solves allocations and prices jointly respecting the optimality and market clearing conditions,
 it is able to deal with setups which are
 traditionally regarded as ill-conditioned, such as models with very high risk aversion levels (see example
-<a class="reference internal" href="../safe_assets/safe_assets.html#barro2017"><span class="std std-ref">Barro et al. (2017)</span></a>) or models with equilibrium asset returns that are close to collinear (see example <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a>)</p>
+<a class="reference internal" href="../safe_assets/safe_assets.html#barro2017"><span class="std std-ref">Barro et al. (2017)</span></a>) or models with equilibrium asset returns that are close to collinear such as <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a>.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
 </div>
 </div>

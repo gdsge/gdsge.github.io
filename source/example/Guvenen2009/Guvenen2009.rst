@@ -5,12 +5,12 @@ Guvenen (2009): Asset Pricing with Heterogeneous IES
 `Guvenen (2009) <https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658>`_ constructs a two-agent model to account for several
 salient features of asset pricing moments, such as high risk premium,
 low and relatively smooth interest rate, and countercyclical movements
-in risk premium and Sharpe ratio. Two key ingredients of his model
+in risk premium and Sharpe ratio. The two key ingredients of his model
 are limited stock market participation and heterogeneity in the elasticity
 of inter-temporal substitution in consumption (EIS).
 
 When all endogenous states are pre-determined, such as capital and bond share in the current example, the expectation of future
-variables can be parameterized and integrated before solving the system of equation, which greatly speeds up the computation.
+variables can be parameterized and integrated before solving the system of equilibrium equations, which greatly speeds up the computation.
 We illustrate how to use parameterized expectation with the toolbox in this example.
 
 .. _Guvenen2009:
@@ -28,7 +28,7 @@ measure :math:`1-\mu`. Agents have Epstein-Zin utility functions
 
 for :math:`i=h,n`. Most importantly, :math:`\rho^{h}<\rho^{n}`, i.e., the non-stockholders
 have lower EIS which is inversely proportional to :math:`\rho^{i}`, and
-thus they have higher desire for consumption smoothness. Each agent
+thus they have higher desire for consumption smoothness over time. Each agent
 has one unit of labor endowment.
 
 Stockholders can trade stock :math:`s_{t}` and bond :math:`b_{h,t}` at prices
@@ -166,9 +166,8 @@ The auxiliary variables can be determined by the utility function, market cleari
 In period :math:`t`, the 6 future variables in use: :math:`c_{h,t+1}`, :math:`c_{n,t+1}`, :math:`P_{t+1}^{s}+D_{t+1}`,
 :math:`I_{t+1}/K_{t+1}`, :math:`U_{h,t+1}` and :math:`U_{n,t+1}` are functions of
 :math:`\left\{ K_{t+1},B_{t+1}^{n},Z_{t+1}\right\}` and are solved from
-the previous iteration. Similar to Guvenen (2009), the initial
-guess for these functions are obtained by solving a version of the
-model with no leverage (:math:`\chi=0`, :math:`\underline{B}=0`).
+the previous iteration. Similar to `Guvenen (2009) <https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658>`_, the initial
+guesses for these functions are obtained by solving a version of the model with no leverage.
 
 ========================================
 The gmod File
@@ -181,8 +180,8 @@ The model can be solved with the following :download:`guvenen2009.gmod <guvenen2
     :language: GDSGE
 
 The implementation uses the exact parameterization and specification (number of grid points, domains of endogenous state variables,
-number of discretized exogenous shocks, the cubic spline approximation, etc.) in Guvenen (2009). However, the algorithm differs from his. His is based on the algorithm 
-in Krusell and Smith (1998): starting from a conjectured law of motion for state-variables and pricing functions, 
+number of discretized exogenous shocks, the cubic spline approximation, etc.) in `Guvenen (2009) <https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658>`_. However, the algorithm differs from his. His is based on the algorithm 
+in `Krusell and Smith (1998) <https://www.journals.uchicago.edu/doi/abs/10.1086/250034>`_: starting from a conjectured law of motion for state-variables and pricing functions, 
 he solves the agents' Bellman equation and the agents' policy functions using standard value function iterations. 
 Then he uses these policy functions and temporary market clearing conditions to obtain a new law of motions 
 and new pricing functions. The current algorithm, like other examples, utilizes the fact that agents' optimization is concave,
@@ -264,10 +263,10 @@ After processed by a local or remote compiler, we can run the returned file to r
 
 We first solve a simple version of the problem as a warm-up. This simple problem has a lower aggregate net supply of bond 
 (:math:`\chi=0.005`) and a tighter borrowing constraint (:math:`\bar{B}`). This ensures that starting from a last period solution
-the equilibrium exists, which is also noted in Guvenen (2009).
+the equilibrium exists, which is also noted in `Guvenen (2009) <https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658>`_.
 
-Starting with the warm-up solution, we now change the parameters, increase :math:`\chi` to the parameter in the paper
-:math:`0.15` and specify a much more relaxed borrowing constraint (:math:`\bar{B}`). This can be done very conveniently with 
+Starting with the warm-up solution, we now change the parameters, increase :math:`\chi` to :math:`0.15`, 
+its value in the paper, and specify a much more relaxed borrowing constraint (:math:`\bar{B}`). This can be done very conveniently with 
 the toolbox by specifying the new parameters into a structure, and the warm-up solution as a field named *WarmUp* into the structure.
 
 .. code-block:: MATLAB
@@ -331,8 +330,8 @@ We can inspect the policy functions at convergence by calling in MATLAB:
 .. image:: figures/policy_guv.png
     :scale: 40 %
 
-As shown, given capital, as the bond of non-stock holders increases, the demand for bond increases and for stock decreases,
-which results in a lower interest rate,  higher stock price and lower equity premium.
+As shown, given capital, as the bond holding of non-stock holders increases, the demand for bond increases and for stock decreases,
+which results in a lower interest rate,  lower stock price and lower equity premium.
 
 We can then simulate the economy
 
@@ -352,7 +351,7 @@ We can then simulate the economy
         11   135.2  0.5826   4.547   5.381   3.158  0.9444   136.5  0.4421   1.001  0.5829   135.3   0.928   308.7   1.0010.002332 0.05232
     Elapsed time is 14.973382 seconds.
 
-And inspect the distribution of state variables in the ergodic set
+and inspect the distribution of state variables in the ergodic set
 
 .. code-block:: MATLAB
 
@@ -388,7 +387,7 @@ The finite-agent asset pricing model is an important class in the Macro and Macr
 Since the framework of the toolbox solves allocations and prices jointly respecting the optimality and market clearing conditions,
 it is able to deal with setups which are 
 traditionally regarded as ill-conditioned, such as models with very high risk aversion levels (see example 
-:ref:`Barro et al. (2017) <Barro2017>`) or models with equilibrium asset returns that are close to collinear (see example `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_)
+:ref:`Barro et al. (2017) <Barro2017>`) or models with equilibrium asset returns that are close to collinear such as `Cao, Evans, and Luo (2020) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189>`_.
 
 Or you can directly proceed to :ref:`Toolbox API`.
 

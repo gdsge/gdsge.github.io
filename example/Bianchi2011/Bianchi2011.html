@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Bianchi (2011): Sudden Stops in Open Economies</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-planner-s-solution">The Planner’s solution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
@@ -177,12 +177,12 @@ A key feature for the model in <a class="reference external" href="https://www.a
 is to introduce feedback of the  price of non-tradable goods to the borrowing constraint: a negative external shock
 that lowers the equilibrium price of non-tradable goods tightens the borrowing constraint and forces reducing the consumption of tradable goods,
 which further lowers the price of non-tradable goods.
-The competitive equilibrium is inefficient since agents do not take into account the effects of non-tradable price on the borrowing constraint in the event of a sudden stop crisis.
+The competitive equilibrium is inefficient since agents do not take into account the effects of their consumption on the non-tradable price and the borrowing constraint.
 This leads to ex-ante over-borrowing and calls for policy interventions.</p>
 <p>The borrowing constraint is occasionally binding in the equilibrium’s ergodic set,
 and the equilibrium policy and state transition functions are highly non-linear when the borrowing constraint binds.
 Therefore, a global and non-linear solution is essential to capture the model’s rich dynamics. We solve the competitive equilibrium of the benchmark model in
-<a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>, described below</p>
+<a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>, described below.</p>
 <p>Small-open economy representative consumers derive utility from consumption of tradable goods  <span class="math notranslate nohighlight">\(c_t^T\)</span> and of non-tradable goods <span class="math notranslate nohighlight">\(c_t^N\)</span> according to</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp; \mathbb E \Big\{\sum_{t=0}^{\infty} \beta^t u(c_t)\Big\}
@@ -204,37 +204,37 @@ plus <span class="math notranslate nohighlight">\(\kappa^T\)</span> fraction of 
 <span class="math notranslate nohighlight">\(\kappa^N&gt;0, \kappa^T&gt;0\)</span> determining the collaterability of the non-tradable and tradable endowments, respectively.</p>
 <p>A sequential competitive equilibrium is stochastic sequences <span class="math notranslate nohighlight">\(\{b_{t+1},c_t^T,c_t^N,c_t,\mu_t,\lambda_t,p_t^N\}_{t=0}^{\infty}\)</span> such that</p>
 <ul class="simple">
-<li><p>Consumer optimizations:</p></li>
+<li><p>Consumers optimize:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\begin{split}p_t^N = \Big(\frac{1-\omega}{\omega}\Big)\Big(\frac{c_t^T}{c_t^N}\Big)^{\eta+1}
+\[\begin{split}p_t^N = \Big(\frac{1-\omega}{\omega}\Big)\Big(\frac{c_t^T}{c_t^N}\Big)^{\eta+1},
 \\
-\lambda_t = \beta(1+r) \mathbb{E}_t \lambda_{t+1} + \mu_t
+\lambda_t = \beta(1+r) \mathbb{E}_t \lambda_{t+1} + \mu_t,
 \\
-\mu_t[b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T) =0
+\mu_t[b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T) =0,
 \\
-b_{t+1} + c_t^T + p_t^N c_t^N = b_t(1+r) + y_t^T + p_t^Ny_t^N
+b_{t+1} + c_t^T + p_t^N c_t^N = b_t(1+r) + y_t^T + p_t^Ny_t^N,
 \\
-c_t = [\omega(c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-1/\eta}\end{split}\]</div>
+c_t = [\omega(c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-1/\eta},\end{split}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[\lambda_t = u'(c_{t}) \frac{\partial c_t}{\partial c_t^T}=u'(c_t)[\omega (c_t^T)^{-\eta} + (1-\omega)(c_t^N)^{-\eta}]^{-\frac{1}{\eta}-1}\omega [c_t^T]^{-\eta-1}.\]</div>
 <ul class="simple">
-<li><p>Markets clearing:</p></li>
+<li><p>Markets clear:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp; c_t^N = y_t^N
+\[\begin{split}&amp; c_t^N = y_t^N,
 \\
-&amp; c_t^T = y_t^T+b_t(1+r)-b_{t+1}\end{split}\]</div>
-<p>Notice we have replaced the consumer’s constrained optimization problem with
-first order conditions and complementarity conditions, which enable solving the system as equation system.</p>
+&amp; c_t^T = y_t^T+b_t(1+r)-b_{t+1}.\end{split}\]</div>
+<p>Notice that we have replaced the consumer’s constrained optimization problem with
+first order conditions and complementarity conditions, which allows us to describe the equilibrium as a system of equilibrium equations.</p>
 <p>To input the model into the toolbox, we need to formulate the recursive system.
 The exogenous states are <span class="math notranslate nohighlight">\(y_t^N,y_t^T\)</span>, the natural endogenous state is <span class="math notranslate nohighlight">\(b_t\)</span>.
 A recursive competitive equilibrium is <span class="math notranslate nohighlight">\(b'(y^N,y^T,b),c^T(y^N,y^T,b),c^N(y^N,y^T,b),c(y^N,y^T,b),\mu(y^N,y^T,b),\lambda(y^N,y^T,b),p^N(y^N,y^T,b)\)</span> that satisfy
 the optimization and markets clearing conditions.</p>
 </div>
 <div class="section" id="the-gmod-file">
-<h2>The gmod file<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
+<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
 <p>The recursive system can be solved using GDSGE with <a class="reference download internal" download="" href="../../_downloads/dc93d546c85c5e3530f9e8eccd0c4749/bianchi2011.gmod"><code class="xref download docutils literal notranslate"><span class="pre">bianchi2011.gmod</span></code></a> below</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
@@ -455,7 +455,7 @@ lambda_interp = lambda;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>Some comments on the implementations.</p>
+<p>Here are some comments on the implementation.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>2
 3
 4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>USE_ASG=1; USE_SPLINE=0;
@@ -463,14 +463,14 @@ AsgMaxLevel = 10;
 AsgThreshold = 1e-4;
 </pre></div>
 </td></tr></table></div>
-<p>These lines specify the option that the adaptive sparse grid is used for function approximations.
-The adaptive grid method is based on <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S002199910900028X">Ma and Zabaras (2009)</a>
-and <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216">Brumm and Scheidegger (2017)</a>
+<p>These lines specify the option that the adaptive sparse grid (ASG) method uses for function approximations.
+The ASG method is based on <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S002199910900028X">Ma and Zabaras (2009)</a>,
+brought to economics by <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12216">Brumm and Scheidegger (2017)</a>
 and features sparsity for multi-dimensional problems and thus can accommodate models with high-dimension state space.
 In the current context with one dimension continuous state space, the method works to automatically refine the discretized grid
 in the region of state space featuring high nonlinearity.
-The method is using hat functions as the basis function defined in a hierarchy structure. Option <em>AsgMaxLevel</em> specifies the
-the max level at which the refinement stops, and option <em>AsgThreshold</em> specifies the threshold below which the refinement stops.
+The method uses hat functions as the basis functions defined in a hierarchy structure. Option <em>AsgMaxLevel</em> specifies the
+the maximum level at which the refinement stops, and option <em>AsgThreshold</em> specifies the threshold below which the refinement stops.
 See more options for the adaptive sparse grid in <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>41
 42
@@ -505,9 +505,9 @@ See more options for the adaptive sparse grid in <a class="reference internal" h
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>These lines define the starting point of the time iteration, which is based on the solution to a last-period problem. In this problem
-the last-period problem is actually trivial: it just specifies the marginal utility is deriving from consuming all endowments (of tradable and non-tradable) and bond holdings.
-One does not need to actually solve a system of equations for this, but does want to organize the calculations in a
+<p>These lines define the starting point of the time iteration, which is based on the solution to a last-period problem. In this model
+the last-period problem is actually trivial: it just specifies the marginal utility derived from consuming all endowments (of tradable and non-tradable) and bond holdings.
+We do not need to solve a system of equations for this, but we want to organize the calculations in a
 readable format. These lines demonstrate how such procedure can be done by defining a trivial <em>model_init;</em> block, which accepts a dummy as unknown,
 and returns variables needed in <em>var_aux_init</em>.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>78</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  bNext = nbNext - (kappaN*pN*yN + kappaT*yT);
@@ -515,7 +515,7 @@ and returns variables needed in <em>var_aux_init</em>.</p>
 </td></tr></table></div>
 <p>This line demonstrates how to transform the borrowing constraint tied to an endogenous asset price <span class="math notranslate nohighlight">\(b_{t+1} \geq - (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)\)</span>, into a boxed constraint.
 This is done by defining <span class="math notranslate nohighlight">\(nb_{t+1}=b_{t+1} + (\kappa^N p_t^N y_t^N + \kappa^T y_t^T)\)</span>, and specifying a non-negative constraint for unknown <span class="math notranslate nohighlight">\(nb_{t+1}\)</span>.
-In the evaluations of the equations, one transforms <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> with the line defined above.</p>
+In the evaluations of the equations, we transform <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> back to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> with the line defined above.</p>
 </div>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
@@ -537,7 +537,7 @@ options.b = [options.bMin,options.bMax];
 IterRslt = iter_bianchi2011(options);
 </pre></div>
 </div>
-<p>As shown, the options specified in a structure can be passed into the <em>iter</em> file to overwrite existing parameters. (All parameters
+<p>As shown above, the options specified in a structure can be passed into the <em>iter</em> file to overwrite existing parameters. (All parameters
 with names CapitalUpperCaseOption can be overwritten without recompiling). We first load the exact discretized processes
 used in <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>. Make sure you have file
 <a class="reference download internal" download="" href="../../_downloads/c6aa4f4558622c4a3848b8951afe9ae5/shock_process.mat"><code class="xref download docutils literal notranslate"><span class="pre">shock_process.mat</span></code></a> ready.
@@ -546,7 +546,7 @@ the procedure stops. Since we are just warming up on a crude state space, let’
 in a structure, in the field named <em>WarmUp</em>. This basically overwrites the starting point of the policy iteration with the solution obtained
 in the previous <em>iter</em> call. Accordingly, option <em>SkipModelInit</em> is set to one to skip the <em>model_init;</em> block as it is not used (this step is optional but can be helpful in cases
 where the last-period problem takes time to solve and is not guaranteed to find solutions in the expanded state space).</p>
-<p>Finally, we overwrite the state space to enlarge <em>b</em> to <span class="math notranslate nohighlight">\([-1.1,0.0]\)</span> which ensures it cover the ergodic set. This procedure should be done recursively:
+<p>Finally, we overwrite the state space to enlarge the interval for <em>b</em> to <span class="math notranslate nohighlight">\([-1.1,0.0]\)</span> which ensures that it covers the ergodic set. This procedure should be done recursively:
 expanding the state space until it covers the ergodic set found in the simulations.</p>
 <p>MATLAB displays:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Iter:10, Metric:0.0102609, maxF:8.68116e-09
@@ -558,7 +558,7 @@ Iter:75, Metric:5.17302e-07, maxF:9.71415e-09
 Elapsed time is 0.518850 seconds.
 </pre></div>
 </div>
-<p>We can now inspect the policy functions through following:</p>
+<p>We can now inspect the policy functions using following MATLAB commands:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; GNDSGE_ASG_INTERP = asg.construct_from_struct(IterRslt.asg_output_struct);
 grids = GNDSGE_ASG_INTERP.get_grids_info;
 for j=1:16
@@ -588,18 +588,22 @@ legend({&#39;$y_t^T$ Lowest, $y_t^N$ Lowest&#39;,&#39;$y_t^T$ Highest, $y_t^N$ L
 print(&#39;figures/policy_combined.png&#39;,&#39;-dpng&#39;);
 </pre></div>
 </div>
-<p>This is a bit involved than previous examples since the adaptive sparse grid method returns solutions in a structure
+<p>This is a bit involved than previous examples since the ASG method returns solutions in a structure
 that allows solutions for each exogenous shock to be defined over different grids. So the above procedure essentially unpacks the
 grid and reconstructs the values of the policy functions (using GNDSGE_ASG_INTERP.eval, where GNDSGE_ASG_INTERP is the adaptive sparse grid approximation object
 returned by the solver, the second argument corresponds to the index of policy functions corresponding to the order of variables in <em>var_output</em>).
-These generate the following plots:</p>
+These codes generate the following figure:</p>
 <a class="reference internal image-reference" href="../../_images/policy_combined.png"><img alt="../../_images/policy_combined.png" src="../../_images/policy_combined.png" style="width: 700.0px; height: 524.8000000000001px;" /></a>
-<p>As shown,
-the policy functions are highly nonlinear: when the borrowing constraint binds,
+<p>As shown in the figure, the policy functions are highly nonlinear: when the borrowing constraint binds,
 the price of non-tradable goods declines sharply in the level of exist borrowing; future borrowing declines,
 instead of increasing, as the economy goes further in debt, implying current account reversals.
 If the borrowing constraint does not bind, then the price movement is much milder as we vary the level of existing debt,
 and current account reversals do not happen.</p>
+<p>The markers on the policy functions indicate the grid points automatically placed by the adaptive-grid method,
+and show that the method adds more points to the state space where the policy and state transition functions become non-linear.
+Importantly, the method takes care that these non-linear regions can differ across exogenous states, as shown in the figure.
+This illustrates the effectiveness of the adaptive-grid method for this class of models,
+as these non-linear regions of state-space cannot be determined ex-ante, and require very dense exogenous grids  or painful manual configurations.</p>
 <p>We can also inspect the ergodic distribution of the endogenous state variable, bond holding, by calling in MATLAB</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SimuRslt = simulate_bianchi2011(IterRslt);
 
@@ -617,20 +621,15 @@ print(&#39;figures/histogram_b.png&#39;,&#39;-dpng&#39;);
 <a class="reference internal image-reference" href="../../_images/histogram_b.png"><img alt="../../_images/histogram_b.png" src="../../_images/histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
 <p>This shows that the non-linear regions do exist in the ergodic set of the equilibrium and thus cannot be ignored,
 but due to precautionary motives, the frequency of the economy being in these regions cannot be determined ex-ante, highlighting the necessity of using a global solution method.</p>
-<p>The markers on the policy functions indicate the grid points automatically placed by the adaptive-grid method,
-and show that the method adds more points to the state space where the policy and state transition functions become non-linear.
-Importantly, the method takes care that these non-linear regions can differ across exogenous states, as shown in the figure.
-This illustrates the effectiveness of the adaptive-grid method for this class of models,
-as these non-linear regions of state-space cannot be determined ex-ante, and require very dense exogenous grids  or painful manual configurations.</p>
 <p>A final remark to be made here is that the toolbox by default resolves the equilibrium system at each time step of the simulation, minimizing
 the numerical error within a period. This method turns out to be somewhat important to analyze highly non-linear models like the current one.
-One can add the following line in the gmod file (need recompile) to switch to interpolating policy and state transition functions in the simulation.</p>
+One can add the following line in the gmod file (recompilation needed) to switch to interpolating policy and state transition functions in the simulation.</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>SIMU_RESOLVE=0; SIMU_INTERP=1;
 </pre></div>
 </div>
 <p>We plot the ergodic distribution obtained from the direct interpolation method below</p>
 <a class="reference internal image-reference" href="../../_images/histogram_b_interp.png"><img alt="../../_images/histogram_b_interp.png" src="../../_images/histogram_b_interp.png" style="width: 437.5px; height: 328.0px;" /></a>
-<p>As shown, it exhibits some artificial modals compared to the one obtained from solving the equilibrium system accurately at each time step.</p>
+<p>However, as shown in the figure, the resulting ergodic distribution exhibits some artificial modes compared to the one obtained from solving the equilibrium system accurately at each simulation step.</p>
 </div>
 <div class="section" id="the-planner-s-solution">
 <h2>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this headline">¶</a></h2>
@@ -655,18 +654,18 @@ lambda = c^(-sigma)*partial_c_partial_cT / (1-mu*Psi);
 </pre></div>
 </div>
 <p>As highlighted in <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a>,
-Since the planner takes into account the effect of cutting down tradable consumption on relative price and the borrowing constraint,
-it chooses to accumulate less debt compared to the competitive equilibrium. This can be shown below by comparing the policy functions for
-next-period bond the distribution of bond holdings in the ergodic sets for the two economies.</p>
+since the planner takes into account the effect of cutting down tradable consumption on relative price and the borrowing constraint,
+it chooses to accumulate less debt compared to the competitive equilibrium. This can be seen below by comparing the policy functions for
+next-period bond and the ergodic distributions of bond holdings for the two economies.</p>
 <a class="reference internal image-reference" href="../../_images/compare_b_policy.png"><img alt="../../_images/compare_b_policy.png" src="../../_images/compare_b_policy.png" style="width: 437.5px; height: 328.0px;" /></a>
 <a class="reference internal image-reference" href="../../_images/compare_histogram_b.png"><img alt="../../_images/compare_histogram_b.png" src="../../_images/compare_histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid,
-it enables to solve effectively non-linear models with high-dimensional state space. See example <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a> for a two-country Real Business Cycle model on the medium-run
-dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, of which the dimension of the endogenous state space
-goes to six.</p>
+it solves effectively non-linear models with high-dimensional state space. See example <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a> for a two-country Real Business Cycle model on the medium-run
+dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, in which the dimension of the endogenous state space
+goes up to five.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>
 </div>
 </div>

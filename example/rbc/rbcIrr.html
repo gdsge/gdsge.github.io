@@ -160,23 +160,23 @@
             
   <div class="section" id="a-rbc-model-with-irreversible-investment">
 <h1>A RBC Model with Irreversible Investment<a class="headerlink" href="#a-rbc-model-with-irreversible-investment" title="Permalink to this headline">¶</a></h1>
-<p>The standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> can also be solved easily using local methods. Now we consider an exentsion which can only be solved properly using global methods. The model features an investment irreversibily constraint, which requires investment to be larger than a certain threshold.</p>
+<p>The standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> can also be solved easily using local methods. Now we consider an extension which can only be solved properly using global methods. The model features an investment irreversibility constraint, which requires investment to be larger than a certain threshold.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
 <p>We augment the simple RBC model with two additional features.</p>
 <p>First, productivity follows a continuous AR(1) process</p>
 <div class="math notranslate nohighlight">
 \[\log z_t = \rho \log z_{t-1} + \epsilon_t\]</div>
-<p>where parameter <span class="math notranslate nohighlight">\(\rho \in (0,1)\)</span> is the persistence, <span class="math notranslate nohighlight">\(\epsilon_t\)</span> is an I.I.D. shock that takes on one of the two values <span class="math notranslate nohighlight">\(-e\)</span> or <span class="math notranslate nohighlight">\(+e\)</span> with equal probabilities.</p>
+<p>where parameter <span class="math notranslate nohighlight">\(\rho \in (0,1)\)</span> is the persistence, <span class="math notranslate nohighlight">\(\epsilon_t\)</span> is an I.I.D. shock.</p>
 <p>Second, when accumulating capital,</p>
 <div class="math notranslate nohighlight">
 \[K_{t+1} = K_t(1-\delta) + I_t,\]</div>
-<p>the reprentative firm is subject to an irreversibility constraint</p>
+<p>the representative firm is subject to an irreversibility constraint</p>
 <div class="math notranslate nohighlight">
 \[I_t \geq \phi I_{ss},\]</div>
 <p>where <span class="math notranslate nohighlight">\(I_{ss}\)</span> is the steady-state level of investment and parameter <span class="math notranslate nohighlight">\(\phi\)</span> corresponds to the tightness of the irreversibility constraint.</p>
-<p>These features require us to keep track of two continuous state variable: exogenous <span class="math notranslate nohighlight">\(z_t\)</span> and endogenous <span class="math notranslate nohighlight">\(K_t\)</span>. The toolbox is well designed to handle models with more than one continuous state variables like the present model.</p>
-<p>Let <span class="math notranslate nohighlight">\(\mu_t\)</span> denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition</p>
+<p>These features require us to keep track of two continuous state variables: exogenous <span class="math notranslate nohighlight">\(z_t\)</span> and endogenous <span class="math notranslate nohighlight">\(K_t\)</span>. The toolbox is well designed to handle models with more than one continuous state variables like the present model.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mu_t\)</span> denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp;c_t^{-\sigma}-\mu_t\\
 &amp;=\beta \mathbb{E}_t \left[\left ( \alpha z_{t+1} K_{t+1}^{\alpha-1}+(1-\delta)\right)c_{t+1}^{-\sigma}-(1-\delta)\mu_{t+1}\right],\\
@@ -184,7 +184,7 @@
 &amp;\mu_t (K_{t+1}-(1-\delta)K_t-\phi I_{ss}) = 0,\\
 &amp;\\
 &amp;c_t+K_{t+1} = z_t K_t^{\alpha}+(1-\delta)K_t.\end{split}\]</div>
-<p>A recursive competitive equilibrium are functions: <span class="math notranslate nohighlight">\(c(z,K), K'(z,K), \mu(z,K)\)</span> s.t.</p>
+<p>A recursive competitive equilibrium consists of functions: <span class="math notranslate nohighlight">\(c(z,K), K'(z,K), \mu(z,K)\)</span> s.t.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp;c(z,K)^{-\sigma}-\mu(z,K)\\
 &amp;=\beta \mathbb{E}\left[ \left (\alpha z' [K'(z,K)]^{\alpha-1}+(1-\delta)\right)[c(z',K'(z,K))]^{-\sigma}-(1-\delta)\mu(z',K'(z,K)) \Big| z \right]\\
@@ -452,9 +452,11 @@ inbound mu 0 2 <span class="k">adaptive</span>(1.5);
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>The toolbox solves the model and produce the policy functions. The following figure displays the investment policy function <span class="math notranslate nohighlight">\(I(z,K)\)</span>. The investment irreversibility constraint tend to bind when <span class="math notranslate nohighlight">\(K\)</span> is low or <span class="math notranslate nohighlight">\(z\)</span> is low.</p>
+<p>The toolbox solves the model and produces the policy functions. The following figure displays the investment policy function <span class="math notranslate nohighlight">\(I(z,K)\)</span>. The investment irreversibility constraint tends to bind when <span class="math notranslate nohighlight">\(K\)</span> is low or <span class="math notranslate nohighlight">\(z\)</span> is low.</p>
 <a class="reference internal image-reference" href="../../_images/policy_Inv.png"><img alt="../../_images/policy_Inv.png" src="../../_images/policy_Inv.png" style="width: 547.2px; height: 320.8px;" /></a>
-<p>We then use the policy functions to simulate the model. The following figures show the long run distribution of investment and capital. The investment irrevrsibility constraint binds around 20% of the times. The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> without the irreversitiliby constraint.</p>
+<p>We then use the policy functions to simulate the model. The following figures show the long run distributions of investment and capital.
+The investment irreversibility constraint binds around 20% of the times.
+The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> without the irreversibility constraint.</p>
 <a class="reference internal image-reference" href="../../_images/histogram_Inv.png"><img alt="../../_images/histogram_Inv.png" src="../../_images/histogram_Inv.png" style="width: 448.0px; height: 336.0px;" /></a>
 <a class="reference internal image-reference" href="../../_images/histogram_K1.png"><img alt="../../_images/histogram_K1.png" src="../../_images/histogram_K1.png" style="width: 448.0px; height: 336.0px;" /></a>
 </div>

@@ -204,8 +204,8 @@ let <span class="math notranslate nohighlight">\(\hat{x}_t\)</span> denote the n
 <p>The wealth share is rewritten as</p>
 <div class="math notranslate nohighlight">
 \[\omega_{t}^{i}=\frac{(\hat{p}_{t}^{s}+\hat{d}_{t})s_{t}^{i}+\frac{\hat{b}_{t}^{i}}{\gamma^a_t}}{\hat{p}_{t}^{s}+\hat{d}_{t}}.\]</div>
-<p>The optimality of agent i’s consumption and asset choices are captured by
-first-order conditions in <span class="math notranslate nohighlight">\(s^i_{t+1}\)</span> and <span class="math notranslate nohighlight">\(b^i_{t+1}\)</span>:</p>
+<p>The optimality of agent i’s consumption and asset choices is captured by
+the first-order conditions in <span class="math notranslate nohighlight">\(s^i_{t+1}\)</span> and <span class="math notranslate nohighlight">\(b^i_{t+1}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}1&amp; =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{\hat{c}^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{1-\gamma}\frac{\hat{p}_{t+1}^{s}+\hat{d}_{t+1}}{\hat{p}_{t}^{s}}\right]+\hat{\mu}^{i,s}_t\\
 1&amp; =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{c^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{-\gamma}\frac{1}{p_{t}^{b}}\right]+\hat{\mu}^{i,b}_t,\end{split}\]</div>
@@ -427,7 +427,7 @@ c2_future = c2;
 </pre></div>
 </td></tr></table></div>
 <p>which says that the induced <span class="math notranslate nohighlight">\(\omega'\)</span> by current decisions of stock and bond holdings should be consistent with the
-unknowns for each of the future exogenous states state by state. Notice the unknowns <span class="math notranslate nohighlight">\(\omega\)</span> are input into
+unknowns for each of the future exogenous states state by state. Notice that the unknowns <span class="math notranslate nohighlight">\(\omega\)</span> are inputs in the
 state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);
 </pre></div>
@@ -441,7 +441,7 @@ state transition functions to forecast future consumption and prices, which are 
 </pre></div>
 </td></tr></table></div>
 <p>Since now the transition of endogenous state involves realizations of future exogenous states,
-in the simulation, we need to specify the transition depends on future realization like</p>
+in the simulation, we need to specify the transition depending on future realization as</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>97</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  w1&#39; = w1n&#39;;
 </pre></div>
 </td></tr></table></div>
@@ -449,26 +449,26 @@ in the simulation, we need to specify the transition depends on future realizati
 realization of future exogenous states (recall, <em>w1n</em> is a vector solved as part of the <em>var_policy</em>).</p>
 <p>Now we discuss several tricks that facilitate casting the recursive system to the toolbox, which are commonly
 used for this class of problems.</p>
-<p>Since the original problem’s borrowing constraint is a fraction of the total endowments, we can always transform
-the unknown to respect a box constraint like</p>
+<p>Since the original problem’s borrowing constraint is proportational to aggregate endowment, we can use a transformation
+to simplify the constraint</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>65
 66</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  b1p = nb1p + Kb;  <span class="c">% Transform bond back</span>
   b2p = nb2p + Kb;  
 </pre></div>
 </td></tr></table></div>
-<p>where <em>Kb</em> is the parameter governing the  borrowing constraint in fraction of endowment (<span class="math notranslate nohighlight">\(b^i \geq -Kb * Y^a\)</span>), and <em>nb1p</em> is the unknown defined as
-<span class="math notranslate nohighlight">\(nb^i=\hat{b}^i+Kb\)</span>, which ensures to <span class="math notranslate nohighlight">\(nb^i\)</span> to be positive. Such transformation
+<p>where <em>Kb</em> is the parameter governing the  borrowing constraint in fraction of aggregate endowment (<span class="math notranslate nohighlight">\(b^i \geq Kb * Y^a\)</span>), and <em>nb1p</em> is the unknown defined as
+<span class="math notranslate nohighlight">\(nb^i=\hat{b}^i+Kb\)</span> which is required to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily  a boxed constraint. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to a <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki-Moore</a> type model, where
+not necessarily a box constraint. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to a <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki-Moore</a> type model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.</p>
-<p>Some utility functions of the toolbox are used in this example.</p>
+<p>Some built-in functions of the toolbox are used in this example.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = GDSGE_INTERP_VEC&#39;(w1n&#39;);
 </pre></div>
 </td></tr></table></div>
-<p><em>GNDSGE_INTERP_VEC</em> is an utility function that evaluates function approximations for implicit state transition functions
+<p><em>GNDSGE_INTERP_VEC</em> is a built-in function that evaluates function approximations for implicit state transition functions
 defined in <em>var_interp</em> once for all. The results are returned in the order of variables defined in <em>var_interp</em>.
 The prime operator following <em>GNDSGE_INTERP_VEC</em> indicates that the approximation is done for each of the exogenous states.
-Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each of the exogenous states.
+Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each of the future exogenous states.
 This step can be replaced by</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>psn&#39; = ps_future&#39;(w1n&#39;);
 pbn&#39; = pb_future&#39;(w1n&#39;);
@@ -476,16 +476,16 @@ c1n&#39; = c1_future&#39;(w1n&#39;);
 c2n&#39; = c2_future&#39;(w1n&#39;);
 </pre></div>
 </div>
-<p>however, at a lower speed since <em>GNDSGE_INTERP_VEC</em> evaluate function approximations with vectorization. (This is particular relevant
+<p>although at a lower speed since <em>GNDSGE_INTERP_VEC</em> evaluates function approximations with vectorization. (This is particular relevant
 when using the adaptive sparse grid method as the coefficients are stored in a table with each entry represents
-the coefficients across all vector dimension. Therefore, using <em>GNDSGE_INTERP_VEC</em> instead of individual evaluations
+the coefficients across all vector dimensions. Therefore, using <em>GNDSGE_INTERP_VEC</em> instead of individual evaluations
 not only enables vectorization but also allows searching the hash table only once). <em>GNDSGE_INTERP_VEC</em> can be also used to skip
 certain variables in <em>var_interp</em> when some of them are not necessary, and can be used without the prime operator but
 explicitly specifying the exogenous state that the approximation should be evaluated. This is particularly relevant when
 expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
 See the <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a> for details.</p>
 <p>After the gmod file is parsed and compiled by a local or remote compiler, first call the iter file in matlab, which produces
-results like following:</p>
+results as follows</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_HL1996;
 Iter:10, Metric:0.133835, maxF:7.07521e-09
 Elapsed time is 8.338626 seconds.
@@ -506,7 +506,7 @@ ylabel(&#39;%&#39;);
 </div>
 <p>which produces</p>
 <a class="reference internal image-reference" href="../../_images/policy_equity_premium1.png"><img alt="../../_images/policy_equity_premium1.png" src="../../_images/policy_equity_premium1.png" style="width: 389.6px; height: 325.6px;" /></a>
-<p>The policy functions demonstrate the non-linear and non-monotone property of the model. These non-linear regions appear with
+<p>The policy functions demonstrate the non-linear and non-monotone properties of the model. These non-linear regions appear with
 positive probability in the model’s ergodic set as shown below.</p>
 <p>We can simulate the model using the converged policy functions contained in <em>IterRslt</em>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; SimuRslt = simulate_HL1996(IterRslt);
@@ -531,17 +531,16 @@ ylabel(&#39;Fractions&#39;);
 </div>
 <p>which produces</p>
 <a class="reference internal image-reference" href="../../_images/histogram_w11.png"><img alt="../../_images/histogram_w11.png" src="../../_images/histogram_w11.png" style="width: 626.0px; height: 500.8px;" /></a>
-<p>The spikes in the ergodic distribution of wealth share at the two ends implies the occasionally binding
-borrowing constraints.</p>
+<p>The spikes in the ergodic distribution of wealth share at the two ends imply that the constraints are occasionally binding.</p>
 </div>
 <div class="section" id="consumption-share-as-endogenous-state">
 <h2>Consumption Share as Endogenous State<a class="headerlink" href="#consumption-share-as-endogenous-state" title="Permalink to this headline">¶</a></h2>
-<p>The model can be solved using consumption share as the endogenous state. This is enabled by noticing the budget constraint</p>
+<p>The model can be solved using consumption share as the endogenous state. In this case, the budget constraint</p>
 <div class="math notranslate nohighlight">
 \[\hat{c}_{t+1}^i=s_{t+1}^i (\hat{p}_{t+1}^s + \hat{d}_{t+1})+ \frac{\hat{b}_{t+1}^i  }{g_{t+1}}+
 \underbrace{\eta_{t+1}^i - \hat{p}_{t+1}^s s_{t+2}^i-p_{t+1}^b \hat{b}_{t+2}^i}_{\text{Financial Wealth}_{t+1}}\]</div>
 <p>is a natural consistency equation for the transition of consumption share <span class="math notranslate nohighlight">\(\hat{c}^1\)</span>. Specifically, with consumption share,
-the recursive equilibrium can be defined as <span class="math notranslate nohighlight">\({s^i}'(z,\hat{c}^1),(\hat{b}^i)', \hat{p}^s,p^b, {\hat{c}^1}'(z';z,\hat{c}^1)\)</span> such that</p>
+the recursive equilibrium can be defined as <span class="math notranslate nohighlight">\({s^i}'(z,\hat{c}^1),{\hat{b}^i}'(z,\hat{c}^1), \hat{p}^s(z,\hat{c}^1),p^b(z,\hat{c}^1), {\hat{c}^1}'(z';z,\hat{c}^1)\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}-1+\beta  \mathbb{E}_t
 \Big[\gamma^{1-\gamma}_{t+1}\frac{[\hat{c}_{t+1}^i]^{-\gamma}}{[\hat{c}_t^i]^{-\gamma} }  \frac{\hat{p}_{t+1}^s + \hat{d}_{t+1}}{\hat{p}_t^s}] + \hat{\mu}^{i,s}_t=0, \forall i=1,2
@@ -555,10 +554,10 @@ s_{t+1}^1+s_{t+1}^2=1
 \\
 \hat{c}^1_{t+1}=s_{t+1}^i (\hat{p}_{t+1}^s + \hat{d}_{t+1})+ \frac{\hat{b}_{t+1}^i  }{\gamma_{t+1}}+
 \underbrace{\eta_{t+1}^i - \hat{p}_{t+1}^s s_{t+2}^i-p_{t+1}^b \hat{b}_{t+2}^i}_{\text{Financial Wealth}_{t+1}}, \forall z_{t+1}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\hat{c}^2\)</span> (and <span class="math notranslate nohighlight">\((\hat{c}^2)'\)</span>) can be trivially backed out by the goods market clearing condition <span class="math notranslate nohighlight">\(\hat{c}^1+\hat{c}^2=1 +\hat{d}\)</span>, and does
-do not need to be defined as extra unknowns when evaluating the equation system.  The “Financial Wealth” is a function of future endogenous states, and can be part of the implicit
+<p>where <span class="math notranslate nohighlight">\(\hat{c}^2\)</span> (and <span class="math notranslate nohighlight">\((\hat{c}^2)'\)</span>) can be trivially inferred from the goods market clearing condition <span class="math notranslate nohighlight">\(\hat{c}^1+\hat{c}^2=1 +\hat{d}\)</span>, and, hence does not
+need to be defined as extra unknowns when evaluating the equation system.  The “Financial Wealth” is a function of future endogenous states, and can be part of the implicit
 state transition functions.</p>
-<p>The gmod file that implements the recursive system is (<a class="reference download internal" download="" href="../../_downloads/db3ca1822fafc3a469b7bc3158511822/HL1996_consumption_share.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996.gmod</span></code></a>)</p>
+<p>The gmod file that implements the recursive system is (<a class="reference download internal" download="" href="../../_downloads/db3ca1822fafc3a469b7bc3158511822/HL1996_consumption_share.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996_consumption_share.gmod</span></code></a>)</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -790,11 +789,12 @@ distinguishable.</p>
 a modern macro model.</p>
 <p>For the time-iteration algorithm to work robustly, a crucial step is to define the starting point of the iteration
 properly. A candidate that delivers good theoretical property and proves to be numerically stable is to start from a last-period problem,
-so the algorithm can be viewed as taking the limit of the solution from finite-horizon iterations.</p>
-<p>The last-period problem has been so far trivial in the <a class="reference internal" href="../rbc/rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> and <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> examples, but turns out to be more complex
+so the algorithm can be viewed as taking the limit of the solution from finite-horizon iterations (<a class="reference external" href="https://www.jstor.org/stable/2951731">Duffie et al (1994)</a>; <a class="reference external" href="https://www.jstor.org/stable/2951735">Magill and Quinzi (1994)</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022053119301255">Cao (2020)</a>).</p>
+<p>The last-period problem has been so far trivial in the <a class="reference internal" href="../rbc/rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> and <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> examples,
+but could turn out to be more complex
 and requires to define a different system of equations than the main <em>model;</em> block. Also, at the boundary of the state space,
-the system may feature a different system of equations, and such boundary conditions turn out to be necessary to solve
-many models robustly. To see how these issues are addressed very conveniently in the toolbox, see example
+the equilibrium may be characterized by a different system of equations, and such boundary conditions turn out to be necessary to solve
+many models robustly (for example, consumption might be exactly zero at the boundary, violating the Inada condition). To see how these issues are addressed very conveniently in the toolbox, see example
 <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">the toolbox’s API</span></a>.</p>
 </div>
