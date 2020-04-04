@@ -74,7 +74,7 @@ Variable declaration
 
     A `var_policy` can be declared as a vector, for example, var2 of length len2 in the example.
     To access elements of a vector `var_policy` in the model block, use round bracket to index
-    or use the prime (') operator.
+    or use the prime (') operator to refer to the whole vector.
 
     For each `var_policy`, its lower and upper bounds entering the equation solver should be defined as
 
@@ -168,52 +168,9 @@ The model block
 Built-in functions
 ======================================
 
-.. function:: GDSGE_INTERP_VEC'(var_state1, var_state2, ...)
+.. function:: GDSGE_INTERP_VEC[vec_index](shock, var_state1, var_state2, ...)
 
-    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for each realization of exogenous states, 
-    returned in the order defined in *var_interp*. For example,
-
-    .. code-block:: GDSGE
-
-        ...
-        var_shock z;
-        var_state x1 x2;
-        var_interp y1 y2 y3;
-        ...
-        model;
-            x1_future' = z';
-            x2_future' = z'^2;
-            [y1_future',y2_future',y3_future'] = GDSGE_INTERP_VEC'(x1_future',x2_future');
-        end;
-
-    :param var_state: values of endogenous states
-
-
-.. function:: GDSGE_INTERP_VEC'[index](var_state1, var_state2, ...)
-
-    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for each realization of exogenous states, 
-    in the order defined in *index*. 
-    This can be used to skip evaluations of certain var_interp. For example, the following skips the evaluation of y2.
-
-    .. code-block:: GDSGE
-
-        ...
-        var_shock z;
-        var_state x1 x2;
-        var_interp y1 y2 y3;
-        ...
-        model;
-            x1_future' = z';
-            x2_future' = z'^2;
-            [y1_future',y3_future'] = GDSGE_INTERP_VEC'[1,3](x1_future',x2_future');
-        end;
-
-    :param var_state: values of endogenous states
-    :param index: matlab integer vector that specifies the index of *var_interp* returned
-
-.. function:: GDSGE_INTERP_VEC[index](shock_idx, var_state1, var_state2, ...)
-
-    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for exogenous state at *shock_idx*, 
+    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for exogenous state at the index of shock referred by *shock*, 
     in the order defined in *var_interp*. For example,
 
     .. code-block:: GDSGE
@@ -229,11 +186,48 @@ Built-in functions
             [y1_future,y2_future,y3_future] = GDSGE_INTERP_VEC(shock,x1_future,x2_future);
         end;
 
-    :param shock_idx: the index of exogenous state at which the evaluation is done
+    The optional *vec_index* specifies a subset of *var_interp* to be evaluated. For example, the following skips the evaluation of y2.
+
+    .. code-block:: GDSGE
+
+        ...
+            [y1_future,y3_future] = GDSGE_INTERP_VEC[1,3](shock,x1_future,x2_future);
+
+    :param shock: the index of exogenous state at which the evaluation is done. Keyword *shock* refers to the index at the current collocation point.
     :param var_state: values of endogenous states
-    :param index: matlab integer vector that specifies the index of *var_interp* returned.
+    :param vec_index: matlab integer vector that specifies the index of *var_interp* to be evaluated and returned.
         Return all *var_interp* if omitted.
 
+.. function:: GDSGE_INTERP_VEC'[vec_index](var_state1, var_state2, ...)
+
+    Return each *var_interp* evaluated at (var_state1, var_state2, ...) for each realization of exogenous states, 
+    returned in the order defined in *var_interp*. The returned results should be assigned to a vector of variables (i.e., variables followed by a prime (')).
+    For example,
+
+    .. code-block:: GDSGE
+
+        ...
+        shock_num = 2;
+        var_shock z;
+        var_state x1 x2;
+        var_interp y1 y2 y3;
+        ...
+        model;
+            x1_future' = z';
+            x2_future' = z'^2;
+            [y1_future',y2_future',y3_future'] = GDSGE_INTERP_VEC'(x1_future',x2_future');
+        end;
+
+    The line with *GDSGE_INTERP_VEC'* is equivalent to calling
+
+    .. code-block:: GDSGE
+
+        [y1_future(1),y2_future(1),y3_future(1)] = GDSGE_INTERP_VEC(1,x1_future(1),x2_future(1));
+        [y1_future(2),y2_future(2),y3_future(2)] = GDSGE_INTERP_VEC(2,x1_future(2),x2_future(2));
+
+    :param var_state: values of endogenous states
+    :param vec_index: matlab integer vector that specifies the index of *var_interp* to be evaluated and returned.
+        Return all *var_interp* if omitted.
 
 .. function:: GDSGE_EXPECT{expression | trans_matrix=shock_trans}
 
@@ -260,9 +254,8 @@ Built-in functions
 Options
 ======================================
 
-Options named UPPER_CASE_OPTION require recompiling (via a local or remote compiler) when the values are changed.
-
-Options named CapitalUpperCaseOption or lower_case_option do not require recompiling, and can be safely specified through an option structure to overwrite existing values. For example:
+An option named in all caps (e.g., USE_SPLINE) requires recompiling (via a local or remote compiler) when its value is changed.
+Other options can be simply specified through a structure to overwrite existing values without recompiling. For example,
 
 .. code-block:: MATLAB
 
@@ -352,7 +345,7 @@ Function approximations
 
 .. option:: USE_SPLINE
 
-    Whether using multi-dimensional linear interpolations or cubic splines with natural end conditions for function approximations.
+    Whether to use multi-dimensional linear interpolations or cubic splines for function approximations.
     Takes value of 0 or 1 (default).
 
     Only one of USE_SPLINE, USE_PCHIP, USE_ASG can be set to one.
@@ -360,14 +353,14 @@ Function approximations
     
 .. option:: USE_PCHIP
 
-    Whether using shape-preserving cubic interpolations for function approximations.
+    Whether to use shape-preserving cubic interpolations for function approximations.
     Takes value of 0 (default) or 1.
 
     Only one of USE_SPLINE, USE_PCHIP, USE_ASG can be set to one.
 
 .. option:: USE_ASG
 
-    Whether using shape-preserving cubic interpolations for function approximations.
+    Whether to use the adaptive sparse grid method for function approximations.
     Takes value of 0 (default) or 1.
 
     Only one of USE_SPLINE, USE_PCHIP, USE_ASG can be set to one.
@@ -376,7 +369,7 @@ Function approximations
 
     Takes value of 2 (default) or 4.
     Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolation and INTERP_ORDER=4
-    corresponds to cubic splines interpolation.
+    corresponds to cubic splines interpolation with natural end conditions.
 
 .. option:: ExtrapOrder
 
