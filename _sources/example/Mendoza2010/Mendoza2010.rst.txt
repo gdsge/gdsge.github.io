@@ -459,7 +459,7 @@ negative bond/gdp ratio. These differences are also noted in `Mendoza and Villal
 What's Next?
 =====================
 
-This example illustrates how to solve a model with two endogenous state variables of which the exogenous feasible state space may be non-rectangle and hard to determine ex-ante.
+This example illustrates how to solve a model with two endogenous state variables of which the feasible region may be non-rectangle and hard to determine ex-ante.
 The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the feasible region a simple rectangle. In the current example, the 
 feasible debt level is high so the model can be solved directly over the natural state space---bond and capital. Such transformation 
 becomes essential for more complex problems, and sometimes the boundary condition needs to be solved using a different equilibrium system. The toolbox accommodates this 
