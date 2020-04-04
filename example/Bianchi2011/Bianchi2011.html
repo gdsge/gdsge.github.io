@@ -561,11 +561,13 @@ Elapsed time is 0.518850 seconds.
 <p>We can now inspect the policy functions using following MATLAB commands:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; GNDSGE_ASG_INTERP = asg.construct_from_struct(IterRslt.asg_output_struct);
 grids = GNDSGE_ASG_INTERP.get_grids_info;
+idx_bNext = 1;
+idx_pN = 2;
 for j=1:16
     grid = grids{j};
     lenGrid = length(grid);
-    bNext_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),ones(1,lenGrid),grid);
-    pN_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),2*ones(1,lenGrid),grid);
+    bNext_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),idx_bNext*ones(1,lenGrid),grid);
+    pN_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),idx_pN*ones(1,lenGrid),grid);
 end
 
 figure;
@@ -591,7 +593,8 @@ print(&#39;figures/policy_combined.png&#39;,&#39;-dpng&#39;);
 <p>This is a bit involved than previous examples since the ASG method returns solutions in a structure
 that allows solutions for each exogenous shock to be defined over different grids. So the above procedure essentially unpacks the
 grid and reconstructs the values of the policy functions (using GNDSGE_ASG_INTERP.eval, where GNDSGE_ASG_INTERP is the adaptive sparse grid approximation object
-returned by the solver, the second argument corresponds to the index of policy functions corresponding to the order of variables in <em>var_output</em>).
+returned by the solver.
+The second argument in GNDSGE_ASG_INTERP.eval (<em>idx_bNext</em> and <em>idx_pN</em> here) refers to the index of policy functions following the order declared in <em>var_output</em>).
 These codes generate the following figure:</p>
 <a class="reference internal image-reference" href="../../_images/policy_combined.png"><img alt="../../_images/policy_combined.png" src="../../_images/policy_combined.png" style="width: 700.0px; height: 524.8000000000001px;" /></a>
 <p>As shown in the figure, the policy functions are highly nonlinear: when the borrowing constraint binds,
