@@ -594,7 +594,7 @@ print(&#39;figures/policy_combined.png&#39;,&#39;-dpng&#39;);
 that allows solutions for each exogenous shock to be defined over different grids. So the above procedure essentially unpacks the
 grid and reconstructs the values of the policy functions (using GNDSGE_ASG_INTERP.eval, where GNDSGE_ASG_INTERP is the adaptive sparse grid approximation object
 returned by the solver.
-The second argument in GNDSGE_ASG_INTERP.eval (<em>idx_bNext</em> and <em>idx_pN</em> here) refers to the index of policy functions following the order declared in <em>var_output</em>).
+The second argument in GNDSGE_ASG_INTERP.eval (<em>idx_bNext</em> and <em>idx_pN</em> here) refers to the index of policy functions according the order declared in <em>var_output</em>).
 These codes generate the following figure:</p>
 <a class="reference internal image-reference" href="../../_images/policy_combined.png"><img alt="../../_images/policy_combined.png" src="../../_images/policy_combined.png" style="width: 700.0px; height: 524.8000000000001px;" /></a>
 <p>As shown in the figure, the policy functions are highly nonlinear: when the borrowing constraint binds,

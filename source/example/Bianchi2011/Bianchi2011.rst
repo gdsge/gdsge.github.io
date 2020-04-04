@@ -230,7 +230,7 @@ This is a bit involved than previous examples since the ASG method returns solut
 that allows solutions for each exogenous shock to be defined over different grids. So the above procedure essentially unpacks the
 grid and reconstructs the values of the policy functions (using GNDSGE_ASG_INTERP.eval, where GNDSGE_ASG_INTERP is the adaptive sparse grid approximation object
 returned by the solver. 
-The second argument in GNDSGE_ASG_INTERP.eval (*idx_bNext* and *idx_pN* here) refers to the index of policy functions following the order declared in *var_output*). 
+The second argument in GNDSGE_ASG_INTERP.eval (*idx_bNext* and *idx_pN* here) refers to the index of policy functions according the order declared in *var_output*). 
 These codes generate the following figure:
 
 .. image:: figures/policy_combined.png
