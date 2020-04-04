@@ -13,8 +13,8 @@ using the toolbox very easily (in 200 lines of GDSGE code and within a minute on
 Though the model can be directly solved over the natural state space (capital, bond) using the toolbox, practically it is sometimes difficult
 to determine the feasible state space over which an equilibrium exists. For example,  in the current context, given capital stock, an economy too much in debt
 may not be able to find feasible allocations. This suggests that the lower bound of bond depends on the capital stock
-and the feasible state space is not a simple box. We demonstrate how such a model can solved with state transformation and implicit
-state transition functions, without the hassle of determining the feasible endogeneous state space ex-ante.
+and the feasible region of the state space is not a simple box (rectangle). We demonstrate how such a model can solved with state transformation and implicit
+state transition functions, without the hassle of determining the feasible region ex-ante.
 
 .. _Mendoza2010:
 ===============
@@ -104,12 +104,12 @@ feasible state space is square.
 State Space Transformation
 ==========================
 If the economy is too indebted, it may never be able to finance positive consumption subject to the current collateral constraint, and the equilibrium does not exist. 
-Therefore, the lower bound of the bond holding of the feasible state space depends on the exogenous shocks and capital, rendering the feasible state space non-rectangle. 
-This non-rectangle state space also cannot be determined ex-ante, since the collateral constraint depends on the endogenous capital price. 
+Therefore, the lower bound of the bond holding of the feasible region in the state space depends on the exogenous shocks and capital, rendering the feasible state space non-rectangle. 
+This non-rectangle feasible region also cannot be determined ex-ante, since the collateral constraint depends on the endogenous capital price. 
 This is a well-known challenge encountered by many researchers studying models with a borrowing constraint tied to an asset price. 
 The challenge can be solved by noticing the exact boundary condition of the initial problem: 
-the boundary of the feasible state space is such that consumption (more precisely, the GHH consumption-labor bundle) is zero.
-Therefore, if we transform the state space to consumption and capital, then the feasible state space will be a simple rectangle.
+the boundary of the feasible region is such that consumption (more precisely, the GHH consumption-labor bundle) is zero.
+Therefore, if we transform the state space to consumption and capital, then the feasible region will be a simple rectangle.
 
 Define the GHH consumption-labor bundle as
 
@@ -292,7 +292,7 @@ The refined iterations continue to converge in another minute. It's always a goo
 of the solution of a model,
 and refine it using the crude solution as a WarmUp.
 
-Now we inspect the policy functions. We first come back to our motivation for state space transformation: the natural state space
+Now we inspect the policy functions. We first come back to our motivation for state space transformation: the feasible region in the natural state space
 :math:`(k,b)` is non-rectangle. This can be verified by projecting the state variable :math:`\tilde{c}` onto policy :math:`b` and state variable :math:`k`.
 
 .. code-block:: MATLAB
@@ -460,7 +460,7 @@ What's Next?
 =====================
 
 This example illustrates how to solve a model with two endogenous state variables of which the exogenous feasible state space may be non-rectangle and hard to determine ex-ante.
-The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the state space a simple rectangle. In the current example, the 
+The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the feasible region a simple rectangle. In the current example, the 
 feasible debt level is high so the model can be solved directly over the natural state space---bond and capital. Such transformation 
 becomes essential for more complex problems, and sometimes the boundary condition needs to be solved using a different equilibrium system. The toolbox accommodates this 
 by allowing a different system of equations for problems at the boundary. See :ref:`Cao and Nie (2017) <CaoNie2017>` for such an example, in which consumption is zero and the Inada condition is violated at the boundary.
