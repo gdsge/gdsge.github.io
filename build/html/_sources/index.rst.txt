@@ -3,6 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+========================================================
+GDSGE, Solving Nonlinear DSGE Models with Global Methods
+========================================================
+
 Welcome to GDSGE's documentation! 
 
 GDSGE is a toolbox that solves nonlinear Dynamic Stochastic General Equilibrium (DSGE) models with a global method based on policy iterations
