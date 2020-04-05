@@ -69,6 +69,8 @@ project = 'GDSGE'
 copyright = '2020, Dan Cao, Wenlan Luo, and Guangyu Nie'
 author = 'Dan Cao, Wenlan Luo, and Guangyu Nie'
 
+html_title = 'GDSGE Homepage'
+
 
 # -- General configuration ---------------------------------------------------
 
