@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-========================================================
-GDSGE, Solving Nonlinear DSGE Models with Global Methods
-========================================================
+============================================================
+GDSGE, A Toolbox for Solving DSGE Models with Global Methods
+============================================================
 
 Welcome to GDSGE's documentation! 
 
