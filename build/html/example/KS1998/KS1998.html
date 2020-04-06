@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Mendoza (2010): Sudden Stops with Asset Price Deflation" href="../Mendoza2010/Mendoza2010.html" />
-    <link rel="prev" title="Additional Examples" href="../AdditionalExamples.html" /> 
+    <link rel="prev" title="Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models" href="../Huggett1997/Huggett1997.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Huggett1997/Huggett1997.html">Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-gmod-file-and-matlab-file">The gmod file and MATLAB file</a></li>
 </ul>
@@ -172,7 +173,8 @@
 algorithm can be implemented with the toolbox, by transforming the optimization problem of the households to a system of first order conditions and complementarity-slackness conditions.</p>
 <p>Though the toolbox is not designed for solving the equilibrium of this type of model directly,
 since the decision problem is characterized by an equation system with state transition functions, it readily fits in the toolbox’s framework.
-One just needs to update the equilibrium object manually. In <a class="reference external" href="https://www.jstor.org/stable/10.1086/250034">Krusell and Smith (1998)</a>, the equilibrium objects are the aggregate state transition coefficients.</p>
+One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB.
+In <a class="reference external" href="https://www.jstor.org/stable/10.1086/250034">Krusell and Smith (1998)</a>, the equilibrium objects are the aggregate state transition coefficients.</p>
 <p>The model can be solved within 100 lines of GDSGE code plus 100 lines of MATLAB code.
 We present the heterogeneous-beta version of the model below.</p>
 <div class="section" id="the-gmod-file-and-matlab-file">
@@ -593,7 +595,7 @@ post_simulate_iter;
         <a href="../Mendoza2010/Mendoza2010.html" class="btn btn-neutral float-right" title="Mendoza (2010): Sudden Stops with Asset Price Deflation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../AdditionalExamples.html" class="btn btn-neutral float-left" title="Additional Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Huggett1997/Huggett1997.html" class="btn btn-neutral float-left" title="Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
