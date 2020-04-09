@@ -14,7 +14,7 @@ by keeping track of the distribution function over a refined grid of individual 
 Though the toolbox is not designed for solving the equilibrium of this type of model directly,
 since the decision problem is characterized by an equation system with state transition functions, it readily fits in the toolbox's framework.
 One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB. 
-For the one-sector model studied by Huggett (1997), the steady state equilibrium object is the aggregate capital stock; the transition path equilibrium object is the time sequence
+For the one-sector model studied by `Huggett (1997) <https://www.sciencedirect.com/science/article/pii/S0304393297000251>`_, the steady state equilibrium object is the aggregate capital stock; the transition path equilibrium object is the time sequence
 of the aggregate capital stock.
 
 We directly define the equilibrium, which covers all the ingredients we need for computing the model. For the full description of the model, 
@@ -82,5 +82,3 @@ and the policy functions at the steady state.
 
 .. image:: figures/policy_function_kp.png
     :scale: 50 %
-
-

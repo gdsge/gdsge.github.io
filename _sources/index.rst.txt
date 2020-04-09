@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 ============================================================
-GDSGE, A Toolbox for Solving DSGE Models with Global Methods
+GDSGE: A Toolbox for Solving DSGE Models with Global Methods
 ============================================================
 
 Welcome to GDSGE's documentation! 
@@ -39,7 +39,7 @@ More examples and detailed instructions on gmod files and on how to use the tool
    example/rbc/rbcIrr
    example/HL1996/HL1996
    example/Guvenen2009/Guvenen2009
-   example/Bianchi2011/Bianchi2011  
+   example/Bianchi2011/Bianchi2011
    example/safe_assets/safe_assets
    usage/functions
    example/AdditionalExamples
