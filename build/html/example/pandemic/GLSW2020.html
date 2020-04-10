@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Guerrieri et al. (2020): Negative Supply Shocks That Produce Demand Shortages &mdash; GDSGE Homepage</title>
+  <title>Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages &mdash; GDSGE Homepage</title>
   
 
   
@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Guerrieri et al. (2020): Negative Supply Shocks That Produce Demand Shortages</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#calibration">Calibration</a></li>
 </ul>
@@ -145,7 +145,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Guerrieri et al. (2020): Negative Supply Shocks That Produce Demand Shortages</li>
+      <li>Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -162,8 +162,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="guerrieri-et-al-2020-negative-supply-shocks-that-produce-demand-shortages">
-<h1>Guerrieri et al. (2020): Negative Supply Shocks That Produce Demand Shortages<a class="headerlink" href="#guerrieri-et-al-2020-negative-supply-shocks-that-produce-demand-shortages" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="guerrieri-et-al-2020-negative-supply-shocks-that-cause-demand-shortages">
+<h1>Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages<a class="headerlink" href="#guerrieri-et-al-2020-negative-supply-shocks-that-cause-demand-shortages" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
 <p>In this timely and important contribution, <a class="reference external" href="http://economics.mit.edu/files/19351">Guerrieri, Lorenzoni, Straub, and Werning (2020)</a>  analyze the effects of supply shocks such as shutdowns, layoffs, and firm exits due to COVID-19. They show that in a two-sector model, these supply shocks can trigger changes in aggregate demand larger than the shocks themselves. This is the case when the elasticity of substitution across sectors is not too large and the inter-temporal elasticity of substitution is sufficiently high.</p>
@@ -520,17 +520,21 @@ log_lambda2_interp = log_lambda2;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>With the files returned by a local or <a class="reference external" href="www.gdsge.com">remote compiler</a>, we can run the <em>iter_GLSW</em> file to solve the policy iterations,
-and then pass the converged solutions to the <em>simulate_GLSW</em> file to simulate the ergodic set of the model.</p>
+<p>With the files returned by a local or <a class="reference external" href="http://www.gdsge.com">remote compiler</a>, we can run the <em>iter_GLSW</em> file to solve the policy iterations,
+and then pass the converged solutions to the <em>simulate_GLSW</em> file to simulate the ergodic set of the model.
+We plot the policy functions for interest rate and the stationary distribution of worker 1’s bond holding below.</p>
 <a class="reference internal image-reference" href="../../_images/policy.png"><img alt="../../_images/policy.png" src="../../_images/policy.png" style="width: 504.0px; height: 378.0px;" /></a>
-<p>Starting from the model’s ergodic set, we can simulate the <em>generalized impulse response functions</em> by comparing two sets of sample paths: one benchmark,
+<p>The upper panel in the figure shows the interest rate as a function of the endogenous state variable <span class="math notranslate nohighlight">\(a^1_t\)</span> in normal times (<span class="math notranslate nohighlight">\(z=1\)</span>) and during pandemics (<span class="math notranslate nohighlight">\(z=2\)</span>).
+Interest rate is lower during pandemics, which reflects that the aggregate demand response outweighs the supply shock, a result emphasized in <a class="reference external" href="http://economics.mit.edu/files/19351">Guerrieri et al. (2020)</a>.
+In addition, the figure also shows that the effect is stronger when the net worth of workers in the contact-sensitive sector is low.
+The lower panel plots the ergodic distribution of bond holding of workers in the contact_sensitive sector. The possibility of pandemics leads these workers to do precautionary saving, sometimes up to the borrowing limit of workers in sector 2. However, the precautionary saving does not undo the results in <a class="reference external" href="http://economics.mit.edu/files/19351">Guerrieri et al. (2020)</a>.</p>
+<p>Starting from the model’s ergodic set, we can simulate the <em>generalized impulse response functions</em> by comparing two sets of sample paths drawn from the model’s ergodic set: one benchmark,
 the other with the <em>pandemic</em> shock hitting at the first period and the transition of the exogenous shock turned on.</p>
 <a class="reference internal image-reference" href="../../_images/irf_r_a1.png"><img alt="../../_images/irf_r_a1.png" src="../../_images/irf_r_a1.png" style="width: 525.0px; height: 393.9px;" /></a>
-<p>As shown, after the economy is hit by a pandemic shock (a sector-specific disaster supply shock), the interest rate declines, suggesting that the induced demand shortages outweighs
-the initial negative supply shock, a result highlighted by <a class="reference external" href="http://economics.mit.edu/files/19351">Guerrieri et al. (2020)</a>.
-Also as discussed in the paper, the strength of the induced demand shortages hinges on the magnitude of the <em>intra-temporal</em> elasticity of substitution.
-To illustrate this, the codes generated by the gmod file can be reused to solve models with different values of parameter <span class="math notranslate nohighlight">\(\rho\)</span>, which produces
-the following.</p>
+<p>As shown, while interest rate reverses relatively quickly to pre-pandemic level after the shock,
+workers in sector 1 suffers from a persistent, long-lasting wealth lost.</p>
+<p>To further investigate the robustness of the results, the following figure
+plots the average interest rate before and after the pandemic shocks hit the economy as we vary <span class="math notranslate nohighlight">\(\rho\)</span>. The figure shows that when <span class="math notranslate nohighlight">\(\rho&gt;\sigma\)</span> (more precisely <span class="math notranslate nohighlight">\(1/\rho&lt;1/\sigma\)</span>), interest rate drops when the pandemic shock hits, while it rises when <span class="math notranslate nohighlight">\(\rho&lt;\sigma\)</span> (<span class="math notranslate nohighlight">\(1/\rho&gt;1/\sigma\)</span>).</p>
 <a class="reference internal image-reference" href="../../_images/interest_rate_vary_rho.png"><img alt="../../_images/interest_rate_vary_rho.png" src="../../_images/interest_rate_vary_rho.png" style="width: 525.0px; height: 393.9px;" /></a>
 </div>
 </div>
