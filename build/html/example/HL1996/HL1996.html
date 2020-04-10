@@ -96,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Produce Demand Shortages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
 </ul>
@@ -381,12 +381,12 @@ c2_future = c2;
 
 <span class="k">model;</span>
   <span class="c">% Interpolation</span>
-  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(w1n&#39;);
+  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
   <span class="c">% Expectations in Euler Equations</span>
-  es1 = GNDSGE_EXPECT{g&#39;^(1-gamma)*(c1n&#39;/c1)^(-gamma)*(psn&#39;+d&#39;)/ps};
-  es2 = GNDSGE_EXPECT{g&#39;^(1-gamma)*(c2n&#39;/c2)^(-gamma)*(psn&#39;+d&#39;)/ps};
-  eb1 = GNDSGE_EXPECT{g&#39;^(-gamma)*(c1n&#39;/c1)^(-gamma)/pb};
-  eb2 = GNDSGE_EXPECT{g&#39;^(-gamma)*(c2n&#39;/c2)^(-gamma)/pb};
+  es1 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c1n&#39;/c1)^(-gamma)*(psn&#39;+d&#39;)/ps};
+  es2 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c2n&#39;/c2)^(-gamma)*(psn&#39;+d&#39;)/ps};
+  eb1 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c1n&#39;/c1)^(-gamma)/pb};
+  eb2 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c2n&#39;/c2)^(-gamma)/pb};
   <span class="c">% b transformation</span>
   b1p = nb1p + Kb;  <span class="c">% Transform bond back</span>
   b2p = nb2p + Kb;  
@@ -397,7 +397,7 @@ c2_future = c2;
   <span class="c">% Consistency</span>
   w1_consis&#39; = (s1p*(psn&#39;+d&#39;) + b1p/g&#39;)/(psn&#39;+d&#39;) - w1n&#39;;
   <span class="c">% Extra output</span>
-  equity_premium = GNDSGE_EXPECT{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
+  equity_premium = <span class="k">GDSGE_EXPECT</span>{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
   <span class="k">equations;</span>
     -1+beta*es1+ms1;
     -1+beta*es2+ms2;
@@ -431,7 +431,7 @@ c2_future = c2;
 <p>which says that the induced <span class="math notranslate nohighlight">\(\omega'\)</span> by current decisions of stock and bond holdings should be consistent with the
 unknowns for each of the future exogenous states state by state. Notice that the unknowns <span class="math notranslate nohighlight">\(\omega\)</span> are inputs in the
 state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(w1n&#39;);
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
 </pre></div>
 </td></tr></table></div>
 <p>Accordingly, <span class="math notranslate nohighlight">\(\omega'\)</span> is declared to a be a vector of unknowns in</p>
@@ -464,7 +464,7 @@ remains trivial in the current problem, but becomes crucial when the borrowing c
 not necessarily a box constraint. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to a <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki-Moore</a> type model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.</p>
 <p>Some built-in functions of the toolbox are used in this example.</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(w1n&#39;);
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>58</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,pbn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
 </pre></div>
 </td></tr></table></div>
 <p><em>GNDSGE_INTERP_VEC</em> is a built-in function that evaluates function approximations for implicit state transition functions
@@ -718,16 +718,16 @@ flow_future = flow;
 
 <span class="k">model;</span>
   <span class="c">% Interpolation</span>
-  [psn&#39;,pbn&#39;,flow_future&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(c1n&#39;);
+  [psn&#39;,pbn&#39;,flow_future&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(c1n&#39;);
   <span class="c">% Goods market clear</span>
   c2n&#39; = 1+d&#39;-c1n&#39;;
   c2 = 1+d-c1;
   
   <span class="c">% Expectations in Euler Equations</span>
-  es1 = GNDSGE_EXPECT{g&#39;^(1-gamma)*(c1n&#39;/c1)^(-gamma)*(psn&#39;+d&#39;)/ps};
-  es2 = GNDSGE_EXPECT{g&#39;^(1-gamma)*(c2n&#39;/c2)^(-gamma)*(psn&#39;+d&#39;)/ps};
-  eb1 = GNDSGE_EXPECT{g&#39;^(-gamma)*(c1n&#39;/c1)^(-gamma)/pb};
-  eb2 = GNDSGE_EXPECT{g&#39;^(-gamma)*(c2n&#39;/c2)^(-gamma)/pb};
+  es1 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c1n&#39;/c1)^(-gamma)*(psn&#39;+d&#39;)/ps};
+  es2 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c2n&#39;/c2)^(-gamma)*(psn&#39;+d&#39;)/ps};
+  eb1 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c1n&#39;/c1)^(-gamma)/pb};
+  eb2 = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c2n&#39;/c2)^(-gamma)/pb};
   <span class="c">% b transformation</span>
   b1p = nb1p + Kb;  <span class="c">% Transform bond back</span>
   b2p = nb2p + Kb;  
@@ -742,7 +742,7 @@ flow_future = flow;
   
   <span class="c">% Extra output</span>
   flow = eta1 - ps*s1p - pb*b1p;
-  equity_premium = GNDSGE_EXPECT{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
+  equity_premium = <span class="k">GDSGE_EXPECT</span>{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
   <span class="k">equations;</span>
     -1+beta*es1+ms1;
     -1+beta*es2+ms2;
