@@ -10,7 +10,7 @@ In this timely and important contribution, `Guerrieri, Lorenzoni, Straub, and We
 
 Their model is deterministic and the supply shock is unexpected. They also assume maximally tight borrowing constraint. We extend their model to allow for stochastic, recurrent shocks and more relaxed borrowing constraint. This extension can be solved easily using our toolbox.
 
-We following closely the notation in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_. The total population is normalized to one, with a fraction
+We follow closely the notation in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_. The total population is normalized to one, with a fraction
 :math:`\phi` of agents working in sector 1 and the remaining fraction :math:`1-\phi`
 of agents working in section 2. We assume that workers are perfectly
 specialized in their sector. Sector 1 is the contact-intensive sector that is directly affected by the supply shock.
@@ -143,7 +143,7 @@ and slackness condition in equation :eq:`slackness_GLSW` for
 Calibration
 -----------
 
-We use quarters for model periods and standard parameters in the literature. For preferences, we use :math:`\beta = 0.99` as quarterly discount factor. The inverse inter-temporal elasticity of substitution is set at :math:`\sigma = 0.5` (strictly less than :math:`1` as required by the analytical results  `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_ for supply shocks to trigger larger aggregate demand responses). We vary the inverse intra-temporal elasticity of substitution :math:`\rho` between :math:`0.1` and :math:`0.9`.
+We use quarters for model periods and standard parameters in the literature. For preferences, we use :math:`\beta = 0.99` as the quarterly discount factor. The inverse inter-temporal elasticity of substitution is set at :math:`\sigma = 0.5` (strictly less than :math:`1` as required by the analytical results  `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_ for supply shocks to trigger larger aggregate demand responses). We vary the inverse intra-temporal elasticity of substitution :math:`\rho` between :math:`0.1` and :math:`0.9`.
 
 For labor market parameters, we normalize :math:`\bar{n}` at :math:`1`. The share of the contact-sensitive sector :math:`\phi` is set at :math:`0.2`. We assume that when the pandemic shocks hit, labor supply in the contact-sensitive sector declines by :math:`50\%` (roughly consistent with the increase in unemployment claims in the U.S. during the pandemics). We assume that the pandemics last for 2 quarters on average, so :math:`\pi_2 = 0.5` and :math:`\pi_1` is chosen so that the economy stays in pandemics in around :math:`0.5\%` of the times (consistent with historical frequency). Borrowing limit :math:`\bar{A}` is set at :math:`30\%` of the wage in normal times. 
 For the benchmark results, we use :math:`\rho = 0.75>\sigma = 0.5`.
@@ -158,9 +158,9 @@ The model can be solved with the following gmod file (:download:`GLSW <GLSW.gmod
     :linenos:
     :language: GDSGE
 
-With the files returned by a local or `remote compiler <http://www.gdsge.com>`_, we can run the *iter_GLSW* file to solve the policy iterations,
+With the files returned by a local or the `remote compiler <http://www.gdsge.com>`_, we can run the *iter_GLSW* file to solve the policy iterations,
 and then pass the converged solutions to the *simulate_GLSW* file to simulate the ergodic set of the model.
-We plot the policy functions for interest rate and the stationary distribution of worker 1's bond holding below.
+We plot the policy functions for interest rate and the stationary distribution of workers 1's bond holding below.
 
 .. image:: figures/policy.png
     :scale: 90 %
@@ -176,11 +176,12 @@ the other with the *pandemic* shock hitting at the first period and the transiti
 .. image:: figures/irf_r_a1.png
     :scale: 30 %
 
-As shown, while interest rate reverses relatively quickly to pre-pandemic level after the shock, 
-workers in sector 1 suffers from a persistent, long-lasting wealth lost.
+As shown, while interest rate reverts relatively quickly to the pre-pandemic level after the shock, 
+workers in sector 1 suffer from a persistent, long-lasting wealth lost.
 
 To further investigate the robustness of the results, the following figure 
 plots the average interest rate before and after the pandemic shocks hit the economy as we vary :math:`\rho`. The figure shows that when :math:`\rho>\sigma` (more precisely :math:`1/\rho<1/\sigma`), interest rate drops when the pandemic shock hits, while it rises when :math:`\rho<\sigma` (:math:`1/\rho>1/\sigma`).
+This is exactly the result discussed in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
 
 .. image:: figures/interest_rate_vary_rho.png
     :scale: 30 %
