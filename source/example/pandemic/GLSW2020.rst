@@ -1,0 +1,183 @@
+**************************************************************************************
+Guerrieri et al. (2020): Negative Supply Shocks That Produce Demand Shortages
+**************************************************************************************
+
+===============
+The Model
+===============
+
+In this timely and important contribution, `Guerrieri, Lorenzoni, Straub, and Werning (2020) <http://economics.mit.edu/files/19351>`_  analyze the effects of supply shocks such as shutdowns, layoffs, and firm exits due to COVID-19. They show that in a two-sector model, these supply shocks can trigger changes in aggregate demand larger than the shocks themselves. This is the case when the elasticity of substitution across sectors is not too large and the inter-temporal elasticity of substitution is sufficiently high.
+
+Their model is deterministic and the supply shock is unexpected. They also assume maximally tight borrowing constraint. We extend their model to allow for stochastic, recurrent shocks and more relaxed borrowing constraint. This extension can be solved easily using our toolbox.
+
+We following closely the notation in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_. The total population is normalized to one, with a fraction
+:math:`\phi` of agents working in sector 1 and the remaining fraction :math:`1-\phi`
+of agents working in section 2. We assume that workers are perfectly
+specialized in their sector. Sector 1 is the contact-intensive sector that is directly affected by the supply shock.
+
+The labor endowment of workers in sector 2 is constant and is set to :math:`\bar{n}`, while the labor endowment
+of workers in sector 1 follows a two-point Markov process with state in :math:`\{1,2\}`, where :math:`1` corresponds to normal times and :math:`2` corresponds to pandemics. During normal times, their labor endowment is :math:`\tilde{n}=\bar{n}`,
+while when a supply shock hits, their labor endowment drops to :math:`\tilde{n}=\delta\bar{n}`
+with :math:`\delta<1`. In the COVID-19 example, as sector 1 is contact-intensive and a fraction :math:`\delta` of its
+production is shut down when the pandemic hits. On the other hand, sector 2 is unaffected.
+The transition matrix between these two states is 
+
+.. math::
+    \mathcal{P}=\left[\begin{array}{cc}
+    \pi_{1}, & 1-\pi_{1}\\
+    1-\pi_{2}, & \pi_{2}
+    \end{array}\right],
+
+in which :math:`1-\pi_{1}` is a small probability for the economy to enter
+the supply-driven crisis, and :math:`\pi_{2}` is the probability for the
+crisis to last for one more period.
+
+The production technology is linear in both sectors:
+
+.. math::
+    Y_{jt}=N_{jt}
+
+for :math:`j=1,2`. Competitive firms in each sector :math:`j` hire workers at
+wage :math:`W_{jt}` and sell their products at price :math:`P_{jt}`. Prices
+are flexible, and given the market structure we have :math:`P_{jt}=W_{jt}`.
+The consumer's utility function is
+
+.. math::
+    \mathbb{E}_{0}\left[\sum_{t=0}^{\infty}\beta^{t}\frac{C_{t}^{1-\sigma}}{1-\sigma}\right],
+    :label: utility_GLSW
+
+in which 
+
+.. math::
+    C_{t}=\left(\phi^{\rho}c_{1t}^{1-\rho}+\left(1-\phi\right)^{\rho}c_{2t}^{1-\rho}\right)^{\frac{1}{1-\rho}},
+
+which features constant elasticity of subsitution :math:`1/\rho` between the two goods
+and constant intertemporal elasticity of substitution :math:`1/\sigma`.
+
+As in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_, here
+we set good 2 to be the numeraire, i.e., :math:`P_{2t}\equiv1`. Workers in sector :math:`j` maximize :eq:`utility_GLSW` subject to 
+
+.. math::
+    P_{1t}c_{1t}^{j}+c_{2t}^{j}+\frac{a_{t+1}^{j}}{1+r_{t}}\leq W_{jt}n_{t}^{j}+a_{t}^{j},
+    :label: budget_GLSW
+
+where they allocate their labor income and bond holding
+from the previous period, :math:`a_{t}^{j}` among consumption goods produced
+in the two sectors and bond holding into the next period. Interest
+rate :math:`r_{t}` is determined competitively.
+
+In addition, we assume that the workers are subject to the
+following borrowing constraint:
+
+.. math::
+    a_{t+1}^{j}\geq-\bar{A}.
+    :label: borrowing_constraint_GLSW
+
+Denote sector :math:`j` workers' Lagrangian multiplier for the
+budget constraint :eq:`budget_GLSW` as :math:`\beta^{t}\lambda_{t}^{j}`,
+and the multiplier for the borrowing constraint as :math:`\beta^{t}\mu_{t}^{j}`.
+The first-order conditions for the workers' optimal decision are:
+
+.. math::
+    \lambda_{t}^{j}=\left(C_{t}^{j}\right)^{\rho-\sigma}\left(1-\phi\right)^{\rho}\left(c_{2t}^{j}\right)^{-\rho},
+
+.. math::
+    P_{1t}=\left(\frac{c_{1t}^{j}/\phi}{c_{2t}^{j}/\left(1-\phi\right)}\right)^{-\rho},
+    :label: price_GLSW
+
+.. math::
+    -\frac{\lambda_{t}^{j}}{1+r_{t}}+\mu_{t}^{j}+\beta\mathbb{E}_{t}\left(\lambda_{t+1}^{j}\right)=0,
+    :label: FOC_GLSW
+
+.. math::
+    \mu_{t}^{j}\left(a_{t+1}^{j}+\bar{A}\right)=0.
+    :label: slackness_GLSW
+
+And we also have the market clearing conditions for bond
+and consumption good 2:
+
+.. math::
+    & \phi a_{t+1}^{1}+\left(1-\phi\right)a_{t+1}^{2}=0,\\
+    & \phi c_{2t}^{1}+\left(1-\phi\right)c_{2t}^{2}=\left(1-\phi\right)\bar{n},
+
+and the market clearing conditions of consumption good 1 is implied
+by Walras' law.
+
+We use :math:`a^1_t` as the endogenous state variable and look for a recursive equilibrium as a mapping from :math:`\left(z_t,a^1_t\right)` to the allocation and prices that satisfies the first-order conditions and market clearing conditions above.
+
+Notice that by the pricing equation :eq:`price_GLSW`,
+
+.. math::
+    \frac{c_{1t}^{1}}{c_{1t}^{2}}=\frac{c_{2t}^{1}}{c_{2t}^{2}},
+
+which means the consumption shares of workers in sector 1 are the
+same between these two consumption goods. Denote the consumption share
+of workers in sector 1 as :math:`\tilde{c}_{1t}`, then 
+
+.. math::
+    c_{1t}^{1} & =\tilde{c}_{1t}n_{1t},\\
+    c_{1t}^{2} & =\left(1-\tilde{c}_{1t}\right)\phi n_{1t}/\left(1-\phi\right),\\
+    c_{2t}^{1} & =\tilde{c}_{1t}\left(1-\phi\right)\bar{n}/\phi,\\
+    c_{2t}^{2} & =\left(1-\tilde{c}_{1t}\right)\bar{n},
+
+which leads to 
+
+.. math::
+    C_{t}^{1} & =\frac{\tilde{c}_{1t}}{\phi}Y_{t},\\
+    C_{t}^{2} & =\frac{1-\tilde{c}_{1t}}{1-\phi}Y_{t},
+
+where :math:`Y_{t}=\left[\phi n_{1t}^{1-\rho}+\left(1-\phi\right)\bar{n}^{1-\rho}\right]^{\frac{1}{1-\rho}}`,
+and 
+
+.. math::
+    \lambda_{t}^{1} & =\left(\frac{\tilde{c}_{1t}}{\phi}Y_{t}\right)^{-\sigma}\left(\frac{Y_{t}}{\bar{n}}\right)^{\rho},\\
+    \lambda_{t}^{2} & =\left(\frac{1-\tilde{c}_{1t}}{1-\phi}Y_{t}\right)^{-\sigma}\left(\frac{Y_{t}}{\bar{n}}\right)^{\rho}.
+
+In total, for each :math:`z_t` and :math:`a^1_t`, the minimal equilibrium system can be represented by  5 unknowns: :math:`\left\{ \tilde{c}_{1t},a_{t+1}^{1},\mu_{t}^{1},\mu_{t}^{2},r_{t+1}\right\}`,
+and can be solved by a system of  5 equations: the budget
+of workers in sector 1, equation :eq:`budget_GLSW`, and the FOC in equation :eq:`FOC_GLSW`,
+and slackness condition in equation :eq:`slackness_GLSW` for
+:math:`j=1,2`.
+
+-----------
+Calibration
+-----------
+
+We use quarters for model periods and standard parameters in the literature. For preferences, we use :math:`\beta = 0.99` as quarterly discount factor. The inverse inter-temporal elasticity of substitution is set at :math:`\sigma = 0.5` (strictly less than :math:`1` as required by the analytical results  `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_ for supply shocks to trigger larger aggregate demand responses). We vary the inverse intra-temporal elasticity of substitution :math:`\rho` between :math:`0.1` and :math:`0.9`.
+
+For labor market parameters, we normalize :math:`\bar{n}` at :math:`1`. The share of the contact-sensitive sector :math:`\phi` is set at :math:`0.2`. We assume that when the pandemic shocks hit, labor supply in the contact-sensitive sector declines by :math:`50\%` (roughly consistent with the increase in unemployment claims in the U.S. during the pandemics). We assume that the pandemics last for 2 quarters on average, so :math:`\pi_2 = 0.5` and :math:`\pi_1` is chosen so that the economy stays in pandemics in around :math:`0.5\%` of the times (consistent with historical frequency). Borrowing limit :math:`\bar{A}` is set at :math:`30\%` of the wage in normal times. 
+For the benchmark results, we use :math:`\rho = 0.75>\sigma = 0.5`.
+
+=============================
+The gmod File and Results
+=============================
+
+The model can be solved with the following gmod file (:download:`GLSW <GLSW.gmod>`). 
+
+.. literalinclude:: GLSW.gmod
+    :linenos:
+    :language: GDSGE
+
+With the files returned by a local or `remote compiler <www.gdsge.com>`_, we can run the *iter_GLSW* file to solve the policy iterations,
+and then pass the converged solutions to the *simulate_GLSW* file to simulate the ergodic set of the model.
+
+.. image:: figures/policy.png
+    :scale: 90 %
+
+Starting from the model's ergodic set, we can simulate the *generalized impulse response functions* by comparing two sets of sample paths: one benchmark, 
+the other with the *pandemic* shock hitting at the first period and the transition of the exogenous shock turned on.
+
+.. image:: figures/irf_r_a1.png
+    :scale: 30 %
+
+As shown, after the economy is hit by a pandemic shock (a sector-specific disaster supply shock), the interest rate declines, suggesting that the induced demand shortages outweighs
+the initial negative supply shock, a result highlighted by `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
+Also as discussed in the paper, the strength of the induced demand shortages hinges on the magnitude of the *intra-temporal* elasticity of substitution.
+To illustrate this, the codes generated by the gmod file can be reused to solve models with different values of parameter :math:`\rho`, which produces
+the following.
+
+.. image:: figures/interest_rate_vary_rho.png
+    :scale: 30 %
+
+
+

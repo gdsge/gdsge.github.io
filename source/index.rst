@@ -41,6 +41,7 @@ More examples and detailed instructions on gmod files and on how to use the tool
    example/Guvenen2009/Guvenen2009
    example/Bianchi2011/Bianchi2011
    example/safe_assets/safe_assets
+   example/pandemic/GLSW2020
    usage/functions
    example/AdditionalExamples
 
