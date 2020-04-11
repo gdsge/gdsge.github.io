@@ -306,7 +306,11 @@ which enable us to solve the decision problem with the toolbox.</p>
 89
 90
 91
-92</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Toolbox options</span>
+92
+93
+94
+95
+96</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Toolbox options</span>
 INTERP_ORDER = 4; ExtrapOrder = 4;
 SIMU_RESOLVE = 0; SIMU_INTERP = 1;
 SaveFreq = inf; PrintFreq = 100;
@@ -358,10 +362,11 @@ var_others kSs alpha delta output_interp_t;
 TASK = &#39;ss&#39;;    <span class="c">% Default task, need overwritten</span>
 output_interp_t = {};      <span class="c">% Default transition path;</span>
 pre_iter;
+  <span class="c">% The pre_iter block will be called at the beginning of every policy iteration</span>
   switch TASK
     case &#39;ss&#39;
     case &#39;transition&#39;
-      t = T - GDSGE_Iter + 1;   <span class="c">% Convert forward to backward</span>
+      t = T - GNDSGE_Iter + 1;  <span class="c">% Convert forward to backward</span>
       r = r_t(t);
       w = w_t(t);
   end
@@ -382,10 +387,13 @@ pre_iter;
 <span class="k">end;</span>
 
 post_iter;
+  <span class="c">% The post_iter block will be called at the end of every policy iteration</span>
   switch TASK
     case &#39;transition&#39;
-      <span class="c">% Store the period-t equilbrium object</span>
+      % The following code constructs function approximation for  <span class="k">var_output</span>
+      <span class="c">% and stores in IterRslt.output_interp</span>
       OUTPUT_CONSTRUCT_CODE;
+      <span class="c">% Store the period-t equilbrium object</span>
       output_interp_t{t} = IterRslt.output_interp;
   end
 <span class="k">end;</span>
@@ -559,7 +567,7 @@ post_iter;
 <span class="n">simuOptions</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="n">shock</span> <span class="p">=</span> <span class="n">shockGrid</span><span class="p">(:);</span><span class="n"></span>
 <span class="n">while </span><span class="s">metric &gt; tolEq</span><span class="p"></span>
     <span class="c">% Solve at prices implied by current K</span>
-    <span class="n">options</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span> <span class="n">simuOptions</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span>
+    <span class="n">options</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span>
     <span class="n">options</span><span class="p">.</span><span class="n">TASK</span> <span class="p">=</span> <span class="s">&#39;ss&#39;</span><span class="p">;</span>
     <span class="n">options</span><span class="p">.</span><span class="n">r</span> <span class="p">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">K</span>^<span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">delta</span><span class="p">;</span>
     <span class="n">options</span><span class="p">.</span><span class="n">w</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">K</span>^<span class="n">alpha</span><span class="p">;</span>
@@ -581,8 +589,6 @@ post_iter;
     <span class="c">% Accomodate the exogenous transition</span>
     <span class="n">transFull</span> <span class="p">=</span> <span class="nb">repmat</span><span class="p">(</span><span class="n">transToKp</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
     <span class="c">% Simulate</span>
-    <span class="n">distMetric</span> <span class="p">=</span> <span class="nb">inf</span><span class="p">;</span>
-    <span class="n">transFull</span> <span class="p">=</span> <span class="n">full</span><span class="p">(</span><span class="n">transFull</span><span class="p">);</span>
     <span class="p">[</span><span class="n">stationaryDist</span><span class="p">,</span><span class="o">~</span><span class="p">]</span> <span class="p">=</span> <span class="n">eigs</span><span class="p">(</span><span class="n">transFull</span><span class="o">&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">stationaryDist</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">stationaryDist</span> <span class="o">/</span> <span class="n">sum</span><span class="p">(</span><span class="n">stationaryDist</span><span class="p">(:)),[</span><span class="n">kFinePts</span><span class="p">,</span><span class="n">shockPts</span><span class="p">]);</span>
     <span class="c">% Statistics</span>
@@ -592,6 +598,7 @@ post_iter;
     <span class="n">metric</span> <span class="p">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">-</span> <span class="nb">log</span><span class="p">(</span><span class="n">K_new</span><span class="p">));</span>
     <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
     <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Steady-state iterations: %d, %g\n&#39;</span><span class="p">,</span><span class="n">iter</span><span class="p">,</span> <span class="n">metric</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;===============================\n&#39;</span><span class="p">);</span>
     <span class="n">K</span> <span class="p">=</span> <span class="n">K_new</span><span class="o">*</span><span class="n">UPDATE_SPEED</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">UPDATE_SPEED</span><span class="p">);</span><span class="n"></span>
 <span class="n">end</span>
 
@@ -647,6 +654,7 @@ post_iter;
     <span class="n">metric</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">K_t</span><span class="p">)</span> <span class="o">-</span> <span class="nb">log</span><span class="p">(</span><span class="n">K_t_new</span><span class="p">)));</span>
     <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
     <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Transition path iterations: %d, %g\n&#39;</span><span class="p">,</span><span class="n">iter</span><span class="p">,</span> <span class="n">metric</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;==================================\n&#39;</span><span class="p">);</span>
     <span class="n">K_t</span> <span class="p">=</span> <span class="n">K_t_new</span><span class="o">*</span><span class="n">UPDATE_SPEED</span> <span class="o">+</span> <span class="n">K_t</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">UPDATE_SPEED</span><span class="p">);</span><span class="n"></span>
 <span class="n">end</span>
 

@@ -50,10 +50,11 @@ var_others kSs alpha delta output_interp_t;
 TASK = 'ss';    % Default task, need overwritten
 output_interp_t = {};      % Default transition path;
 pre_iter;
+  % The pre_iter block will be called at the beginning of every policy iteration
   switch TASK
     case 'ss'
     case 'transition'
-      t = T - GDSGE_Iter + 1;   % Convert forward to backward
+      t = T - GNDSGE_Iter + 1;  % Convert forward to backward
       r = r_t(t);
       w = w_t(t);
   end
@@ -74,10 +75,13 @@ model;
 end;
 
 post_iter;
+  % The post_iter block will be called at the end of every policy iteration
   switch TASK
     case 'transition'
-      % Store the period-t equilbrium object
+      % The following code constructs function approximation for  var_output
+      % and stores in IterRslt.output_interp
       OUTPUT_CONSTRUCT_CODE;
+      % Store the period-t equilbrium object
       output_interp_t{t} = IterRslt.output_interp;
   end
 end;

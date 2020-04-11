@@ -18,7 +18,7 @@ simuOptions.init.k = kFineGrid(:);
 simuOptions.init.shock = shockGrid(:);
 while metric > tolEq
     % Solve at prices implied by current K
-    options = struct; simuOptions = struct;
+    options = struct;
     options.TASK = 'ss';
     options.r = alpha*K^(alpha-1) - delta;
     options.w = (1-alpha)*K^alpha;
@@ -40,8 +40,6 @@ while metric > tolEq
     % Accomodate the exogenous transition
     transFull = repmat(transToKp,[1,2]) * 0.5;
     % Simulate
-    distMetric = inf;
-    transFull = full(transFull);
     [stationaryDist,~] = eigs(transFull',1,1);
     stationaryDist = reshape(stationaryDist / sum(stationaryDist(:)),[kFinePts,shockPts]);
     % Statistics
@@ -51,6 +49,7 @@ while metric > tolEq
     metric = abs(log(K) - log(K_new));
     iter = iter + 1;
     fprintf('Steady-state iterations: %d, %g\n',iter, metric);
+    fprintf('===============================\n');
     K = K_new*UPDATE_SPEED + K*(1-UPDATE_SPEED);
 end
 
@@ -106,6 +105,7 @@ while metric > tolEq
     metric = max(abs(log(K_t) - log(K_t_new)));
     iter = iter + 1;
     fprintf('Transition path iterations: %d, %g\n',iter, metric);
+    fprintf('==================================\n');
     K_t = K_t_new*UPDATE_SPEED + K_t*(1-UPDATE_SPEED);
 end
 
