@@ -145,7 +145,7 @@ Calibration
 
 We use quarters for model periods and standard parameters in the literature. For preferences, we use :math:`\beta = 0.99` as the quarterly discount factor. The inverse inter-temporal elasticity of substitution is set at :math:`\sigma = 0.5` (strictly less than :math:`1` as required by the analytical results  `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_ for supply shocks to trigger larger aggregate demand responses). We vary the inverse intra-temporal elasticity of substitution :math:`\rho` between :math:`0.1` and :math:`0.9`.
 
-For labor market parameters, we normalize :math:`\bar{n}` at :math:`1`. The share of the contact-sensitive sector :math:`\phi` is set at :math:`0.2`. We assume that when the pandemic shocks hit, labor supply in the contact-sensitive sector declines by :math:`50\%` (roughly consistent with the increase in unemployment claims in the U.S. during the pandemics). We assume that the pandemics last for 2 quarters on average, so :math:`\pi_2 = 0.5` and :math:`\pi_1` is chosen so that the economy stays in pandemics in around :math:`0.5\%` of the times (consistent with historical frequency). Borrowing limit :math:`\bar{A}` is set at :math:`30\%` of the wage in normal times. 
+For labor market parameters, we normalize :math:`\bar{n}` at :math:`1`. The share of the contact-intensive sector :math:`\phi` is set at :math:`0.2`. We assume that when the pandemic shocks hit, labor supply in the contact-intensive sector declines by :math:`50\%` (roughly consistent with the increase in unemployment claims in the U.S. during the pandemics). We assume that the pandemics last for 2 quarters on average, so :math:`\pi_2 = 0.5` and :math:`\pi_1` is chosen so that the economy stays in pandemics in around :math:`0.5\%` of the times (consistent with historical frequency). Borrowing limit :math:`\bar{A}` is set at :math:`30\%` of the wage in normal times. 
 For the benchmark results, we use :math:`\rho = 0.75>\sigma = 0.5`.
 
 =============================
@@ -167,8 +167,8 @@ We plot the policy functions for interest rate and the stationary distribution o
 
 The upper panel in the figure shows the interest rate as a function of the endogenous state variable :math:`a^1_t` in normal times (:math:`z=1`) and during pandemics (:math:`z=2`).
 Interest rate is lower during pandemics, which reflects that the aggregate demand response outweighs the supply shock, a result emphasized in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_. 
-In addition, the figure also shows that the effect is stronger when the net worth of workers in the contact-sensitive sector is low. 
-The lower panel plots the ergodic distribution of bond holding of workers in the contact_sensitive sector. The possibility of pandemics leads these workers to do precautionary saving, sometimes up to the borrowing limit of workers in sector 2. However, the precautionary saving does not undo the results in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
+In addition, the figure also shows that the effect is stronger when the net worth of workers in the contact-intensive sector is low. 
+The lower panel plots the ergodic distribution of bond holding of workers in the contact_intensive sector. The possibility of pandemics leads these workers to do precautionary saving, sometimes up to the borrowing limit of workers in sector 2. However, the precautionary saving does not undo the results in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
 
 Starting from the model's ergodic set, we can simulate the *generalized impulse response functions* by comparing two sets of sample paths drawn from the model's ergodic set: one benchmark, 
 the other with the *pandemic* shock hitting at the first period and the transition of the exogenous shock turned on.
