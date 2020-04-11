@@ -106,6 +106,9 @@ while metric > tolEq
     iter = iter + 1;
     fprintf('Transition path iterations: %d, %g\n',iter, metric);
     fprintf('==================================\n');
+    if metric<2e-2
+        UPDATE_SPEED = 0.03;
+    end
     K_t = K_t_new*UPDATE_SPEED + K_t*(1-UPDATE_SPEED);
 end
 
