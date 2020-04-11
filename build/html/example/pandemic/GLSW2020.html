@@ -520,9 +520,41 @@ log_lambda2_interp = log_lambda2;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>With the files returned by a local or the <a class="reference external" href="http://www.gdsge.com">remote compiler</a>, we can run the <em>iter_GLSW</em> file to solve the policy iterations,
-and then pass the converged solutions to the <em>simulate_GLSW</em> file to simulate the ergodic set of the model.
-We plot the policy functions for interest rate and the stationary distribution of workers 1’s bond holding below.</p>
+<p>With the generated files returned by a local or a <a class="reference external" href="http://www.gdsge.com">remote compiler</a>, we can run the <em>iter_GLSW</em> procedure to solve the policy iterations,
+and then pass the converged solutions to the <em>simulate_GLSW</em> procedure to simulate the ergodic set of the model.</p>
+<p>We first solve the policy iterations by calling <em>iter_GLSW</em> in MATLAB, which produces</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_GLSW</span><span class="p">;</span>
+<span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00484804</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.57919e-09</span>
+<span class="n">Elapsed </span><span class="s">time is 0.170275 seconds.</span><span class="p"></span>
+
+<span class="c">...</span>
+
+<span class="n">Iter</span><span class="p">:</span><span class="mi">1453</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">9.37357e-09</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.63784e-09</span>
+<span class="n">Elapsed </span><span class="s">time is 0.043389 seconds.</span><span class="p"></span>
+</pre></div>
+</div>
+<p>Then we pass the converged solutions to <em>simulate_GLSW</em>, which produces
+(depending on your random seed; set rng(0823) to produce the exact results below)</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_GLSW</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
+<span class="n">Periods</span><span class="p">:</span> <span class="mi">1000</span>
+<span class="n">shock      </span><span class="s">a1      a2      P1       r  c1_shr</span><span class="p"></span>
+<span class="n">    1  </span><span class="s">0.3994-0.09986       1 0.01018  0.2006</span><span class="p"></span>
+<span class="n">Elapsed </span><span class="s">time is 0.647503 seconds.</span><span class="p"></span>
+
+<span class="c">...</span>
+
+<span class="n">Periods</span><span class="p">:</span> <span class="mi">10000</span>
+<span class="n">shock      </span><span class="s">a1      a2      P1       r  c1_shr</span><span class="p"></span>
+<span class="n">    1    </span><span class="s">1.18 -0.2951       1 0.01018  0.2023</span><span class="p"></span>
+<span class="n">Elapsed </span><span class="s">time is 0.761543 seconds.</span><span class="p"></span>
+</pre></div>
+</div>
+<p>Then we can inspect the policy functions for interest rate and the stationary distribution of workers 1’s bond holding</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">figure</span><span class="p">;</span> <span class="n">plot</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">a1</span><span class="p">,</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_policy</span><span class="p">.</span><span class="n">r</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">;</span> <span class="n">histogram</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.</span><span class="n">a1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>With some cosmetic modifications we get the following</p>
 <a class="reference internal image-reference" href="../../_images/policy.png"><img alt="../../_images/policy.png" src="../../_images/policy.png" style="width: 504.0px; height: 378.0px;" /></a>
 <p>The upper panel in the figure shows the interest rate as a function of the endogenous state variable <span class="math notranslate nohighlight">\(a^1_t\)</span> in normal times (<span class="math notranslate nohighlight">\(z=1\)</span>) and during pandemics (<span class="math notranslate nohighlight">\(z=2\)</span>).
 Interest rate is lower during pandemics, which reflects that the aggregate demand response outweighs the supply shock, a result emphasized in <a class="reference external" href="http://economics.mit.edu/files/19351">Guerrieri et al. (2020)</a>.

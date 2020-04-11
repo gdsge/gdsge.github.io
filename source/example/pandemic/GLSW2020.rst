@@ -158,9 +158,48 @@ The model can be solved with the following gmod file (:download:`GLSW <GLSW.gmod
     :linenos:
     :language: GDSGE
 
-With the files returned by a local or the `remote compiler <http://www.gdsge.com>`_, we can run the *iter_GLSW* file to solve the policy iterations,
-and then pass the converged solutions to the *simulate_GLSW* file to simulate the ergodic set of the model.
-We plot the policy functions for interest rate and the stationary distribution of workers 1's bond holding below.
+With the generated files returned by a local or a `remote compiler <http://www.gdsge.com>`_, we can run the *iter_GLSW* procedure to solve the policy iterations,
+and then pass the converged solutions to the *simulate_GLSW* procedure to simulate the ergodic set of the model.
+
+We first solve the policy iterations by calling *iter_GLSW* in MATLAB, which produces
+
+.. code-block:: MATLAB
+
+    >> IterRslt = iter_GLSW;
+    Iter:10, Metric:0.00484804, maxF:8.57919e-09
+    Elapsed time is 0.170275 seconds.
+
+    ...
+
+    Iter:1453, Metric:9.37357e-09, maxF:9.63784e-09
+    Elapsed time is 0.043389 seconds.
+
+Then we pass the converged solutions to *simulate_GLSW*, which produces 
+(depending on your random seed; set rng(0823) to produce the exact results below)
+
+.. code-block:: MATLAB
+
+    >> SimuRslt = simulate_GLSW(IterRslt);
+    Periods: 1000
+    shock      a1      a2      P1       r  c1_shr
+        1  0.3994-0.09986       1 0.01018  0.2006
+    Elapsed time is 0.647503 seconds.
+
+    ...
+
+    Periods: 10000
+    shock      a1      a2      P1       r  c1_shr
+        1    1.18 -0.2951       1 0.01018  0.2023
+    Elapsed time is 0.761543 seconds.
+
+Then we can inspect the policy functions for interest rate and the stationary distribution of workers 1's bond holding 
+
+.. code-block:: MATLAB
+
+    >> figure; plot(IterRslt.var_state.a1,IterRslt.var_policy.r);
+    figure; histogram(SimuRslt.a1);
+
+With some cosmetic modifications we get the following
 
 .. image:: figures/policy.png
     :scale: 90 %

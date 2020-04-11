@@ -367,6 +367,10 @@ Iter:323, Metric:9.89183e-07, maxF:7.96886e-09
 Elapsed time is 0.027923 seconds.
 </pre></div>
 </div>
+<p>where <em>Metric</em> is the maximum absolute distance of <em>var_interp</em> between the current and the last iteration,
+and <em>maxF</em> is the maximum absolute equation residual across all collocation points in the current iteration.
+As shown, the converged criterion by default is <em>Metric</em> smaller than <span class="math notranslate nohighlight">\(1e-6\)</span>, and can be overwritten by the option <em>TolEq</em> that can be put into the gmod file or
+supplied in an option structure when calling <em>iter_rbc</em> (see details below).</p>
 <p>The returned IterRslt contains the converged policy and state transition functions. For example, we can plot the policy function for consumption <span class="math notranslate nohighlight">\(c\)</span>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; plot(IterRslt.var_state.K, IterRslt.var_policy.c);
 xlabel(&#39;K&#39;); title(&#39;Policy Functions for c&#39;);
@@ -473,7 +477,7 @@ K    = linspace(KMin,KMax,KPts);
 </td></tr></table></div>
 <p>Endogenous states such as capital in the RBC model should be declared following keyword <em>var_state</em>.
 Then the discretized grid for each state should be specified (e.g., <code class="code docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">linspace(KMin,KMax,KPts);</span></code> in the example).
-Notice that all Matlab expressions can be evaluated.</p>
+Notice that any Matlab expressions (such as function <em>linspace</em> here) can be evaluated.</p>
 <p>The discretized grid will be used in fixed-grid function approximation procedures such as splines and linear interpolations.
 For adaptive grid methods, only the range of the grid will be used.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>27
@@ -490,20 +494,20 @@ c_interp = c;
 <p>The time iteration procedure requires taking the state transition functions (here, implicitly defined in <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span>) as given
 when evaluating the system of equations. These state transition functions are declared following keyword <em>var_interp</em>.
 They are named <em>var_interp</em> since they are usually evaluated with some function approximation procedure such as interpolation in evaluating the system of equations.</p>
-<p>Each of the transition function needs to be initialized following keyword <em>initial</em>.
+<p>Each of the transition functions needs to be initialized following keyword <em>initial</em>.
 Here <span class="math notranslate nohighlight">\(c_{t+1}(z,K)\)</span> is initialized as <span class="math notranslate nohighlight">\(zK^{\alpha} + (1-\delta)K\)</span> which means that consumers just
 consumer all resources that include output and non-depreciated capital. This initialization basically
 requests the toolbox to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
 of which <span class="math notranslate nohighlight">\(c_{t+1}\)</span> is initialized to be the last-period solution.
-Notice that the Matlab “dot” operator (.*) works in the line following <em>initial</em>, and the tensor is formed automatically.</p>
+Notice that the Matlab “dot” operator (.*) works in the line following <em>initial</em>, and relevant tensors are formed automatically.</p>
 <p>In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
 Starting with a last-period problem is shown to
 deliver both good theoretical properties and robust numerical computations (<a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao, 2018</a>).
 See <a class="reference internal" href="../Mendoza2010/Mendoza2010.html#mendoza2010"><span class="std std-ref">Mendoza (2010)</span></a> for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a <em>model_init</em> block.</p>
-<p>The update of the transition function after a time step needs to be specified such as <code class="code docutils literal notranslate"><span class="pre">c_interp</span> <span class="pre">=</span> <span class="pre">c;</span></code>.
-The update can use any variables returned as part of the solution to the system.
+<p>The update of the transition function after a time iteration step needs to be specified such as <code class="code docutils literal notranslate"><span class="pre">c_interp</span> <span class="pre">=</span> <span class="pre">c;</span></code>.
+The update can use any variables returned as part of the solution to the system in the current time iteration step.
 For example, here <code class="code docutils literal notranslate"><span class="pre">c_interp</span> <span class="pre">=</span> <span class="pre">c;</span></code> means that the <em>c_interp</em> variable is updated with <em>c</em> after a time iteration,
-where <em>c</em> is one of the policy variables solved by the system of equations, specified in the gmod file.</p>
+where <em>c</em> is one of the policy variables solved by the system of equations, specified in the gmod file as below.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>33
 34
 35
@@ -603,7 +607,7 @@ following <em>c_interp</em>, which means that it is evaluating at each realizati
 and returning a vector of length shock_num. Accordingly, the left hand side variable should be declared as a vector,
 i.e., a variable followed by a prime (‘).</p>
 <p>The <em>model</em> block can use several built-in functions for reduction operations.
-For example, the <em>GNDSGE_EXPECT{}</em> used in</p>
+For example, the <em>GDSGE_EXPECT{}</em> used in</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
 </pre></div>
 </td></tr></table></div>
@@ -612,9 +616,9 @@ conditional on the current exogenous state, using the default Markov transition 
 Obviously, this function is meaningful only if it takes as argument the realizations of variables across future exogenous states,
 which are defined as vector variables followed by prime (‘).</p>
 <p>This operator can also take a different transition matrix than <em>shock_trans</em>, which is used as
-<code class="code docutils literal notranslate"><span class="pre">GNDSGE_EXPECT{*|alternative_shock_trans}</span></code>. This can be used to solve models with heterogeneous beliefs.
+<code class="code docutils literal notranslate"><span class="pre">GDSGE_EXPECT{*|alternative_shock_trans}</span></code>. This can be used to solve models with heterogeneous beliefs.
 See example <a class="reference internal" href="../Cao2018/Cao2018.html#cao2018"><span class="std std-ref">Cao (2018)</span></a>.</p>
-<p>Two other reduction operations <em>GNDSGE_MAX{}</em> and <em>GNDSGE_MIN{}</em> are defined, which are to take
+<p>Two other reduction operations <em>GDSGE_MAX{}</em> and <em>GDSGE_MIN{}</em> are defined, which are to take
 the maximum and the minimum of objects inside the curly braces, respectively. See <a class="reference internal" href="../../usage/functions.html#built-in-functions"><span class="std std-ref">Built-in functions</span></a>.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51
 52
@@ -638,17 +642,17 @@ It should define the initial endogenous state following keyword <em>initial</em>
 <code class="docutils literal notranslate"><span class="pre">initial</span> <span class="pre">K</span> <span class="pre">Kss;</span></code> in the example sets the endogenous state <span class="math notranslate nohighlight">\(K\)</span> to <em>Kss</em> defined before.</p>
 <p>The simulate block should define the initial exogenous state index following keyword <em>initial shock</em>.
 It should define the variables to be recorded following <em>var_simu</em>.
-It should define the transition for each state variable. <code class="docutils literal notranslate"><span class="pre">K'=K_next;</span></code> in the example
+It should define the transition for each state variable. In the example, <code class="docutils literal notranslate"><span class="pre">K'=K_next;</span></code>
 defines that the next period endogenous state <span class="math notranslate nohighlight">\(K\)</span> should be assigned to <em>K_next</em> which is one of
 the <em>var_policy</em> solved as part of the system. Notice the prime operator (‘) following <em>K</em>
 indicates that the line is to specify the transition of an endogenous state variable in the simulation,
 which has a different meaning than the prime operator (‘) used in the <em>model</em> block.
-Nevertheless, the prime operator (‘) in both places is associated with the transition to a future state, and thus motivates such a design.</p>
+Nevertheless, the prime operators (‘) in both usages are associated with the transition to the future state, and thus motivate such designs.</p>
 <p>The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).</p>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Now you understand the basic usage of the toolbox.
+<p>The current example demonstrates the basic usage of the toolbox.
 You can proceed to <a class="reference internal" href="rbcIrr.html#a-rbc-model-with-irreversible-investment"><span class="std std-ref">an extension with investment irreversibility</span></a> that requires a global method,
 or to a real example <a class="reference internal" href="../HL1996/HL1996.html#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices"><span class="std std-ref">Heaton and Lucas (1996)</span></a> which is the leading example in the toolbox paper.</p>
 <p>Or you can proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>.</p>

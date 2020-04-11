@@ -97,6 +97,11 @@ First, call iter_rbc.m in matlab to run the policy iterations, which produces
     Iter:323, Metric:9.89183e-07, maxF:7.96886e-09
     Elapsed time is 0.027923 seconds.
     
+where *Metric* is the maximum absolute distance of *var_interp* between the current and the last iteration,
+and *maxF* is the maximum absolute equation residual across all collocation points in the current iteration.
+As shown, the converged criterion by default is *Metric* smaller than :math:`1e-6`, and can be overwritten by the option *TolEq* that can be put into the gmod file or
+supplied in an option structure when calling *iter_rbc* (see details below).
+
 The returned IterRslt contains the converged policy and state transition functions. For example, we can plot the policy function for consumption :math:`c`:
 
 .. code-block:: text
@@ -192,7 +197,7 @@ and discretize the innovation.
 
 Endogenous states such as capital in the RBC model should be declared following keyword *var_state*.
 Then the discretized grid for each state should be specified (e.g., :code:`K = linspace(KMin,KMax,KPts);` in the example).
-Notice that all Matlab expressions can be evaluated.
+Notice that any Matlab expressions (such as function *linspace* here) can be evaluated.
 
 The discretized grid will be used in fixed-grid function approximation procedures such as splines and linear interpolations.
 For adaptive grid methods, only the range of the grid will be used.
@@ -206,22 +211,22 @@ The time iteration procedure requires taking the state transition functions (her
 when evaluating the system of equations. These state transition functions are declared following keyword *var_interp*.
 They are named *var_interp* since they are usually evaluated with some function approximation procedure such as interpolation in evaluating the system of equations.
 
-Each of the transition function needs to be initialized following keyword *initial*.
+Each of the transition functions needs to be initialized following keyword *initial*.
 Here :math:`c_{t+1}(z,K)` is initialized as :math:`zK^{\alpha} + (1-\delta)K` which means that consumers just 
 consumer all resources that include output and non-depreciated capital. This initialization basically 
 requests the toolbox to find the equilibrium that corresponds to the limit of a finite-horizon economy taking the number of horizons to infinity,
 of which :math:`c_{t+1}` is initialized to be the last-period solution.
-Notice that the Matlab "dot" operator (.*) works in the line following *initial*, and the tensor is formed automatically.
+Notice that the Matlab "dot" operator (.*) works in the line following *initial*, and relevant tensors are formed automatically.
 
 In general, it is crucial to form a good initial guess on the transition functions to make the policy iteration method work.
 Starting with a last-period problem is shown to
 deliver both good theoretical properties and robust numerical computations (`Cao, 2018 <https://academic.oup.com/ej/article/128/614/2258/5230957>`_). 
 See :ref:`Mendoza (2010) <Mendoza2010>` for an example on how to define a more complex last-period problem that may require solving a different system of equations, through a *model_init* block.
 
-The update of the transition function after a time step needs to be specified such as :code:`c_interp = c;`.
-The update can use any variables returned as part of the solution to the system. 
+The update of the transition function after a time iteration step needs to be specified such as :code:`c_interp = c;`.
+The update can use any variables returned as part of the solution to the system in the current time iteration step. 
 For example, here :code:`c_interp = c;` means that the *c_interp* variable is updated with *c* after a time iteration,
-where *c* is one of the policy variables solved by the system of equations, specified in the gmod file.
+where *c* is one of the policy variables solved by the system of equations, specified in the gmod file as below.
 
 .. literalinclude:: rbc.gmod
     :lines: 33-36
@@ -296,7 +301,7 @@ and returning a vector of length shock_num. Accordingly, the left hand side vari
 i.e., a variable followed by a prime (').
 
 The *model* block can use several built-in functions for reduction operations.
-For example, the *GNDSGE_EXPECT{}* used in 
+For example, the *GDSGE_EXPECT{}* used in 
 
 .. literalinclude:: rbc.gmod
     :lines: 51-51
@@ -309,10 +314,10 @@ Obviously, this function is meaningful only if it takes as argument the realizat
 which are defined as vector variables followed by prime (').
 
 This operator can also take a different transition matrix than *shock_trans*, which is used as
-:code:`GNDSGE_EXPECT{*|alternative_shock_trans}`. This can be used to solve models with heterogeneous beliefs. 
+:code:`GDSGE_EXPECT{*|alternative_shock_trans}`. This can be used to solve models with heterogeneous beliefs. 
 See example :ref:`Cao (2018) <Cao2018>`.
 
-Two other reduction operations *GNDSGE_MAX{}* and *GNDSGE_MIN{}* are defined, which are to take
+Two other reduction operations *GDSGE_MAX{}* and *GDSGE_MIN{}* are defined, which are to take
 the maximum and the minimum of objects inside the curly braces, respectively. See :ref:`Built-in functions`.
 
 .. literalinclude:: rbc.gmod
@@ -326,12 +331,12 @@ It should define the initial endogenous state following keyword *initial*.
 
 The simulate block should define the initial exogenous state index following keyword *initial shock*.
 It should define the variables to be recorded following *var_simu*. 
-It should define the transition for each state variable. ``K'=K_next;`` in the example
+It should define the transition for each state variable. In the example, ``K'=K_next;``
 defines that the next period endogenous state :math:`K` should be assigned to *K_next* which is one of
 the *var_policy* solved as part of the system. Notice the prime operator (') following *K* 
 indicates that the line is to specify the transition of an endogenous state variable in the simulation, 
 which has a different meaning than the prime operator (') used in the *model* block. 
-Nevertheless, the prime operator (') in both places is associated with the transition to a future state, and thus motivates such a design.
+Nevertheless, the prime operators (') in both usages are associated with the transition to the future state, and thus motivate such designs.
 
 The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).
 
@@ -339,7 +344,7 @@ The simulate block can also overwrite num_periods (default 1000) and num_samples
 What's Next?
 =====================
 
-Now you understand the basic usage of the toolbox.
+The current example demonstrates the basic usage of the toolbox.
 You can proceed to :ref:`an extension with investment irreversibility <A RBC Model with Irreversible Investment>` that requires a global method, 
 or to a real example :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` which is the leading example in the toolbox paper.
 
