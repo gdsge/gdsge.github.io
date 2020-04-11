@@ -23,7 +23,7 @@ production is shut down when the pandemic hits. On the other hand, sector 2 is u
 The transition matrix between these two states is 
 
 .. math::
-    \mathcal{P}=\left[\begin{array}{cc}
+    \left[\begin{array}{cc}
     \pi_{1}, & 1-\pi_{1}\\
     1-\pi_{2}, & \pi_{2}
     \end{array}\right],
@@ -199,7 +199,7 @@ Then we can inspect the policy functions for interest rate and the stationary di
     >> figure; plot(IterRslt.var_state.a1,IterRslt.var_policy.r);
     figure; histogram(SimuRslt.a1);
 
-With some cosmetic modifications we get the following
+With some cosmetic modifications we get the following figure.
 
 .. image:: figures/policy.png
     :scale: 90 %
