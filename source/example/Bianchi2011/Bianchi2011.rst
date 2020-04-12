@@ -315,7 +315,7 @@ The planner's problem can thus implemented by replacing Line 85
     :lineno-start: 85
     :language: GDSGE
 
-to the following (see full gmod file for the planner's problem :download:`bianchi2011_planner.gmod <bianchi2011_planner.gmod>`
+to the following (see full gmod file for the planner's problem :download:`bianchi2011_planner.gmod <bianchi2011_planner.gmod>`)
 
 .. code-block:: GDSGE
 

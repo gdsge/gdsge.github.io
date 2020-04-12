@@ -16,8 +16,8 @@ of agents working in section 2. We assume that workers are perfectly
 specialized in their sector. Sector 1 is the contact-intensive sector that is directly affected by the supply shock.
 
 The labor endowment of workers in sector 2 is constant and is set to :math:`\bar{n}`, while the labor endowment
-of workers in sector 1 follows a two-point Markov process with state in :math:`\{1,2\}`, where :math:`1` corresponds to normal times and :math:`2` corresponds to pandemics. During normal times, their labor endowment is :math:`\tilde{n}=\bar{n}`,
-while when a supply shock hits, their labor endowment drops to :math:`\tilde{n}=\delta\bar{n}`
+of workers in sector 1 follows a two-point Markov process with state in :math:`\{1,2\}`, where :math:`1` corresponds to normal times and :math:`2` corresponds to pandemics. During normal times, their labor endowment is :math:`n_1=\bar{n}`,
+while when a supply shock hits, their labor endowment drops to :math:`n_1=\delta\bar{n}`
 with :math:`\delta<1`. In the COVID-19 example, as sector 1 is contact-intensive and a fraction :math:`\delta` of its
 production is shut down when the pandemic hits. On the other hand, sector 2 is unaffected.
 The transition matrix between these two states is 

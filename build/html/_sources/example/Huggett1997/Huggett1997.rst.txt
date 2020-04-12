@@ -12,7 +12,7 @@ The example also demonstrates how to conduct non-stochastic simulations using th
 by keeping track of the distribution function over a refined grid of individual state variables.
 
 Though the toolbox is not designed for solving the equilibrium of this type of model directly,
-since the decision problem is characterized by an equation system with state transition functions, it readily fits in the toolbox's framework.
+since the decision problem is characterized by an equation system (the Euler equation and complementary-slackness condition) with state transition functions, it readily fits in the toolbox's framework.
 One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB. 
 For the one-sector model studied by `Huggett (1997) <https://www.sciencedirect.com/science/article/pii/S0304393297000251>`_, the steady state equilibrium object is the aggregate capital stock; the transition path equilibrium object is the time sequence
 of the aggregate capital stock.
