@@ -356,7 +356,7 @@ c_interp = c;
 <p>The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at <a class="reference external" href="http://www.gdsge.com/">http://www.gdsge.com/</a> (Remember also to download the necessary runtime files following the instruction
 on the compiler website).
 The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
-<p>First, call iter_rbc.m in matlab to run the policy iterations, which produces</p>
+<p>First, call iter_rbc.m in matlab to run the policy iterations and store the returned result in <em>IterRslt</em>, which produces</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_rbc;
 
 Iter:10, Metric:0.385607, maxF:9.99011e-09

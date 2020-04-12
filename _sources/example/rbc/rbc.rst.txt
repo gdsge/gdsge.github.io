@@ -84,7 +84,7 @@ The gmod file can be inputted to a local GDSGE compiler or uploaded to the onlin
 on the compiler website). 
 The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
 
-First, call iter_rbc.m in matlab to run the policy iterations, which produces
+First, call iter_rbc.m in matlab to run the policy iterations and store the returned result in *IterRslt*, which produces
 
 .. code-block:: text
 
