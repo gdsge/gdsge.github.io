@@ -89,6 +89,7 @@ First, call iter_rbc.m in matlab to run the policy iterations, which produces
 .. code-block:: text
 
     >> IterRslt = iter_rbc;
+
     Iter:10, Metric:0.385607, maxF:9.99011e-09
     Elapsed time is 0.174117 seconds.
     
@@ -117,6 +118,7 @@ We can now simulate the model by inputting IterRslt into simulate_rbc:
 .. code-block:: text
 
     >> SimuRslt = simulate_rbc(IterRslt);
+
     Periods: 1000
        shock       K       c
            1   38.09   2.754

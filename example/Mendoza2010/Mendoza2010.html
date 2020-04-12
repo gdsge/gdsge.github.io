@@ -670,6 +670,7 @@ For example, the Euler equation for bond is written as</p>
 These procedures are not necessary but are simple and effective ways to solve the system faster and more accurately.</p>
 <p>Now let’s run the policy iterations by calling <em>iter_mendoza2010.m</em> returned from a local or remote GDSGE compiler, which produces output</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_mendoza2010</span><span class="p">;</span>
+
 <span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00819545</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">3.83276e-09</span>
 <span class="n">Elapsed </span><span class="s">time is 5.885684 seconds.</span><span class="p"></span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00329338</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">1.72695e-09</span>
@@ -777,6 +778,7 @@ the transitions need to be specified in the simulate block</p>
 <p>which means that the next period <em>cTilde</em> should pick policy <em>cTildeNext</em> at a sampled exogenous shock index.</p>
 <p>Calling simulate_mnendoza2010 produces the following</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_mendoza2010</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
+
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">1000</span>
 <span class="n">shock  </span><span class="s">cTilde       k       c       Y       q     inv       b   bNext       v      nx     gdp   b_gdp  nx_gdp     lev  wkcptl</span><span class="p"></span>
 <span class="n">    1   </span><span class="s">166.9   747.1   282.5     429   1.048   78.98   109.7   86.46   43.32  -23.58   385.9  0.2843 -0.06110.0002417   76.13</span><span class="p"></span>

@@ -358,6 +358,7 @@ on the compiler website).
 The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64.</p>
 <p>First, call iter_rbc.m in matlab to run the policy iterations, which produces</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_rbc;
+
 Iter:10, Metric:0.385607, maxF:9.99011e-09
 Elapsed time is 0.174117 seconds.
 
@@ -379,6 +380,7 @@ xlabel(&#39;K&#39;); title(&#39;Policy Functions for c&#39;);
 <a class="reference internal image-reference" href="../../_images/policy_c.png"><img alt="../../_images/policy_c.png" src="../../_images/policy_c.png" style="width: 437.5px; height: 328.0px;" /></a>
 <p>We can now simulate the model by inputting IterRslt into simulate_rbc:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; SimuRslt = simulate_rbc(IterRslt);
+
 Periods: 1000
    shock       K       c
        1   38.09   2.754

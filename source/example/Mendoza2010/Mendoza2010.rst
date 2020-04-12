@@ -245,6 +245,7 @@ Now let's run the policy iterations by calling *iter_mendoza2010.m* returned fro
 .. code-block:: MATLAB
 
     >> IterRslt = iter_mendoza2010;
+
     Iter:10, Metric:0.00819545, maxF:3.83276e-09
     Elapsed time is 5.885684 seconds.
     Iter:20, Metric:0.00329338, maxF:1.72695e-09
@@ -384,6 +385,7 @@ Calling simulate_mnendoza2010 produces the following
 .. code-block:: MATLAB
 
     >> SimuRslt = simulate_mendoza2010(IterRslt);
+
     Periods: 1000
     shock  cTilde       k       c       Y       q     inv       b   bNext       v      nx     gdp   b_gdp  nx_gdp     lev  wkcptl
         1   166.9   747.1   282.5     429   1.048   78.98   109.7   86.46   43.32  -23.58   385.9  0.2843 -0.06110.0002417   76.13

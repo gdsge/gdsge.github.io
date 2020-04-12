@@ -193,6 +193,7 @@ results as follows
 .. code-block:: text
 
     >> IterRslt = iter_HL1996;
+
     Iter:10, Metric:0.133835, maxF:7.07521e-09
     Elapsed time is 8.338626 seconds.
     
@@ -224,6 +225,7 @@ We can simulate the model using the converged policy functions contained in *Ite
 .. code-block:: text
 
     >> SimuRslt = simulate_HL1996(IterRslt);
+
     Periods: 1000
     shock      w1      c1      c2      ps      pbequity_premium
         1  0.7879  0.6058  0.5344    2.48  0.93240.001541

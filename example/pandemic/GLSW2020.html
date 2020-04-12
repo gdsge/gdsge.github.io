@@ -524,6 +524,7 @@ log_lambda2_interp = log_lambda2;
 and then pass the converged solutions to the <em>simulate_GLSW</em> procedure to simulate the ergodic set of the model.</p>
 <p>We first solve the policy iterations by calling <em>iter_GLSW</em> in MATLAB, which produces</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_GLSW</span><span class="p">;</span>
+
 <span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00484804</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.57919e-09</span>
 <span class="n">Elapsed </span><span class="s">time is 0.170275 seconds.</span><span class="p"></span>
 
@@ -536,6 +537,7 @@ and then pass the converged solutions to the <em>simulate_GLSW</em> procedure to
 <p>Then we pass the converged solutions to <em>simulate_GLSW</em>, which produces
 (depending on your random seed; set rng(0823) to produce the exact results below)</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_GLSW</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
+
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">1000</span>
 <span class="n">shock      </span><span class="s">a1      a2      P1       r  c1_shr</span><span class="p"></span>
 <span class="n">    1  </span><span class="s">0.3994-0.09986       1 0.01018  0.2006</span><span class="p"></span>
