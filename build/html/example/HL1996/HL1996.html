@@ -501,7 +501,7 @@ Elapsed time is 0.443740 seconds.
 </div>
 <p>We can inspect the policy functions (e.g., for the equity premium defined in Line 74 and included in <em>var_output</em> in Line 54):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; figure;
-plot(IterRslt_wealth.var_state.w1, IterRslt_wealth.var_aux.equity_premium*100,&#39;LineWidth&#39;,1.5);
+plot(IterRslt.var_state.w1, IterRslt.var_aux.equity_premium*100,&#39;LineWidth&#39;,1.5);
 title(&#39;Equity Premium&#39;);
 xlabel(&#39;Wealth Share of Agent 1&#39;);
 ylabel(&#39;%&#39;);

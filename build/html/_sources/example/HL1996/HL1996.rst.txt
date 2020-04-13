@@ -207,7 +207,7 @@ We can inspect the policy functions (e.g., for the equity premium defined in Lin
 .. code-block:: text
 
     >> figure;
-    plot(IterRslt_wealth.var_state.w1, IterRslt_wealth.var_aux.equity_premium*100,'LineWidth',1.5);
+    plot(IterRslt.var_state.w1, IterRslt.var_aux.equity_premium*100,'LineWidth',1.5);
     title('Equity Premium');
     xlabel('Wealth Share of Agent 1');
     ylabel('%');

@@ -171,7 +171,7 @@ Built-in functions
 .. function:: GDSGE_INTERP_VEC[vec_index](shock, var_state1, var_state2, ...)
 
     Return each *var_interp* evaluated at (var_state1, var_state2, ...) for the exogenous shock index referred by argument *shock*, 
-    in the order defined in *var_interp*. For example,
+    according to the order defined in *var_interp*. For example,
 
     .. code-block:: GDSGE
 
@@ -201,7 +201,7 @@ Built-in functions
 .. function:: GDSGE_INTERP_VEC'[vec_index](var_state1, var_state2, ...)
 
     Return each *var_interp* evaluated at (var_state1, var_state2, ...) for each realization of exogenous states, 
-    returned in the order defined in *var_interp*. The returned results should be assigned to a vector of variables (i.e., variables followed by a prime (')).
+    returned according to the order defined in *var_interp*. The returned results should be assigned to a vector of variables (i.e., variables followed by a prime (')).
     For example,
 
     .. code-block:: GDSGE
@@ -369,7 +369,7 @@ Function approximations
 
     Takes value of 2 (default) or 4.
     Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolation and INTERP_ORDER=4
-    corresponds to cubic splines interpolation with natural end conditions.
+    corresponds to cubic splines with natural end conditions.
 
 .. option:: ExtrapOrder
 
@@ -446,7 +446,7 @@ Miscellaneous
 
 .. option:: NumThreads
 
-    Number of (Openmp) threads in policy iterations and simulations.
+    Number of (OpenMP) threads in policy iterations and simulations.
     Default: the number of cores (via Matlab function ``feature('numcores')``)
 
 
@@ -454,7 +454,7 @@ Miscellaneous
 DEBUG
 ----------------------------
 
-.. option:: GDSGE_DEBUG_EVAL_ONLY
+.. option:: GNDSGE_DEBUG_EVAL_ONLY
 
     Only evaluate the system of equations instead of solving it.
 

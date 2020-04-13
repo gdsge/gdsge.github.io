@@ -349,7 +349,7 @@ A <cite>var_simu</cite> must be contained in <cite>var_policy</cite> or <cite>va
 <dt>
 <code class="sig-name descname">GDSGE_INTERP_VEC[vec_index](shock, var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for the exogenous shock index referred by argument <em>shock</em>,
-in the order defined in <em>var_interp</em>. For example,</p>
+according to the order defined in <em>var_interp</em>. For example,</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
 <span class="k">var_shock</span> z;
 <span class="k">var_state</span> x1 x2;
@@ -383,7 +383,7 @@ Return all <em>var_interp</em> if omitted.</p></li>
 <dt>
 <code class="sig-name descname">GDSGE_INTERP_VEC'[vec_index](var_state1, var_state2, ...)</code></dt>
 <dd><p>Return each <em>var_interp</em> evaluated at (var_state1, var_state2, …) for each realization of exogenous states,
-returned in the order defined in <em>var_interp</em>. The returned results should be assigned to a vector of variables (i.e., variables followed by a prime (‘)).
+returned according to the order defined in <em>var_interp</em>. The returned results should be assigned to a vector of variables (i.e., variables followed by a prime (‘)).
 For example,</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
 <span class="k">shock_num</span> = 2;
@@ -583,7 +583,7 @@ Takes value of 0 (default) or 1.</p>
 <code class="sig-name descname">INTERP_ORDER</code><a class="headerlink" href="#option-INTERP_ORDER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes value of 2 (default) or 4.
 Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolation and INTERP_ORDER=4
-corresponds to cubic splines interpolation with natural end conditions.</p>
+corresponds to cubic splines with natural end conditions.</p>
 </dd></dl>
 
 <dl class="option">
@@ -684,7 +684,7 @@ Takes value of 0 (default) or 1.</p>
 <dl class="option">
 <dt id="option-NumThreads">
 <code class="sig-name descname">NumThreads</code><a class="headerlink" href="#option-NumThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of (Openmp) threads in policy iterations and simulations.
+<dd><p>Number of (OpenMP) threads in policy iterations and simulations.
 Default: the number of cores (via Matlab function <code class="docutils literal notranslate"><span class="pre">feature('numcores')</span></code>)</p>
 </dd></dl>
 
@@ -692,8 +692,8 @@ Default: the number of cores (via Matlab function <code class="docutils literal 
 <div class="section" id="debug">
 <h3>DEBUG<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h3>
 <dl class="option">
-<dt id="option-GDSGE_DEBUG_EVAL_ONLY">
-<code class="sig-name descname">GDSGE_DEBUG_EVAL_ONLY</code><a class="headerlink" href="#option-GDSGE_DEBUG_EVAL_ONLY" title="Permalink to this definition">¶</a></dt>
+<dt id="option-GNDSGE_DEBUG_EVAL_ONLY">
+<code class="sig-name descname">GNDSGE_DEBUG_EVAL_ONLY</code><a class="headerlink" href="#option-GNDSGE_DEBUG_EVAL_ONLY" title="Permalink to this definition">¶</a></dt>
 <dd><p>Only evaluate the system of equations instead of solving it.</p>
 </dd></dl>
 
