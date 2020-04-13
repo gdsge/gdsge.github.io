@@ -1,4 +1,4 @@
-# gdsge.github.io
+# GDSGE: A Toolbox for Solving DSGE Models with Global Methods
 Welcome to GDSGE’s documentation!
 
 GDSGE is a toolbox that solves nonlinear Dynamic Stochastic General Equilibrium (DSGE) models 
