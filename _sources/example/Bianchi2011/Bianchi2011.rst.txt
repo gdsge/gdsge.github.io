@@ -196,15 +196,15 @@ We can now inspect the policy functions using following MATLAB commands:
 
 .. code-block:: text
 
-    >> GNDSGE_ASG_INTERP = asg.construct_from_struct(IterRslt.asg_output_struct);
-    grids = GNDSGE_ASG_INTERP.get_grids_info;
+    >> asg_output = asg.construct_from_struct(IterRslt.asg_output_struct);
+    grids = asg_output.get_grids_info;
     idx_bNext = 1;
     idx_pN = 2;
     for j=1:16
         grid = grids{j};
         lenGrid = length(grid);
-        bNext_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),idx_bNext*ones(1,lenGrid),grid);
-        pN_fval{j} = GNDSGE_ASG_INTERP.eval(j*ones(1,lenGrid),idx_pN*ones(1,lenGrid),grid);
+        bNext_fval{j} = asg_output.eval(j*ones(1,lenGrid),idx_bNext*ones(1,lenGrid),grid);
+        pN_fval{j} = asg_output.eval(j*ones(1,lenGrid),idx_pN*ones(1,lenGrid),grid);
     end
 
     figure; 
@@ -228,9 +228,9 @@ We can now inspect the policy functions using following MATLAB commands:
 
 This is a bit involved than previous examples since the ASG method returns solutions in a structure
 that allows solutions for each exogenous shock to be defined over different grids. So the above procedure essentially unpacks the
-grid and reconstructs the values of the policy functions (using GNDSGE_ASG_INTERP.eval, where GNDSGE_ASG_INTERP is the adaptive sparse grid approximation object
-returned by the solver. 
-The second argument in GNDSGE_ASG_INTERP.eval (*idx_bNext* and *idx_pN* here) refers to the index of policy functions according the order declared in *var_output*). 
+grid and reconstructs the values of the policy functions (using asg_output.eval, where asg_output is the adaptive sparse grid approximation object
+constructed from the converged solution. 
+The second argument in asg_output.eval (*idx_bNext* and *idx_pN* here) refers to the index of policy functions according the order declared in *var_output*). 
 These codes generate the following figure:
 
 .. image:: figures/policy_combined.png
