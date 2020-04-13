@@ -2,10 +2,10 @@
 Bianchi (2011): Sudden Stops in Open Economies
 *****************************************************************
 
-The benchmark model in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_ provides a minimal example in which the economic dynamics can be highly non-linear
-due to the presence of a borrowing constraint tied to a (commodity) price. We illustrate how to use the adaptive grid method
-with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a crude and narrow state space, 
-and then expand the state space to ensure it covers the ergodic set by reusing the compiled code.
+The benchmark model in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_ provides a good example in which the economic dynamics can be highly non-linear
+due to the presence of a borrowing constraint tied to a (good) price. We illustrate how to use the adaptive grid method
+with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a coarse and narrow state space, 
+and then refine the state space to ensure it covers the ergodic set by reusing the compiled code.
 
 .. _Bianchi2011:
 ===============
@@ -172,7 +172,7 @@ with names CapitalUpperCaseOption can be overwritten without recompiling). We fi
 used in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_. Make sure you have file
 :download:`shock_process.mat <shock_process.mat>` ready.
 *MaxIter* defines the maximum number of policy iterations before which
-the procedure stops. Since we are just warming up on a crude state space, let's set it 50. The returned IterRslt is then passed to the *iter* file again
+the procedure stops. Since we are just warming up on a coarse state space, let's set it 50. The returned IterRslt is then passed to the *iter* file again
 in a structure, in the field named *WarmUp*. This basically overwrites the starting point of the policy iteration with the solution obtained
 in the previous *iter* call. Accordingly, option *SkipModelInit* is set to one to skip the *model_init;* block as it is not used (this step is optional but can be helpful in cases
 where the last-period problem takes time to solve and is not guaranteed to find solutions in the expanded state space).
