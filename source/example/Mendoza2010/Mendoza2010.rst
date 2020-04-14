@@ -275,18 +275,18 @@ to :math:`8\times 80\times 80 = 51200`.
     options.WarmUp = IterRslt;
     IterRslt = iter_mendoza2010(options);
     
-    Iter:120, Metric:0.0018683, maxF:8.3636e-09
-    Elapsed time is 6.149458 seconds.
-    Iter:130, Metric:6.52679e-05, maxF:8.48362e-09
-    Elapsed time is 16.472054 seconds.
-    Iter:140, Metric:1.57918e-05, maxF:8.50322e-09
-    Elapsed time is 13.596291 seconds.
-    Iter:150, Metric:4.02934e-06, maxF:8.41073e-09
-    Elapsed time is 12.792310 seconds.
-    Iter:160, Metric:1.08769e-06, maxF:7.73757e-09
-    Elapsed time is 11.707143 seconds.
-    Iter:161, Metric:9.56593e-07, maxF:7.234e-09
-    Elapsed time is 1.134286 seconds.
+    Iter:120, Metric:0.0018683, maxF:8.36063e-09
+    Elapsed time is 6.374272 seconds.
+    Iter:130, Metric:6.5268e-05, maxF:8.48359e-09
+    Elapsed time is 16.458581 seconds.
+    Iter:140, Metric:1.57919e-05, maxF:8.50337e-09
+    Elapsed time is 13.727288 seconds.
+    Iter:150, Metric:4.02936e-06, maxF:8.41128e-09
+    Elapsed time is 12.966158 seconds.
+    Iter:160, Metric:1.0877e-06, maxF:7.73927e-09
+    Elapsed time is 11.709191 seconds.
+    Iter:161, Metric:9.56597e-07, maxF:7.23566e-09
+    Elapsed time is 1.117845 seconds.
 
 The refined iterations continue to converge in another minute. It's always a good convention to start with some cruder grid to assess the properties 
 (such as the range of the ergodic set)

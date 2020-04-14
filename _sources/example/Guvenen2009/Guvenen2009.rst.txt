@@ -173,7 +173,7 @@ guesses for these functions are obtained by solving a version of the model with 
 The gmod File
 ========================================
 
-The model can be solved with the following :download:`guvenen2009.gmod <guvenen2009.gmod>` file (you also need :download:`tauchen.m <tauchen.m>`)
+The model can be solved with the following :download:`guvenen2009.gmod <guvenen2009.gmod>` file
 
 .. literalinclude:: guvenen2009.gmod
     :linenos:
@@ -258,8 +258,6 @@ After processed by a local or remote compiler, we can run the returned file to r
     Elapsed time is 6.938417 seconds.
     Iter:500, Metric:0.0763611, maxF:8.61954e-09
     Elapsed time is 6.762700 seconds.
-    Iter:501, Metric:0.0760724, maxF:9.20093e-09
-    Elapsed time is 0.064208 seconds.
 
 We first solve a simple version of the problem as a warm-up. This simple problem has a lower aggregate net supply of bond 
 (:math:`\chi=0.005`) and a tighter borrowing constraint (:math:`\bar{B}`). This ensures that starting from a last period solution
@@ -272,12 +270,12 @@ the toolbox by specifying the new parameters into a structure, and the warm-up s
 .. code-block:: MATLAB
 
     >> beta = 0.9967;      % discount factor
-    alpha = .3;         % capital share
+    theta = .3;         % capital share
     delta = .0066;      % depreciation rate
-    mu = .2;             % participation rate
-    Kss = ((1/beta-1+delta)/alpha)^(1/(alpha-1));
+    mu = .2;            % participation rate
+    Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
     chi = 0.15;
-    Bbar = -6*(1-alpha)*Kss^alpha; %borrowing constraint -0.6
+    Bbar = -6*(1-theta)*Kss^theta;
     bn_shr_lb = (1-mu)*Bbar/(chi*Kss);
     bn_shr_ub = (chi*Kss - mu*Bbar)/(chi*Kss);
     b_pts = 30;
@@ -298,13 +296,13 @@ We can now call the routine with the option structure as an argument
 
     >> IterRslt = iter_guvenen2009(options);
 
-    Iter:600, Metric:0.55509, maxF:9.81426e-09
-    Elapsed time is 6.922078 seconds.
+    Iter:600, Metric:0.0605821, maxF:9.85466e-09
+    Elapsed time is 6.361178 seconds.
 
     ...
 
-    Iter:2445, Metric:9.98942e-05, maxF:9.48606e-09
-    Elapsed time is 2.712257 seconds.
+    Iter:2490, Metric:9.99635e-05, maxF:9.29708e-09
+    Elapsed time is 5.205234 seconds.
 
 The policy iteration continues from where the warm-up solution ends, toward convergence.
 

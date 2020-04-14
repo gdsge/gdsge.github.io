@@ -184,13 +184,13 @@ MATLAB displays:
 
 .. code-block:: text
 
-    Iter:10, Metric:0.0102609, maxF:8.68116e-09
-    Elapsed time is 0.418682 seconds.
+    Iter:10, Metric:0.0102642, maxF:8.66941e-09
+    Elapsed time is 0.462853 seconds.
 
     ...
 
-    Iter:75, Metric:5.17302e-07, maxF:9.71415e-09
-    Elapsed time is 0.518850 seconds.
+    Iter:77, Metric:4.31948e-07, maxF:9.36793e-09
+    Elapsed time is 1.616132 seconds.
 
 We can now inspect the policy functions using following MATLAB commands:
 

@@ -371,7 +371,7 @@ Function approximations
     Only effective if USE_SPLINE=1. INTERP_ORDER=2 corresponds to linear interpolation and INTERP_ORDER=4
     corresponds to cubic splines with natural end conditions.
 
-.. option:: ExtrapOrder
+.. option:: EXTRAP_ORDER
 
     The order of extrapolations when extrapolating a spline.
     Takes value of 2 (default) or 4.

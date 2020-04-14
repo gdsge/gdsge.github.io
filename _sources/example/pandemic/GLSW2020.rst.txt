@@ -172,8 +172,8 @@ We first solve the policy iterations by calling *iter_GLSW* in MATLAB, which pro
 
     ...
 
-    Iter:1453, Metric:9.37357e-09, maxF:9.63784e-09
-    Elapsed time is 0.043389 seconds.
+    Iter:1289, Metric:8.94807e-09, maxF:9.65947e-09
+    Elapsed time is 0.079467 seconds.
 
 Then we pass the converged solutions to *simulate_GLSW*, which produces 
 (depending on your random seed; set rng(0823) to produce the exact results below)
@@ -184,8 +184,8 @@ Then we pass the converged solutions to *simulate_GLSW*, which produces
 
     Periods: 1000
     shock      a1      a2      P1       r  c1_shr
-        1  0.3994-0.09986       1 0.01018  0.2006
-    Elapsed time is 0.647503 seconds.
+        1  0.3994-0.09985       1 0.01018  0.2006
+    Elapsed time is 0.653297 seconds.
 
     ...
 

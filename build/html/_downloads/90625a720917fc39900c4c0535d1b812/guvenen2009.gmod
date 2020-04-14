@@ -1,23 +1,23 @@
 % Parameters
-parameters beta gamma thetah thetan alpha delta mu xsi chi a1 a2 Kss Bbar bn_shr_lb bn_shr_ub varianceScale;
+parameters beta alpha rhoh rhon theta delta mu xsi chi a1 a2 Kss Bbar bn_shr_lb bn_shr_ub varianceScale;
 
 beta = 0.9966;      % discount factor
-gamma = 6;          % risk aversion
-thetah = 1/.3;        % inv IES for stockholders
-thetan = 1/.1;        % inv IES for non-stockholders
-alpha = .3;         % capital share
+alpha = 6;          % risk aversion
+rhoh = 1/.3;        % inv IES for stockholders
+rhon = 1/.1;        % inv IES for non-stockholders
+theta = .3;         % capital share
 delta = .0066;      % depreciation rate
-mu = .2;             % participation rate
+mu = .2;            % participation rate
 xsi = .4;           % adjustment cost coefficient
-chi = .005;        % portion of bonds
+chi = .005;         % leverage ratio
 a1 = (((delta^(1/xsi))*xsi)/(xsi-1));
 a2 = (delta/(1-xsi));
-Kss = ((1/beta-1+delta)/alpha)^(1/(alpha-1));
-Bbar = -0.6*(1-alpha)*Kss^alpha; %borrowing constraint
+Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
+Bbar = -0.6*(1-theta)*Kss^theta; %borrowing constraint
 varianceScale = 1e4;
 
 TolEq = 1e-4;
-INTERP_ORDER = 4; ExtrapOrder = 4;
+INTERP_ORDER = 4; EXTRAP_ORDER = 4;
 PrintFreq = 100;
 SaveFreq = inf;
 
@@ -49,26 +49,26 @@ inbound_init c_n 1e-6 100;
 var_aux_init Y W vh vn vhpow vnpow Ps Pf Div Eulerstock Eulerbondh Eulerbondn Inv dIdK Eulerf;
 
 model_init;  
-  Y = Z*(K^alpha);
-  W = (1-alpha)*Z*(K^alpha);
+  Y = Z*(K^theta);
+  W = (1-theta)*Z*(K^theta);
   resid1 = 1 - (W + (bn_shr*chi*Kss/(1-mu)))/c_n; % c_n: individual consumption
   resid2 = 1 - (W + (Div/mu) + ((1-bn_shr)*chi*Kss/mu))/c_h; % c_h: individual consumption  
-  vh = ((1-beta)*(c_h^(1-thetah)))^(1/(1-thetah));
-  vn = ((1-beta)*(c_n^(1-thetan)))^(1/(1-thetan));
-  vhpow = vh^(1-gamma);
-  vnpow = vn^(1-gamma);
+  vh = ((1-beta)*(c_h^(1-rhoh)))^(1/(1-rhoh));
+  vn = ((1-beta)*(c_n^(1-rhon)))^(1/(1-rhon));
+  vhpow = vh^(1-alpha);
+  vnpow = vn^(1-alpha);
   Pf = 0;
   Ps = 0;
   Div = Y - W - (1-Pf)*chi*Kss;  % investment is zero          
 
-  Eulerstock = (vh^(thetah-gamma))*(c_h^-thetah)*(Ps + Div);
-  Eulerbondh = (vh^(thetah-gamma))*(c_h^-thetah);
-  Eulerbondn = (vn^(thetan-gamma))*(c_n^-thetan);
+  Eulerstock = (vh^(rhoh-alpha))*(c_h^-rhoh)*(Ps + Div);
+  Eulerbondh = (vh^(rhoh-alpha))*(c_h^-rhoh);
+  Eulerbondn = (vn^(rhon-alpha))*(c_n^-rhon);
 
   Inv = 0;     
   Knext = 0;                                             
   dIdK = (Inv/K) - (1/a1)*(xsi/(xsi-1))*(Inv/(K*((1/a1)*((Knext/K)-(1-delta)-a2))))*(Knext/K);
-  Eulerf = (vh^(thetah-gamma))*(c_h^-thetah)*(alpha*Z*(K^(alpha-1)) - dIdK);
+  Eulerf = (vh^(rhoh-alpha))*(c_h^-rhoh)*(theta*Z*(K^(theta-1)) - dIdK);
   
   equations;
      resid1;
@@ -108,11 +108,11 @@ inbound lambdah 0 2;
 inbound lambdan 0 2;
 
 % Other equilibrium variables
-var_aux Y W b_h b_n Div dIdKp Eulerstock Eulerbondh Eulerbondn dIdK Eulerf vhpow vnpow omega PDratio Rs R_ep vh vn Knext SharpeRatio;
+var_aux Y W b_h b_n Div dIdKp Eulerstock Eulerbondh Eulerbondn dIdK Eulerf vhpow vnpow omega PDratio Rs R_ep vh vn Knext std_ExcessR SharpeRatio;
 
 model;
-  Y = Z*(K^alpha);              % output
-  W = (1-alpha)*Z*(K^alpha);    % Wage = F_l
+  Y = Z*(K^theta);              % output
+  W = (1-theta)*Z*(K^theta);    % Wage = F_l
   Div = Y - W - Inv - (1-Pf)*chi*Kss;            % dividends
 
   Knext = (1-delta)*K + (a1*((Inv/K)^((xsi-1)/xsi))+a2)*K;
@@ -124,18 +124,18 @@ model;
   [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
   EPD_square_future = EPD_square_future*varianceScale;
   
-  vh =  ((1-beta)*(c_h^(1-thetah)) + beta*(Evh_future^((1-thetah)/(1-gamma))))^(1/(1-thetah));
-  vn =  ((1-beta)*(c_n^(1-thetan)) + beta*(Evn_future^((1-thetan)/(1-gamma))))^(1/(1-thetan));
+  vh =  ((1-beta)*(c_h^(1-rhoh)) + beta*(Evh_future^((1-rhoh)/(1-alpha))))^(1/(1-rhoh));
+  vn =  ((1-beta)*(c_n^(1-rhon)) + beta*(Evn_future^((1-rhon)/(1-alpha))))^(1/(1-rhon));
 
-  Eulerstock = (vh^(thetah-gamma))*(c_h^-thetah)*(Ps + Div);
-  Eulerbondh = (vh^(thetah-gamma))*(c_h^-thetah);
-  Eulerbondn = (vn^(thetan-gamma))*(c_n^-thetan);
+  Eulerstock = (vh^(rhoh-alpha))*(c_h^-rhoh)*(Ps + Div);
+  Eulerbondh = (vh^(rhoh-alpha))*(c_h^-rhoh);
+  Eulerbondn = (vn^(rhon-alpha))*(c_n^-rhon);
   
   dIdK = (Inv/K) - (1/a1)*(xsi/(xsi-1))*(Inv/(K*((1/a1)*((Knext/K)-(1-delta)-a2))))*(Knext/K);
-  Eulerf = (vh^(thetah-gamma))*(c_h^-thetah)*(alpha*Z*(K^(alpha-1)) - dIdK);
+  Eulerf = (vh^(rhoh-alpha))*(c_h^-rhoh)*(theta*Z*(K^(theta-1)) - dIdK);
 
-  vhpow = vh^(1-gamma);
-  vnpow = vn^(1-gamma);
+  vhpow = vh^(1-alpha);
+  vnpow = vn^(1-alpha);
 
   omega = (Ps+Div+ mu*b_h)/(Ps+Div+chi*Kss);
   PDratio = Ps/Div;
@@ -149,10 +149,10 @@ model;
   % Equations:
   err_bdgt_h = 1 - (W + (Div/mu) + b_h - Pf*(chi*Kss*(1-bn_shr_next)/mu))/c_h; % these are individual consumptions
   err_bdgt_n = 1 - (W + b_n - Pf*(bn_shr_next*chi*Kss/(1-mu)))/c_n;
-  foc_stock = 1 - (beta*EEulerstock_future*(Evh_future^((gamma-thetah)/(1-gamma))))/((c_h^(-thetah))*Ps);
-  foc_bondh = 1 - (beta*EEulerbondh_future*(Evh_future^((gamma-thetah)/(1-gamma))) + lambdah)/((c_h^(-thetah))*Pf);
-  foc_bondn = 1 - (beta*EEulerbondn_future*(Evn_future^((gamma-thetan)/(1-gamma))) + lambdan)/((c_n^-thetan)*Pf);
-  foc_f = 1 - (beta*EEulerf_future*(Evh_future^((gamma-thetah)/(1-gamma))))/((c_h^(-thetah))*dIdKp);
+  foc_stock = 1 - (beta*EEulerstock_future*(Evh_future^((alpha-rhoh)/(1-alpha))))/((c_h^(-rhoh))*Ps);
+  foc_bondh = 1 - (beta*EEulerbondh_future*(Evh_future^((alpha-rhoh)/(1-alpha))) + lambdah)/((c_h^(-rhoh))*Pf);
+  foc_bondn = 1 - (beta*EEulerbondn_future*(Evn_future^((alpha-rhon)/(1-alpha))) + lambdan)/((c_n^-rhon)*Pf);
+  foc_f = 1 - (beta*EEulerf_future*(Evh_future^((alpha-rhoh)/(1-alpha))))/((c_h^(-rhoh))*dIdKp);
   
   slack_bn = lambdan*(bn_shr_next - bn_shr_lb);    %mun_lw*bn_shr_next;
   slack_bh = lambdah*(bn_shr_ub - bn_shr_next);    %mun_up*(1-bn_shr_next);
@@ -171,14 +171,14 @@ model;
 end;
 
 simulate;
-  num_periods = 3000;
+  num_periods = 10000;
   num_samples = 100;
   
   initial K Kss;
   initial bn_shr 0.5;  
   initial shock 2;
   
-  var_simu Y c_h c_n Inv Ps Div Pf bn_shr_next Knext omega PDratio Rs EPremium SharpeRatio;
+  var_simu Y c_h c_n Inv Ps Div Pf bn_shr_next Knext omega PDratio Rs R_ep SharpeRatio std_ExcessR;
 
   K' = Knext;
   bn_shr' = bn_shr_next;

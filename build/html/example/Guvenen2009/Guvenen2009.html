@@ -277,7 +277,7 @@ guesses for these functions are obtained by solving a version of the model with 
 </div>
 <div class="section" id="the-gmod-file">
 <h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
-<p>The model can be solved with the following <a class="reference download internal" download="" href="../../_downloads/90625a720917fc39900c4c0535d1b812/guvenen2009.gmod"><code class="xref download docutils literal notranslate"><span class="pre">guvenen2009.gmod</span></code></a> file (you also need <a class="reference download internal" download="" href="../../_downloads/c4f642f1c5270a721e2f95e0ebd35ab6/tauchen.m"><code class="xref download docutils literal notranslate"><span class="pre">tauchen.m</span></code></a>)</p>
+<p>The model can be solved with the following <a class="reference download internal" download="" href="../../_downloads/90625a720917fc39900c4c0535d1b812/guvenen2009.gmod"><code class="xref download docutils literal notranslate"><span class="pre">guvenen2009.gmod</span></code></a> file</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -463,25 +463,25 @@ guesses for these functions are obtained by solving a version of the model with 
 183
 184
 185</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
-<span class="k">parameters</span> beta gamma thetah thetan alpha delta mu xsi chi a1 a2 Kss Bbar bn_shr_lb bn_shr_ub varianceScale;
+<span class="k">parameters</span> beta alpha rhoh rhon theta delta mu xsi chi a1 a2 Kss Bbar bn_shr_lb bn_shr_ub varianceScale;
 
 beta = 0.9966;      <span class="c">% discount factor</span>
-gamma = 6;          <span class="c">% risk aversion</span>
-thetah = 1/.3;        <span class="c">% inv IES for stockholders</span>
-thetan = 1/.1;        <span class="c">% inv IES for non-stockholders</span>
-alpha = .3;         <span class="c">% capital share</span>
+alpha = 6;          <span class="c">% risk aversion</span>
+rhoh = 1/.3;        <span class="c">% inv IES for stockholders</span>
+rhon = 1/.1;        <span class="c">% inv IES for non-stockholders</span>
+theta = .3;         <span class="c">% capital share</span>
 delta = .0066;      <span class="c">% depreciation rate</span>
-mu = .2;             <span class="c">% participation rate</span>
+mu = .2;            <span class="c">% participation rate</span>
 xsi = .4;           <span class="c">% adjustment cost coefficient</span>
-chi = .005;        <span class="c">% portion of bonds</span>
+chi = .005;         <span class="c">% leverage ratio</span>
 a1 = (((delta^(1/xsi))*xsi)/(xsi-1));
 a2 = (delta/(1-xsi));
-Kss = ((1/beta-1+delta)/alpha)^(1/(alpha-1));
-Bbar = -0.6*(1-alpha)*Kss^alpha; <span class="c">%borrowing constraint</span>
+Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
+Bbar = -0.6*(1-theta)*Kss^theta; <span class="c">%borrowing constraint</span>
 varianceScale = 1e4;
 
 TolEq = 1e-4;
-INTERP_ORDER = 4; ExtrapOrder = 4;
+INTERP_ORDER = 4; EXTRAP_ORDER = 4;
 PrintFreq = 100;
 SaveFreq = inf;
 
@@ -513,26 +513,26 @@ bn_shr = linspace(bn_shr_lb,bn_shr_ub,b_pts);
 <span class="k">var_aux</span>_init Y W vh vn vhpow vnpow Ps Pf Div Eulerstock Eulerbondh Eulerbondn Inv dIdK Eulerf;
 
 <span class="k">model_init;</span>  
-  Y = Z*(K^alpha);
-  W = (1-alpha)*Z*(K^alpha);
+  Y = Z*(K^theta);
+  W = (1-theta)*Z*(K^theta);
   resid1 = 1 - (W + (bn_shr*chi*Kss/(1-mu)))/c_n; <span class="c">% c_n: individual consumption</span>
   resid2 = 1 - (W + (Div/mu) + ((1-bn_shr)*chi*Kss/mu))/c_h; <span class="c">% c_h: individual consumption  </span>
-  vh = ((1-beta)*(c_h^(1-thetah)))^(1/(1-thetah));
-  vn = ((1-beta)*(c_n^(1-thetan)))^(1/(1-thetan));
-  vhpow = vh^(1-gamma);
-  vnpow = vn^(1-gamma);
+  vh = ((1-beta)*(c_h^(1-rhoh)))^(1/(1-rhoh));
+  vn = ((1-beta)*(c_n^(1-rhon)))^(1/(1-rhon));
+  vhpow = vh^(1-alpha);
+  vnpow = vn^(1-alpha);
   Pf = 0;
   Ps = 0;
   Div = Y - W - (1-Pf)*chi*Kss;  <span class="c">% investment is zero          </span>
 
-  Eulerstock = (vh^(thetah-gamma))*(c_h^-thetah)*(Ps + Div);
-  Eulerbondh = (vh^(thetah-gamma))*(c_h^-thetah);
-  Eulerbondn = (vn^(thetan-gamma))*(c_n^-thetan);
+  Eulerstock = (vh^(rhoh-alpha))*(c_h^-rhoh)*(Ps + Div);
+  Eulerbondh = (vh^(rhoh-alpha))*(c_h^-rhoh);
+  Eulerbondn = (vn^(rhon-alpha))*(c_n^-rhon);
 
   Inv = 0;     
   Knext = 0;                                             
   dIdK = (Inv/K) - (1/a1)*(xsi/(xsi-1))*(Inv/(K*((1/a1)*((Knext/K)-(1-delta)-a2))))*(Knext/K);
-  Eulerf = (vh^(thetah-gamma))*(c_h^-thetah)*(alpha*Z*(K^(alpha-1)) - dIdK);
+  Eulerf = (vh^(rhoh-alpha))*(c_h^-rhoh)*(theta*Z*(K^(theta-1)) - dIdK);
   
   <span class="k">equations;</span>
      resid1;
@@ -572,11 +572,11 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
 <span class="k">inbound</span> lambdan 0 2;
 
 <span class="c">% Other equilibrium variables</span>
-<span class="k">var_aux</span> Y W b_h b_n Div dIdKp Eulerstock Eulerbondh Eulerbondn dIdK Eulerf vhpow vnpow omega PDratio Rs R_ep vh vn Knext SharpeRatio;
+<span class="k">var_aux</span> Y W b_h b_n Div dIdKp Eulerstock Eulerbondh Eulerbondn dIdK Eulerf vhpow vnpow omega PDratio Rs R_ep vh vn Knext std_ExcessR SharpeRatio;
 
 <span class="k">model;</span>
-  Y = Z*(K^alpha);              <span class="c">% output</span>
-  W = (1-alpha)*Z*(K^alpha);    <span class="c">% Wage = F_l</span>
+  Y = Z*(K^theta);              <span class="c">% output</span>
+  W = (1-theta)*Z*(K^theta);    <span class="c">% Wage = F_l</span>
   Div = Y - W - Inv - (1-Pf)*chi*Kss;            <span class="c">% dividends</span>
 
   Knext = (1-delta)*K + (a1*((Inv/K)^((xsi-1)/xsi))+a2)*K;
@@ -588,18 +588,18 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
   [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
   EPD_square_future = EPD_square_future*varianceScale;
   
-  vh =  ((1-beta)*(c_h^(1-thetah)) + beta*(Evh_future^((1-thetah)/(1-gamma))))^(1/(1-thetah));
-  vn =  ((1-beta)*(c_n^(1-thetan)) + beta*(Evn_future^((1-thetan)/(1-gamma))))^(1/(1-thetan));
+  vh =  ((1-beta)*(c_h^(1-rhoh)) + beta*(Evh_future^((1-rhoh)/(1-alpha))))^(1/(1-rhoh));
+  vn =  ((1-beta)*(c_n^(1-rhon)) + beta*(Evn_future^((1-rhon)/(1-alpha))))^(1/(1-rhon));
 
-  Eulerstock = (vh^(thetah-gamma))*(c_h^-thetah)*(Ps + Div);
-  Eulerbondh = (vh^(thetah-gamma))*(c_h^-thetah);
-  Eulerbondn = (vn^(thetan-gamma))*(c_n^-thetan);
+  Eulerstock = (vh^(rhoh-alpha))*(c_h^-rhoh)*(Ps + Div);
+  Eulerbondh = (vh^(rhoh-alpha))*(c_h^-rhoh);
+  Eulerbondn = (vn^(rhon-alpha))*(c_n^-rhon);
   
   dIdK = (Inv/K) - (1/a1)*(xsi/(xsi-1))*(Inv/(K*((1/a1)*((Knext/K)-(1-delta)-a2))))*(Knext/K);
-  Eulerf = (vh^(thetah-gamma))*(c_h^-thetah)*(alpha*Z*(K^(alpha-1)) - dIdK);
+  Eulerf = (vh^(rhoh-alpha))*(c_h^-rhoh)*(theta*Z*(K^(theta-1)) - dIdK);
 
-  vhpow = vh^(1-gamma);
-  vnpow = vn^(1-gamma);
+  vhpow = vh^(1-alpha);
+  vnpow = vn^(1-alpha);
 
   omega = (Ps+Div+ mu*b_h)/(Ps+Div+chi*Kss);
   PDratio = Ps/Div;
@@ -613,10 +613,10 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
   <span class="c">% Equations:</span>
   err_bdgt_h = 1 - (W + (Div/mu) + b_h - Pf*(chi*Kss*(1-bn_shr_next)/mu))/c_h; <span class="c">% these are individual consumptions</span>
   err_bdgt_n = 1 - (W + b_n - Pf*(bn_shr_next*chi*Kss/(1-mu)))/c_n;
-  foc_stock = 1 - (beta*EEulerstock_future*(Evh_future^((gamma-thetah)/(1-gamma))))/((c_h^(-thetah))*Ps);
-  foc_bondh = 1 - (beta*EEulerbondh_future*(Evh_future^((gamma-thetah)/(1-gamma))) + lambdah)/((c_h^(-thetah))*Pf);
-  foc_bondn = 1 - (beta*EEulerbondn_future*(Evn_future^((gamma-thetan)/(1-gamma))) + lambdan)/((c_n^-thetan)*Pf);
-  foc_f = 1 - (beta*EEulerf_future*(Evh_future^((gamma-thetah)/(1-gamma))))/((c_h^(-thetah))*dIdKp);
+  foc_stock = 1 - (beta*EEulerstock_future*(Evh_future^((alpha-rhoh)/(1-alpha))))/((c_h^(-rhoh))*Ps);
+  foc_bondh = 1 - (beta*EEulerbondh_future*(Evh_future^((alpha-rhoh)/(1-alpha))) + lambdah)/((c_h^(-rhoh))*Pf);
+  foc_bondn = 1 - (beta*EEulerbondn_future*(Evn_future^((alpha-rhon)/(1-alpha))) + lambdan)/((c_n^-rhon)*Pf);
+  foc_f = 1 - (beta*EEulerf_future*(Evh_future^((alpha-rhoh)/(1-alpha))))/((c_h^(-rhoh))*dIdKp);
   
   slack_bn = lambdan*(bn_shr_next - bn_shr_lb);    <span class="c">%mun_lw*bn_shr_next;</span>
   slack_bh = lambdah*(bn_shr_ub - bn_shr_next);    <span class="c">%mun_up*(1-bn_shr_next);</span>
@@ -635,14 +635,14 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
 <span class="k">end;</span>
 
 <span class="k">simulate;</span>
-  <span class="k">num_periods</span> = 3000;
+  <span class="k">num_periods</span> = 10000;
   <span class="k">num_samples</span> = 100;
   
   <span class="k">initial</span> K Kss;
   <span class="k">initial</span> bn_shr 0.5;  
   <span class="k">initial</span> shock 2;
   
-  <span class="k">var_simu</span> Y c_h c_n Inv Ps Div Pf bn_shr_next Knext omega PDratio Rs EPremium SharpeRatio;
+  <span class="k">var_simu</span> Y c_h c_n Inv Ps Div Pf bn_shr_next Knext omega PDratio Rs R_ep SharpeRatio std_ExcessR;
 
   K&#39; = Knext;
   bn_shr&#39; = bn_shr_next;
@@ -720,8 +720,6 @@ to the index of the current exogenous shock.</p>
 <span class="n">Elapsed </span><span class="s">time is 6.938417 seconds.</span><span class="p"></span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.0763611</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.61954e-09</span>
 <span class="n">Elapsed </span><span class="s">time is 6.762700 seconds.</span><span class="p"></span>
-<span class="n">Iter</span><span class="p">:</span><span class="mi">501</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.0760724</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.20093e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 0.064208 seconds.</span><span class="p"></span>
 </pre></div>
 </div>
 <p>We first solve a simple version of the problem as a warm-up. This simple problem has a lower aggregate net supply of bond
@@ -731,12 +729,12 @@ the equilibrium exists, which is also noted in <a class="reference external" hre
 its value in the paper, and specify a much more relaxed borrowing constraint (<span class="math notranslate nohighlight">\(\bar{B}\)</span>). This can be done very conveniently with
 the toolbox by specifying the new parameters into a structure, and the warm-up solution as a field named <em>WarmUp</em> into the structure.</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">beta</span> <span class="p">=</span> <span class="mf">0.9967</span><span class="p">;</span>      <span class="c">% discount factor</span>
-<span class="n">alpha</span> <span class="p">=</span> <span class="mf">.3</span><span class="p">;</span>         <span class="c">% capital share</span>
+<span class="n">theta</span> <span class="p">=</span> <span class="mf">.3</span><span class="p">;</span>         <span class="c">% capital share</span>
 <span class="n">delta</span> <span class="p">=</span> <span class="mf">.0066</span><span class="p">;</span>      <span class="c">% depreciation rate</span>
-<span class="n">mu</span> <span class="p">=</span> <span class="mf">.2</span><span class="p">;</span>             <span class="c">% participation rate</span>
-<span class="n">Kss</span> <span class="p">=</span> <span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="nb">beta</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="n">alpha</span><span class="p">)</span>^<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">mu</span> <span class="p">=</span> <span class="mf">.2</span><span class="p">;</span>            <span class="c">% participation rate</span>
+<span class="n">Kss</span> <span class="p">=</span> <span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="nb">beta</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="n">theta</span><span class="p">)</span>^<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">theta</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
 <span class="n">chi</span> <span class="p">=</span> <span class="mf">0.15</span><span class="p">;</span>
-<span class="n">Bbar</span> <span class="p">=</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">Kss</span>^<span class="n">alpha</span><span class="p">;</span> <span class="c">%borrowing constraint -0.6</span>
+<span class="n">Bbar</span> <span class="p">=</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">Kss</span>^<span class="n">theta</span><span class="p">;</span>
 <span class="n">bn_shr_lb</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">*</span><span class="n">Bbar</span><span class="o">/</span><span class="p">(</span><span class="n">chi</span><span class="o">*</span><span class="n">Kss</span><span class="p">);</span>
 <span class="n">bn_shr_ub</span> <span class="p">=</span> <span class="p">(</span><span class="n">chi</span><span class="o">*</span><span class="n">Kss</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">Bbar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">chi</span><span class="o">*</span><span class="n">Kss</span><span class="p">);</span>
 <span class="n">b_pts</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span>
@@ -755,13 +753,13 @@ the toolbox by specifying the new parameters into a structure, and the warm-up s
 <p>We can now call the routine with the option structure as an argument</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_guvenen2009</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
 
-<span class="n">Iter</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.55509</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.81426e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 6.922078 seconds.</span><span class="p"></span>
+<span class="n">Iter</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.0605821</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.85466e-09</span>
+<span class="n">Elapsed </span><span class="s">time is 6.361178 seconds.</span><span class="p"></span>
 
 <span class="c">...</span>
 
-<span class="n">Iter</span><span class="p">:</span><span class="mi">2445</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">9.98942e-05</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.48606e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 2.712257 seconds.</span><span class="p"></span>
+<span class="n">Iter</span><span class="p">:</span><span class="mi">2490</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">9.99635e-05</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.29708e-09</span>
+<span class="n">Elapsed </span><span class="s">time is 5.205234 seconds.</span><span class="p"></span>
 </pre></div>
 </div>
 <p>The policy iteration continues from where the warm-up solution ends, toward convergence.</p>
