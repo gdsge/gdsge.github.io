@@ -13,7 +13,7 @@ Please see the paper for the details of the model.
 
 .. _CaoNie2017:
 ===============
-The gmod file
+The gmod File
 ===============
 
 :download:`CaoNie2017.gmod <CaoNie2017.gmod>`

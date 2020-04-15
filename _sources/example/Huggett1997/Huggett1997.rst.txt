@@ -1,5 +1,5 @@
 **************************************************************************************
-Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models
+Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models
 **************************************************************************************
 
 ========================
@@ -12,7 +12,11 @@ The example also demonstrates how to conduct non-stochastic simulations using th
 by keeping track of the distribution function over a refined grid of individual state variables.
 
 Though the toolbox is not designed for solving the equilibrium of this type of model directly,
-since the decision problem is characterized by an equation system (the Euler equation and complementary-slackness condition) with state transition functions, it readily fits in the toolbox's framework.
+since the decision problem is characterized by an equation system (the Euler equation 
+
+.. math::
+    u'(c_t) = \beta \mathbb{E}_t[(1-\delta+r_{t+1})u'(c_{t+1}] + \lambda_t,
+where :math:`\lambda_t` is the Lagrange multiplier on the borrowing constraint,and complementary-slackness condition, :math:`\lambda_t k_{t+1}=0`) with state transition functions, it readily fits in the toolbox's general framework.
 One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB. 
 For the one-sector model studied by `Huggett (1997) <https://www.sciencedirect.com/science/article/pii/S0304393297000251>`_, the steady state equilibrium object is the aggregate capital stock; the transition path equilibrium object is the time sequence
 of the aggregate capital stock.
@@ -49,7 +53,7 @@ Notice we have transformed the individual's optimization problem into first orde
 which enable us to solve the decision problem with the toolbox.
 
 =============================
-The gmod file and MATLAB file
+The gmod File and MATLAB File
 =============================
 
 :download:`huggett1997.gmod <huggett1997.gmod>`

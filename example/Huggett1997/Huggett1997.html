@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models &mdash; GDSGE Homepage</title>
+  <title>Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models &mdash; GDSGE Homepage</title>
   
 
   
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" href="../KS1998/KS1998.html" />
+    <link rel="next" title="Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty" href="../KS1998/KS1998.html" />
     <link rel="prev" title="Additional Examples" href="../AdditionalExamples.html" /> 
 </head>
 
@@ -93,19 +93,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-model">The Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-gmod-file-and-matlab-file">The gmod file and MATLAB file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-gmod-file-and-matlab-file">The gmod File and MATLAB File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../CaoNie2017/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Cao2020/Cao2020.html">Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../ContributedExamples.html">Contributed Examples</a></li>
 </ul>
 
             
@@ -153,7 +154,7 @@
         
           <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
         
-      <li>Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models</li>
+      <li>Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -171,7 +172,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="huggett-1997-steady-states-and-transition-paths-in-heterogeneous-agent-models">
-<h1>Huggett (1997): Steady States and Transition Paths in Heterogeneous-agent Models<a class="headerlink" href="#huggett-1997-steady-states-and-transition-paths-in-heterogeneous-agent-models" title="Permalink to this headline">¶</a></h1>
+<h1>Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models<a class="headerlink" href="#huggett-1997-steady-states-and-transition-paths-in-heterogeneous-agent-models" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
 <p>We use the seminal work <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0304393297000251">Huggett (1997)</a> to illustrate
@@ -179,7 +180,10 @@ how the toolbox can be used to solve steady states and transition paths of a het
 The example also demonstrates how to conduct non-stochastic simulations using the toolbox,
 by keeping track of the distribution function over a refined grid of individual state variables.</p>
 <p>Though the toolbox is not designed for solving the equilibrium of this type of model directly,
-since the decision problem is characterized by an equation system (the Euler equation and complementary-slackness condition) with state transition functions, it readily fits in the toolbox’s framework.
+since the decision problem is characterized by an equation system (the Euler equation</p>
+<div class="math notranslate nohighlight">
+\[u'(c_t) = \beta \mathbb{E}_t[(1-\delta+r_{t+1})u'(c_{t+1}] + \lambda_t,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_t\)</span> is the Lagrange multiplier on the borrowing constraint,and complementary-slackness condition, <span class="math notranslate nohighlight">\(\lambda_t k_{t+1}=0\)</span>) with state transition functions, it readily fits in the toolbox’s general framework.
 One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB.
 For the one-sector model studied by <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0304393297000251">Huggett (1997)</a>, the steady state equilibrium object is the aggregate capital stock; the transition path equilibrium object is the time sequence
 of the aggregate capital stock.</p>
@@ -213,7 +217,7 @@ K_t = \int k \  \phi_t(dk,de)\end{split}\]</div>
 which enable us to solve the decision problem with the toolbox.</p>
 </div>
 <div class="section" id="the-gmod-file-and-matlab-file">
-<h2>The gmod file and MATLAB file<a class="headerlink" href="#the-gmod-file-and-matlab-file" title="Permalink to this headline">¶</a></h2>
+<h2>The gmod File and MATLAB File<a class="headerlink" href="#the-gmod-file-and-matlab-file" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/7ecca3e36a98699d521edbbf25f19aa7/huggett1997.gmod"><code class="xref download docutils literal notranslate"><span class="pre">huggett1997.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -714,7 +718,7 @@ post_iter;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../KS1998/KS1998.html" class="btn btn-neutral float-right" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../KS1998/KS1998.html" class="btn btn-neutral float-right" title="Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../AdditionalExamples.html" class="btn btn-neutral float-left" title="Additional Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

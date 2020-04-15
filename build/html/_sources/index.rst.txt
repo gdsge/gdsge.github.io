@@ -28,6 +28,8 @@ by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an
 
 More examples and detailed instructions on gmod files and on how to use the toolbox are provided below.
 
+If you have comments, suggestions or coding questions for us, or would like to contribute GDSGE examples, please reach out to us at: gdsge.cln2020@gmail.com
+
 =================================
 
 .. toctree::
@@ -44,6 +46,7 @@ More examples and detailed instructions on gmod files and on how to use the tool
    example/pandemic/GLSW2020
    usage/functions
    example/AdditionalExamples
+   example/ContributedExamples
 
 
 Indices and tables
