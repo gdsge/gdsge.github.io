@@ -7,7 +7,7 @@ studies a variation of the RBC model with distortionary taxes. The author proves
 In addition, the author provides an algorithm to compute recursive equilibrium using policy function iteration and proves its convergence.
 This is one of the rare examples in which the convergence of the policy function iteration can be proved analytically.
 
-Students in the advance macroeconomics class (Econ 608) at Georgetown in Spring 2020 (Tae-Hun Change, Chen Jin, Menghan Li, Yingqi Xu) 
+Students in the advanced macroeconomics class (Econ 608) at Georgetown University in Spring 2020 (Tae-Hun Chang, Chen Jin, Menghan Li, Yingqi Xu) 
 implented this algorithm in the GDSGE gmod file below.
 
 .. _Coleman1991:
