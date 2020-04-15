@@ -24,8 +24,8 @@ The transition matrix between these two states is
 
 .. math::
     \left[\begin{array}{cc}
-    \pi_{1}, & 1-\pi_{1}\\
-    1-\pi_{2}, & \pi_{2}
+    \pi_{1} & 1-\pi_{1}\\
+    1-\pi_{2} & \pi_{2}
     \end{array}\right],
 
 in which :math:`1-\pi_{1}` is a small probability for the economy to enter

@@ -176,8 +176,8 @@ algorithm can be implemented with the toolbox, by transforming the optimization 
 <p>Though the toolbox is not designed for solving the equilibrium of this type of model directly,
 since the decision problem is characterized by an equation system (the Euler equation</p>
 <div class="math notranslate nohighlight">
-\[u'(c_t) = \beta \mathbb{E}_t[(1-\delta+r_{t+1})u'(c_{t+1}] + \lambda_t,\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda_t\)</span> is the Lagrange multiplier on the borrowing constraint,and complementary-slackness condition, <span class="math notranslate nohighlight">\(\lambda_t k_{t+1}=0\)</span>) with state transition functions, it readily fits in the toolbox’s general framework.
+\[u'(c_t) = \beta \mathbb{E}_t[(1-\delta+r_{t+1})u'(c_{t+1})] + \lambda_t,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_t\)</span> is the Lagrange multiplier on the borrowing constraint, and the complementary-slackness condition, <span class="math notranslate nohighlight">\(\lambda_t k_{t+1}=0\)</span>) with state transition functions, it readily fits in the toolbox’s general framework.
 One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB.
 In <a class="reference external" href="https://www.jstor.org/stable/10.1086/250034">Krusell and Smith (1998)</a>, the equilibrium objects are the aggregate state transition coefficients.</p>
 <p>The model can be solved within 100 lines of GDSGE code plus 100 lines of MATLAB code.
