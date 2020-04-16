@@ -318,15 +318,7 @@ implented this algorithm in the GDSGE gmod file below.</p>
 142
 143
 144
-145
-146
-147
-148
-149
-150
-151
-152
-153</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+145</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
 <span class="k">parameters</span> beta sigma alpha delta K_min K_max rho Imin tau;
 
 beta = 0.99; <span class="c">% dicount factor</span>
@@ -336,14 +328,6 @@ delta = 0.025; <span class="c">% depreciation rate</span>
 rho = 0.90; <span class="c">%persistent of productivity shocks</span>
 phi = 0.975; <span class="c">%investment irreversibility constraint</span>
 tau = 0.2; <span class="c">%linear tax income</span>
-
-SIMU_INTERP = 0;
-SIMU_RESOLVE = 1;
-PrintFreq = 1;
-USE_ASG = 0;
-USE_SPLINE = 1;
-ExtrapOrder = 2;
-IINTERP_ORDER = 4;
 
 TolEq = 1e-6;
 SaveFreq = 50;

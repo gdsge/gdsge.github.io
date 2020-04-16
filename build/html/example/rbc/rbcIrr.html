@@ -322,15 +322,7 @@ and solve for <span class="math notranslate nohighlight">\(c_t,\mu_t,K'_t\)</spa
 111
 112
 113
-114
-115
-116
-117
-118
-119
-120
-121
-122</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+114</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
 <span class="k">parameters</span> beta sigma alpha delta K_min K_max rho Imin;
 
 beta = 0.99; <span class="c">% dicount factor</span>
@@ -339,14 +331,6 @@ alpha = 0.36; <span class="c">% capital share</span>
 delta = 0.025; <span class="c">% depreciation rate</span>
 rho = 0.90; <span class="c">%persistent of productivity shocks</span>
 phi = 0.975; <span class="c">%investment irreversibility constraint</span>
-
-SimuInterp = 0;
-SimuResolve = 1;
-PrintFreq = 1;
-USE_ASG = 0;
-USE_SPLINE = 1;
-ExtrapOrder = 2;
-InterpOrder = 4;
 
 TolEq = 1e-6;
 SaveFreq = 50;

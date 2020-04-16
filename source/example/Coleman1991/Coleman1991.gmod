@@ -9,14 +9,6 @@ rho = 0.90; %persistent of productivity shocks
 phi = 0.975; %investment irreversibility constraint
 tau = 0.2; %linear tax income
 
-SIMU_INTERP = 0;
-SIMU_RESOLVE = 1;
-PrintFreq = 1;
-USE_ASG = 0;
-USE_SPLINE = 1;
-ExtrapOrder = 2;
-IINTERP_ORDER = 4;
-
 TolEq = 1e-6;
 SaveFreq = 50;
 SimuSaveFreq = 1000;
