@@ -158,7 +158,7 @@ The model can be solved with the following gmod file (:download:`GLSW <GLSW.gmod
     :linenos:
     :language: GDSGE
 
-With the generated files returned by a local or a `online compiler <http://www.gdsge.com>`_, we can run the *iter_GLSW* procedure to solve the policy iterations,
+With the generated files returned by the `online compiler <http://www.gdsge.com>`_, we can run the *iter_GLSW* procedure to solve the policy iterations,
 and then pass the converged solutions to the *simulate_GLSW* procedure to simulate the ergodic set of the model.
 
 We first solve the policy iterations by calling *iter_GLSW* in MATLAB, which produces

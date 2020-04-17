@@ -147,7 +147,7 @@ In the evaluations of the equations, we transform :math:`nb_{t+1}` back to :math
 ====================
 Results
 ====================
-Upload and compile the gmod file through a local or remote server. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set
+Upload and compile the gmod file through the `online compiler <http://www.gdsge.com>`_. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set
 
 .. code-block:: text
 
