@@ -240,7 +240,7 @@ and evaluating the approximation at the current *shock* only when evaluating the
 where the *GDSGE_INTERP_VEC* takes the first argument *shock*, a reserved keyword referring 
 to the index of the current exogenous shock.
 
-After processed by a local or remote compiler, we can run the returned file to run policy iterations:
+After processed by the `online compiler <http://www.gdsge.com>`_, we can run the returned file to run policy iterations:
 
 .. code-block:: MATLAB
 

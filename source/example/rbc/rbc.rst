@@ -80,7 +80,7 @@ The recursive system can now be input to GDSGE via a mod file :download:`rbc.gmo
     :linenos:
     :language: GDSGE
 
-The gmod file can be inputted to a local GDSGE compiler or uploaded to the online compiler at http://www.gdsge.com/ (Remember also to download the necessary runtime files following the instruction
+The gmod file can be uploaded to the online compiler at http://www.gdsge.com/ (Remember also to download the necessary runtime files following the instruction
 on the compiler website). 
 The compiler returns three files that can be used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, mex_rbc.mexw64. 
 

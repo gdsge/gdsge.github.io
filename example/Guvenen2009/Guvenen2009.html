@@ -706,7 +706,7 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
 </td></tr></table></div>
 <p>where the <em>GDSGE_INTERP_VEC</em> takes the first argument <em>shock</em>, a reserved keyword referring
 to the index of the current exogenous shock.</p>
-<p>After processed by a local or remote compiler, we can run the returned file to run policy iterations:</p>
+<p>After processed by the <a class="reference external" href="http://www.gdsge.com">online compiler</a>, we can run the returned file to run policy iterations:</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">options</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span>
 <span class="n">options</span><span class="p">.</span><span class="n">MaxIter</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>
 <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_guvenen2009</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>

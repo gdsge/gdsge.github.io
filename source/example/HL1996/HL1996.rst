@@ -187,7 +187,7 @@ explicitly specifying the exogenous state that the approximation should be evalu
 expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
 See the :ref:`Toolbox API` for details.
 
-After the gmod file is parsed and compiled by a local or remote compiler, first call the iter file in matlab, which produces
+After the gmod file is parsed and compiled by the `online compiler <http://www.gdsge.com>`_, first call the iter file in matlab, which produces
 results as follows
 
 .. code-block:: text

@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint" href="../CaoNie2017/CaoNie2017.html" />
-    <link rel="prev" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" href="../KS1998/KS1998.html" /> 
+    <link rel="prev" title="Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty" href="../KS1998/KS1998.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Huggett1997/Huggett1997.html">Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mendoza (2010): Sudden Stops with Asset Price Deflation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#state-space-transformation">State Space Transformation</a></li>
@@ -669,7 +669,7 @@ For example, the Euler equation for bond is written as</p>
 <span class="math notranslate nohighlight">\(\hat{\mu}_t=\mu_t/\lambda_t\)</span> (<span class="math notranslate nohighlight">\(\mu\)</span> in the code actually corresponds to
 <span class="math notranslate nohighlight">\(\hat{\mu}\)</span>), so from the bond Euler equation we know <span class="math notranslate nohighlight">\(\hat{\mu}\)</span> must lie in [0,1], which is specified as the bound for <span class="math notranslate nohighlight">\(\mu\)</span> entering the equation solver.
 These procedures are not necessary but are simple and effective ways to solve the system faster and more accurately.</p>
-<p>Now let’s run the policy iterations by calling <em>iter_mendoza2010.m</em> returned from a local or remote GDSGE compiler, which produces output</p>
+<p>Now let’s run the policy iterations by calling <em>iter_mendoza2010.m</em> returned from the online <a class="reference external" href="http://www.gdsge.com">GDSGE compiler</a>, which produces output</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_mendoza2010</span><span class="p">;</span>
 
 <span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00819545</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">3.83276e-09</span>
@@ -1036,7 +1036,7 @@ negative bond/gdp ratio. These differences are also noted in <a class="reference
 The crucial step is to transform the boundary condition to that of an endogenous state variable which makes the feasible region a simple rectangle. In the current example, the
 feasible debt level is high so the model can be solved directly over the natural state space—bond and capital. Such transformation
 becomes essential for more complex problems, and sometimes the boundary condition needs to be solved using a different equilibrium system. The toolbox accommodates this
-by allowing a different system of equations for problems at the boundary. See <a class="reference internal" href="../Coleman1991.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a> for such an example, in which consumption is zero and the Inada condition is violated at the boundary.</p>
+by allowing a different system of equations for problems at the boundary. See <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a> for such an example, in which consumption is zero and the Inada condition is violated at the boundary.</p>
 <p>The policy functions in the current example are highly nonlinear. We learned how to start with a crude grid and refine the solution with finer grids. A more effective approach
 is to let the toolbox automatically adapt the grids to increase points in regions that are nonlinear.
 The example in <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi (2011)</span></a> shows how to use adaptive grids for a model with a single-dimension endogenous state.
@@ -1056,7 +1056,7 @@ The current model can also be solved with adaptive grids by simply specifying on
         <a href="../CaoNie2017/CaoNie2017.html" class="btn btn-neutral float-right" title="Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../KS1998/KS1998.html" class="btn btn-neutral float-left" title="Krusell and Smith (1998): Heterogeneous-agent Models with Aggregate Uncertainty" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../KS1998/KS1998.html" class="btn btn-neutral float-left" title="Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
