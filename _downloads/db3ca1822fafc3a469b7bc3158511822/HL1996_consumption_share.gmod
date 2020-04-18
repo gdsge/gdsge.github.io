@@ -20,7 +20,7 @@ shock_trans = [
   0.0168 0.0147 0.1205 0.1057 0.0484 0.0425 0.3470 0.3044
   0.0157 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
   ];
-shock_trans = shock_trans ./ sum(shock_trans,2); % Normalize
+shock_trans = shock_trans ./ repmat(sum(shock_trans,2),[1,shock_num]);
 % State variables
 var_state c1;  % wealth share
 c1 = linspace(0.2,0.8,101);
