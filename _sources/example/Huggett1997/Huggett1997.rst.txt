@@ -15,10 +15,10 @@ Though the toolbox is not designed for solving the equilibrium of this type of m
 since the decision problem is characterized by an equation system (the Euler equation 
 
 .. math::
-    u'(c_t) = \beta \mathbb{E}_t[(1-\delta+r_{t+1})u'(c_{t+1})] + \lambda_t,
+    u'(c_t) = \beta \mathbb{E}_t[(1+r_{t+1})u'(c_{t+1})] + \lambda_t,
 where :math:`\lambda_t` is the Lagrange multiplier on the borrowing constraint, and the complementary-slackness condition, :math:`\lambda_t k_{t+1}=0`) with state transition functions, it readily fits in the toolbox's general framework.
-One just needs an extra fixed-point loop to update the equilibrium object, which can be coded in MATLAB. 
-For the one-sector model studied by `Huggett (1997) <https://www.sciencedirect.com/science/article/pii/S0304393297000251>`_, the steady state equilibrium object is the aggregate capital stock; the transition path equilibrium object is the time sequence
+One just needs an extra fixed-point loop to update the aggregate equilibrium object, which can be coded in MATLAB. 
+For the one-sector model studied by `Huggett (1997) <https://www.sciencedirect.com/science/article/pii/S0304393297000251>`_, the steady state aggregate equilibrium object is the aggregate capital stock; the transition path aggregate equilibrium object is the time sequence
 of the aggregate capital stock.
 
 We directly define the equilibrium, which covers all the ingredients we need for computing the model. For the full description of the model, 
