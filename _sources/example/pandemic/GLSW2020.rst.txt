@@ -212,7 +212,8 @@ In addition, the figure also shows that the effect is stronger when the net wort
 The lower panel plots the ergodic distribution of bond holding of workers in the contact_intensive sector. The possibility of pandemics leads these workers to do precautionary saving, sometimes up to the borrowing limit of workers in sector 2. However, the precautionary saving does not undo the results in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
 
 Starting from the model's ergodic set, we can simulate the *generalized impulse response functions* by comparing two sets of sample paths drawn from the model's ergodic set: one benchmark, 
-the other with the *pandemic* shock hitting at the first period and the transition of the exogenous shock turned on.
+the other with the *pandemic* shock hitting at the first period and the transition of the exogenous shock turned on. Download the MATLAB script file that calls the toolbox codes to simulate the 
+*generalized impulse response functions* :download:`main_simulate_irf.m <main_simulate_irf.m>`.
 
 .. image:: figures/irf_r_a1.png
     :scale: 30 %
