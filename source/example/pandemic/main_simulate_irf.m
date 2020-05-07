@@ -1,10 +1,10 @@
 clc;
-IterRslt = iter_GLSW_interp;
+IterRslt = iter_GLSW;
 
 options = struct;
 options.SimuPrintFreq = 1000;
 rng(0823);
-SimuRslt = simulate_GLSW_interp(IterRslt,options);
+SimuRslt = simulate_GLSW(IterRslt,options);
 
 % Get Ergodi Set
 startIdx = 5000;
@@ -21,7 +21,7 @@ options.init.a1 = [a1(:);a1(:)];
 % Simulate forward
 options.num_samples = lenSamples*2;
 options.num_periods = 100;
-SimuRsltIrf = simulate_GLSW_interp(IterRslt,options);
+SimuRsltIrf = simulate_GLSW(IterRslt,options);
 
 % Construct and plot the IRF
 irf.r = mean(SimuRsltIrf.r(lenSamples+1:2*lenSamples,:) - SimuRsltIrf.r(1:lenSamples,:));
