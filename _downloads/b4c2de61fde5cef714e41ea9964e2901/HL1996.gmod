@@ -34,8 +34,8 @@ inbound ms1 0 1;        % Multipliers for constraints
 inbound ms2 0 1;
 inbound mb1 0 1;
 inbound mb2 0 1;
-inbound ps 0 2 adaptive(1.5);
-inbound pb 0 2 adaptive(1.5);
+inbound ps 0 3 adaptive(1.5);
+inbound pb 0 3 adaptive(1.5);
 inbound w1n -0.5 1.5;
 % Other policy variables
 var_aux equity_premium;
@@ -89,6 +89,6 @@ simulate;
   num_samples = 24;
   initial w1 0.5;
   initial shock 1;
-  var_simu c1 c2 ps pb equity_premium;
+  var_simu c1 c2 ps pb equity_premium ms1 mb1;
   w1' = w1n';
 end;

@@ -359,8 +359,8 @@ w1 = linspace(-0.05,1.05,201);
 <span class="k">inbound</span> ms2 0 1;
 <span class="k">inbound</span> mb1 0 1;
 <span class="k">inbound</span> mb2 0 1;
-inbound ps 0 2 <span class="k">adaptive</span>(1.5);
-inbound pb 0 2 <span class="k">adaptive</span>(1.5);
+inbound ps 0 3 <span class="k">adaptive</span>(1.5);
+inbound pb 0 3 <span class="k">adaptive</span>(1.5);
 <span class="k">inbound</span> w1n -0.5 1.5;
 <span class="c">% Other policy variables</span>
 <span class="k">var_aux</span> equity_premium;
@@ -414,7 +414,7 @@ c2_future = c2;
   <span class="k">num_samples</span> = 24;
   <span class="k">initial</span> w1 0.5;
   <span class="k">initial</span> shock 1;
-  <span class="k">var_simu</span> c1 c2 ps pb equity_premium;
+  <span class="k">var_simu</span> c1 c2 ps pb equity_premium ms1 mb1;
   w1&#39; = w1n&#39;;
 <span class="k">end;</span>
 </pre></div>
