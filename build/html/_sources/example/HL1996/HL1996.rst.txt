@@ -345,12 +345,21 @@ Running the code produces:
 
     2.1279e-05
 
-which says that the max and mean absolute errors (across states in the ergodic distribution) for stock Euler equations are *0.0057* and *2.5290e-05* respectively, and the max and mean
-absolute errors for bond Euler equations are *0.0036* and *2.1279e-05* respectively. Increasing the number of grid points lowers the errors. For example, increasing the number of grid points
-to 1000 lowers the max absolute errors below 1e-3 and mean absolute errors below 1e-5. However, a more effective approach is to use the adaptive-grid interpolation method
-shipped with the toolbox. Applying to the current model, the method lowers the max absolute errors below 1e-5 and mean absolute errors below 1e-6, with the number of grid points 
+which says that the max and mean absolute errors (across states in the ergodic distribution) 
+for stock Euler equations are *0.0057* and *2.5290e-05* respectively, and the max and mean
+absolute errors for bond Euler equations are *0.0036* and *2.1279e-05* respectively. 
+
+
+These are relatively errors in marginal utility, to convert them into relative errors in consumption,
+we just need to multiply them with :math:`\gamma`. 
+Therefore, the max and mean absolute errors in stock holding decisions are $85 and $0.375 per $10,000 in consumption.
+The max and mean absolute errors in bond holding decisions are $54 and $0.315 per $10,000 in consumption.
+
+
+Increasing the number of grid points lowers the errors. For example, increasing the number of grid points
+to 1000 lowers the max absolute (Euler equation) errors below 1e-3 and mean absolute errors below 1e-5. However, a more effective approach is to use the adaptive-grid interpolation method included in the toolbox. Applying to the current model, the method lowers the max absolute errors below 1e-5 and mean absolute errors below 1e-6, with the number of grid points 
 smaller than 1000. The user only needs to specify a one-line option to enable the adaptive-grid method, but does need to initialize *var_interp* with a more flexible *model_init* block.
-See example :ref:`Bianchi2011 <Bianchi2011>` for how to define a *model_init* block and apply the adaptive-grid method.
+See example :ref:`Bianchi (2011) <Bianchi2011>` for how to define a *model_init* block and apply the adaptive-grid method.
 
 =====================================
 Consumption Share as Endogenous State

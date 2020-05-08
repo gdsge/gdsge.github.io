@@ -663,12 +663,17 @@ the exact transition path for integration to minimize sampling errors.</p>
 <span class="mf">2.1279e-05</span>
 </pre></div>
 </div>
-<p>which says that the max and mean absolute errors (across states in the ergodic distribution) for stock Euler equations are <em>0.0057</em> and <em>2.5290e-05</em> respectively, and the max and mean
-absolute errors for bond Euler equations are <em>0.0036</em> and <em>2.1279e-05</em> respectively. Increasing the number of grid points lowers the errors. For example, increasing the number of grid points
-to 1000 lowers the max absolute errors below 1e-3 and mean absolute errors below 1e-5. However, a more effective approach is to use the adaptive-grid interpolation method
-shipped with the toolbox. Applying to the current model, the method lowers the max absolute errors below 1e-5 and mean absolute errors below 1e-6, with the number of grid points
+<p>which says that the max and mean absolute errors (across states in the ergodic distribution)
+for stock Euler equations are <em>0.0057</em> and <em>2.5290e-05</em> respectively, and the max and mean
+absolute errors for bond Euler equations are <em>0.0036</em> and <em>2.1279e-05</em> respectively.</p>
+<p>These are relatively errors in marginal utility, to convert them into relative errors in consumption,
+we just need to multiply them with <span class="math notranslate nohighlight">\(\gamma\)</span>.
+Therefore, the max and mean absolute errors in stock holding decisions are $85 and $0.375 per $10,000 in consumption.
+The max and mean absolute errors in bond holding decisions are $54 and $0.315 per $10,000 in consumption.</p>
+<p>Increasing the number of grid points lowers the errors. For example, increasing the number of grid points
+to 1000 lowers the max absolute (Euler equation) errors below 1e-3 and mean absolute errors below 1e-5. However, a more effective approach is to use the adaptive-grid interpolation method included in the toolbox. Applying to the current model, the method lowers the max absolute errors below 1e-5 and mean absolute errors below 1e-6, with the number of grid points
 smaller than 1000. The user only needs to specify a one-line option to enable the adaptive-grid method, but does need to initialize <em>var_interp</em> with a more flexible <em>model_init</em> block.
-See example <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi2011</span></a> for how to define a <em>model_init</em> block and apply the adaptive-grid method.</p>
+See example <a class="reference internal" href="../Bianchi2011/Bianchi2011.html#bianchi2011"><span class="std std-ref">Bianchi (2011)</span></a> for how to define a <em>model_init</em> block and apply the adaptive-grid method.</p>
 </div>
 <div class="section" id="consumption-share-as-endogenous-state">
 <h2>Consumption Share as Endogenous State<a class="headerlink" href="#consumption-share-as-endogenous-state" title="Permalink to this headline">¶</a></h2>
