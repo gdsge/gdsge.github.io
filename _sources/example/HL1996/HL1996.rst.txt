@@ -89,9 +89,10 @@ We define a recursive equilibrium with the wealth share :math:`\omega_t` defined
 and market clearing conditions stated above.
 
 We omit the explicit dependence on state :math:`(z,\omega)` except the first variable, and highlight that the
-state transition function :math:`\omega'` characterizes the implicit law of motion that should hold for each of the future exogenous state :math:`z'`.
+the endogenous state variable :math:`\omega'` features law of motions that are implicitly characterized by equations 
+which depend on future exogenous state variables :math:`z'`.
 It should be clear at this moment that the key feature of our framework that enables to cast the equilibrium system as a single equation system,
-despite the non-trivial state-transition functions, is to include the implicit transition :math:`\omega'(z')` for each :math:`z'` as unknowns.
+despite the non-trivial state-transition functions, is to include the state variable :math:`\omega'(z')` for each realization of :math:`z'` as unknowns.
 
 The system can be implemented by the following :download:`HL1996.gmod <HL1996.gmod>` code
 
@@ -100,59 +101,60 @@ The system can be implemented by the following :download:`HL1996.gmod <HL1996.gm
     :language: GDSGE
 
 
-As can be seen, the implicit law of motion is captured by the consistency equation
+As can be seen, the implicit law of motion for the endogenous state :math:`\omega'` is captured by the consistency equation
 
 .. literalinclude:: HL1996.gmod
-    :lines: 72-72
-    :lineno-start: 72
+    :lines: 68-68
+    :lineno-start: 68
     :language: GDSGE
 
-which says that the induced :math:`\omega'` by current decisions of stock and bond holdings should be consistent with the
-unknowns for each of the future exogenous states state by state. Notice that the unknowns :math:`\omega` are inputs in the 
-state transition functions to forecast future consumption and prices, which are required to formulate the recursive system, in 
+which says that the future wealth share :math:`\omega'` should be consistent with the current choices of stock and bond holdings,
+the future stock price---which is itself a function of :math:`\omega'`, and the realization of future exogenous states, state by state.
+Notice that unknowns :math:`\omega'` are the inputs
+in interpolating the last-iteration policy functions to forecast future consumption and stock price, which are required to formulate the recursive system, in 
 
 .. literalinclude:: HL1996.gmod
-    :lines: 58-58
-    :lineno-start: 58
+    :lines: 53-53
+    :lineno-start: 53
     :language: GDSGE
 
-Accordingly, :math:`\omega'` is declared to a be a vector of unknowns in 
+Accordingly, :math:`\omega'` is declared to be a vector of unknowns in 
 
 .. literalinclude:: HL1996.gmod
-    :lines: 28-28
-    :lineno-start: 28
+    :lines: 27-27
+    :lineno-start: 27
     :language: GDSGE
 
 and the consistency equations are declared to be part of the equation system in
 
 .. literalinclude:: HL1996.gmod
-    :lines: 87-87
-    :lineno-start: 87
+    :lines: 83-83
+    :lineno-start: 83
     :language: GDSGE
 
-Since now the transition of endogenous state involves realizations of future exogenous states,
-in the simulation, we need to specify the transition depending on future realization as
+Since now the transition of the endogenous state :math:`\omega` depends on the realization of future exogenous states,
+in the simulation, we need to specify that the transition depends on the realization of future states as
 
 .. literalinclude:: HL1996.gmod
-    :lines: 97-97
-    :lineno-start: 97
+    :lines: 93-93
+    :lineno-start: 93
     :language: GDSGE
 
 Notice the prime operator in *w1n'*, which is the syntax to specify the transition's dependence on the 
-realization of future exogenous states (recall, *w1n* is a vector solved as part of the *var_policy*).
+realization of future exogenous states (recall, *w1n* is a vector solved from the policy iteration as one of the *var_policy*).
 
 Now we discuss several tricks that facilitate casting the recursive system to the toolbox, which are commonly
-used for this class of problems.
+used for this class of models.
 
-Since the original problem's borrowing constraint is proportational to aggregate endowment, we can use a transformation 
+Since the original problem's borrowing constraint is proportional to the aggregate endowment, we can use a transformation 
 to simplify the constraint
 
 .. literalinclude:: HL1996.gmod
-    :lines: 65-66
-    :lineno-start: 65
+    :lines: 60-61
+    :lineno-start: 60
     :language: GDSGE
 
-where *Kb* is the parameter governing the  borrowing constraint in fraction of aggregate endowment (:math:`b^i \geq Kb * Y^a`), and *nb1p* is the unknown defined as
+where *Kb* is the parameter governing the borrowing constraint in fraction of the aggregate endowment (:math:`b^i \geq Kb * Y^a`), and *nb1p* is the unknown defined as
 :math:`nb^i=\hat{b}^i+Kb` which is required to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
 not necessarily a box constraint. See example :ref:`Cao and Nie (2017) <CaoNie2017>`, which provides a global solution to a `Kiyotaki-Moore <https://www.journals.uchicago.edu/doi/abs/10.1086/262072>`_ type model, where
@@ -161,34 +163,33 @@ the borrowing constraint is tied to the price of an asset in fixed supply.
 Some built-in functions of the toolbox are used in this example.
 
 .. literalinclude:: HL1996.gmod
-    :lines: 58-58
-    :lineno-start: 58
+    :lines: 53-53
+    :lineno-start: 53
     :language: GDSGE
 
-*GNDSGE_INTERP_VEC* is a built-in function that evaluates function approximations for implicit state transition functions 
-defined in *var_interp* once for all. The results are returned in the order of variables defined in *var_interp*.
-The prime operator following *GNDSGE_INTERP_VEC* indicates that the approximation is done for each of the exogenous states.
-Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each of the future exogenous states.
+*GNDSGE_INTERP_VEC* is a built-in function that evaluates function approximations for policy and state transition functions 
+defined in *var_interp* once for all. The results are returned according to the order of variables defined in *var_interp*.
+The prime operator following *GNDSGE_INTERP_VEC* indicates that the approximation is done for each realization of the exogenous states.
+Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each realization of the future exogenous states.
 This step can be replaced by
 
 .. code-block:: GDSGE
 
     psn' = ps_future'(w1n');
-    pbn' = pb_future'(w1n');
     c1n' = c1_future'(w1n');
     c2n' = c2_future'(w1n');
 
 although at a lower speed since *GNDSGE_INTERP_VEC* evaluates function approximations with vectorization. (This is particular relevant
-when using the adaptive sparse grid method as the coefficients are stored in a table with each entry represents
+when using the adaptive sparse grid method as the coefficients are stored in a table with each entry referring to
 the coefficients across all vector dimensions. Therefore, using *GNDSGE_INTERP_VEC* instead of individual evaluations
-not only enables vectorization but also allows searching the hash table only once). *GNDSGE_INTERP_VEC* can be also used to skip
+not only enables vectorization but also allows searching the table only once). *GNDSGE_INTERP_VEC* can also skip
 certain variables in *var_interp* when some of them are not necessary, and can be used without the prime operator but 
-explicitly specifying the exogenous state that the approximation should be evaluated. This is particularly relevant when
-expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
-See the :ref:`Toolbox API` for details.
+explicitly specifying the exogenous state that the approximation should be evaluated. This is relevant when
+the expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
+See example :ref:`Guvenen (2009) <Guvenen2009>` for an example.
 
-After the gmod file is parsed and compiled by the `online compiler <http://www.gdsge.com>`_, first call the iter file in matlab, which produces
-results as follows
+After the gmod file is parsed and compiled by the `online compiler <http://www.gdsge.com>`_, first call the iter file in MATLAB, which produces
+the following results
 
 .. code-block:: text
 
@@ -202,7 +203,7 @@ results as follows
     Iter:209, Metric:9.56568e-07, maxF:8.69762e-09
     Elapsed time is 0.443740 seconds.
 
-We can inspect the policy functions (e.g., for the equity premium defined in Line 74 and included in *var_output* in Line 54):
+We can inspect the policy functions (e.g., for the equity premium declared as *var_aux* in Line 41 and defined in Line 70):
 
 .. code-block:: text
 
@@ -220,7 +221,7 @@ which produces
 The policy functions demonstrate the non-linear and non-monotone properties of the model. These non-linear regions appear with
 positive probability in the model's ergodic set as shown below.
 
-We can simulate the model using the converged policy functions contained in *IterRslt*:
+We can simulate the model using the converged policy and state transition functions contained in *IterRslt*:
 
 .. code-block:: text
 
@@ -259,20 +260,20 @@ which produces
 
 The spikes in the ergodic distribution of wealth share at the two ends imply that the constraints are occasionally binding.
 
-================================
-Evaluate Accuracies of Solutions
-================================
+==================================
+Evaluate the Accuracy of Solutions
+==================================
 The converged policy iterations deliver both the policy functions and the state transition functions, which can be used conveniently to evaluate
-the accuracy of the solutions by inspecting the euler equation errors. Define the unit-free euler equation errors for shares and bonds as
+the accuracy of the solutions by e.g., inspecting the Euler equation errors. Define the unit-free Euler equation errors for shares and bonds as
 
 .. math::
     & \mathcal{E}^{s,i}_t = -1 + \beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{\hat{c}^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{1-\gamma}\frac{\hat{p}_{t+1}^{s}+\hat{d}_{t+1}}{\hat{p}_{t}^{s}}\right]+\hat{\mu}^{i,s}_t\\
     & \mathcal{E}^{b,i}_t = -1 + \beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{c^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{-\gamma}\frac{1}{p_{t}^{b}}\right]+\hat{\mu}^{i,b}_t.
 
-And we evaluate these errors starting from a simulated ergodic set of states. Due to symmetry, we focus on Agent 1 only.
-This can be done by simulating, starting from the ergodic set, for one period, and evaluating these errors according to the equations defined above
-using the simulated paths. In particular, to calculate the expectation of the objects in the equations along the simulation path, we should use
-the exact transition path for integration to minimize sampling errors.
+And we are to evaluate these errors starting from a simulated ergodic set of states. Due to symmetry, we focus on Agent 1 only.
+This can be done by simulating, starting from the ergodic set, for one period forward, and evaluating these errors according to the equations defined above
+using the simulated paths. In particular, to calculate the expectation of the objects in the equations along the simulated path, we should use
+the exact transition path for integration to eliminate sampling errors.
 
 The MATLAB code that implements the above procedure is listed below (or download :download:`eval_euler_errors.m <eval_euler_errors.m>`), which should be self-explanatory with the documentation contained.
 
@@ -351,19 +352,18 @@ absolute errors for bond Euler equations are *0.0036* and *2.1279e-05* respectiv
 
 
 These are relatively errors in marginal utility, to convert them into relative errors in consumption,
-we just need to multiply them with :math:`\gamma`. 
-Therefore, the max and mean absolute errors in stock holding decisions are $85 and $0.375 per $10,000 in consumption.
-The max and mean absolute errors in bond holding decisions are $54 and $0.315 per $10,000 in consumption.
+we just need to multiply them by :math:`1/\gamma`. 
+Therefore, the max and mean absolute errors in stock holding decisions are $38 and $0.169 per $10,000 in consumption.
+The max and mean absolute errors in bond holding decisions are $24 and $0.142 per $10,000 in consumption.
 
-
-Increasing the number of grid points lowers the errors. For example, increasing the number of grid points
-to 1000 lowers the max absolute (Euler equation) errors below 1e-3 and mean absolute errors below 1e-5. However, a more effective approach is to use the adaptive-grid interpolation method included in the toolbox. Applying to the current model, the method lowers the max absolute errors below 1e-5 and mean absolute errors below 1e-6, with the number of grid points 
+Increasing the number of grid points reduces the errors. For example, increasing the number of grid points
+to 1000 reduces the max absolute (Euler equation) errors below 1e-3 and mean absolute errors below 1e-5. However, a more effective approach is to use the adaptive-grid interpolation method included in the toolbox. Applying to the current model, the method reduces the max absolute errors below 1e-5 and mean absolute errors below 1e-6, with the number of grid points 
 smaller than 1000. The user only needs to specify a one-line option to enable the adaptive-grid method, but does need to initialize *var_interp* with a more flexible *model_init* block.
 See example :ref:`Bianchi (2011) <Bianchi2011>` for how to define a *model_init* block and apply the adaptive-grid method.
 
-=====================================
-Consumption Share as Endogenous State
-=====================================
+=========================================
+Consumption Share as the Endogenous State
+=========================================
 
 The model can be solved using consumption share as the endogenous state. In this case, the budget constraint
 
@@ -404,22 +404,22 @@ As shown, compared to the one with wealth share as the endogenous state,
 the new implementation is made possible by declaring :math:`{\hat{c}_1}'(z')` to be *c1n* in 
 
 .. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 28-28
-    :lineno-start: 28
+    :lines: 27-27
+    :lineno-start: 27
     :language: GDSGE
 
 by defining the "Financial Wealth" by *flow* as *var_interp*
 
 .. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 42-42
-    :lineno-start: 42
+    :lines: 41-41
+    :lineno-start: 41
     :language: GDSGE
 
-by defining the consistency equations for :math:`\hat{c}_1` in 
+by defining the consistency equations for :math:`\hat{c}_1'` in 
 
 .. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 72-72
-    :lineno-start: 72
+    :lines: 67-67
+    :lineno-start: 67
     :language: GDSGE
 
 and including them as part of the equation system.
@@ -428,11 +428,11 @@ Finally we compare the solutions solved with wealth share as the endogenous stat
 This can be done by projecting the solutions to the same endogenous state. For example
 
 .. literalinclude:: HL1996_consumption_share.gmod
-    :lines: 74-74
-    :lineno-start: 74
+    :lines: 69-69
+    :lineno-start: 69
     :language: GDSGE
 
-constructs the wealth share from the budget constraint following the definition.
+constructs the wealth share from the budget constraint of Agent 1.
 
 .. image:: figures/policy_premium_overlapped.png
     :scale: 80 %
