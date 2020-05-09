@@ -350,8 +350,8 @@ eta1 = [.3772 .3772 .3772 .3772 .6228 .6228 .6228 .6228];
 w1 = linspace(-0.05,1.05,201);
 <span class="c">% Policy variables and bounds that enter the equations</span>
 <span class="k">var_policy</span> c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb w1n[8];
-<span class="k">inbound</span> c1 0 1;
-<span class="k">inbound</span> c2 0 1;
+<span class="k">inbound</span> c1 0.05 1.0;
+<span class="k">inbound</span> c2 0.05 1.0;
 <span class="k">inbound</span> s1p 0.0 1.0;
 <span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
 <span class="k">inbound</span> nb2p 0.0 1.0;   
@@ -403,15 +403,15 @@ c2_future = c2;
     mb1*nb1p;
     mb2*nb2p;
     b1p+b2p;
-    budget_1;
-    budget_2;
+    budget_1/w1;        <span class="c">% Normalized by total budget</span>
+    budget_2/(1-w1);
     w1_consis&#39;;
   <span class="k">end;</span>
 <span class="k">end;</span>
 
 <span class="k">simulate;</span>
   <span class="k">num_periods</span> = 10000;
-  <span class="k">num_samples</span> = 24;
+  <span class="k">num_samples</span> = 6;
   <span class="k">initial</span> w1 0.5;
   <span class="k">initial</span> shock 1;
   <span class="k">var_simu</span> c1 c2 ps pb equity_premium ms1 mb1;

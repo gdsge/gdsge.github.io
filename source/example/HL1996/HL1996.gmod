@@ -25,8 +25,8 @@ var_state w1;  % wealth share
 w1 = linspace(-0.05,1.05,201);
 % Policy variables and bounds that enter the equations
 var_policy c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb w1n[8];
-inbound c1 0 1;
-inbound c2 0 1;
+inbound c1 0.05 1.0;
+inbound c2 0.05 1.0;
 inbound s1p 0.0 1.0;
 inbound nb1p 0.0 1.0;   % nb1p=b1p-Kb
 inbound nb2p 0.0 1.0;   
@@ -78,15 +78,15 @@ model;
     mb1*nb1p;
     mb2*nb2p;
     b1p+b2p;
-    budget_1;
-    budget_2;
+    budget_1/w1;        % Normalized by total budget
+    budget_2/(1-w1);
     w1_consis';
   end;
 end;
 
 simulate;
   num_periods = 10000;
-  num_samples = 24;
+  num_samples = 6;
   initial w1 0.5;
   initial shock 1;
   var_simu c1 c2 ps pb equity_premium ms1 mb1;
