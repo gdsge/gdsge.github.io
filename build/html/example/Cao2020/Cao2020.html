@@ -339,16 +339,16 @@ In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</s
 118
 119
 120
-121</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
-<span class="k">parameters</span> beta delta alpha sigma shock_trans2;
+121
+122</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Parameters</span>
+<span class="k">parameters</span> beta delta alpha sigma;
 beta=0.99; <span class="c">% discount factor</span>
 delta=0.025;
 alpha=0.36;
 sigma=1.0;
-InterpOrder = 4;
-NumThreads = feature(&#39;numCores&#39;);
 PrintFreq = 10;
 SaveFreq = 50;
+SIMU_RESOLVE=0; SIMU_INTERP=1;
 
 <span class="c">% States</span>
 <span class="k">var_state</span> K X;
@@ -418,6 +418,8 @@ budget2 = (1-delta+r).*(2*K).*X + w.*e2;
 c1Future = c1;
 c2Future = c2;
 
+<span class="k">var_output</span> Xp Kp kp1 kp2;
+
 <span class="k">model;</span>
   <span class="c">% Budget constraints</span>
   kp1 = budget1 - c1;
@@ -434,10 +436,10 @@ c2Future = c2;
   <span class="c">% Variable with prime is future variable</span>
   r&#39; = alpha*z&#39;*(Kp/L&#39;)^(alpha-1);
   <span class="c">% Vector interpolation</span>
-  [c1Next&#39;,c2Next&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(Kp,Xp);
+  [c1Next&#39;,c2Next&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(Kp,Xp);
   <span class="c">% Note how to use the NDSGE_EXPECT operator</span>
-  rhs1 = rhs1 + GNDSGE_EXPECT{ beta*(1-delta+r&#39;)*c1Next&#39;^(-sigma)/upC1} ;
-  rhs2 = rhs2 + GNDSGE_EXPECT{ beta*(1-delta+r&#39;)*c2Next&#39;^(-sigma)/upC2} ;
+  rhs1 = rhs1 + <span class="k">GDSGE_EXPECT</span>{ beta*(1-delta+r&#39;)*c1Next&#39;^(-sigma)/upC1} ;
+  rhs2 = rhs2 + <span class="k">GDSGE_EXPECT</span>{ beta*(1-delta+r&#39;)*c2Next&#39;^(-sigma)/upC2} ;
   
   <span class="k">equations;</span>
     <span class="c">% Evolution of Kp</span>

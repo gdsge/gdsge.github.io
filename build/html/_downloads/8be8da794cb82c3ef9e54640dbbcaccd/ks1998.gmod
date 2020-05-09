@@ -1,5 +1,5 @@
 % Toolbox options
-INTERP_ORDER = 4; ExtrapOrder = 4;
+INTERP_ORDER = 4; EXTRAP_ORDER = 4;
 SIMU_RESOLVE = 0; SIMU_INTERP = 1;
 SaveFreq = inf; PrintFreq = 100; TolEq = 1e-5;
 % Parameters
@@ -14,8 +14,8 @@ phi = [
 % States, use the ones as in Krusell and Smith (1998)
 var_state kbar k;
 kbar = [11.1 11.52 11.94 12.36];
-k = csvread('points.kgd');
-kMin = k(1);
+k = [0,1];      % A place holder, will be overwritten
+kMin = k(1);    % A place holder, will be overwritten
 % Shock process in Krusell and Smith (1998)
 var_shock beta e unemp z z_idx;
 shock_num = 12;
