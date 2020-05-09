@@ -1,13 +1,12 @@
 % Parameters
-parameters beta delta alpha sigma shock_trans2;
+parameters beta delta alpha sigma;
 beta=0.99; % discount factor
 delta=0.025;
 alpha=0.36;
 sigma=1.0;
-InterpOrder = 4;
-NumThreads = feature('numCores');
 PrintFreq = 10;
 SaveFreq = 50;
+SIMU_RESOLVE=0; SIMU_INTERP=1;
 
 % States
 var_state K X;
@@ -77,6 +76,8 @@ initial c2Future budget2
 c1Future = c1;
 c2Future = c2;
 
+var_output Xp Kp kp1 kp2;
+
 model;
   % Budget constraints
   kp1 = budget1 - c1;
@@ -93,10 +94,10 @@ model;
   % Variable with prime is future variable
   r' = alpha*z'*(Kp/L')^(alpha-1);
   % Vector interpolation
-  [c1Next',c2Next'] = GNDSGE_INTERP_VEC'(Kp,Xp);
+  [c1Next',c2Next'] = GDSGE_INTERP_VEC'(Kp,Xp);
   % Note how to use the NDSGE_EXPECT operator
-  rhs1 = rhs1 + GNDSGE_EXPECT{ beta*(1-delta+r')*c1Next'^(-sigma)/upC1} ;
-  rhs2 = rhs2 + GNDSGE_EXPECT{ beta*(1-delta+r')*c2Next'^(-sigma)/upC2} ;
+  rhs1 = rhs1 + GDSGE_EXPECT{ beta*(1-delta+r')*c1Next'^(-sigma)/upC1} ;
+  rhs2 = rhs2 + GDSGE_EXPECT{ beta*(1-delta+r')*c2Next'^(-sigma)/upC2} ;
   
   equations;
     % Evolution of Kp
