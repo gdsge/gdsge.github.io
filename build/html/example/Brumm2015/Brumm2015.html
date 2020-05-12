@@ -1,0 +1,637 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Brumm et al (2015): A GDSGE model with asset price bubble &mdash; GDSGE Homepage</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Coleman (1991): A production economy with an income tax" href="../Coleman1991/Coleman1991.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ContributedExamples.html">Contributed Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Coleman1991/Coleman1991.html">Coleman (1991): A production economy with an income tax</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Brumm et al (2015): A GDSGE model with asset price bubble</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
+        
+      <li>Brumm et al (2015): A GDSGE model with asset price bubble</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble">
+<h1>Brumm et al (2015): A GDSGE model with asset price bubble<a class="headerlink" href="#brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/iere.12092">Brumm, Grill, Kubler, and Schmedders (2015)</a>
+study a GDSGE model with multiple assets with different degrees of collateralizability.
+They find that a long-lived asset which never pays dividend but can be used as collateral to borrow can have positive price in equilibrium.
+From the traditional asset-pricing point of view, this positive price is a bubble because the present discounted value of dividend from the asset is exactly zero.</p>
+<p>The model is similar to the ones in <a class="reference internal" href="../HL1996/HL1996.html#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices"><span class="std std-ref">Heaton and Lucas (1996)</span></a> and <a class="reference internal" href="../Cao2018/Cao2018.html#cao-2018-speculation-and-wealth-distribution-under-beliefs-heterogeneity"><span class="std std-ref">Cao (2018)</span></a>.
+It features two representative agents <span class="math notranslate nohighlight">\(h\in\{1,2\}\)</span> who have Epstein-Zin utility with the same intertemporal elasticity of substitution and different coefficients of risk-aversion:</p>
+<div class="math notranslate nohighlight">
+\[U_{h,t}=\left\{\left[c_{h,t}\right]^{\rho^h}+\beta\left[\mathbb{E}_{t}\left(U_{h,t+1}^{\alpha^h}\right)\right]^{\frac{\rho^h}{\alpha^h}}\right\}^{\frac{1}{\rho^h}}.\]</div>
+<p>The agents can trade in shares of two long-lived assets (Lucas’ trees), <span class="math notranslate nohighlight">\(i\in\{1,2\}\)</span> and a risk-free bond.</p>
+<p>In period <span class="math notranslate nohighlight">\(t\)</span> (we suppress the explicit dependence on shock history <span class="math notranslate nohighlight">\(z^t\)</span> to simplify the notation), asset <span class="math notranslate nohighlight">\(i\)</span> pays dividend <span class="math notranslate nohighlight">\(d_{i,t}\)</span> worth a fraction <span class="math notranslate nohighlight">\(\sigma_i\)</span> of aggregate output and traded at price <span class="math notranslate nohighlight">\(q_{i,t}\)</span>.
+The agents cannot short sell the long-lived asset but they can short sell the risk-free bond, i.e., borrow. In order to borrow in the risk-free bond, the agents must use the assets as collateral. The agents can pledge a fraction <span class="math notranslate nohighlight">\(\delta_i\)</span> of the value of their asset <span class="math notranslate nohighlight">\(i\)</span> holding as collateral.
+In particular, the colateral constraint takes the form:</p>
+<div class="math notranslate nohighlight">
+\[\phi^h_{t+1}+\sum_{i\in\{1,2\}}\theta^h_{i,t+1}\delta_i\min_{z^{t+1}|z^t}(q_{i,t+1}+d_{i,t+1})\geq0,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi^h,\theta^h_1,\theta^h_2\)</span> denote the bond holding, and asset <span class="math notranslate nohighlight">\(1\)</span> and asset <span class="math notranslate nohighlight">\(2\)</span> holdings of agents <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<p>This model can be written and solved using our toolbox. This is done by <a class="reference external" href="https://sites.google.com/site/heweiecon/">Hewei Shen</a> from the University of Oklahoma, who generously contributed the GDSE code below.
+Hewei’s own research demonstrates the importance of GDSGE models in studying macro-prudential and fiscal policies in emerging market economies,
+such as his <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1094202518302515?via%3Dihub">recent publication</a>
+and his <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3165726">ongoing work</a>.</p>
+<p>Notice that in the GDSGE code, asset <span class="math notranslate nohighlight">\(1\)</span> never pays dividend, i.e., <span class="math notranslate nohighlight">\(\sigma_1 = 0\)</span>.
+Therefore, in finite-horizon economies, by backward induction, its price is always equal to <span class="math notranslate nohighlight">\(0\)</span>.
+In order for the sequence of finite-horizon equilibria to converge to an infinite-horizon equilibrium in which asset <span class="math notranslate nohighlight">\(1\)</span> has positive price,
+we need to assume that agents derive utility from holding the asset in the very last period in each T-period economy:</p>
+<div class="math notranslate nohighlight">
+\[U_{h,T} = \left[c_{h,T}\right]^{\rho^h}+\zeta \left[\theta^h_{1,T}\right]^{\rho^h}.\]</div>
+<p>This assumption is a purely numerical device and becomes immaterial when <span class="math notranslate nohighlight">\(T\longrightarrow\infty\)</span>.</p>
+<div class="section" id="the-gmod-file">
+<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference download internal" download="" href="../../_downloads/886e011a7ca6ffabbc2752406aa4e1a1/BGKS2015.gmod"><code class="xref download docutils literal notranslate"><span class="pre">BGKS2015.gmod</span></code></a></p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">%Options</span>
+SolMaxIter=20000;
+PrintFreq=200;
+SaveFreq =200;
+USE_SPLINE=1;
+INTERP_ORDER=2;
+
+
+<span class="c">% Parameters</span>
+<span class="k">parameters</span> beta alpha1 alpha2 rho1 rho2 e1 e2 sigma1 sigma2 d1 d2 delta1 delta2 zeta
+zeta = 10; <span class="c">%utility from holding asset 1</span>
+<span class="c">% which only applies in the very last period of finite horizon economies</span>
+beta=0.977; <span class="c">%subjective discount factors</span>
+alpha1=0.5; <span class="c">% RA of agent 1 = 0.5</span>
+alpha2=-6; <span class="c">% RA of agent 2 = 7</span>
+rho1=0.5; <span class="c">% IES=2</span>
+rho2=0.5; <span class="c">% IES=2</span>
+e1=0.085; <span class="c">% agent 1 income share</span>
+e2=0.765; <span class="c">% agent 2 income share</span>
+sigma1=0.0; <span class="c">% Tree 1 dividend share, here =0. Tree 1 has no intrinsic value</span>
+sigma2=0.15; <span class="c">% Tree 2 dividend share</span>
+d1=sigma1; <span class="c">% Tree 1 dividend</span>
+d2=sigma2; <span class="c">% Tree 2 dividend</span>
+delta1=1; <span class="c">% Tree 1 collateralizability</span>
+delta2=0; <span class="c">% Tree 2 collateralizability</span>
+
+
+<span class="c">% Shock variables</span>
+<span class="k">var_shock</span> g; %aggregate endowment growth rate
+
+<span class="c">% Shocks and transition matrix</span>
+<span class="k">shock_num</span> = 4;
+g = [0.72, 0.967, 1.027, 1.087 ]; 
+<span class="k">shock_trans</span> = [
+  0.022, 0.054, 0.870, 0.054
+  0.022, 0.054, 0.870, 0.054
+  0.022, 0.054, 0.870, 0.054
+  0.022, 0.054, 0.870, 0.054
+  ];
+
+
+<span class="c">% State variables</span>
+<span class="k">var_state</span> w1;  % wealth share
+w1 = linspace(0,1,240);
+
+<span class="c">% Variable for the last period</span>
+<span class="k">var_policy</span>_init c1 c2 q1 theta11;
+
+<span class="k">inbound</span>_init theta11 0 1; %agent 1: tree 1 holding, constrained by no-short selling condition
+<span class="k">inbound</span>_init q1 0 100;
+<span class="k">inbound</span>_init c1 1e-10 1;
+<span class="k">inbound</span>_init c2 1e-10 1;
+
+<span class="k">var_aux</span>_init v1 v2;
+
+<span class="k">model_init;</span>
+  budget_1 = c1 + theta11*q1 - e1 - w1*(q1+ d1 +d2);
+  FOC1 = c1^(rho1-1)-q1*zeta*theta11^(rho1-1);
+  FOC2 = c2^(rho2-1)-q1*zeta*(1-theta11)^(rho2-1);  
+  v1 =(c1^(rho1)+ zeta*theta11^(rho1))^(1/(rho1));
+  v2 =(c2^(rho2)+ zeta*(1-theta11)^(rho2))^(1/(rho2));
+  <span class="k">equations;</span>
+    budget_1;
+    c1+c2-1;
+    FOC1;
+    FOC2;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="c">% Endogenous variables and bounds</span>
+<span class="k">var_policy</span> c1 c2 theta11 theta21 nphi1 nphi2 mu_theta11 mu_theta21 mu_theta12 mu_theta22 muphi1 muphi2 q1 q2 p w1n[4];
+<span class="k">inbound</span> c1 1e-10 1;
+<span class="k">inbound</span> c2 1e-10 1;
+<span class="k">inbound</span> theta11 0 1; %agent 1: tree 1 holding, constrained by no-short selling condition
+<span class="k">inbound</span> theta21 0 1; %agent 1: tree 2 holding, constrained by no-short selling condition
+<span class="k">inbound</span> nphi1 0 100;
+<span class="k">inbound</span> nphi2 0 100;
+<span class="k">inbound</span> mu_theta11 0 100; %multipliers on no-short selling constraint on trees
+<span class="k">inbound</span> mu_theta21 0 100;
+<span class="k">inbound</span> mu_theta12 0 100;
+<span class="k">inbound</span> mu_theta22 0 100;
+<span class="k">inbound</span> muphi1 0 100; %multipliers on the bond position
+<span class="k">inbound</span> muphi2 0 100; 
+<span class="k">inbound</span> q1 0 100;
+<span class="k">inbound</span> q2 0 100;
+<span class="k">inbound</span> p 0 100;
+inbound w1n -0.05 1.05 <span class="k">adaptive</span>(2);
+
+<span class="c">% Extra output variables</span>
+<span class="k">var_aux</span> phi1 phi2 theta12 theta22 v1 v2 collat_premium;
+
+<span class="c">% Interpolation objects</span>
+<span class="k">var_interp</span> c1p c2p v1p v2p q1p q2p pp;
+
+<span class="c">% Initialize using model_init</span>
+<span class="k">initial</span> c1p c1;
+<span class="k">initial</span> c2p c2;
+<span class="k">initial</span> v1p v1;
+<span class="k">initial</span> v2p v2;
+<span class="k">initial</span> q1p q1;
+<span class="k">initial</span> q2p 0;
+<span class="k">initial</span> pp 0.0;
+
+<span class="c">% Time iterations update</span>
+c1p = c1;
+c2p = c2;
+v1p = v1;
+v2p = v2;
+q1p = q1;
+q2p = q2;
+pp = p;
+
+<span class="c">% Variables to be used in simulation if SIMU_RESOLVE=1</span>
+<span class="k">var_output</span> c1 c2 v1 v2 theta11 theta21 theta12 theta22 phi1 phi2 q1 q2 p collat_premium w1n;
+
+<span class="k">model;</span>
+  <span class="c">% Interpolation</span>
+  [c1p&#39;,c2p&#39;, v1p&#39;, v2p&#39;, q1p&#39;, q2p&#39;, pp&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
+
+  <span class="c">% Expectations</span>
+  ev1 = <span class="k">GDSGE_EXPECT</span>{ (g&#39;*v1p&#39;)^(alpha1)};
+  ev2 = <span class="k">GDSGE_EXPECT</span>{ (g&#39;*v2p&#39;)^(alpha2)};
+  expuc1 = <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha1)*(v1p&#39;^(alpha1-rho1))*((c1p&#39;/c1)^(rho1-1))/g&#39;};
+  expuc2 = <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha2)*(v2p&#39;^(alpha2-rho2))*((c2p&#39;/c2)^(rho2-1))/g&#39;};
+  expucq1h= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha1)*(v1p&#39;^(alpha1-rho1))*((c1p&#39;/c1)^(rho1-1))*(q1p&#39; + d1)};
+  expucq1f= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha2)*(v2p&#39;^(alpha2-rho2))*((c2p&#39;/c2)^(rho2-1))*(q1p&#39; + d1)};
+  expucq2h= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha1)*(v1p&#39;^(alpha1-rho1))*((c1p&#39;/c1)^(rho1-1))*(q2p&#39; + d2)};
+  expucq2f= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha2)*(v2p&#39;^(alpha2-rho2))*((c2p&#39;/c2)^(rho2-1))*(q2p&#39; + d2)};
+  q1p_min = GDSGE_MIN{q1p&#39;};
+  q2p_min = GDSGE_MIN{q2p&#39;};
+  g_min = GDSGE_MIN{g&#39;};
+
+  <span class="c">% bond transformation</span>
+  theta12=1-theta11; <span class="c">%calculate the tree holding for agent 2</span>
+  theta22=1-theta21;
+  collat1= delta1*theta11*(q1p_min+d1) + delta2*theta21*(q2p_min+d2); <span class="c">%collateral values</span>
+  collat2= delta1*theta12*(q1p_min+d1) + delta2*theta22*(q2p_min+d2);
+  phi1 = (nphi1 - collat1)*g_min; <span class="c">%back out the bond holdings</span>
+  phi2 = (nphi2 - collat2)*g_min;
+
+  <span class="c">%Euler Equations</span>
+  EE1_q1= beta*(ev1^((rho1-alpha1)/(alpha1)))*expucq1h + muphi1*delta1*g_min*(q1p_min + d1)+ mu_theta11-q1;
+  EE1_q2= beta*(ev1^((rho1-alpha1)/(alpha1)))*expucq2h + muphi1*delta2*g_min*(q2p_min + d2)+ mu_theta21 - q2;
+  EE1_p= beta*(ev1^((rho1-alpha1)/(alpha1)))*expuc1 + muphi1 -p ;
+  EE2_q1= beta*(ev2^((rho2-alpha2)/(alpha2)))*expucq1f + muphi2*delta1*g_min*(q1p_min + d1)+ mu_theta12-q1;
+  EE2_q2= beta*(ev2^((rho2-alpha2)/(alpha2)))*expucq2f + muphi2*delta2*g_min*(q2p_min + d2)+ mu_theta22- q2;
+  EE2_p= beta*(ev2^((rho2-alpha2)/(alpha2)))*expuc2 + muphi2-p;
+
+  <span class="c">% Budget constraint agent 1</span>
+  budget_1 = c1 + p*phi1 + theta11*q1 + theta21*q2 - e1 - w1*( q1+ q2 +d1 +d2);
+
+  <span class="c">% Consistency</span>
+  w1_consis&#39; = ( theta11*(q1p&#39; + d1) + theta21*(q2p&#39; + d2) + phi1/g&#39; )/(q1p&#39; + q2p&#39; + d1 +d2) - w1n&#39;;
+
+  <span class="c">% Aux variables</span>
+  v1 =( c1^(rho1)+ beta* (ev1^((rho1)/(alpha1))))^(1/(rho1));
+  v2 =( c2^(rho2)+ beta* (ev2^((rho2)/(alpha2))))^(1/(rho2));
+  collat_premium = (q1 - q2*sigma1/sigma2)/(q1+q2);
+
+  <span class="k">equations;</span>
+    EE1_q1;
+    EE2_q1;
+    EE1_q2;
+    EE2_q2;
+    EE1_p;
+    EE2_p;
+    phi1+phi2;
+    nphi1*muphi1;
+    nphi2*muphi2;   
+    mu_theta11*theta11;
+    mu_theta21*theta21;
+    mu_theta12*theta12;
+    mu_theta22*theta22;
+    budget_1;
+    c1+c2-1;
+    w1_consis&#39;;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+  <span class="k">num_periods</span> = 10000;
+  <span class="k">num_samples</span> = 100;
+  <span class="k">initial</span> w1 0.5;
+  <span class="k">initial</span> shock 1;
+  <span class="k">var_simu</span> c1 c2 theta11 theta21 theta12 theta22 phi1 phi2 q1 q2 p collat_premium;
+  w1&#39; = w1n&#39;;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>In this example, agents <span class="math notranslate nohighlight">\(1\)</span> (<span class="math notranslate nohighlight">\(\alpha_1 = 0.5\)</span>) are less risk-averse than agents <span class="math notranslate nohighlight">\(2\)</span> (<span class="math notranslate nohighlight">\(\alpha_2 = -6\)</span>)
+so they tend to borrow to invest in the risky assets <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.
+Asset <span class="math notranslate nohighlight">\(1\)</span> nevers pays dividend (<span class="math notranslate nohighlight">\(\sigma_1=0\)</span>) but can be used as collateral to borrow (<span class="math notranslate nohighlight">\(\delta_1 = 1\)</span>).
+While asset <span class="math notranslate nohighlight">\(2\)</span> pays dividend (<span class="math notranslate nohighlight">\(\sigma_2&gt;0\)</span>) but cannot be used as collateral (<span class="math notranslate nohighlight">\(\delta_2=0\)</span>).
+In equilibrium, asset <span class="math notranslate nohighlight">\(1\)</span> still commands a positive price. Therefore, this is an asset price bubble arising from collateralizibity.
+The following figure shows the price of asset <span class="math notranslate nohighlight">\(1\)</span> relative to aggregate output as a function of agents <span class="math notranslate nohighlight">\(1\)</span>’s wealth share</p>
+<div class="math notranslate nohighlight">
+\[\omega^1_t = \frac{\theta^1_{1,t}(q_{1,t}+d_{1,t})+\theta^1_{2,t}(q_{2,t}+d_{2,t})+\phi^1_t}{q_{1,t}+d_{1,t}+q_{2,t}+d_{2,t}}.\]</div>
+<p>The price of asset <span class="math notranslate nohighlight">\(1\)</span> be as high as several times aggregate output and tends to be higher when agents <span class="math notranslate nohighlight">\(1\)</span> are relatively richer.</p>
+<a class="reference internal image-reference" href="../../_images/BGKS2015Bubble.png"><img alt="../../_images/BGKS2015Bubble.png" src="../../_images/BGKS2015Bubble.png" style="width: 560.0px; height: 420.0px;" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../Coleman1991/Coleman1991.html" class="btn btn-neutral float-left" title="Coleman (1991): A production economy with an income tax" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
