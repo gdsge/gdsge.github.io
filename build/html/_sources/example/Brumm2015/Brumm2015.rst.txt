@@ -4,7 +4,7 @@ Brumm et al (2015): A GDSGE model with asset price bubble
 
 `Brumm, Grill, Kubler, and Schmedders (2015) <https://onlinelibrary.wiley.com/doi/abs/10.1111/iere.12092>`_ 
 study a GDSGE model with multiple assets with different degrees of collateralizability. 
-They find that a long-lived asset which never pays dividend but can be used as collateral to borrow can have positive price in equilibrium.
+They find that a long-lived asset that never pays dividend but can be used as collateral to borrow can have strictly positive price in equilibrium.
 From the traditional asset-pricing point of view, this positive price is a bubble because the present discounted value of dividend from the asset is exactly zero.
 
 The model is similar to the ones in :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` and :ref:`Cao (2018) <Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity>`.
@@ -42,7 +42,7 @@ we need to assume that agents derive utility from holding the asset in the very 
 
 This assumption is a purely numerical device and becomes immaterial when :math:`T\rightarrow\infty`.
 To solve the last period problem, we use a *model_init* block that has a different system of equations
-than that of the main *model* block (see example :ref:`Cao and Nie (2017) <CaoNie2017>` 
+than that of the main *model* block (see :ref:`Cao and Nie (2017) <CaoNie2017>` 
 for another example using a different *model_init*).
 
 .. _BGKS2015:
