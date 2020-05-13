@@ -40,7 +40,10 @@ we need to assume that agents derive utility from holding the asset in the very 
 .. math::
     U_{h,T} = \left[c_{h,T}\right]^{\rho^h}+\zeta \left[\theta^h_{1,T}\right]^{\rho^h}.
 
-This assumption is a purely numerical device and becomes immaterial when :math:`T\longrightarrow\infty`.
+This assumption is a purely numerical device and becomes immaterial when :math:`T\rightarrow\infty`.
+To solve the last period problem, we use a *model_init* block that has a different system of equations
+than that of the main *model* block (see example :ref:`Cao and Nie (2017) <CaoNie2017>` 
+for another example using a different *model_init*).
 
 .. _BGKS2015:
 ===============

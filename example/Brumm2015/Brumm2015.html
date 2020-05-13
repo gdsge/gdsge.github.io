@@ -192,7 +192,10 @@ In order for the sequence of finite-horizon equilibria to converge to an infinit
 we need to assume that agents derive utility from holding the asset in the very last period in each T-period economy:</p>
 <div class="math notranslate nohighlight">
 \[U_{h,T} = \left[c_{h,T}\right]^{\rho^h}+\zeta \left[\theta^h_{1,T}\right]^{\rho^h}.\]</div>
-<p>This assumption is a purely numerical device and becomes immaterial when <span class="math notranslate nohighlight">\(T\longrightarrow\infty\)</span>.</p>
+<p>This assumption is a purely numerical device and becomes immaterial when <span class="math notranslate nohighlight">\(T\rightarrow\infty\)</span>.
+To solve the last period problem, we use a <em>model_init</em> block that has a different system of equations
+than that of the main <em>model</em> block (see example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>
+for another example using a different <em>model_init</em>).</p>
 <div class="section" id="the-gmod-file">
 <h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/886e011a7ca6ffabbc2752406aa4e1a1/BGKS2015.gmod"><code class="xref download docutils literal notranslate"><span class="pre">BGKS2015.gmod</span></code></a></p>
