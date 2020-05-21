@@ -3,7 +3,7 @@ Brumm et al (2015): A GDSGE model with asset price bubble
 *********************************************************
 
 `Brumm, Grill, Kubler, and Schmedders (2015) <https://onlinelibrary.wiley.com/doi/abs/10.1111/iere.12092>`_ 
-study a GDSGE model with multiple assets with different degrees of collateralizability. 
+study a GDSGE model with multiple assets with different degrees of collaterability. 
 They find that a long-lived asset that never pays dividend but can be used as collateral to borrow can have strictly positive price in equilibrium.
 From the traditional asset-pricing point of view, this positive price is a bubble because the present discounted value of dividend from the asset is exactly zero.
 
@@ -19,7 +19,7 @@ The agents can trade in shares of two long-lived assets (Lucas' trees), :math:`i
 
 In period :math:`t` (we suppress the explicit dependence on shock history :math:`z^t` to simplify the notation), asset :math:`i` pays dividend :math:`d_{i,t}` worth a fraction :math:`\sigma_i` of aggregate output and traded at price :math:`q_{i,t}`.
 The agents cannot short sell the long-lived asset but they can short sell the risk-free bond, i.e., borrow. In order to borrow in the risk-free bond, the agents must use the assets as collateral. The agents can pledge a fraction :math:`\delta_i` of the value of their asset :math:`i` holding as collateral.
-In particular, the colateral constraint takes the form:
+In particular, the collateral constraint takes the form:
 
 .. math::
 
@@ -27,7 +27,7 @@ In particular, the colateral constraint takes the form:
 
 where :math:`\phi^h,\theta^h_1,\theta^h_2` denote the bond holding, and asset :math:`1` and asset :math:`2` holdings of agents :math:`h`. 
 
-This model can be written and solved using our toolbox. This is done by `Hewei Shen <https://sites.google.com/site/heweiecon/>`_ from the University of Oklahoma, who generously contributed the GDSE code below.
+This model can be written and solved using our toolbox. This is done by `Hewei Shen <https://sites.google.com/site/heweiecon/>`_ from the University of Oklahoma, who generously contributed the GDSGE code below.
 Hewei's own research demonstrates the importance of GDSGE models in studying macro-prudential and fiscal policies in emerging market economies, 
 such as his `recent publication <https://www.sciencedirect.com/science/article/pii/S1094202518302515?via%3Dihub>`_ 
 and his `ongoing work <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3165726>`_. 
@@ -64,7 +64,7 @@ In this example, agents :math:`1` (:math:`\alpha_1 = 0.5`) are less risk-averse 
 so they tend to borrow to invest in the risky assets :math:`1` and :math:`2`. 
 Asset :math:`1` nevers pays dividend (:math:`\sigma_1=0`) but can be used as collateral to borrow (:math:`\delta_1 = 1`).
 While asset :math:`2` pays dividend (:math:`\sigma_2>0`) but cannot be used as collateral (:math:`\delta_2=0`).
-In equilibrium, asset :math:`1` still commands a positive price. Therefore, this is an asset price bubble arising from collateralizibity.
+In equilibrium, asset :math:`1` still commands a positive price. Therefore, this is an asset price bubble arising from collaterability.
 The following figure shows the price of asset :math:`1` relative to aggregate output as a function of agents :math:`1`'s wealth share
 
 .. math::

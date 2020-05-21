@@ -28,7 +28,7 @@ Second, the forecast future policy functions can be computed at the beginning of
 independent of equation solving during the iteration.
 A potential drawback is that the solution might not be as accurate because the consistency equations
 might not be satisfied with high precision. However, one might start with this alternative to obtain
-solution with resonable accucracy quickly then switch back to the our main approach to achieve higher accucracy.
+solution with reasonable accuracy quickly then switch back to the our main approach to achieve higher accuracy.
 
 
 The alternative approach is used by 
@@ -40,7 +40,7 @@ featuring both financial and non-financial sectors and a government. (The endoge
 The authors showed us that this approach can also be used to solve the model in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ 
 with reasonable accuracy and have kindly contributed this example to this website.
 
-Our GDGSGE toolbox can implement this approach and its gmod file for `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_'s model is given below.
+Our GDSGE toolbox can implement this approach and its gmod file for `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_'s model is given below.
 Notice that this approach requires some dampening in the update of policy and transition functions:
 
 .. literalinclude:: HL1996TFIter.gmod
@@ -52,7 +52,7 @@ As noted above, over the iterations, the consistency equations are not required 
 Therefore, once the algorithm converges for policy functions, 
 one can switch back to the original gmod file in 
 :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` with 
-the consistency equations in order to make sure that these equations are satisfied at higher precision.
+the consistency equations in order to make sure that these equations are satisfied with higher precision.
 
 ===============
 The gmod File
