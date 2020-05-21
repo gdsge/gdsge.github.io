@@ -507,7 +507,7 @@ pre_<span class="k">model;</span>
 First, since this alternative algorithm needs to evaluate the state transition function for the current state
 to get the future endogenous state variables that corresponds to each of the future realizations, one needs to include the state transition function
 <em>for each of the current state</em> as <em>var_interp</em>. For the current example, this means 8 state transition functions corresponding to each of the current state.
-Accordingly, these state transition functions need to be initiated, updated, and evaluated in the model block. This can be done compactly by using a macro for loop
+Accordingly, these state transition functions need to be initialized, updated, and evaluated in the model block. This can be done compactly by using a macro for loop
 in the gmod file, replicated below</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>53
 54
@@ -532,7 +532,7 @@ in the gmod file, replicated below</p>
 </pre></div>
 </div>
 <p>In particular, the #for … #end block will repeat the code in the block, and replace the iterator with each value in the value list in the header line starting with #for. And the above code block thus declares
-w1_future_1 to w1_future_8 as <em>var_interp</em> and initiate their values. Correspondingly, the following block specifies the transition for each of these state transition functions
+w1_future_1 to w1_future_8 as <em>var_interp</em> and initialize their values. Correspondingly, the following block specifies the updates for each of these state transition functions
 after a time step of the policy iteration</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>61
 62
@@ -543,7 +543,7 @@ after a time step of the policy iteration</p>
 #end
 </pre></div>
 </td></tr></table></div>
-<p>where <em>index_current</em> is a helper function to look up the corresponding current shock index from the returned <em>var_aux</em> w1n after each iteration. Therefore, <em>w1_future_1</em> indeed corresponds to
+<p>in which <em>index_current</em> is a helper function to look up the corresponding current shock index from the returned <em>var_aux</em> w1n after each iteration. Therefore, <em>w1_future_1</em> indeed corresponds to
 the state transition function for the current exogenous state indexed by 1, and so on.</p>
 <p>The other feature that maximizes the efficiency of the algorithm is by noticing that the future endogenous states are directly evaluated with the state transition function from the last iteration.
 Then the future endogenous states are used to evaluate necessary future variables using the policy function from the last iteration.
@@ -584,14 +584,14 @@ and then evaluates the future variables that are necessary in evaluating the cur
 Actually, the <em>pre_model</em> block does a bit more by also calculating the expectations that enter the inter-temporal equations, as they do not depend on current policy variables either.
 These expectation terms, combined with current policy variables, arrive at the inter-temporal equations (the Euler equations for bonds and shares) that enter the system, defined in the model block. It should be clear that any variables defined in the <em>pre_model</em> block can be directly used in the <em>model</em> block, and for obvious reasons, the <em>pre_model</em> block can not use any
 policy variables declared as <em>var_policy</em>. Evaluating the state transition functions and expectations beforehand has greatly improved the efficiency of this alternative algorithm (for the current example, it reduces the computation time by half), by avoiding redundant evaluations of objects that do not vary with <em>var_policy</em>.</p>
-<p>Generally, this alternative algorithm, using the most efficient implementation enabled by procedures above, delivers better performance in computation speed compared to the original algorithm
+<p>Generally, this alternative algorithm, using the most efficient implementation enabled by procedures above, delivers better performance in computation speed for a time step compared to the algorithm with consistency equations
 in <a class="reference internal" href="HL1996.html#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices"><span class="std std-ref">Heaton and Lucas (1996)</span></a>.
-The tradeoff in computation time is that the original algorithm solves a larger system of equations
+The tradeoff in computation time is that the algorithm with consistency equations solves a larger system of equations
 (by including the consistency equations and endogenous states as unknowns)
 and does not allow interpolating for future endogenous states and computing expectation beforehand,
 but this alternative algorithm constructs more <em>var_interp</em> and needs evaluate interpolation twice
 – first to get future endogenous states, then future policy variables.
-On the theoretical ground, the original algorithm finds solutions as the limit of a finite-horizon economy
+On the theoretical ground, the algorithm with consistency equations finds solutions as the limit of a finite-horizon economy
 and thus can also be used to solve stochastic transition paths.
 Besides, it converges more robustly without resorting to ad-hoc dampening.</p>
 </div>
