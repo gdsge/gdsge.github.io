@@ -31,7 +31,7 @@ might not be satisfied with high precision. However, one might start with this a
 solution with reasonable accuracy quickly then switch back to the our main approach to achieve higher accuracy.
 
 
-The alternative approach is used by 
+The alternative approach is developed by 
 `Vadim Elenev <https://www.vadimelenev.com>`_ (Johns Hopkins University), 
 `Tim Landvoigt <https://sites.google.com/view/timlandvoigt>`_ (University Pensylvania),
 and `Stijn Van Nieuwerburgh <https://www0.gsb.columbia.edu/faculty/svannieuwerburgh>`_ (Columbia University),
