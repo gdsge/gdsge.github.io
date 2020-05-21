@@ -250,6 +250,57 @@ Built-in functions
     :param expression: mathematical expression to be calculated
 
 
+==========================
+Macros
+==========================
+
+The toolbox supports a set of macros to facilitate developing. The macro is going to be first preprocessed before the file is passed into the parser.
+
+.. option:: #define
+
+    Define a literal that will be replaced in the preprocessing. For example
+    
+    .. code-block:: GDSGE
+        
+        #define N 8
+        shock_num = 8;
+        var_policy w1n[N];
+
+    The block is equivalent to 
+
+    .. code-block:: GDSGE
+
+        shock_num = 8;
+        var_policy w1n[8];
+
+    Currently, #define can only appear at the beginning of a gmod file, and cannot be "undefined".
+
+.. option:: #for ... #end 
+
+    Define a for block that will be expanded in the preprocessing. For example
+
+    .. code-block:: GDSGE
+
+        #define N 3
+        #for i=1:N
+            var_state K_#i;
+        #end
+
+    The block expands to
+
+    .. code-block:: GDSGE
+
+        var_state K_1;
+        var_state K_2;
+        var_state K_3;
+
+    Notice the iterator (*i* in the example) appears in the block preceded by a #.
+
+    This is convenient to write multi-agent models with agents sharing similar problems, or problems with equilibrium conditions that depend on the current
+    realization of exogenous states. See example :ref:`Heaton and Lucas with Transition Function Iterations <HL1996TFIter>`.
+
+    Currently the toolbox does not support nested #for loops.
+
 ======================================
 Options
 ======================================
@@ -264,6 +315,26 @@ Other options can be simply specified through a structure to overwrite existing 
     ...
     >> options.num_samples = 100;   % Change number of sample paths in simulations
     >> SimuRslt = simulate_modname(IterRslt,options);
+
+-------------------------
+Warm ups
+-------------------------
+
+.. option:: WarmUp
+
+    Pass a converged policy iteration solution (returned by the *iter* file) as the starting point of the policy iteration. For example,
+
+    .. code-block:: MATLAB
+
+        >> IterRslt = iter_modname;     % Solve the initial problem
+        >> options.WarmUp = IterRslt;   % Specify the starting point
+        >> options.alpha = 0.5;         % Change the parameter value
+        >> IterRslt = iter_modname(options)     % Starting from the previous converged solution (contained in *IterRslt*) and solving under the new parameter
+
+    The WarmUp passed in does not need to be solved over the same grids as the current problem, and thus can be used as starting point to refine 
+    solutions over finer grids. See example :ref:`Mendoza (2010) <Mendoza2010>`.
+
+    Default: Empty
 
 
 -------------------------
