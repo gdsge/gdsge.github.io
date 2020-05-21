@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Coleman (1991): A production economy with an income tax" href="../Coleman1991/Coleman1991.html" /> 
+    <link rel="prev" title="Heaton and Lucas (1996): Transition Function Iteration" href="../HL1996/HL1996TFIter.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../ContributedExamples.html">Contributed Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Coleman1991/Coleman1991.html">Coleman (1991): A production economy with an income tax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HL1996/HL1996TFIter.html">Heaton and Lucas (1996): Transition Function Iteration</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Brumm et al (2015): A GDSGE model with asset price bubble</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
@@ -168,7 +169,7 @@
   <div class="section" id="brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble">
 <h1>Brumm et al (2015): A GDSGE model with asset price bubble<a class="headerlink" href="#brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/iere.12092">Brumm, Grill, Kubler, and Schmedders (2015)</a>
-study a GDSGE model with multiple assets with different degrees of collateralizability.
+study a GDSGE model with multiple assets with different degrees of collaterability.
 They find that a long-lived asset that never pays dividend but can be used as collateral to borrow can have strictly positive price in equilibrium.
 From the traditional asset-pricing point of view, this positive price is a bubble because the present discounted value of dividend from the asset is exactly zero.</p>
 <p>The model is similar to the ones in <a class="reference internal" href="../HL1996/HL1996.html#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices"><span class="std std-ref">Heaton and Lucas (1996)</span></a> and <a class="reference internal" href="../Cao2018/Cao2018.html#cao-2018-speculation-and-wealth-distribution-under-beliefs-heterogeneity"><span class="std std-ref">Cao (2018)</span></a>.
@@ -178,11 +179,11 @@ It features two representative agents <span class="math notranslate nohighlight"
 <p>The agents can trade in shares of two long-lived assets (Lucas’ trees), <span class="math notranslate nohighlight">\(i\in\{1,2\}\)</span> and a risk-free bond.</p>
 <p>In period <span class="math notranslate nohighlight">\(t\)</span> (we suppress the explicit dependence on shock history <span class="math notranslate nohighlight">\(z^t\)</span> to simplify the notation), asset <span class="math notranslate nohighlight">\(i\)</span> pays dividend <span class="math notranslate nohighlight">\(d_{i,t}\)</span> worth a fraction <span class="math notranslate nohighlight">\(\sigma_i\)</span> of aggregate output and traded at price <span class="math notranslate nohighlight">\(q_{i,t}\)</span>.
 The agents cannot short sell the long-lived asset but they can short sell the risk-free bond, i.e., borrow. In order to borrow in the risk-free bond, the agents must use the assets as collateral. The agents can pledge a fraction <span class="math notranslate nohighlight">\(\delta_i\)</span> of the value of their asset <span class="math notranslate nohighlight">\(i\)</span> holding as collateral.
-In particular, the colateral constraint takes the form:</p>
+In particular, the collateral constraint takes the form:</p>
 <div class="math notranslate nohighlight">
 \[\phi^h_{t+1}+\sum_{i\in\{1,2\}}\theta^h_{i,t+1}\delta_i\min_{z^{t+1}|z^t}(q_{i,t+1}+d_{i,t+1})\geq0,\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi^h,\theta^h_1,\theta^h_2\)</span> denote the bond holding, and asset <span class="math notranslate nohighlight">\(1\)</span> and asset <span class="math notranslate nohighlight">\(2\)</span> holdings of agents <span class="math notranslate nohighlight">\(h\)</span>.</p>
-<p>This model can be written and solved using our toolbox. This is done by <a class="reference external" href="https://sites.google.com/site/heweiecon/">Hewei Shen</a> from the University of Oklahoma, who generously contributed the GDSE code below.
+<p>This model can be written and solved using our toolbox. This is done by <a class="reference external" href="https://sites.google.com/site/heweiecon/">Hewei Shen</a> from the University of Oklahoma, who generously contributed the GDSGE code below.
 Hewei’s own research demonstrates the importance of GDSGE models in studying macro-prudential and fiscal policies in emerging market economies,
 such as his <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1094202518302515?via%3Dihub">recent publication</a>
 and his <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3165726">ongoing work</a>.</p>
@@ -513,9 +514,9 @@ pp = p;
   expucq1f= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha2)*(v2p&#39;^(alpha2-rho2))*((c2p&#39;/c2)^(rho2-1))*(q1p&#39; + d1)};
   expucq2h= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha1)*(v1p&#39;^(alpha1-rho1))*((c1p&#39;/c1)^(rho1-1))*(q2p&#39; + d2)};
   expucq2f= <span class="k">GDSGE_EXPECT</span>{ (g&#39;^alpha2)*(v2p&#39;^(alpha2-rho2))*((c2p&#39;/c2)^(rho2-1))*(q2p&#39; + d2)};
-  q1p_min = GDSGE_MIN{q1p&#39;};
-  q2p_min = GDSGE_MIN{q2p&#39;};
-  g_min = GDSGE_MIN{g&#39;};
+  q1p_min = <span class="k">GDSGE_MIN</span>{q1p&#39;};
+  q2p_min = <span class="k">GDSGE_MIN</span>{q2p&#39;};
+  g_min = <span class="k">GDSGE_MIN</span>{g&#39;};
 
   <span class="c">% bond transformation</span>
   theta12=1-theta11; <span class="c">%calculate the tree holding for agent 2</span>
@@ -581,7 +582,7 @@ pp = p;
 so they tend to borrow to invest in the risky assets <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.
 Asset <span class="math notranslate nohighlight">\(1\)</span> nevers pays dividend (<span class="math notranslate nohighlight">\(\sigma_1=0\)</span>) but can be used as collateral to borrow (<span class="math notranslate nohighlight">\(\delta_1 = 1\)</span>).
 While asset <span class="math notranslate nohighlight">\(2\)</span> pays dividend (<span class="math notranslate nohighlight">\(\sigma_2&gt;0\)</span>) but cannot be used as collateral (<span class="math notranslate nohighlight">\(\delta_2=0\)</span>).
-In equilibrium, asset <span class="math notranslate nohighlight">\(1\)</span> still commands a positive price. Therefore, this is an asset price bubble arising from collateralizibity.
+In equilibrium, asset <span class="math notranslate nohighlight">\(1\)</span> still commands a positive price. Therefore, this is an asset price bubble arising from collaterability.
 The following figure shows the price of asset <span class="math notranslate nohighlight">\(1\)</span> relative to aggregate output as a function of agents <span class="math notranslate nohighlight">\(1\)</span>’s wealth share</p>
 <div class="math notranslate nohighlight">
 \[\omega^1_t = \frac{\theta^1_{1,t}(q_{1,t}+d_{1,t})+\theta^1_{2,t}(q_{2,t}+d_{2,t})+\phi^1_t}{q_{1,t}+d_{1,t}+q_{2,t}+d_{2,t}}.\]</div>
@@ -599,7 +600,7 @@ The following figure shows the price of asset <span class="math notranslate nohi
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../Coleman1991/Coleman1991.html" class="btn btn-neutral float-left" title="Coleman (1991): A production economy with an income tax" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../HL1996/HL1996TFIter.html" class="btn btn-neutral float-left" title="Heaton and Lucas (1996): Transition Function Iteration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

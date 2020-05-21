@@ -445,7 +445,7 @@ log_u2future = log_u2;
 
   <span class="c">% Agent 2&#39;s FOC wrt equity share:</span>
   log_u2n_R2n_gamma&#39; = log_u2n&#39;*(1-gamma2) - log(R2n&#39;)*gamma2;
-  min_log_u2n_R2n_gamma = GDSGE_MIN{log_u2n_R2n_gamma&#39;};
+  min_log_u2n_R2n_gamma = <span class="k">GDSGE_MIN</span>{log_u2n_R2n_gamma&#39;};
   log_u2n_R2n_gamma_shifted&#39; = log_u2n_R2n_gamma&#39; - min_log_u2n_R2n_gamma;
   eq2 = GDSGE_EXPECT{Re_n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)} / <span class="k">GDSGE_EXPECT</span>{Rf*exp(log_u2n_R2n_gamma_shifted&#39;)} - 1;
 
@@ -488,7 +488,7 @@ There are some transformations worth mentioning which facilitate solving the mod
 74
 75</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="c">% Agent 2&#39;s FOC wrt equity share:</span>
   log_u2n_R2n_gamma&#39; = log_u2n&#39;*(1-gamma2) - log(R2n&#39;)*gamma2;
-  min_log_u2n_R2n_gamma = GDSGE_MIN{log_u2n_R2n_gamma&#39;};
+  min_log_u2n_R2n_gamma = <span class="k">GDSGE_MIN</span>{log_u2n_R2n_gamma&#39;};
   log_u2n_R2n_gamma_shifted&#39; = log_u2n_R2n_gamma&#39; - min_log_u2n_R2n_gamma;
   eq2 = GDSGE_EXPECT{Re_n&#39;*exp(log_u2n_R2n_gamma_shifted&#39;)} / <span class="k">GDSGE_EXPECT</span>{Rf*exp(log_u2n_R2n_gamma_shifted&#39;)} - 1;
 </pre></div>

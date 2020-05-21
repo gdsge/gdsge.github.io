@@ -95,7 +95,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#matlab-interface">Matlab Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variable-declaration">Variable declaration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#built-in-functions">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#macros">Macros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#warm-ups">Warm ups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#policy-iterations">Policy iterations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simulation">Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#function-approximations">Function approximations</a></li>
@@ -452,6 +454,49 @@ Return all <em>var_interp</em> if omitted.</p></li>
 </dd></dl>
 
 </div>
+<div class="section" id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h2>
+<p>The toolbox supports a set of macros to facilitate developing. The macro is going to be first preprocessed before the file is passed into the parser.</p>
+<dl class="option">
+<dt id="option-#define">
+<code class="sig-name descname">#define</code><a class="headerlink" href="#option-#define" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a literal that will be replaced in the preprocessing. For example</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>#define N 8
+<span class="k">shock_num</span> = 8;
+<span class="k">var_policy</span> w1n[N];
+</pre></div>
+</div>
+<p>The block is equivalent to</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">shock_num</span> = 8;
+<span class="k">var_policy</span> w1n[8];
+</pre></div>
+</div>
+<p>Currently, #define can only appear at the beginning of a gmod file, and cannot be “undefined”.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="option-#for...#end">
+<code class="sig-name descname">#for ... #end</code><a class="headerlink" href="#option-#for...#end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a for block that will be expanded in the preprocessing. For example</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>#define N 3
+#for i=1:N
+    <span class="k">var_state</span> K_#i;
+#end
+</pre></div>
+</div>
+<p>The block expands to</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">var_state</span> K_1;
+<span class="k">var_state</span> K_2;
+<span class="k">var_state</span> K_3;
+</pre></div>
+</div>
+<p>Notice the iterator (<em>i</em> in the example) appears in the block preceded by a #.</p>
+<p>This is convenient to write multi-agent models with agents sharing similar problems, or problems with equilibrium conditions that depend on the current
+realization of exogenous states. See example <a class="reference internal" href="../example/HL1996/HL1996TFIter.html#hl1996tfiter"><span class="std std-ref">Heaton and Lucas with Transition Function Iterations</span></a>.</p>
+<p>Currently the toolbox does not support nested #for loops.</p>
+</dd></dl>
+
+</div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <p>An option named in all caps (e.g., USE_SPLINE) requires recompiling (via a local or remote compiler) when its value is changed.
@@ -462,6 +507,24 @@ Other options can be simply specified through a structure to overwrite existing 
 <span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">num_samples</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>   <span class="c">% Change number of sample paths in simulations</span>
 <span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_modname</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">,</span><span class="n">options</span><span class="p">);</span>
 </pre></div>
+</div>
+<div class="section" id="warm-ups">
+<h3>Warm ups<a class="headerlink" href="#warm-ups" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="option-WarmUp">
+<code class="sig-name descname">WarmUp</code><a class="headerlink" href="#option-WarmUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pass a converged policy iteration solution (returned by the <em>iter</em> file) as the starting point of the policy iteration. For example,</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_modname</span><span class="p">;</span>     <span class="c">% Solve the initial problem</span>
+<span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">WarmUp</span> <span class="p">=</span> <span class="n">IterRslt</span><span class="p">;</span>   <span class="c">% Specify the starting point</span>
+<span class="o">&gt;&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">alpha</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>         <span class="c">% Change the parameter value</span>
+<span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_modname</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>     <span class="c">% Starting from the previous converged solution (contained in *IterRslt*) and solving under the new parameter</span>
+</pre></div>
+</div>
+<p>The WarmUp passed in does not need to be solved over the same grids as the current problem, and thus can be used as starting point to refine
+solutions over finer grids. See example <a class="reference internal" href="../example/Mendoza2010/Mendoza2010.html#mendoza2010"><span class="std std-ref">Mendoza (2010)</span></a>.</p>
+<p>Default: Empty</p>
+</dd></dl>
+
 </div>
 <div class="section" id="policy-iterations">
 <h3>Policy iterations<a class="headerlink" href="#policy-iterations" title="Permalink to this headline">¶</a></h3>

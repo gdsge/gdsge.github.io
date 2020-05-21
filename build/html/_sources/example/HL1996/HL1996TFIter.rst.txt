@@ -14,19 +14,19 @@ and future realizations of stock price, dividend, and aggregate growth rate:
     \omega_{t+1}^{1}=\frac{(\hat{p}_{t+1}^{s}+\hat{d}_{t+1})s_{t+1}^{1}+\frac{\hat{b}_{t+1}^{1}}{\gamma^a_{t+1}}}{\hat{p}_{t+1}^{s}+\hat{d}_{t+1}}.
 
 
-An alternative approach to the implicit law of motion is, in each policy function iteration, to conjecture 
-a transition function for the endogenous state variable and use it to forecast future policy variables (consumption, stock price, etc.).
+An alternative approach to the implicit law of motion is, in each policy function iteration, to start from a conjectured transition function 
+for the endogenous state variable and use it to forecast future policy variables (consumption, stock price, etc.).
 These forecasts can then be used to solve for current policy variables using the same system of equilibrium conditions (excluding the consistency equations).
-The solution of the current policy variables can also be used to update the conjectured transition function for the next policy function iteration.
+At the end of each iteration, the conjectured transition function is updated using the solution of the current policy variables.
 In a way, the approach iterates over both policy and transition functions. 
-Therefore, to differentiate from the standard policy function iteration, we call this method transition function iteration.
+Therefore, to differentiate from the standard policy function iteration, we call this method *transition function iteration*.
 
 There are two advantages of this alternative approach compared to our main policy function iteration approach 
 with consistency equations.
 First, there are a fewer equations to be solved in each iteration.
-Second, the forecast future policy functions can be computed at the beginning of each iteration, 
+Second, the forecasts for future policy variables can be computed at the beginning of each iteration, 
 independent of equation solving during the iteration.
-A potential drawback is that the solution might not be as accurate because the consistency equations
+A potential drawback is that the solution might not be as accurate as the original method because the consistency equations
 might not be satisfied with high precision. However, one might start with this alternative to obtain
 solution with reasonable accuracy quickly then switch back to the our main approach to achieve higher accuracy.
 
@@ -35,12 +35,19 @@ The alternative approach is used by
 `Vadim Elenev <https://www.vadimelenev.com>`_ (Johns Hopkins University), 
 `Tim Landvoigt <https://sites.google.com/view/timlandvoigt>`_ (University Pensylvania),
 and `Stijn Van Nieuwerburgh <https://www0.gsb.columbia.edu/faculty/svannieuwerburgh>`_ (Columbia University),
-to solve `their model with richer empirical content <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2748230>`_, 
-featuring both financial and non-financial sectors and a government. (The endogenous state variables with implicit laws of motion includes aggregate producers' leverage and aggregate banks' net-worth.)
-The authors showed us that this approach can also be used to solve the model in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ 
-with reasonable accuracy and have kindly contributed this example to this website.
+to solve `their model with rich empirical content <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2748230>`_, 
+featuring both financial and non-financial sectors and a government. (The endogenous state variables with implicit laws of motion include aggregate producers' leverage and aggregate banks' net-worth.)
+The model captures salient features of macro-finance dynamics during the Great Recessions and 
+has important implications on bank capital regulation.
 
-Our GDSGE toolbox can implement this approach and its gmod file for `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_'s model is given below.
+The authors showed us that this approach can also be used to solve the model in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ 
+with reasonable accuracy and have kindly contributed this example to this website. Our GDSGE toolbox can implement this approach and its gmod file for 
+`Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_'s model is given below.
+We design two features of the toolbox, macros for loop and *pre-model* block, to 
+faciliate the implementation of the approach and to make the most of its computation economizing property.
+We discuss these features in more detail below.
+
+
 Notice that this approach requires some dampening in the update of policy and transition functions:
 
 .. literalinclude:: HL1996TFIter.gmod
@@ -48,11 +55,19 @@ Notice that this approach requires some dampening in the update of policy and tr
     :lineno-start: 57
     :language: GDSGE
 
-As noted above, over the iterations, the consistency equations are not required to be satisfied. 
+As also noted above, over the iterations, the consistency equations are not required to be satisfied
+so they are excluded from the system of equilibrium conditions in the gmod file:
+
+.. literalinclude:: HL1996TFIter.gmod
+    :lines: 99-111
+    :lineno-start: 99
+    :language: GDSGE
+
 Therefore, once the algorithm converges for policy functions, 
 one can switch back to the original gmod file in 
 :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` with 
 the consistency equations in order to make sure that these equations are satisfied with higher precision.
+However, the new converged solution would not differ significantly from the old one.
 
 .. _HL1996TFIter:
 ===============
@@ -65,7 +80,7 @@ The gmod File
     :linenos:
     :language: GDSGE
 
-Notice to implement this alternative algorithm, the gmod code uses two features of the toolbox on top of the original example with consistency equations.
+Notice that, to implement this alternative algorithm, the gmod code uses two features of the toolbox on top of the original example with consistency equations.
 First, since this alternative algorithm needs to evaluate the state transition function for the current state
 to get the future endogenous state variables that corresponds to each of the future realizations, one needs to include the state transition function
 *for each of the current state* as *var_interp*. For the current example, this means 8 state transition functions corresponding to each of the current state.
@@ -121,8 +136,16 @@ Actually, the *pre_model* block does a bit more by also calculating the expectat
 These expectation terms, combined with current policy variables, arrive at the inter-temporal equations (the Euler equations for bonds and shares) that enter the system, defined in the model block. It should be clear that any variables defined in the *pre_model* block can be directly used in the *model* block, and for obvious reasons, the *pre_model* block can not use any 
 policy variables declared as *var_policy*. Evaluating the state transition functions and expectations beforehand has greatly improved the efficiency of this alternative algorithm (for the current example, it reduces the computation time by half), by avoiding redundant evaluations of objects that do not vary with *var_policy*.
 
-Generally, this alternative algorithm, using the most efficient implementation enabled by procedures above, delivers better performance in computation speed compared to the original algorithm in :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>`. The tradeoff in computation time is that the original algorithm solves a larger system of equations (by including the consistency equations and endogenous states as unknowns) and does not allow interpolating for future endogenous states and computing expectation beforehand, but this alternative algorithm constructs more *var_interp* and needs evaluate interpolation twice---first to get future endogenous states, then future policy variables. 
-On the theoretical ground, the original algorithm finds solutions as the limit of a finite-horizon economy and thus can be used to solve e.g., stochastic transition paths. Besides, it converges more robustly without resorting to e.g., dampening parameters.
+Generally, this alternative algorithm, using the most efficient implementation enabled by procedures above, delivers better performance in computation speed compared to the original algorithm 
+in :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>`. 
+The tradeoff in computation time is that the original algorithm solves a larger system of equations 
+(by including the consistency equations and endogenous states as unknowns) 
+and does not allow interpolating for future endogenous states and computing expectation beforehand, 
+but this alternative algorithm constructs more *var_interp* and needs evaluate interpolation twice 
+-- first to get future endogenous states, then future policy variables. 
+On the theoretical ground, the original algorithm finds solutions as the limit of a finite-horizon economy 
+and thus can also be used to solve stochastic transition paths. 
+Besides, it converges more robustly without resorting to ad-hoc dampening.
 
 
 
