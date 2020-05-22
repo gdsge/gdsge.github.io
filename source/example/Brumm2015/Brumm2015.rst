@@ -30,7 +30,7 @@ where :math:`\phi^h,\theta^h_1,\theta^h_2` denote the bond holding, and asset :m
 This model can be written and solved using our toolbox. This is done by `Hewei Shen <https://sites.google.com/site/heweiecon/>`_ from the University of Oklahoma, who generously contributed the GDSGE code below.
 Hewei's own research demonstrates the importance of GDSGE models in studying macro-prudential and fiscal policies in emerging market economies, 
 such as his `recent publication <https://www.sciencedirect.com/science/article/pii/S1094202518302515?via%3Dihub>`_ 
-and his `ongoing work <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3165726>`_. 
+and his `ongoing work <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3165726>`_ with Siming Liu from Shanghai University of Finance and Economics. 
 
 Notice that in the GDSGE code, asset :math:`1` never pays dividend, i.e., :math:`\sigma_1 = 0`.
 Therefore, in finite-horizon economies, by backward induction, its price is always equal to :math:`0`.
