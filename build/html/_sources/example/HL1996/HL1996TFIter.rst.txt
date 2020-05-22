@@ -33,7 +33,7 @@ solution with reasonable accuracy quickly then switch back to the our main appro
 
 The alternative approach is developed by 
 `Vadim Elenev <https://www.vadimelenev.com>`_ (Johns Hopkins University), 
-`Tim Landvoigt <https://sites.google.com/view/timlandvoigt>`_ (University Pennsylvania),
+`Tim Landvoigt <https://sites.google.com/view/timlandvoigt>`_ (University Pensylvania),
 and `Stijn Van Nieuwerburgh <https://www0.gsb.columbia.edu/faculty/svannieuwerburgh>`_ (Columbia University),
 to solve `their model with rich empirical content <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2748230>`_, 
 featuring both financial and non-financial sectors and a government. (The endogenous state variables with implicit laws of motion include aggregate producers' leverage and aggregate banks' net-worth.)
