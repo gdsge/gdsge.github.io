@@ -60,7 +60,7 @@ c1_future = c1_future*damp + (1-damp)*c1;
 c2_future = c2_future*damp + (1-damp)*c2;
 index_current = @(vec,current_idx) squeeze(vec(:,current_idx,:));
 #for i=1:N
-  w1_future_#i = w1_future_1*damp + (1-damp)*index_current(reshape(w1n,[shock_num GNDSGE_SIZE]),#i);
+  w1_future_#i = w1_future_#i*damp + (1-damp)*index_current(reshape(w1n,[shock_num GDSGE_SIZE]),#i);
 #end
 
 pre_model;
