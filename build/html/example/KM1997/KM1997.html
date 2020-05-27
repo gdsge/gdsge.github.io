@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kiyotaki and Moore (1997): Credit Cycles &mdash; GDSGE Homepage</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Brumm et al (2015): A GDSGE model with asset price bubble" href="../Brumm2015/Brumm2015.html" />
+    <link rel="prev" title="Heaton and Lucas (1996): Transition Function Iteration" href="../HL1996/HL1996TFIter.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ContributedExamples.html">Contributed Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Coleman1991/Coleman1991.html">Coleman (1991): A production economy with an income tax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../HL1996/HL1996TFIter.html">Heaton and Lucas (1996): Transition Function Iteration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kiyotaki and Moore (1997): Credit Cycles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Brumm2015/Brumm2015.html">Brumm et al (2015): A GDSGE model with asset price bubble</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
+        
+      <li>Kiyotaki and Moore (1997): Credit Cycles</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kiyotaki-and-moore-1997-credit-cycles">
+<h1>Kiyotaki and Moore (1997): Credit Cycles<a class="headerlink" href="#kiyotaki-and-moore-1997-credit-cycles" title="Permalink to this headline">¶</a></h1>
+<p>In <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">their seminal 1997 paper</a>,
+Kiyotaki and Moore put forth a model of credit cycles in which movements in asset prices interacts
+with the real side of the economy and produce amplified and persistent effects of shocks to the economy.</p>
+<p>Their original model is relatively simmple with risk-neutral agents and one-time unanciptated MIT shocks.
+<a class="reference external" href="https://www.linkedin.com/in/peter-paz-365311125/">Peter Frank Paz</a>, a Ph.D. candidate from New York University
+proposes a more modern extension of the model with risk-averse agents and recurrent aggregate shocks.
+The model fits squarely in GDSGE framework and Peter kindly contributed his gmod file below.</p>
+<p>As in  <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki and Moore (1997)</a>
+the economy consists of two production sectors, farming and gathering, with population
+of each sector normalized to one. The farmers are more productive, but are less patient than the gatherers
+and thus they tend to borrow from the gatherers in equilibrium.</p>
+<p>A farmer solves</p>
+<div class="math notranslate nohighlight">
+\[\max_{\{x_t,k_t,b_t\}}\mathbb{E}_{0}\left[\sum_{t}\beta^{t}\frac{\left(x_{t}\right)^{1-\sigma}}{1-\sigma}\right],\]</div>
+<p>subject to the budget constraint:</p>
+<div class="math notranslate nohighlight" id="equation-eq-budget-farmer">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-budget-farmer" title="Permalink to this equation">¶</a></span>\[x_{t}+q_{t}k_{t}+\frac{b_{t}}{R_{t}}=y_{t}+q_{t}k_{t-1}+b_{t-1},\]</div>
+<p>in which her resource is from production</p>
+<div class="math notranslate nohighlight">
+\[y_{t}=A_{t}\left(a+c\right)k_{t-1},\]</div>
+<p>the value of land holding <span class="math notranslate nohighlight">\(q_{t}k_{t-1}\)</span>, and bond holding <span class="math notranslate nohighlight">\(b_{t-1}\)</span>.
+The aggregate TFP shock <span class="math notranslate nohighlight">\(A_{t}\)</span> follows a Markov process. She allocates
+her resource among consumption <span class="math notranslate nohighlight">\(x_{t}\)</span>, as well as land and bond
+holding into the next period. As in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki and Moore (1997)</a>, here
+portion <span class="math notranslate nohighlight">\(c\)</span> of the output is non-tradable and has to be consumed,
+i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-eq-nontradable-constraint-km">
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-nontradable-constraint-km" title="Permalink to this equation">¶</a></span>\[x_{t}\geq A_{t}ck_{t-1},\]</div>
+<p>and only the remaining portion <span class="math notranslate nohighlight">\(a\)</span> is tradable. She is also subject
+to the following collateral constraint:</p>
+<div class="math notranslate nohighlight" id="equation-eq-collateral-constraint-km">
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-collateral-constraint-km" title="Permalink to this equation">¶</a></span>\[b_{t}+\theta\underline{q}_{t+1}k_{t}\geq0.\]</div>
+<p>in which <span class="math notranslate nohighlight">\(\underline{q}_{t+1}\)</span> is the lowest possible land price
+in the next period. In <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki and Moore (1997)</a>
+<span class="math notranslate nohighlight">\(\theta\)</span> is set at <span class="math notranslate nohighlight">\(1\)</span> but we allow <span class="math notranslate nohighlight">\(\theta\)</span> to be smaller than <span class="math notranslate nohighlight">\(1\)</span> in this extension
+so that the collateral constraint binds with positive probability in the ergodic distribution of the model dynamics.</p>
+<p>Similarly, a gatherer solves</p>
+<div class="math notranslate nohighlight">
+\[\max_{\{x_{t}^{\prime},k_{t}^{\prime},b_{t}^{\prime}\}}\mathbb{E}_{0}\left[\sum_{t}\left(\beta^{\prime}\right)^{t}\frac{\left(x_{t}^{\prime}\right)^{1-\sigma}}{1-\sigma}\right],\]</div>
+<p>subject to the budget constraint,</p>
+<div class="math notranslate nohighlight" id="equation-eq-budget-gatherer">
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-budget-gatherer" title="Permalink to this equation">¶</a></span>\[x_{t}^{\prime}+q_{t}k_{t}^{\prime}+\frac{b_{t}^{\prime}}{R_{t}}=y_{t}^{\prime}+q_{t}k_{t-1}^{\prime}+b_{t-1}^{\prime},\]</div>
+<p>in which her production function is concave,</p>
+<div class="math notranslate nohighlight">
+\[y_{t}^{\prime}=\underline{A}_{t}\left(k_{t-1}^{\prime}\right)^{\alpha}.\]</div>
+<p>We assume the gatherers’ productivity <span class="math notranslate nohighlight">\(\underline{A}_{t}\)</span> is inferior,
+and equals to a fixed proportion of <span class="math notranslate nohighlight">\(A_{t}\)</span>, i.e., <span class="math notranslate nohighlight">\(\underline{A}_{t}=\delta A_{t}\)</span>
+with <span class="math notranslate nohighlight">\(\delta&lt;1\)</span>.</p>
+<p>Let us denote the multipliers on the farmers’ budget constraint <a class="reference internal" href="#equation-eq-budget-farmer">(15)</a>
+as <span class="math notranslate nohighlight">\(\beta^{t}\lambda_{t}\)</span>,  and on the tradability constraint <a class="reference internal" href="#equation-eq-nontradable-constraint-km">(16)</a>
+as <span class="math notranslate nohighlight">\(\beta^{t}\eta_{t}\)</span>, and on the collateral constraint <a class="reference internal" href="#equation-eq-collateral-constraint-km">(17)</a> as
+<span class="math notranslate nohighlight">\(\beta^{t}\mu_{t}\)</span>. Because the farmers and gatherers’ optimization problems are
+globall concave maximization problems, the following first order conditions
+and complementary-slackness conditions are neccessary and sufficient for optimality:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(x_{t}\right)^{-\sigma}-\lambda_{t}+\eta_{t} &amp; =0,\\
+\eta_{t}\left(x_{t}-ck_{t-1}\right) &amp; =0,\\
+-q_{t}\lambda_{t}+\theta\underline{q}_{t+1}\mu_{t}+\beta\mathbb{E}_{t}\left[ \left(q_{t+1}+a+c\right)\lambda_{t+1}-c\eta_{t+1}\right]&amp;=0,\\
+-\frac{1}{R_{t}}\lambda_{t}+\mu_{t}+\beta\mathbb{E}_{t}\left[ \lambda_{t+1}\right]&amp;=0,\\
+\mu_{t}\left(\theta\underline{q}_{t+1}k_{t}+b_{t}\right)&amp;=0,\\
+\beta^{\prime}\mathbb{E}_{t}\left[ \left(\frac{q_{t+1}+\alpha\left(k_{t}^{\prime}\right)^{\alpha-1}}{q_{t}}\right)\left(\frac{x_{t+1}^{\prime}}{x_{t}^{\prime}}\right)^{-\sigma}\right]&amp;=1,\\
+\beta^{\prime}R_{t}\mathbb{E}_{t}\left[ \left(\frac{x_{t+1}^{\prime}}{x_{t}^{\prime}}\right)^{-\sigma}\right]&amp;=1.\end{split}\]</div>
+<p>The total land supply is fixed at <span class="math notranslate nohighlight">\(\overline{K}\)</span>, and the market
+clearing conditions are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}b_{t}+b_{t}^{\prime} &amp; =0,\\
+k_{t}+k_{t}^{\prime} &amp; = \overline{K},\\
+x_{t}+x_{t}^{\prime} &amp; = Y_t = A_{t}\left(a+c\right)k_{t-1}+\underline{A}_{t}\left(k_{t-1}^{\prime}\right)^{\alpha}.\end{split}\]</div>
+<p>We define recursive equilibrium over two endogenous state variables.
+The first-one is the farmers’ land-holding <span class="math notranslate nohighlight">\(k_{t-1}\)</span>.
+The second one is the farmers’ financial wealth share defined as</p>
+<div class="math notranslate nohighlight">
+\[\omega_{t}=\frac{q_{t}k_{t-1}+b_{t-1}}{q_{t}\overline{K}}.\]</div>
+<p>We use <span class="math notranslate nohighlight">\(\left(k_{t-1},\omega_{t}\right)\)</span>
+as the endogenous state variables, instead of <span class="math notranslate nohighlight">\(\left(k_{t-1},b_{t-1}\right)\)</span>
+in order to avoid multiple equilibria problems.
+(The multiple equilibria problem in a similar setting is studied previously
+in <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3531341">Cao, Luo and Nie (2019)</a>.)</p>
+<div class="section" id="the-gmod-file">
+<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference download internal" download="" href="../../_downloads/a24b306267c0d79ff0a92117ae387aa1/KM1997.gmod"><code class="xref download docutils literal notranslate"><span class="pre">KM1997.gmod</span></code></a></p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">%========================================================================================</span>
+<span class="c">%   PARAMETERS</span>
+<span class="c">%========================================================================================</span>
+<span class="k">parameters</span> a c alower sigma betaF betaG alpha Kbar theta;
+a = 0.7;        <span class="c">% tradable productivity of farmer</span>
+c = 0.3;      <span class="c">% nontradable productivity of farmer</span>
+alower=0.9;    <span class="c">% tradable productivity of gatherer</span>
+
+<span class="c">% preferences</span>
+sigma=1;      <span class="c">% risk aversion coefficient</span>
+betaF=0.95;   <span class="c">% discount factor of farmer</span>
+betaG=0.98;   <span class="c">% discount factor of gatherer</span>
+
+<span class="c">% technology</span>
+alpha=0.7;    <span class="c">% coefficient of gatherer&#39;s production</span>
+Kbar=1;       <span class="c">% fixed capital stock</span>
+
+<span class="c">% credit</span>
+theta=0.9;
+
+SaveFreq = 200;
+PrintFreq = 50;
+INTERP_ORDER = 2;
+EXTRAP_ORDER = 2;
+SIMU_RESOLVE=0; 
+SIMU_INTERP=1;  <span class="c">% Use interpolation for fast simulate</span>
+IterSaveAll = 0;
+
+<span class="c">%========================================================================================</span>
+<span class="c">%  ENDOGENOUS STATES</span>
+<span class="c">%========================================================================================</span>
+<span class="k">var_state</span> kF omega;
+kFPts=41;
+kFMin=0.02;
+kFMax=0.95;
+drift_K = 0.01;
+kF=linspace(kFMin,kFMax,kFPts);
+
+omegaPts=40;
+omegaMin=0;
+omegaMax=0.2;
+omega=linspace(omegaMin,omegaMax,omegaPts);
+
+<span class="c">%========================================================================================</span>
+<span class="c">%   SHOCKS</span>
+<span class="c">%========================================================================================</span>
+
+<span class="k">var_shock</span> A;
+
+<span class="k">shock_num</span>=3;
+A = [0.99 1 1.01];
+shock_trans = ones(shock_num,shock_num)/<span class="k">shock_num</span>;
+
+[KMesh,omegaMesh] = ndgrid(kF,omega);
+
+
+<span class="c">%========================================================================================</span>
+<span class="c">% STATE TRANSITION FUNCTION: INTERPOLATION Variables subset of Endogenous variables</span>
+<span class="c">%========================================================================================</span>
+<span class="k">var_policy</span>_init nxF xG eta kFpol R q nbFpol muF;
+<span class="k">inbound</span>_init nxF         0  10;
+<span class="k">inbound</span>_init xG          0  10;
+<span class="k">inbound</span>_init eta         0  1;
+<span class="k">inbound</span>_init kFpol       0  Kbar;
+<span class="k">inbound</span>_init R           0 10;
+<span class="k">inbound</span>_init q           0 10;
+<span class="k">inbound</span>_init nbFpol      0 10;      % Transformaion nbFpol = bFpol + theta*q*kFpol
+<span class="k">inbound</span>_init muF          0 1;
+
+<span class="k">var_aux</span>_init loglambdaF loglambdaG logaux;
+
+<span class="c">% This corresponds to the T-1 problem</span>
+<span class="k">model_init;</span>
+    kG     =  Kbar-kF;                        <span class="c">% market clearing for capital state</span>
+
+    <span class="c">% Backout bFpol</span>
+    kGpol  =  Kbar-kFpol;                     <span class="c">% market clearing for capital policy</span>
+    bFpol = nbFpol;
+    bGpol = -bFpol;         <span class="c">% market clearing</span>
+
+    <span class="c">% Backout xG and marginal utility</span>
+    Y  =  A*(a+c)*kF + alower*A*kG^alpha;  <span class="c">% aggregate output</span>
+    xF = nxF + c*A*kF;  <span class="c">% consumption of farmer</span>
+
+    lambdaF = xF^(-sigma)/(1-eta);   <span class="c">%multiplier for nontradable is eta*lambda</span>
+    lambdaG = xG^(-sigma);
+    loglambdaF = log(lambdaF);
+    loglambdaG = log(lambdaG);    
+    aux = (q+A*(a+c)-c*A*eta)*lambdaF;
+    logaux = log(aux);
+
+    <span class="c">% In the last period, people consume everything, and qT=0</span>
+    xF_next =  (a+c)*kFpol + bFpol;
+    xG_next  = alower*kGpol^alpha + bGpol;
+    lambdaF_next = xF_next^(-sigma);
+    lambdaG_next = xG_next^(-sigma);
+
+    foc_bondG   = 1 - R*betaG*lambdaG_next / lambdaG;
+    foc_kG      = q   - betaG*lambdaG_next*alower*alpha*kGpol^(alpha-1)/lambdaG;
+
+    foc_bondF   = 1  -  R*betaF*lambdaF_next / lambdaF   - muF;
+    foc_kF      = q  -  betaF*(a+c)*lambdaF_next/lambdaF;
+    slack_bF    = muF*nbFpol;
+    slack_xF    = eta*nxF;
+    budgetF     = q*kFpol +bFpol/R + xF - A*(a+c)*kF - omega*q*Kbar;
+    MC_Y = Y - xF - xG;
+
+    <span class="k">equations;</span>
+      foc_bondG;
+      foc_kG; 
+      foc_bondF;
+      foc_kF;
+      slack_bF;
+      slack_xF;
+      budgetF;
+      MC_Y;
+    <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">var_interp</span> loglambdaF_interp loglambdaG_interp logaux_interp q_interp;
+<span class="c">%Time iteration update: update of the transition function after  a time iterarion step need to be specified.</span>
+loglambdaF_interp = loglambdaF;
+loglambdaG_interp = loglambdaG;
+logaux_interp     = logaux;
+q_interp       = q;
+
+<span class="k">initial</span> loglambdaF_interp loglambdaF;
+<span class="k">initial</span> loglambdaG_interp loglambdaG;
+<span class="k">initial</span> logaux_interp logaux;
+<span class="k">initial</span> q_interp q;
+
+<span class="c">%========================================================================================</span>
+<span class="c">%   Endogenous variables or policy  variables: name, and bounds</span>
+<span class="c">%========================================================================================</span>
+<span class="k">var_policy</span> nxF xG eta kFpol R q nbFpol muF omega_next[3];
+<span class="k">inbound</span> nxF         0  2;
+<span class="k">inbound</span> xG          0  2;
+<span class="k">inbound</span> eta         0  1;
+<span class="k">inbound</span> kFpol       0  Kbar;
+inbound R           0  1.5 <span class="k">adaptive</span>(1.5);
+inbound q           0 10 <span class="k">adaptive</span>(1.5);
+inbound nbFpol      0 10 <span class="k">adaptive</span>(1.5);      % Transformaion nbFpol = bFpol + theta*q*kFpol
+<span class="k">inbound</span> muF         0 1;
+<span class="k">inbound</span> omega_next  0 1;
+
+<span class="c">%====================================================</span>
+<span class="c">% Other equilibrium variables</span>
+<span class="c">%====================================================</span>
+<span class="k">var_aux</span> xF loglambdaF loglambdaG logaux bFpol Y bF; %qlow_next
+<span class="k">var_output</span> xF xG Y q R eta muF kFpol omega_next bF;
+
+<span class="c">%====================================================</span>
+<span class="c">% MODEL</span>
+<span class="c">%====================================================</span>
+<span class="k">model;</span>
+kG     =  Kbar-kF;                        <span class="c">% market clearing for capital state</span>
+Y      =  A*(a+c)*kF + alower*A*kG^alpha;  <span class="c">% aggregate output</span>
+
+bF = q*omega*Kbar - q*kF;
+
+[loglambdaF_next&#39;, loglambdaG_next&#39;, logaux_next&#39;, q_next&#39;]=<span class="k">GDSGE_INTERP_VEC&#39;</span>(kFpol,omega_next&#39;);
+lambdaF_next&#39; = exp(loglambdaF_next&#39;);
+lambdaG_next&#39; = exp(loglambdaG_next&#39;);
+aux_next&#39; = exp(logaux_next&#39;);
+
+<span class="c">% Backout bFpol</span>
+kGpol  =  Kbar-kFpol;                     <span class="c">% market clearing for capital policy</span>
+quse = <span class="k">GDSGE_MIN</span>{q_next&#39;};
+
+bFpol = nbFpol - theta*quse*kFpol;
+bGpol = -bFpol;         <span class="c">% market clearing</span>
+  
+<span class="c">% Backout xG and marginal utility</span>
+xF = nxF + c*A*kF;  <span class="c">% consumption of farmer</span>
+lambdaF = xF^(-sigma)/(1-eta);
+lambdaG = xG^(-sigma);
+loglambdaF = log(lambdaF);
+loglambdaG = log(lambdaG);
+aux = (q+A*(a+c)-c*A*eta)*lambdaF;
+logaux = log(aux);
+
+mpk_nextplusq&#39;= (alower*A&#39;)*alpha*kGpol^(alpha-1)+q_next&#39;;
+<span class="c">%Aplusqnext&#39;  = A&#39;*(a+c)+q_next&#39;;</span>
+
+<span class="c">%====================================================</span>
+<span class="c">% calculate the residual equations: 8 equation (= 7+ 1 consistency) and 8 unknown</span>
+<span class="c">%====================================================</span>
+foc_bondG   = 1 - R*(betaG*<span class="k">GDSGE_EXPECT</span>{lambdaG_next&#39;}) / lambdaG;
+foc_kG      = q   - betaG*<span class="k">GDSGE_EXPECT</span>{lambdaG_next&#39;*mpk_nextplusq&#39;}/lambdaG;
+
+foc_bondF   = 1  -  R*(betaF*<span class="k">GDSGE_EXPECT</span>{lambdaF_next&#39;}) / lambdaF   - muF;
+foc_kF      = q  -  betaF*<span class="k">GDSGE_EXPECT</span>{aux_next&#39;} /lambdaF   - theta*quse*muF/R;
+slack_bF    = muF*nbFpol;
+slack_xF    = eta*nxF;
+budgetF     = q*kFpol +bFpol/R + xF - A*(a+c)*kF - omega*q*Kbar;
+MC_Y = Y - xG - xF;
+
+consis_omega_next&#39; = (q_next&#39;*kFpol + bFpol) - q_next&#39;*omega_next&#39;*Kbar;
+
+   <span class="k">equations;</span>
+     foc_bondG;
+     foc_kG; 
+     foc_bondF;
+     foc_kF;
+     slack_bF;
+     slack_xF;
+     budgetF;
+     MC_Y;
+     consis_omega_next&#39;;
+    <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+   <span class="k">num_periods</span> = 1000;
+   <span class="k">num_samples</span> = 100;
+   <span class="k">initial</span> kF 0.05;%Kbar - (a/(alower*betaG*alpha))^(1/(alpha-1));
+   <span class="k">initial</span> omega 0.01;
+   <span class="k">initial</span> shock 2;
+
+   <span class="k">var_simu</span> xF xG Y q R eta muF bF; % some variables
+   kF&#39;=kFpol;
+   omega&#39; = omega_next&#39;;
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+<p>In the numerical exercise, We choose the shock process of TFP <span class="math notranslate nohighlight">\(A_{t}\)</span>
+to be I.I.D., and <span class="math notranslate nohighlight">\(A_{t}\in\left\{ 0.99,1,1.01\right\}\)</span> with probability
+<span class="math notranslate nohighlight">\(1/3\)</span> for each possible value. In
+the ergodic distribution, the probabilities for binding collateral
+constraint conditional on the three values of <span class="math notranslate nohighlight">\(A_{t}\)</span> are 92%, 80%
+and 77% respectively. Thus the collateral constraint is more likely
+to be binding when <span class="math notranslate nohighlight">\(A_{t}\)</span> is low.</p>
+<p>The IRFs after positive and negative
+1 percent TFP shocks (flipped for negative shocks) are plotted below by averaging the conditional
+responses over the ergodic distribution (using the method and MATLAB code from <a class="reference internal" href="../pandemic/GLSW2020.html#guerrieri-et-al-2020-negative-supply-shocks-that-cause-demand-shortages"><span class="std std-ref">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</span></a> example).</p>
+<a class="reference internal image-reference" href="../../_images/KM1997_IRF.png"><img alt="../../_images/KM1997_IRF.png" src="../../_images/KM1997_IRF.png" style="width: 331.6px; height: 296.40000000000003px;" /></a>
+<p>Although the TFP shocks are symmetric and temporary,
+the IRFs show that their effects are asymmetric and persistent thanks to
+market incompleteness and the collateral constraint <a class="reference internal" href="#equation-eq-collateral-constraint-km">(17)</a>.
+In a more realistically calibrated model,
+<a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/mac.20150219">Cao and Nie (2017)</a>  study
+the importance of market incompleteness and collateral constraints in producing these effects.
+They found that market incompleteness is relatively more important than collateral constraints.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Brumm2015/Brumm2015.html" class="btn btn-neutral float-right" title="Brumm et al (2015): A GDSGE model with asset price bubble" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../HL1996/HL1996TFIter.html" class="btn btn-neutral float-left" title="Heaton and Lucas (1996): Transition Function Iteration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
