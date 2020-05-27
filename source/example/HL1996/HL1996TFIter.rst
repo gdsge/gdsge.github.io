@@ -37,7 +37,7 @@ The alternative approach is developed by
 and `Stijn Van Nieuwerburgh <https://www0.gsb.columbia.edu/faculty/svannieuwerburgh>`_ (Columbia University),
 to solve `their model with rich empirical content <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2748230>`_, 
 featuring both financial and non-financial sectors and a government. (The endogenous state variables with implicit laws of motion include aggregate producers' leverage and aggregate banks' net-worth.)
-The model captures salient features of macro-finance dynamics during the Great Recessions and 
+The model captures salient features of macro-finance dynamics during the Great Recession and 
 has important implications on bank capital regulation.
 
 The authors showed us that this approach can also be used to solve the model in `Heaton and Lucas (1996) <https://www.journals.uchicago.edu/doi/10.1086/262030>`_ 
