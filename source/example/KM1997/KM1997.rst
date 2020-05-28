@@ -6,7 +6,7 @@ In `their seminal 1997 paper <https://www.journals.uchicago.edu/doi/abs/10.1086/
 Kiyotaki and Moore put forth a model of credit cycles in which movements in asset prices interacts 
 with the real side of the economy and produce amplified and persistent effects of shocks to the economy.
 
-Their original model is relatively simmple with risk-neutral agents and one-time unanciptated MIT shocks.
+Their original model is relatively simple with risk-neutral agents and one-time unanticipated MIT shocks.
 `Peter Frank Paz <https://www.linkedin.com/in/peter-paz-365311125/>`_, a Ph.D. candidate from New York University
 proposes a more modern extension of the model with risk-averse agents and recurrent aggregate shocks.
 The model fits squarely in GDSGE framework and Peter kindly contributed his gmod file below.
@@ -112,6 +112,30 @@ in order to avoid multiple equilibria problems.
 (The multiple equilibria problem in a similar setting is studied previously 
 in `Cao, Luo and Nie (2019) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3531341>`_.) 
 
+In the numerical exercise, we choose the shock process of TFP :math:`A_{t}`
+to be I.I.D., and :math:`A_{t}\in\left\{ 0.99,1,1.01\right\}` with probability
+:math:`1/3` for each possible value. In
+the ergodic distribution, the probabilities for binding collateral
+constraint conditional on the three values of :math:`A_{t}` are 92\%, 80\%
+and 77\% respectively. Thus the collateral constraint is more likely
+to be binding when :math:`A_{t}` is low.
+
+The IRFs after positive and negative
+1 percent TFP shocks (flipped for negative shocks) are plotted below by averaging the conditional
+responses over the ergodic distribution (using the method 
+from :ref:`Guerrieri et al. (2020)<GLSW2020>` example
+in the following :download:`MATLAB file <main_simulate_KM1997_irf.m>`). 
+
+.. image:: figures/KM1997_IRF.png
+    :scale: 40 %
+
+Although the TFP shocks are symmetric and temporary, 
+the IRFs show that their effects are asymmetric and persistent thanks to
+market incompleteness and the collateral constraint :eq:`eq:collateral constraint KM`.
+In a more realistically calibrated model, 
+`Cao and Nie (2017) <https://www.aeaweb.org/articles?id=10.1257/mac.20150219>`_  study
+the importance of market incompleteness and collateral constraints in producing these effects.
+They found that market incompleteness is relatively more important than collateral constraints.
 
 .. _KM1997:
 ===============
@@ -124,26 +148,3 @@ The gmod File
     :linenos:
     :language: GDSGE
 
-
-In the numerical exercise, We choose the shock process of TFP :math:`A_{t}`
-to be I.I.D., and :math:`A_{t}\in\left\{ 0.99,1,1.01\right\}` with probability
-:math:`1/3` for each possible value. In
-the ergodic distribution, the probabilities for binding collateral
-constraint conditional on the three values of :math:`A_{t}` are 92\%, 80\%
-and 77\% respectively. Thus the collateral constraint is more likely
-to be binding when :math:`A_{t}` is low.
-
-The IRFs after positive and negative
-1 percent TFP shocks (flipped for negative shocks) are plotted below by averaging the conditional
-responses over the ergodic distribution (using the method and MATLAB code from :ref:`Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages` example). 
-
-.. image:: figures/KM1997_IRF.png
-    :scale: 40 %
-
-Although the TFP shocks are symmetric and temporary, 
-the IRFs show that their effects are asymmetric and persistent thanks to
-market incompleteness and the collateral constraint :eq:`eq:collateral constraint KM`.
-In a more realistically calibrated model, 
-`Cao and Nie (2017) <https://www.aeaweb.org/articles?id=10.1257/mac.20150219>`_  study
-the importance of market incompleteness and collateral constraints in producing these effects.
-They found that market incompleteness is relatively more important than collateral constraints.

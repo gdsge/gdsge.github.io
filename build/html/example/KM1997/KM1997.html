@@ -172,7 +172,7 @@
 <p>In <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">their seminal 1997 paper</a>,
 Kiyotaki and Moore put forth a model of credit cycles in which movements in asset prices interacts
 with the real side of the economy and produce amplified and persistent effects of shocks to the economy.</p>
-<p>Their original model is relatively simmple with risk-neutral agents and one-time unanciptated MIT shocks.
+<p>Their original model is relatively simple with risk-neutral agents and one-time unanticipated MIT shocks.
 <a class="reference external" href="https://www.linkedin.com/in/peter-paz-365311125/">Peter Frank Paz</a>, a Ph.D. candidate from New York University
 proposes a more modern extension of the model with risk-averse agents and recurrent aggregate shocks.
 The model fits squarely in GDSGE framework and Peter kindly contributed his gmod file below.</p>
@@ -247,6 +247,26 @@ as the endogenous state variables, instead of <span class="math notranslate nohi
 in order to avoid multiple equilibria problems.
 (The multiple equilibria problem in a similar setting is studied previously
 in <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3531341">Cao, Luo and Nie (2019)</a>.)</p>
+<p>In the numerical exercise, we choose the shock process of TFP <span class="math notranslate nohighlight">\(A_{t}\)</span>
+to be I.I.D., and <span class="math notranslate nohighlight">\(A_{t}\in\left\{ 0.99,1,1.01\right\}\)</span> with probability
+<span class="math notranslate nohighlight">\(1/3\)</span> for each possible value. In
+the ergodic distribution, the probabilities for binding collateral
+constraint conditional on the three values of <span class="math notranslate nohighlight">\(A_{t}\)</span> are 92%, 80%
+and 77% respectively. Thus the collateral constraint is more likely
+to be binding when <span class="math notranslate nohighlight">\(A_{t}\)</span> is low.</p>
+<p>The IRFs after positive and negative
+1 percent TFP shocks (flipped for negative shocks) are plotted below by averaging the conditional
+responses over the ergodic distribution (using the method
+from <a class="reference internal" href="../pandemic/GLSW2020.html#glsw2020"><span class="std std-ref">Guerrieri et al. (2020)</span></a> example
+in the following <a class="reference download internal" download="" href="../../_downloads/78d6ccf544b5345233717dbf4563d332/main_simulate_KM1997_irf.m"><code class="xref download docutils literal notranslate"><span class="pre">MATLAB</span> <span class="pre">file</span></code></a>).</p>
+<a class="reference internal image-reference" href="../../_images/KM1997_IRF.png"><img alt="../../_images/KM1997_IRF.png" src="../../_images/KM1997_IRF.png" style="width: 331.6px; height: 296.40000000000003px;" /></a>
+<p>Although the TFP shocks are symmetric and temporary,
+the IRFs show that their effects are asymmetric and persistent thanks to
+market incompleteness and the collateral constraint <a class="reference internal" href="#equation-eq-collateral-constraint-km">(17)</a>.
+In a more realistically calibrated model,
+<a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/mac.20150219">Cao and Nie (2017)</a>  study
+the importance of market incompleteness and collateral constraints in producing these effects.
+They found that market incompleteness is relatively more important than collateral constraints.</p>
 <div class="section" id="the-gmod-file">
 <h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/a24b306267c0d79ff0a92117ae387aa1/KM1997.gmod"><code class="xref download docutils literal notranslate"><span class="pre">KM1997.gmod</span></code></a></p>
@@ -697,24 +717,6 @@ consis_omega_next&#39; = (q_next&#39;*kFpol + bFpol) - q_next&#39;*omega_next&#3
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>In the numerical exercise, We choose the shock process of TFP <span class="math notranslate nohighlight">\(A_{t}\)</span>
-to be I.I.D., and <span class="math notranslate nohighlight">\(A_{t}\in\left\{ 0.99,1,1.01\right\}\)</span> with probability
-<span class="math notranslate nohighlight">\(1/3\)</span> for each possible value. In
-the ergodic distribution, the probabilities for binding collateral
-constraint conditional on the three values of <span class="math notranslate nohighlight">\(A_{t}\)</span> are 92%, 80%
-and 77% respectively. Thus the collateral constraint is more likely
-to be binding when <span class="math notranslate nohighlight">\(A_{t}\)</span> is low.</p>
-<p>The IRFs after positive and negative
-1 percent TFP shocks (flipped for negative shocks) are plotted below by averaging the conditional
-responses over the ergodic distribution (using the method and MATLAB code from <a class="reference internal" href="../pandemic/GLSW2020.html#guerrieri-et-al-2020-negative-supply-shocks-that-cause-demand-shortages"><span class="std std-ref">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</span></a> example).</p>
-<a class="reference internal image-reference" href="../../_images/KM1997_IRF.png"><img alt="../../_images/KM1997_IRF.png" src="../../_images/KM1997_IRF.png" style="width: 331.6px; height: 296.40000000000003px;" /></a>
-<p>Although the TFP shocks are symmetric and temporary,
-the IRFs show that their effects are asymmetric and persistent thanks to
-market incompleteness and the collateral constraint <a class="reference internal" href="#equation-eq-collateral-constraint-km">(17)</a>.
-In a more realistically calibrated model,
-<a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/mac.20150219">Cao and Nie (2017)</a>  study
-the importance of market incompleteness and collateral constraints in producing these effects.
-They found that market incompleteness is relatively more important than collateral constraints.</p>
 </div>
 </div>
 
