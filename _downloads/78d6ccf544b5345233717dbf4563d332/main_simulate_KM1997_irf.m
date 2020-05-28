@@ -1,7 +1,14 @@
 clc;
-load SimuRslt_KM1997.mat;
+
+options=struct;
+options.SimuPrintFreq=1000;
+rng(0823);
+
+SimuRslt = simulate_KM1997(IterRslt);
 
 num_periods = length(SimuRslt.kF)-1;
+
+
 
 % Get Ergodi Set
 startIdx = round(num_periods/2);
@@ -35,14 +42,14 @@ optionsPos.GEN_SHOCK_START_PERIOD = 2;
 optionsPos.num_samples = lenSamples;
 optionsPos.num_periods = 200;
 %optionsPos.SimuPrintFreq = 10;
-SimuRsltIrf_pos = simulate_KM_wealth(IterRslt,optionsPos);
+SimuRsltIrf_pos = simulate_KM1997(IterRslt,optionsPos);
 
 optionsNor = optionsPos;
 shockNor = shock;
 shockNor(:) = 2;
 optionsNor.init.shock = [shock(:),shockNor(:)];
 optionsNor.init.omega = [omega(:),omega_next_Nor];
-SimuRsltIrf_nor = simulate_KM_wealth(IterRslt,optionsNor);
+SimuRsltIrf_nor = simulate_KM1997(IterRslt,optionsNor);
 
 
 
@@ -64,7 +71,7 @@ shockNeg = shock;
 shockNeg(:) = 1;
 optionsNeg.init.shock = [shock(:),shockNeg(:)];
 optionsNeg.init.omega = [omega(:),omega_next_Neg];
-SimuRsltIrf_neg = simulate_KM_wealth(IterRslt,optionsNeg);
+SimuRsltIrf_neg = simulate_KM1997(IterRslt,optionsNeg);
 
 % Construct and plot the IRF
 irf_neg.q = mean(SimuRsltIrf_neg.q(:,2:end) - SimuRsltIrf_nor.q(:,2:end));

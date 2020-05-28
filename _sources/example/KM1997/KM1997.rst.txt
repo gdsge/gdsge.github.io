@@ -123,7 +123,7 @@ to be binding when :math:`A_{t}` is low.
 The IRFs after positive and negative
 1 percent TFP shocks (flipped for negative shocks) are plotted below by averaging the conditional
 responses over the ergodic distribution (using the method 
-from :ref:`Guerrieri et al. (2020)<GLSW2020>` example
+from the :ref:`Guerrieri et al. (2020)<GLSW2020>` example
 in the following :download:`MATLAB file <main_simulate_KM1997_irf.m>`). 
 
 .. image:: figures/KM1997_IRF.png
