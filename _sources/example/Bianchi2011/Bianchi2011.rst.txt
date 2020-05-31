@@ -2,9 +2,9 @@
 Bianchi (2011): Sudden Stops in Open Economies
 *****************************************************************
 
-The benchmark model in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_ provides a great example in which the economic dynamics can be highly non-linear
+The benchmark model in `Bianchi (2011) <https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400>`_ provides an example in which the economic dynamics can be highly non-linear
 due to the presence of a borrowing constraint tied to a (good) price. We illustrate how to use the adaptive grid method
-with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a coarse and narrow state space, 
+with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a coarse and narrow grid of the state space, 
 and then refine the state space to ensure it covers the ergodic set by reusing the compiled code.
 
 .. _Bianchi2011:

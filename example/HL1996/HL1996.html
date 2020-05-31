@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Guvenen (2009): Asset Pricing with Heterogeneous IES" href="../Guvenen2009/Guvenen2009.html" />
-    <link rel="prev" title="A RBC Model with Irreversible Investment" href="../rbc/rbcIrr.html" /> 
+    <link rel="prev" title="An RBC Model with Irreversible Investment" href="../rbc/rbcIrr.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,7 +85,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">A RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">An RBC Model with Irreversible Investment</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wealth-share-as-endogenous-state">Wealth Share as Endogenous State</a></li>
@@ -457,7 +457,7 @@ to simplify the constraint</p>
 <p>where <em>Kb</em> is the parameter governing the borrowing constraint in fraction of the aggregate endowment (<span class="math notranslate nohighlight">\(b^i \geq Kb * Y^a\)</span>), and <em>nb1p</em> is the unknown defined as
 <span class="math notranslate nohighlight">\(nb^i=\hat{b}^i+Kb\)</span> which is required to be positive. Such transformation
 remains trivial in the current problem, but becomes crucial when the borrowing constraint depends on an asset price, which makes the constraint
-not necessarily a box constraint. See example <a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to a <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki-Moore</a> type model, where
+not necessarily a box constraint. See example <a class="reference internal" href="../KM1997/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>, which provides a global solution to a <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/262072">Kiyotaki-Moore</a> type model, where
 the borrowing constraint is tied to the price of an asset in fixed supply.</p>
 <p>Some built-in functions of the toolbox are used in this example.</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>53</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  [psn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
@@ -916,7 +916,7 @@ but could turn out to be more complex
 and requires to define a different system of equations than the main <em>model;</em> block. Also, at the boundary of the state space,
 the equilibrium may be characterized by a different system of equations, and such boundary conditions turn out to be necessary to solve
 many models robustly (for example, consumption might be exactly zero at the boundary, violating the Inada condition). To see how these issues are addressed very conveniently in the toolbox, see example
-<a class="reference internal" href="../CaoNie2017/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>.</p>
+<a class="reference internal" href="../KM1997/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>.</p>
 <p>Or you can directly proceed to <a class="reference internal" href="../../usage/functions.html#toolbox-api"><span class="std std-ref">the toolbox’s API</span></a>.</p>
 </div>
 </div>
@@ -932,7 +932,7 @@ many models robustly (for example, consumption might be exactly zero at the boun
         <a href="../Guvenen2009/Guvenen2009.html" class="btn btn-neutral float-right" title="Guvenen (2009): Asset Pricing with Heterogeneous IES" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../rbc/rbcIrr.html" class="btn btn-neutral float-left" title="A RBC Model with Irreversible Investment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../rbc/rbcIrr.html" class="btn btn-neutral float-left" title="An RBC Model with Irreversible Investment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

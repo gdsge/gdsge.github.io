@@ -347,7 +347,7 @@ What's Next?
 =====================
 
 The current example demonstrates the basic usage of the toolbox.
-You can proceed to :ref:`an extension with investment irreversibility <A RBC Model with Irreversible Investment>` that requires a global method, 
+You can proceed to :ref:`an extension with investment irreversibility <An RBC Model with Irreversible Investment>` that requires a global method, 
 or to a real example :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` which is the leading example in the toolbox paper.
 
 Or you can proceed to :ref:`Toolbox API`.

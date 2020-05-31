@@ -1,6 +1,6 @@
-****************************************
-A RBC Model with Irreversible Investment
-****************************************
+*****************************************
+An RBC Model with Irreversible Investment
+*****************************************
 
 The standard :ref:`RBC model <Getting Started - A Simple RBC Model>` can also be solved easily using local methods. Now we consider an extension which can only be solved properly using global methods. The model features an investment irreversibility constraint, which requires investment to be larger than a certain threshold.
 
@@ -29,7 +29,7 @@ the representative firm is subject to an irreversibility constraint
 
 where :math:`I_{ss}` is the steady-state level of investment and parameter :math:`\phi` corresponds to the tightness of the irreversibility constraint.
 
-These features require us to keep track of two continuous state variables: exogenous :math:`z_t` and endogenous :math:`K_t`. The toolbox is well designed to handle models with more than one continuous state variables like the present model.
+These features require us to keep track of two continuous state variables: exogenous :math:`z_t` and endogenous :math:`K_t`. The toolbox is well designed to handle models with more than one continuous state variables like the current one.
 
 Let :math:`\mu_t` denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition:
 

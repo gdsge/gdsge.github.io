@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>A RBC Model with Irreversible Investment &mdash; GDSGE Homepage</title>
+  <title>An RBC Model with Irreversible Investment &mdash; GDSGE Homepage</title>
   
 
   
@@ -85,7 +85,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rbc.html">Getting Started - A Simple RBC Model</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">A RBC Model with Irreversible Investment</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">An RBC Model with Irreversible Investment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-model">The Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-gmod-file">The gmod File</a></li>
 </ul>
@@ -143,7 +143,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>A RBC Model with Irreversible Investment</li>
+      <li>An RBC Model with Irreversible Investment</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -160,8 +160,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="a-rbc-model-with-irreversible-investment">
-<h1>A RBC Model with Irreversible Investment<a class="headerlink" href="#a-rbc-model-with-irreversible-investment" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="an-rbc-model-with-irreversible-investment">
+<h1>An RBC Model with Irreversible Investment<a class="headerlink" href="#an-rbc-model-with-irreversible-investment" title="Permalink to this headline">¶</a></h1>
 <p>The standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> can also be solved easily using local methods. Now we consider an extension which can only be solved properly using global methods. The model features an investment irreversibility constraint, which requires investment to be larger than a certain threshold.</p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
@@ -177,7 +177,7 @@
 <div class="math notranslate nohighlight">
 \[I_t \geq \phi I_{ss},\]</div>
 <p>where <span class="math notranslate nohighlight">\(I_{ss}\)</span> is the steady-state level of investment and parameter <span class="math notranslate nohighlight">\(\phi\)</span> corresponds to the tightness of the irreversibility constraint.</p>
-<p>These features require us to keep track of two continuous state variables: exogenous <span class="math notranslate nohighlight">\(z_t\)</span> and endogenous <span class="math notranslate nohighlight">\(K_t\)</span>. The toolbox is well designed to handle models with more than one continuous state variables like the present model.</p>
+<p>These features require us to keep track of two continuous state variables: exogenous <span class="math notranslate nohighlight">\(z_t\)</span> and endogenous <span class="math notranslate nohighlight">\(K_t\)</span>. The toolbox is well designed to handle models with more than one continuous state variables like the current one.</p>
 <p>Let <span class="math notranslate nohighlight">\(\mu_t\)</span> denote the Lagrange multiplier on the irreversibility constraint, the complete-markets equilibrium can be characterized by the Euler equation, the complementary-slackness condition, and the goods market clearing condition:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}&amp;c_t^{-\sigma}-\mu_t\\
