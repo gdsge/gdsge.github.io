@@ -3,7 +3,7 @@ Toolbox API
 ************************************
 
 ===========================
-Matlab Interface
+MATLAB Interface
 ===========================
 
 .. function:: iter_modname([options])
@@ -40,8 +40,8 @@ Variable declaration
         var2 = [2.0,3.0];   % Vector parameter with two elements
         ...
         model;
-            a = var1;       % This assigns a to scalar parameter var1 (1.0)
-            b = var2(1);    % This assigns b to the first element of parameter var2 (2.0)
+            a = var1;       % This assigns a the scalar parameter var1 (1.0)
+            b = var2(1);    % This assigns b the first element of parameter var2 (2.0)
             ...
         end;
 
@@ -61,18 +61,20 @@ Variable declaration
 
 .. declare:: var_interp var1 var2 ...
 
-    Declare state transitions.
+    Declare policy functions from the last iteration to be evaluated in the current iteration.
     An initial value should be specified for each `var_interp`.
     An update procedure should be specified for each `var_interp` after a policy iteration.
-    `var_interp` can be used as functions which take values of `var_state` as arguments in the model block.
+    A `var_interp` can be used as a function which take values of `var_state` as arguments in the model block, to evaluate
+    future policy variables.
 
-    Convergence for policy iterations is checked for `var_interp` across two iterations.
+    Convergence for policy iterations is reached when the maximum absolute difference of `var_interp` between two iterations is smaller than
+    *TolEq*.
 
 .. declare:: var_policy var1 var2[len2] ...
 
     Declare policy variables that directly enter the system of equations.
 
-    A `var_policy` can be declared as a vector, for example, var2 of length len2 in the example.
+    A `var_policy` can be declared as a vector, for example, var2 of length len2 is declared as *var2[len2]* in the example.
     To access elements of a vector `var_policy` in the model block, use round bracket to index
     or use the prime (') operator to refer to the whole vector.
 
@@ -83,16 +85,16 @@ Variable declaration
         inbound var1 var1_lb var1_ub;
 
     If the lower and upper bounds of a `var_policy` cannot be determined ex-ante, specify tight bounds and
-    use the adaptive bound option as 
+    use the adaptive bound option such as 
 
     .. code-block:: GDSGE
 
         inbound var1 var1_lb var1_ub adaptive(2.0);
 
-    This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration, 
-    if `UseAdaptiveBound` is set as one. If option `UseAdaptiveBoundInSol` is set to one, after a failed attempt in finding
+    This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each policy iteration, 
+    if `UseAdaptiveBound` is set to one. If option `UseAdaptiveBoundInSol` is set to one, after a failed attempt in finding
     a solution within the bounds and the equation solver returns a failed solution that hits the lower or upper bound,
-    the bound will be expanded.
+    the bound will be expanded by a factor of 2.0.
 
 .. declare:: var_aux var1 var2[len2] ...
 
@@ -103,12 +105,12 @@ Variable declaration
 
 .. declare:: var_output var1 var2 ...
 
-    A subset of `var_policy` or `var_aux` of which the function approximation parameters should be constructed.
+    A subset of `var_policy` or `var_aux` of which the function approximation (such as splines) parameters should be constructed.
     These function approximation parameters will be used in simulations if `SIMU_INTERP` is set to one.
 
 .. declare:: var_others var1 var2 ...
 
-    Any variables in the Matlab workspace that needs to be returned.
+    Any variables in the MATLAB workspace that needs to be returned.
 
 
 ============================
@@ -127,10 +129,10 @@ The model block
 
     Declare the model_init block.
 
-    Like the *model;...end;* block, but is called only once at the start of the policy iteration.
-    This is often used to define a last period problem which is to solve a potentially different system of equations.
+    This is similar to the *model;...end;* block, but is called only once at the start of the policy iteration.
+    This is often used to define a last period problem as a starting point of the iteration, which potentially solves a different system of equations.
 
-    Can set *option:SkipModelInit=1* to skip this block, so the policy iteration starts with a WarmUp specified in the option.
+    One can set *option:SkipModelInit=1* to skip this block, so the policy iteration starts with a WarmUp specified in the option.
 
 .. declare:: simulate; ... end;
 
@@ -347,7 +349,7 @@ Policy iterations
 
 .. option:: TolEq
 
-    Tolerance for convergence of *var_interp* across two iterations.
+    Convergence criterion for the policy iteration. The policy iteration stops when the maximum absolute distance of *var_interp* across all collocation points between two iterations is smaller than TolEq.
     Default: 1e-6
 
 .. option:: MaxIter
@@ -360,19 +362,20 @@ Policy iterations
 
 .. option:: UseAdaptiveBound
 
-    Use adaptive bound specifies solution intervals as in this example,
+    Activate the adaptive bound procedure after each policy iteration. For example, when *UseAdaptiveBound* is set to one, 
+    the inbound derivative specified as following
 
     .. code-block:: GDSGE
 
         inbound x 0.0 1.0 adaptive(2);
 
-    which expand the lower and upper bounds by a factor of 2 for each state after each iteration.
+    expands the lower and upper bounds by a factor of 2 from the converged solutions of each collocation point, after each policy iteration.
 
     Takes value 0 or 1 (default).
 
 .. option:: UseAdaptiveBoundInSol
 
-    Use adaptive bound in randomization.
+    Use adaptive bound in randomization after a failed search of solutions within the current bounds, and the search fails at an immature step that hits the current bounds.
     Takes value 0 (default) or 1.
 
 

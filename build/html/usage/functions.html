@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../example/safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../example/pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbox API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#matlab-interface">Matlab Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#matlab-interface">MATLAB Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variable-declaration">Variable declaration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#built-in-functions">Built-in functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#macros">Macros</a></li>
@@ -176,7 +176,7 @@
   <div class="section" id="toolbox-api">
 <h1>Toolbox API<a class="headerlink" href="#toolbox-api" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="matlab-interface">
-<h2>Matlab Interface<a class="headerlink" href="#matlab-interface" title="Permalink to this headline">¶</a></h2>
+<h2>MATLAB Interface<a class="headerlink" href="#matlab-interface" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="iter_modname">
 <code class="sig-name descname">iter_modname</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">options</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#iter_modname" title="Permalink to this definition">¶</a></dt>
@@ -223,8 +223,8 @@ var1 = 1.0;         <span class="c">% Scalar parameter</span>
 var2 = [2.0,3.0];   <span class="c">% Vector parameter with two elements</span>
 ...
 <span class="k">model;</span>
-    a = var1;       <span class="c">% This assigns a to scalar parameter var1 (1.0)</span>
-    b = var2(1);    <span class="c">% This assigns b to the first element of parameter var2 (2.0)</span>
+    a = var1;       <span class="c">% This assigns a the scalar parameter var1 (1.0)</span>
+    b = var2(1);    <span class="c">% This assigns b the first element of parameter var2 (2.0)</span>
     ...
 <span class="k">end;</span>
 </pre></div>
@@ -251,18 +251,20 @@ The range of the grid will be used for adaptive grid methods.</p>
 <dl class="declare">
 <dt id="declare-var_interpvar1var2...">
 <code class="sig-name descname">var_interp var1 var2 ...</code><a class="headerlink" href="#declare-var_interpvar1var2..." title="Permalink to this definition">¶</a></dt>
-<dd><p>Declare state transitions.
+<dd><p>Declare policy functions from the last iteration to be evaluated in the current iteration.
 An initial value should be specified for each <cite>var_interp</cite>.
 An update procedure should be specified for each <cite>var_interp</cite> after a policy iteration.
-<cite>var_interp</cite> can be used as functions which take values of <cite>var_state</cite> as arguments in the model block.</p>
-<p>Convergence for policy iterations is checked for <cite>var_interp</cite> across two iterations.</p>
+A <cite>var_interp</cite> can be used as a function which take values of <cite>var_state</cite> as arguments in the model block, to evaluate
+future policy variables.</p>
+<p>Convergence for policy iterations is reached when the maximum absolute difference of <cite>var_interp</cite> between two iterations is smaller than
+<em>TolEq</em>.</p>
 </dd></dl>
 
 <dl class="declare">
 <dt id="declare-var_policyvar1var2[len2]...">
 <code class="sig-name descname">var_policy var1 var2[len2] ...</code><a class="headerlink" href="#declare-var_policyvar1var2[len2]..." title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare policy variables that directly enter the system of equations.</p>
-<p>A <cite>var_policy</cite> can be declared as a vector, for example, var2 of length len2 in the example.
+<p>A <cite>var_policy</cite> can be declared as a vector, for example, var2 of length len2 is declared as <em>var2[len2]</em> in the example.
 To access elements of a vector <cite>var_policy</cite> in the model block, use round bracket to index
 or use the prime (‘) operator to refer to the whole vector.</p>
 <p>For each <cite>var_policy</cite>, its lower and upper bounds entering the equation solver should be defined as</p>
@@ -270,14 +272,14 @@ or use the prime (‘) operator to refer to the whole vector.</p>
 </pre></div>
 </div>
 <p>If the lower and upper bounds of a <cite>var_policy</cite> cannot be determined ex-ante, specify tight bounds and
-use the adaptive bound option as</p>
+use the adaptive bound option such as</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>inbound var1 var1_lb var1_ub <span class="k">adaptive</span>(2.0);
 </pre></div>
 </div>
-<p>This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each time iteration,
-if <cite>UseAdaptiveBound</cite> is set as one. If option <cite>UseAdaptiveBoundInSol</cite> is set to one, after a failed attempt in finding
+<p>This will adjust bounds by expanding the lower and upper bounds by a factor of 2.0 after each policy iteration,
+if <cite>UseAdaptiveBound</cite> is set to one. If option <cite>UseAdaptiveBoundInSol</cite> is set to one, after a failed attempt in finding
 a solution within the bounds and the equation solver returns a failed solution that hits the lower or upper bound,
-the bound will be expanded.</p>
+the bound will be expanded by a factor of 2.0.</p>
 </dd></dl>
 
 <dl class="declare">
@@ -291,14 +293,14 @@ as unknowns. These variables can be declared as <cite>var_aux</cite>.</p>
 <dl class="declare">
 <dt id="declare-var_outputvar1var2...">
 <code class="sig-name descname">var_output var1 var2 ...</code><a class="headerlink" href="#declare-var_outputvar1var2..." title="Permalink to this definition">¶</a></dt>
-<dd><p>A subset of <cite>var_policy</cite> or <cite>var_aux</cite> of which the function approximation parameters should be constructed.
+<dd><p>A subset of <cite>var_policy</cite> or <cite>var_aux</cite> of which the function approximation (such as splines) parameters should be constructed.
 These function approximation parameters will be used in simulations if <cite>SIMU_INTERP</cite> is set to one.</p>
 </dd></dl>
 
 <dl class="declare">
 <dt id="declare-var_othersvar1var2...">
 <code class="sig-name descname">var_others var1 var2 ...</code><a class="headerlink" href="#declare-var_othersvar1var2..." title="Permalink to this definition">¶</a></dt>
-<dd><p>Any variables in the Matlab workspace that needs to be returned.</p>
+<dd><p>Any variables in the MATLAB workspace that needs to be returned.</p>
 </dd></dl>
 
 <dl class="declare">
@@ -314,9 +316,9 @@ Any calculations in order to evaluate these equations are included in the <em>mo
 <dt id="declare-model_init;...end;">
 <code class="sig-name descname">model_init; ... end;</code><a class="headerlink" href="#declare-model_init;...end;" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare the model_init block.</p>
-<p>Like the <em>model;…end;</em> block, but is called only once at the start of the policy iteration.
-This is often used to define a last period problem which is to solve a potentially different system of equations.</p>
-<p>Can set <em>option:SkipModelInit=1</em> to skip this block, so the policy iteration starts with a WarmUp specified in the option.</p>
+<p>This is similar to the <em>model;…end;</em> block, but is called only once at the start of the policy iteration.
+This is often used to define a last period problem as a starting point of the iteration, which potentially solves a different system of equations.</p>
+<p>One can set <em>option:SkipModelInit=1</em> to skip this block, so the policy iteration starts with a WarmUp specified in the option.</p>
 </dd></dl>
 
 <dl class="declare">
@@ -537,7 +539,7 @@ solutions over finer grids. See example <a class="reference internal" href="../e
 <dl class="option">
 <dt id="option-TolEq">
 <code class="sig-name descname">TolEq</code><a class="headerlink" href="#option-TolEq" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tolerance for convergence of <em>var_interp</em> across two iterations.
+<dd><p>Convergence criterion for the policy iteration. The policy iteration stops when the maximum absolute distance of <em>var_interp</em> across all collocation points between two iterations is smaller than TolEq.
 Default: 1e-6</p>
 </dd></dl>
 
@@ -556,18 +558,19 @@ Default: 1e-6</p>
 <dl class="option">
 <dt id="option-UseAdaptiveBound">
 <code class="sig-name descname">UseAdaptiveBound</code><a class="headerlink" href="#option-UseAdaptiveBound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use adaptive bound specifies solution intervals as in this example,</p>
+<dd><p>Activate the adaptive bound procedure after each policy iteration. For example, when <em>UseAdaptiveBound</em> is set to one,
+the inbound derivative specified as following</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>inbound x 0.0 1.0 <span class="k">adaptive</span>(2);
 </pre></div>
 </div>
-<p>which expand the lower and upper bounds by a factor of 2 for each state after each iteration.</p>
+<p>expands the lower and upper bounds by a factor of 2 from the converged solutions of each collocation point, after each policy iteration.</p>
 <p>Takes value 0 or 1 (default).</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="option-UseAdaptiveBoundInSol">
 <code class="sig-name descname">UseAdaptiveBoundInSol</code><a class="headerlink" href="#option-UseAdaptiveBoundInSol" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use adaptive bound in randomization.
+<dd><p>Use adaptive bound in randomization after a failed search of solutions within the current bounds, and the search fails at an immature step that hits the current bounds.
 Takes value 0 (default) or 1.</p>
 </dd></dl>
 
