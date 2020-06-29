@@ -325,22 +325,22 @@ c_interp = c;
 <span class="k">model;</span>
   <span class="c">% Budget constraints</span>
   u_prime = c^(-sigma);
-  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
+  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
   
   <span class="c">% Evaluate the interpolation object to get future consumption</span>
   c_future&#39; = c_interp&#39;(K_next);
   u_prime_future&#39; = c_future&#39;^(-sigma);
   
   <span class="c">% Calculate residual of the equation</span>
-  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
-  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*kret_next&#39;}/u_prime;
+  market_clear = z*K^alpha + (1-delta)*K - c - K_next;
   
   <span class="c">% Calcualte other endogenous variables</span>
   w = z*(1-alpha)*K^alpha;
   
   <span class="k">equations;</span>
     euler_residual;
-    budget_residual;
+    market_clear;
   <span class="k">end;</span>
 <span class="k">end;</span>
 
@@ -557,22 +557,22 @@ following keyword <code class="xref std std-declare docutils literal notranslate
 61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">model;</span>
   <span class="c">% Budget constraints</span>
   u_prime = c^(-sigma);
-  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
+  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
   
   <span class="c">% Evaluate the interpolation object to get future consumption</span>
   c_future&#39; = c_interp&#39;(K_next);
   u_prime_future&#39; = c_future&#39;^(-sigma);
   
   <span class="c">% Calculate residual of the equation</span>
-  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
-  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*kret_next&#39;}/u_prime;
+  market_clear = z*K^alpha + (1-delta)*K - c - K_next;
   
   <span class="c">% Calcualte other endogenous variables</span>
   w = z*(1-alpha)*K^alpha;
   
   <span class="k">equations;</span>
     euler_residual;
-    budget_residual;
+    market_clear;
   <span class="k">end;</span>
 <span class="k">end;</span>
 </pre></div>
@@ -586,17 +586,17 @@ Nevertheless, the <em>model</em> block supports simple control-flow blocks in Ma
 for-end block.</p>
 <p>A variable followed by a prime (‘) indicates that the variable is a vector of length <em>shock_num</em>.
 For example,</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  mpk_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
 </pre></div>
 </td></tr></table></div>
 <p>means that</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mpk_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
-mpk_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kret_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
+kret_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
 </pre></div>
 </div>
 <p>A <cite>var_shock</cite> (here <code class="code docutils literal notranslate"><span class="pre">z</span></code>), when used followed by a prime (‘), corresponds to the vector of the variable across all possible exogenous states, and thus can be
 used to construct other vector variables. Notice when a <cite>var_shock</cite> is used not followed by a prime, it corresponds to the exogenous state at the current collocation point, e.g., <code class="code docutils literal notranslate"><span class="pre">z</span></code> in</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>52</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>52</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  market_clear = z*K^alpha + (1-delta)*K - c - K_next;
 </pre></div>
 </td></tr></table></div>
 <p>Any <em>var_interp</em> declared before can be used as a function in the model block. For example,</p>
@@ -611,7 +611,7 @@ and returning a vector of length shock_num. Accordingly, the left hand side vari
 i.e., a variable followed by a prime (‘).</p>
 <p>The <em>model</em> block can use several built-in functions for reduction operations.
 For example, the <em>GDSGE_EXPECT{}</em> used in</p>
-<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*mpk_next&#39;}/u_prime;
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>51</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  euler_residual = 1 - beta*<span class="k">GDSGE_EXPECT</span>{u_prime_future&#39;*kret_next&#39;}/u_prime;
 </pre></div>
 </td></tr></table></div>
 <p>is to calculate the conditional expectation of the object defined inside the curly braces,

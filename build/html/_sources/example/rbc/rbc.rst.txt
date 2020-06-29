@@ -277,8 +277,8 @@ means that
 
 .. code-block:: text
 
-    mpk_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
-    mpk_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
+    kret_next(1) = z(1)*alpha*K_next^(alpha-1) + 1-delta
+    kret_next(2) = z(2)*alpha*K_next^(alpha-1) + 1-delta
 
 A `var_shock` (here :code:`z`), when used followed by a prime ('), corresponds to the vector of the variable across all possible exogenous states, and thus can be
 used to construct other vector variables. Notice when a `var_shock` is used not followed by a prime, it corresponds to the exogenous state at the current collocation point, e.g., :code:`z` in
