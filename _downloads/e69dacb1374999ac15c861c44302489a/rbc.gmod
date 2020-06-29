@@ -41,22 +41,22 @@ var_aux w;
 model;
   % Budget constraints
   u_prime = c^(-sigma);
-  mpk_next' = z'*alpha*K_next^(alpha-1) + 1-delta;
+  kret_next' = z'*alpha*K_next^(alpha-1) + 1-delta;
   
   % Evaluate the interpolation object to get future consumption
   c_future' = c_interp'(K_next);
   u_prime_future' = c_future'^(-sigma);
   
   % Calculate residual of the equation
-  euler_residual = 1 - beta*GDSGE_EXPECT{u_prime_future'*mpk_next'}/u_prime;
-  budget_residual = z*K^alpha + (1-delta)*K - c - K_next;
+  euler_residual = 1 - beta*GDSGE_EXPECT{u_prime_future'*kret_next'}/u_prime;
+  market_clear = z*K^alpha + (1-delta)*K - c - K_next;
   
   % Calcualte other endogenous variables
   w = z*(1-alpha)*K^alpha;
   
   equations;
     euler_residual;
-    budget_residual;
+    market_clear;
   end;
 end;
 
