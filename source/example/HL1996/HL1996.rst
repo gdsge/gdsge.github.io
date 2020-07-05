@@ -61,7 +61,7 @@ let :math:`\hat{x}_t` denote the normalized variable: :math:`\hat{x}_t=\frac{x_t
 .. math::
     \hat{c}_{t}^{i}+\hat{p}_{t}^{s}s_{t+1}^{i}+p_{t}^{b}\hat{b}_{t+1}^{i}\leq\left(\hat{p}_{t}^{s}+\hat{d}_{t}\right)\omega_{t}^{i}+\hat{Y}_{t}^{i}.
 
-The wealth share is rewritten as 
+The financial wealth share is rewritten as 
 
 .. math::
     \omega_{t}^{i}=\frac{(\hat{p}_{t}^{s}+\hat{d}_{t})s_{t}^{i}+\frac{\hat{b}_{t}^{i}}{\gamma^a_t}}{\hat{p}_{t}^{s}+\hat{d}_{t}}.
