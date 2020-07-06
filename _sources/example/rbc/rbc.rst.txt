@@ -2,6 +2,7 @@
 Getting Started - A Simple RBC Model
 ************************************
 
+.. _simpleRBC:
 ===============
 The Model
 ===============

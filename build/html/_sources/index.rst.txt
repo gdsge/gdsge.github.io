@@ -37,6 +37,7 @@ If you have comments, suggestions or coding questions for us, or would like to c
    :caption: Contents:
    
    Home <self>
+   lectures
    example/rbc/rbc
    example/rbc/rbcIrr
    example/HL1996/HL1996
