@@ -100,7 +100,7 @@ var_policy c_h c_n Ps Pf Inv bn_shr_next lambdah lambdan;
 
 inbound c_h 1e-3 10;
 inbound c_n 1e-3 10;
-inbound Ps 1e-3 200;
+inbound Ps 1e-3 500;
 inbound Pf 1e-3 10;
 inbound Inv 1e-9 10;
 inbound bn_shr_next bn_shr_lb bn_shr_ub;
