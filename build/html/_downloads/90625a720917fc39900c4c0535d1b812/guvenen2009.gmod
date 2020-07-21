@@ -13,7 +13,7 @@ chi = .005;         % leverage ratio
 a1 = (((delta^(1/xsi))*xsi)/(xsi-1));
 a2 = (delta/(1-xsi));
 Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
-Bbar = -0.6*(1-theta)*Kss^theta; %borrowing constraint
+Bbar = -0.1*(1-theta)*Kss^theta; %borrowing constraint
 varianceScale = 1e4;
 
 TolEq = 1e-4;
@@ -98,11 +98,11 @@ EPD_square_interp = shock_trans*(Ps+Div).^2 / varianceScale;
 % Endogenous variables, bounds, and initial values
 var_policy c_h c_n Ps Pf Inv bn_shr_next lambdah lambdan;
 
-inbound c_h 1e-3 100;
-inbound c_n 1e-3 100;
-inbound Ps 1e-3 500;
+inbound c_h 1e-3 10;
+inbound c_n 1e-3 10;
+inbound Ps 1e-3 200;
 inbound Pf 1e-3 10;
-inbound Inv 1e-9 100;
+inbound Inv 1e-9 10;
 inbound bn_shr_next bn_shr_lb bn_shr_ub;
 inbound lambdah 0 2;
 inbound lambdan 0 2;

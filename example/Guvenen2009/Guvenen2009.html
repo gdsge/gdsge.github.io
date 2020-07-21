@@ -479,7 +479,7 @@ chi = .005;         <span class="c">% leverage ratio</span>
 a1 = (((delta^(1/xsi))*xsi)/(xsi-1));
 a2 = (delta/(1-xsi));
 Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
-Bbar = -0.6*(1-theta)*Kss^theta; <span class="c">%borrowing constraint</span>
+Bbar = -0.1*(1-theta)*Kss^theta; <span class="c">%borrowing constraint</span>
 varianceScale = 1e4;
 
 TolEq = 1e-4;
@@ -564,11 +564,11 @@ EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceSca
 % Endogenous variables, bounds, and <span class="k">initial</span> values
 <span class="k">var_policy</span> c_h c_n Ps Pf Inv bn_shr_next lambdah lambdan;
 
-<span class="k">inbound</span> c_h 1e-3 100;
-<span class="k">inbound</span> c_n 1e-3 100;
-<span class="k">inbound</span> Ps 1e-3 500;
+<span class="k">inbound</span> c_h 1e-3 10;
+<span class="k">inbound</span> c_n 1e-3 10;
+<span class="k">inbound</span> Ps 1e-3 200;
 <span class="k">inbound</span> Pf 1e-3 10;
-<span class="k">inbound</span> Inv 1e-9 100;
+<span class="k">inbound</span> Inv 1e-9 10;
 <span class="k">inbound</span> bn_shr_next bn_shr_lb bn_shr_ub;
 <span class="k">inbound</span> lambdah 0 2;
 <span class="k">inbound</span> lambdan 0 2;
