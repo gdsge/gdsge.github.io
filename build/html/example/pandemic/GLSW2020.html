@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Toolbox API" href="../../usage/functions.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> GDSGE
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -107,6 +109,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,7 +148,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</li>
     
@@ -528,12 +531,12 @@ and then pass the converged solutions to the <em>simulate_GLSW</em> procedure to
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_GLSW</span><span class="p">;</span>
 
 <span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00484804</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.57919e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 0.170275 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">0.170275</span> <span class="s">seconds.</span>
 
-<span class="c">...</span>
+<span class="k">...</span>
 
 <span class="n">Iter</span><span class="p">:</span><span class="mi">1289</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">8.94807e-09</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">9.65947e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 0.079467 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">0.079467</span> <span class="s">seconds.</span>
 </pre></div>
 </div>
 <p>Then we pass the converged solutions to <em>simulate_GLSW</em>, which produces
@@ -541,16 +544,16 @@ and then pass the converged solutions to the <em>simulate_GLSW</em> procedure to
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_GLSW</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
 
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">1000</span>
-<span class="n">shock      </span><span class="s">a1      a2      P1       r  c1_shr</span><span class="p"></span>
-<span class="n">    1  </span><span class="s">0.3994-0.09985       1 0.01018  0.2006</span><span class="p"></span>
-<span class="n">Elapsed </span><span class="s">time is 0.653297 seconds.</span><span class="p"></span>
+<span class="n">shock</span>      <span class="s">a1</span>      <span class="s">a2</span>      <span class="s">P1</span>       <span class="s">r</span>  <span class="s">c1_shr</span>
+    <span class="n">1</span>  <span class="s">0.3994-0.09985</span>       <span class="s">1</span> <span class="s">0.01018</span>  <span class="s">0.2006</span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">0.653297</span> <span class="s">seconds.</span>
 
-<span class="c">...</span>
+<span class="k">...</span>
 
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">10000</span>
-<span class="n">shock      </span><span class="s">a1      a2      P1       r  c1_shr</span><span class="p"></span>
-<span class="n">    1    </span><span class="s">1.18 -0.2951       1 0.01018  0.2023</span><span class="p"></span>
-<span class="n">Elapsed </span><span class="s">time is 0.761543 seconds.</span><span class="p"></span>
+<span class="n">shock</span>      <span class="s">a1</span>      <span class="s">a2</span>      <span class="s">P1</span>       <span class="s">r</span>  <span class="s">c1_shr</span>
+    <span class="n">1</span>    <span class="s">1.18</span> <span class="o">-</span><span class="mf">0.2951</span>       <span class="mi">1</span> <span class="mf">0.01018</span>  <span class="mf">0.2023</span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">0.761543</span> <span class="s">seconds.</span>
 </pre></div>
 </div>
 <p>Then we can inspect the policy functions for interest rate and the stationary distribution of workers 1’s bond holding</p>
@@ -597,11 +600,19 @@ This is exactly the result discussed in <a class="reference external" href="http
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -612,7 +623,6 @@ This is exactly the result discussed in <a class="reference external" href="http
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

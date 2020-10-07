@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint" href="../KM1997/CaoNie2017.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> GDSGE
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -114,6 +116,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -152,7 +155,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
         
@@ -674,16 +677,16 @@ These procedures are not necessary but are simple and effective ways to solve th
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_mendoza2010</span><span class="p">;</span>
 
 <span class="n">Iter</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00819545</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">3.83276e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 5.885684 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">5.885684</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00329338</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">1.72695e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 2.855950 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">2.855950</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.00139174</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">1.72276e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 2.474352 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">2.474352</span> <span class="s">seconds.</span>
 
-<span class="c">...</span>
+<span class="k">...</span>
 
 <span class="n">Iter</span><span class="p">:</span><span class="mi">117</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">9.38205e-07</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">1.53505e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 1.252342 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">1.252342</span> <span class="s">seconds.</span>
 </pre></div>
 </div>
 <p>Notice so far, relatively crude grids for the state space are specified in the gmod file.
@@ -693,7 +696,7 @@ increasing the number of (exogenous and endogenous) states
 to <span class="math notranslate nohighlight">\(8\times 80\times 80 = 51200\)</span>.</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">options</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span>
 <span class="n">cTilde_pts_fine</span> <span class="p">=</span> <span class="mi">80</span><span class="p">;</span>
-<span class="n">options</span><span class="p">.</span><span class="n">cTilde</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">cTilde</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">cTilde</span><span class="p">(</span><span class="k">end</span><span class="p">),</span><span class="c">...</span>
+<span class="n">options</span><span class="p">.</span><span class="n">cTilde</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">cTilde</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">cTilde</span><span class="p">(</span><span class="k">end</span><span class="p">),</span><span class="k">...</span>
     <span class="n">cTilde_pts_fine</span><span class="p">);</span>
 <span class="n">k_pts_fine</span> <span class="p">=</span> <span class="mi">80</span><span class="p">;</span>
 <span class="n">options</span><span class="p">.</span><span class="n">k</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">IterRslt</span><span class="p">.</span><span class="n">var_state</span><span class="p">.</span><span class="n">k</span><span class="p">(</span><span class="k">end</span><span class="p">),</span><span class="n">k_pts_fine</span><span class="p">);</span>
@@ -701,17 +704,17 @@ to <span class="math notranslate nohighlight">\(8\times 80\times 80 = 51200\)</s
 <span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_mendoza2010</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
 
 <span class="n">Iter</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">0.0018683</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.36063e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 6.374272 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">6.374272</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">130</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">6.5268e-05</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.48359e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 16.458581 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">16.458581</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">140</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">1.57919e-05</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.50337e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 13.727288 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">13.727288</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">150</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">4.02936e-06</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">8.41128e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 12.966158 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">12.966158</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">160</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">1.0877e-06</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">7.73927e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 11.709191 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">11.709191</span> <span class="s">seconds.</span>
 <span class="n">Iter</span><span class="p">:</span><span class="mi">161</span><span class="p">,</span> <span class="n">Metric</span><span class="p">:</span><span class="mf">9.56597e-07</span><span class="p">,</span> <span class="n">maxF</span><span class="p">:</span><span class="mf">7.23566e-09</span>
-<span class="n">Elapsed </span><span class="s">time is 1.117845 seconds.</span><span class="p"></span>
+<span class="n">Elapsed</span> <span class="s">time</span> <span class="s">is</span> <span class="s">1.117845</span> <span class="s">seconds.</span>
 </pre></div>
 </div>
 <p>The refined iterations continue to converge in another minute. It’s always a good convention to start with some cruder grid to assess the properties
@@ -782,14 +785,14 @@ the transitions need to be specified in the simulate block</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">SimuRslt</span> <span class="p">=</span> <span class="n">simulate_mendoza2010</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
 
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">1000</span>
-<span class="n">shock  </span><span class="s">cTilde       k       c       Y       q     inv       b   bNext       v      nx     gdp   b_gdp  nx_gdp     lev  wkcptl</span><span class="p"></span>
-<span class="n">    1   </span><span class="s">166.9   747.1   282.5     429   1.048   78.98   109.7   86.46   43.32  -23.58   385.9  0.2843 -0.06110.0002417   76.13</span><span class="p"></span>
+<span class="n">shock</span>  <span class="s">cTilde</span>       <span class="s">k</span>       <span class="s">c</span>       <span class="s">Y</span>       <span class="s">q</span>     <span class="s">inv</span>       <span class="s">b</span>   <span class="s">bNext</span>       <span class="s">v</span>      <span class="s">nx</span>     <span class="s">gdp</span>   <span class="s">b_gdp</span>  <span class="s">nx_gdp</span>     <span class="s">lev</span>  <span class="s">wkcptl</span>
+    <span class="n">1</span>   <span class="s">166.9</span>   <span class="s">747.1</span>   <span class="s">282.5</span>     <span class="s">429</span>   <span class="s">1.048</span>   <span class="s">78.98</span>   <span class="s">109.7</span>   <span class="s">86.46</span>   <span class="s">43.32</span>  <span class="o">-</span><span class="mf">23.58</span>   <span class="mf">385.9</span>  <span class="mf">0.2843</span> <span class="o">-</span><span class="mf">0.06110</span><span class="p">.</span><span class="mi">0002417</span>   <span class="mf">76.13</span>
 
-<span class="c">...</span>
+<span class="k">...</span>
 
 <span class="n">Periods</span><span class="p">:</span> <span class="mi">50000</span>
-<span class="n">shock  </span><span class="s">cTilde       k       c       Y       q     inv       b   bNext       v      nx     gdp   b_gdp  nx_gdp     lev  wkcptl</span><span class="p"></span>
-<span class="n">    5   </span><span class="s">149.8   741.1   262.8   423.8  0.9844   61.04  -33.48  -31.26   42.34   13.19   381.7-0.08769 0.03455 -0.1525    74.4</span><span class="p"></span>
+<span class="n">shock</span>  <span class="s">cTilde</span>       <span class="s">k</span>       <span class="s">c</span>       <span class="s">Y</span>       <span class="s">q</span>     <span class="s">inv</span>       <span class="s">b</span>   <span class="s">bNext</span>       <span class="s">v</span>      <span class="s">nx</span>     <span class="s">gdp</span>   <span class="s">b_gdp</span>  <span class="s">nx_gdp</span>     <span class="s">lev</span>  <span class="s">wkcptl</span>
+    <span class="n">5</span>   <span class="s">149.8</span>   <span class="s">741.1</span>   <span class="s">262.8</span>   <span class="s">423.8</span>  <span class="s">0.9844</span>   <span class="s">61.04</span>  <span class="o">-</span><span class="mf">33.48</span>  <span class="o">-</span><span class="mf">31.26</span>   <span class="mf">42.34</span>   <span class="mf">13.19</span>   <span class="mf">381.7</span><span class="o">-</span><span class="mf">0.08769</span> <span class="mf">0.03455</span> <span class="o">-</span><span class="mf">0.1525</span>    <span class="mf">74.4</span>
 </pre></div>
 </div>
 <p>We can inspect the histogram of the natural state variables <span class="math notranslate nohighlight">\((k,b)\)</span> by calling in MATLAB:</p>
@@ -806,8 +809,8 @@ the transitions need to be specified in the simulate block</p>
 <p>We are interested in the fraction of time that the economy spends in a crisis, i.e., states with binding collateral constraint:</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">muGreaterThanZero</span> <span class="p">=</span> <span class="n">SimuRslt</span><span class="p">.</span><span class="n">mu</span> <span class="o">&gt;</span> <span class="mf">1e-7</span><span class="p">;</span>
 <span class="n">fractionCrisis</span> <span class="p">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">muGreaterThanZero</span><span class="p">(:))</span> <span class="o">/</span> <span class="nb">numel</span><span class="p">(</span><span class="n">muGreaterThanZero</span><span class="p">(:));</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;The fraction in crisis: %g\n&#39;</span><span class="p">,</span><span class="n">fractionCrisis</span><span class="p">);</span><span class="n"></span>
-<span class="n">The </span><span class="s">fraction in crisis: 0.131997</span><span class="p"></span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;The fraction in crisis: %g\n&#39;</span><span class="p">,</span><span class="n">fractionCrisis</span><span class="p">);</span>
+<span class="n">The</span> <span class="s">fraction</span> <span class="s">in</span> <span class="s">crisis:</span> <span class="s">0.131997</span>
 </pre></div>
 </div>
 <p>We can calculate the unconditional moments:</p>
@@ -819,20 +822,20 @@ the transitions need to be specified in the simulate block</p>
 <span class="n">corrStats</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span>
 <span class="n">autoCorrStats</span> <span class="p">=</span> <span class="n">struct</span><span class="p">;</span>
 <span class="n">startPeriod</span> <span class="p">=</span> <span class="mi">1001</span><span class="p">;</span>
-<span class="n">endPeriod</span> <span class="p">=</span> <span class="mi">50000</span><span class="p">;</span><span class="n"></span>
-<span class="n">for </span><span class="s">i_var = 1:length(varList)</span><span class="p"></span>
+<span class="n">endPeriod</span> <span class="p">=</span> <span class="mi">50000</span><span class="p">;</span>
+<span class="n">for</span> <span class="s">i_var</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">varList</span><span class="p">)</span>
     <span class="n">varName</span> <span class="p">=</span> <span class="n">varList</span><span class="p">{</span><span class="n">i_var</span><span class="p">};</span>
-    <span class="n">meanStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">)</span> <span class="p">=</span> <span class="n">mean</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span><span class="n"></span>
-<span class="n">    if </span><span class="s">max(strcmp(varName,ratioList))==1</span><span class="p"></span>
-        <span class="n">stdStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">)</span> <span class="p">=</span> <span class="n">std</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span><span class="n"></span>
-<span class="n">    else</span>
-<span class="n">        </span><span class="s">stdStats.(varName) = std(reshape(SimuRslt.(varName)(:,startPeriod:endPeriod),[],1)) ...</span><span class="p"></span>
-            <span class="o">/</span> <span class="n">meanStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">);</span><span class="n"></span>
-<span class="n">    end</span>
-<span class="n">    </span><span class="s">corrStats.(varName) = corr(reshape(SimuRslt.(varName)(:,startPeriod:endPeriod),[],1), ...</span><span class="p"></span>
+    <span class="n">meanStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">)</span> <span class="p">=</span> <span class="n">mean</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span>
+    <span class="n">if</span> <span class="s">max(strcmp(varName,ratioList))==1</span>
+        <span class="n">stdStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">)</span> <span class="p">=</span> <span class="n">std</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span>
+    <span class="n">else</span>
+        <span class="s">stdStats.(varName)</span> <span class="p">=</span> <span class="n">std</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">))</span> <span class="k">...</span>
+            <span class="o">/</span> <span class="n">meanStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">);</span>
+    <span class="n">end</span>
+    <span class="s">corrStats.(varName)</span> <span class="p">=</span> <span class="n">corr</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">),</span> <span class="k">...</span>
         <span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.</span><span class="n">gdp</span><span class="p">(:,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span>
-    <span class="n">autoCorrStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">)</span> <span class="p">=</span> <span class="n">corr</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span><span class="n">startPeriod</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">),</span> <span class="c">...</span>
-        <span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="o">-</span><span class="mi">1</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span><span class="n"></span>
+    <span class="n">autoCorrStats</span><span class="p">.(</span><span class="n">varName</span><span class="p">)</span> <span class="p">=</span> <span class="n">corr</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span><span class="n">startPeriod</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">endPeriod</span><span class="p">),[],</span><span class="mi">1</span><span class="p">),</span> <span class="k">...</span>
+        <span class="nb">reshape</span><span class="p">(</span><span class="n">SimuRslt</span><span class="p">.(</span><span class="n">varName</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span><span class="n">startPeriod</span><span class="p">:</span><span class="n">endPeriod</span><span class="o">-</span><span class="mi">1</span><span class="p">),[],</span><span class="mi">1</span><span class="p">));</span>
 <span class="n">end</span>
 </pre></div>
 </div>
@@ -1066,11 +1069,19 @@ The current model can also be solved with adaptive grids by simply specifying on
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1081,7 +1092,6 @@ The current model can also be solved with adaptive grids by simply specifying on
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

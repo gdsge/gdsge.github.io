@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,15 +30,11 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Guvenen (2009): Asset Pricing with Heterogeneous IES" href="../Guvenen2009/Guvenen2009.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> GDSGE
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -107,6 +109,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,7 +148,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</li>
     
@@ -225,7 +228,7 @@ The multipliers and portfolio choices satisfy the complementary-slackness condit
 <p>We define a recursive equilibrium with the wealth share <span class="math notranslate nohighlight">\(\omega_t\)</span> defined before. A recursive equilibrium is
 <span class="math notranslate nohighlight">\(\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)\)</span> that satisfy the agents’ optimization conditions
 and market clearing conditions stated above.</p>
-<p>We omit the explicit dependence on state <span class="math notranslate nohighlight">\((z,\omega)\)</span> except the first variable, and highlight that the
+<p>We omit the explicit dependence on state <span class="math notranslate nohighlight">\((z,\omega)\)</span>, and highlight that the
 the endogenous state variable <span class="math notranslate nohighlight">\(\omega'\)</span> features law of motions that are implicitly characterized by equations
 which depend on future exogenous state variables <span class="math notranslate nohighlight">\(z'\)</span>.
 It should be clear at this moment that the key feature of our framework that enables to cast the equilibrium system as a single equation system,
@@ -420,7 +423,7 @@ c2_future = c2;
 <span class="k">end;</span>
 </pre></div>
 </td></tr></table></div>
-<p>As can be seen, the implicit law of motion for the endogenous state <span class="math notranslate nohighlight">\(\omega'\)</span> is captured by the consistency equation</p>
+<p>As shown, the implicit law of motion for the endogenous state <span class="math notranslate nohighlight">\(\omega'\)</span> is captured by the consistency equation</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>68</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  w1_consis&#39; = (s1p*(psn&#39;+d&#39;) + b1p/g&#39;)/(psn&#39;+d&#39;) - w1n&#39;;
 </pre></div>
 </td></tr></table></div>
@@ -448,7 +451,7 @@ in the simulation, we need to specify that the transition depends on the realiza
 realization of future exogenous states (recall, <em>w1n</em> is a vector solved from the policy iteration as one of the <em>var_policy</em>).</p>
 <p>Now we discuss several tricks that facilitate casting the recursive system to the toolbox, which are commonly
 used for this class of models.</p>
-<p>Since the original problem’s borrowing constraint is proportional to the aggregate endowment, we can use a transformation
+<p>Since the original problem’s borrowing constraint is proportional to the aggregate endowment, we can use transformations below
 to simplify the constraint</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>60
 61</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  b1p = nb1p + Kb;
@@ -691,8 +694,7 @@ s_{t+1}^1+s_{t+1}^2=1
 \hat{c}^1_{t+1}=s_{t+1}^i (\hat{p}_{t+1}^s + \hat{d}_{t+1})+ \frac{\hat{b}_{t+1}^i  }{\gamma_{t+1}}+
 \underbrace{\eta_{t+1}^i - \hat{p}_{t+1}^s s_{t+2}^i-p_{t+1}^b \hat{b}_{t+2}^i}_{\text{Financial Wealth}_{t+1}}, \forall z_{t+1}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{c}^2\)</span> (and <span class="math notranslate nohighlight">\((\hat{c}^2)'\)</span>) can be trivially inferred from the goods market clearing condition <span class="math notranslate nohighlight">\(\hat{c}^1+\hat{c}^2=1 +\hat{d}\)</span>, and, hence does not
-need to be defined as extra unknowns when evaluating the equation system.  The “Financial Wealth” is a function of future endogenous states, and can be part of the implicit
-state transition functions.</p>
+need to be defined as extra unknowns when evaluating the equation system.  The “Financial Wealth” is a function of future endogenous states, and can be part of the policy functions, returned as one of var_aux at each iteration.</p>
 <p>The gmod file that implements the recursive system is (<a class="reference download internal" download="" href="../../_downloads/db3ca1822fafc3a469b7bc3158511822/HL1996_consumption_share.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996_consumption_share.gmod</span></code></a>)</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -942,11 +944,19 @@ many models robustly (for example, consumption might be exactly zero at the boun
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -957,7 +967,6 @@ many models robustly (for example, consumption might be exactly zero at the boun
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

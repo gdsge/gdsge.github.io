@@ -1,9 +1,7 @@
 
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -13,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -26,15 +30,11 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> GDSGE
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> GDSGE
           
 
           
@@ -73,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +100,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -137,7 +139,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Index</li>
     
@@ -162,6 +164,7 @@
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
  | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#G"><strong>G</strong></a>
@@ -184,27 +187,27 @@
     #define
 
       <ul>
-        <li><a href="usage/functions.html#option-#define">option</a>
+        <li><a href="usage/functions.html#option-define">option</a>
 </li>
       </ul></li>
       <li>
-    #for...#end
+    #for ... #end
 
       <ul>
-        <li><a href="usage/functions.html#option-#for...#end">option</a>
+        <li><a href="usage/functions.html#option-for-...-end">option</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    ...end;; declare
+    ... end;; declare
 
       <ul>
-        <li><a href="usage/functions.html#declare-model;...end;">model</a>
+        <li><a href="usage/functions.html#declare-model-...-end">model</a>
 </li>
-        <li><a href="usage/functions.html#declare-model_init;...end;">model_init</a>
+        <li><a href="usage/functions.html#declare-model_init-...-end">model_init</a>
 </li>
-        <li><a href="usage/functions.html#declare-simulate;...end;">simulate</a>
+        <li><a href="usage/functions.html#declare-simulate-...-end">simulate</a>
 </li>
       </ul></li>
   </ul></td>
@@ -260,6 +263,21 @@
   </ul></td>
 </tr></table>
 
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    built-in function
+
+      <ul>
+        <li><a href="usage/functions.html#iter_modname">iter_modname()</a>
+</li>
+        <li><a href="usage/functions.html#simulate_modname">simulate_modname()</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -267,21 +285,21 @@
     declare
 
       <ul>
-        <li><a href="usage/functions.html#declare-parametersvar1var2...">parametersvar1var2...</a>
+        <li><a href="usage/functions.html#declare-parameters-var1-var2-...">parameters var1 var2 ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_auxvar1var2[len2]...">var_auxvar1var2[len2]...</a>
+        <li><a href="usage/functions.html#declare-var_aux-var1-var2-len2-...">var_aux var1 var2[len2] ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_interpvar1var2...">var_interpvar1var2...</a>
+        <li><a href="usage/functions.html#declare-var_interp-var1-var2-...">var_interp var1 var2 ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_othersvar1var2...">var_othersvar1var2...</a>
+        <li><a href="usage/functions.html#declare-var_others-var1-var2-...">var_others var1 var2 ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_outputvar1var2...">var_outputvar1var2...</a>
+        <li><a href="usage/functions.html#declare-var_output-var1-var2-...">var_output var1 var2 ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_policyvar1var2[len2]...">var_policyvar1var2[len2]...</a>
+        <li><a href="usage/functions.html#declare-var_policy-var1-var2-len2-...">var_policy var1 var2[len2] ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_shockvar1var2...">var_shockvar1var2...</a>
+        <li><a href="usage/functions.html#declare-var_shock-var1-var2-...">var_shock var1 var2 ...</a>
 </li>
-        <li><a href="usage/functions.html#declare-var_statevar1var2...">var_statevar1var2...</a>
+        <li><a href="usage/functions.html#declare-var_state-var1-var2-...">var_state var1 var2 ...</a>
 </li>
       </ul></li>
   </ul></td>
@@ -332,10 +350,15 @@
         <li><a href="usage/functions.html#option-INTERP_ORDER">option</a>
 </li>
       </ul></li>
+      <li>
+    iter_modname()
+
+      <ul>
+        <li><a href="usage/functions.html#iter_modname">built-in function</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="usage/functions.html#iter_modname">iter_modname() (built-in function)</a>
-</li>
       <li>
     IterSaveAll
 
@@ -369,14 +392,14 @@
     model
 
       <ul>
-        <li><a href="usage/functions.html#declare-model;...end;">...end;; declare</a>
+        <li><a href="usage/functions.html#declare-model-...-end">... end;; declare</a>
 </li>
       </ul></li>
       <li>
     model_init
 
       <ul>
-        <li><a href="usage/functions.html#declare-model_init;...end;">...end;; declare</a>
+        <li><a href="usage/functions.html#declare-model_init-...-end">... end;; declare</a>
 </li>
       </ul></li>
   </ul></td>
@@ -418,9 +441,9 @@
     option
 
       <ul>
-        <li><a href="usage/functions.html#option-#define">#define</a>
+        <li><a href="usage/functions.html#option-define">#define</a>
 </li>
-        <li><a href="usage/functions.html#option-#for...#end">#for...#end</a>
+        <li><a href="usage/functions.html#option-for-...-end">#for ... #end</a>
 </li>
         <li><a href="usage/functions.html#option-AsgFixGrid">AsgFixGrid</a>
 </li>
@@ -496,10 +519,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    parametersvar1var2...
+    parameters var1 var2 ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-parametersvar1var2...">declare</a>
+        <li><a href="usage/functions.html#declare-parameters-var1-var2-...">declare</a>
 </li>
       </ul></li>
   </ul></td>
@@ -542,11 +565,16 @@
     simulate
 
       <ul>
-        <li><a href="usage/functions.html#declare-simulate;...end;">...end;; declare</a>
+        <li><a href="usage/functions.html#declare-simulate-...-end">... end;; declare</a>
 </li>
       </ul></li>
-      <li><a href="usage/functions.html#simulate_modname">simulate_modname() (built-in function)</a>
+      <li>
+    simulate_modname()
+
+      <ul>
+        <li><a href="usage/functions.html#simulate_modname">built-in function</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
@@ -656,54 +684,54 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    var_auxvar1var2[len2]...
+    var_aux var1 var2[len2] ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_auxvar1var2[len2]...">declare</a>
+        <li><a href="usage/functions.html#declare-var_aux-var1-var2-len2-...">declare</a>
 </li>
       </ul></li>
       <li>
-    var_interpvar1var2...
+    var_interp var1 var2 ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_interpvar1var2...">declare</a>
+        <li><a href="usage/functions.html#declare-var_interp-var1-var2-...">declare</a>
 </li>
       </ul></li>
       <li>
-    var_othersvar1var2...
+    var_others var1 var2 ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_othersvar1var2...">declare</a>
+        <li><a href="usage/functions.html#declare-var_others-var1-var2-...">declare</a>
 </li>
       </ul></li>
       <li>
-    var_outputvar1var2...
+    var_output var1 var2 ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_outputvar1var2...">declare</a>
+        <li><a href="usage/functions.html#declare-var_output-var1-var2-...">declare</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    var_policyvar1var2[len2]...
+    var_policy var1 var2[len2] ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_policyvar1var2[len2]...">declare</a>
+        <li><a href="usage/functions.html#declare-var_policy-var1-var2-len2-...">declare</a>
 </li>
       </ul></li>
       <li>
-    var_shockvar1var2...
+    var_shock var1 var2 ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_shockvar1var2...">declare</a>
+        <li><a href="usage/functions.html#declare-var_shock-var1-var2-...">declare</a>
 </li>
       </ul></li>
       <li>
-    var_statevar1var2...
+    var_state var1 var2 ...
 
       <ul>
-        <li><a href="usage/functions.html#declare-var_statevar1var2...">declare</a>
+        <li><a href="usage/functions.html#declare-var_state-var1-var2-...">declare</a>
 </li>
       </ul></li>
   </ul></td>
@@ -734,11 +762,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -749,7 +785,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -88,7 +88,7 @@ We define a recursive equilibrium with the wealth share :math:`\omega_t` defined
 :math:`\hat{c}^i(z,\omega), {s^i}', {\hat{b}^i}', \hat{\mu}^{i,s}, \hat{\mu}^{b,i}, p^s, p^b, \omega'(z';z,\omega)` that satisfy the agents' optimization conditions
 and market clearing conditions stated above.
 
-We omit the explicit dependence on state :math:`(z,\omega)` except the first variable, and highlight that the
+We omit the explicit dependence on state :math:`(z,\omega)`, and highlight that the
 the endogenous state variable :math:`\omega'` features law of motions that are implicitly characterized by equations 
 which depend on future exogenous state variables :math:`z'`.
 It should be clear at this moment that the key feature of our framework that enables to cast the equilibrium system as a single equation system,
@@ -101,7 +101,7 @@ The system can be implemented by the following :download:`HL1996.gmod <HL1996.gm
     :language: GDSGE
 
 
-As can be seen, the implicit law of motion for the endogenous state :math:`\omega'` is captured by the consistency equation
+As shown, the implicit law of motion for the endogenous state :math:`\omega'` is captured by the consistency equation
 
 .. literalinclude:: HL1996.gmod
     :lines: 68-68
@@ -146,7 +146,7 @@ realization of future exogenous states (recall, *w1n* is a vector solved from th
 Now we discuss several tricks that facilitate casting the recursive system to the toolbox, which are commonly
 used for this class of models.
 
-Since the original problem's borrowing constraint is proportional to the aggregate endowment, we can use a transformation 
+Since the original problem's borrowing constraint is proportional to the aggregate endowment, we can use transformations below
 to simplify the constraint
 
 .. literalinclude:: HL1996.gmod
@@ -391,8 +391,7 @@ the recursive equilibrium can be defined as :math:`{s^i}'(z,\hat{c}^1),{\hat{b}^
     \underbrace{\eta_{t+1}^i - \hat{p}_{t+1}^s s_{t+2}^i-p_{t+1}^b \hat{b}_{t+2}^i}_{\text{Financial Wealth}_{t+1}}, \forall z_{t+1}
 
 where :math:`\hat{c}^2` (and :math:`(\hat{c}^2)'`) can be trivially inferred from the goods market clearing condition :math:`\hat{c}^1+\hat{c}^2=1 +\hat{d}`, and, hence does not 
-need to be defined as extra unknowns when evaluating the equation system.  The "Financial Wealth" is a function of future endogenous states, and can be part of the implicit
-state transition functions.
+need to be defined as extra unknowns when evaluating the equation system.  The "Financial Wealth" is a function of future endogenous states, and can be part of the policy functions, returned as one of var_aux at each iteration.
 
 The gmod file that implements the recursive system is (:download:`HL1996_consumption_share.gmod <HL1996_consumption_share.gmod>`)
 
