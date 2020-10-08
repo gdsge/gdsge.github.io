@@ -121,16 +121,16 @@ We can now simulate the model by inputting IterRslt into simulate_rbc:
     >> SimuRslt = simulate_rbc(IterRslt);
 
     Periods: 1000
-       shock       K       c
-           1   38.09   2.754
-    Elapsed time is 1.185821 seconds.
+        shock       K       c       w
+            2   36.27   2.707   2.448
+    Elapsed time is 0.642607 seconds.
     
     ...
     
     Periods: 10000
-       shock       K       c
-           2   37.83   2.753
-    Elapsed time is 1.281338 seconds.
+        shock       K       c       w
+            1   36.71   2.685   2.224
+    Elapsed time is 0.632642 seconds.
     
 The returned SimuRslt contains a panel of simulated paths with num_samples and num_periods specified in the mod file. For example, we can plot the histogram of state variable :math:`K`:
 

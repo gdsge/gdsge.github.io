@@ -62,7 +62,7 @@ end;
 
 simulate;
   num_periods = 10000;
-  num_samples = 100;
+  num_samples = 6;
   initial K Kss;
   initial shock 1;
   var_simu c K w;
