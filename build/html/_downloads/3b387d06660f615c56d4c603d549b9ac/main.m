@@ -5,7 +5,7 @@ IterRslt = iter_ks1998;
 %% Generate random numbers
 % Parameters
 num_periods = 11000;
-num_samples = 30000;
+num_samples = 10000;
 
 % Transition matrix for aggregate shocks
 shock_trans = IterRslt.shock_trans;

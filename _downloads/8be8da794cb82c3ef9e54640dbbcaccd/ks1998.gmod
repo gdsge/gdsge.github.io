@@ -86,7 +86,7 @@ end;
 
 simulate;
   num_periods = 11000;
-  num_samples = 30000;
+  num_samples = 10000;
   initial k 1;
   initial kbar 1;
   initial shock 1;

@@ -376,7 +376,7 @@ budget = k.*(1+r) + e.*w + unemp;
 
 <span class="k">simulate;</span>
   <span class="k">num_periods</span> = 11000;
-  <span class="k">num_samples</span> = 30000;
+  <span class="k">num_samples</span> = 10000;
   <span class="k">initial</span> k 1;
   <span class="k">initial</span> kbar 1;
   <span class="k">initial</span> shock 1;
@@ -497,7 +497,7 @@ post_simulate_iter;
 <span class="c">%% Generate random numbers</span>
 <span class="c">% Parameters</span>
 <span class="n">num_periods</span> <span class="p">=</span> <span class="mi">11000</span><span class="p">;</span>
-<span class="n">num_samples</span> <span class="p">=</span> <span class="mi">30000</span><span class="p">;</span>
+<span class="n">num_samples</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span>
 
 <span class="c">% Transition matrix for aggregate shocks</span>
 <span class="n">shock_trans</span> <span class="p">=</span> <span class="n">IterRslt</span><span class="p">.</span><span class="n">shock_trans</span><span class="p">;</span>
