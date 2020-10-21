@@ -253,6 +253,34 @@ The range of the grid will be used for adaptive grid methods.</p>
 </dd></dl>
 
 <dl class="std declare">
+<dt id="declare-var_tensor-var1-var2-...">
+<span id="declare-var_tensor var1 var2 ..."></span><code class="sig-name descname">var_tensor var1 var2 ...</code><a class="headerlink" href="#declare-var_tensor-var1-var2-..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare tensor variables that are simple functions of var_shock and var_state.</p>
+<p>Some variables are simple functions of var_shock and var_state, and can be evaluated out of the model block.
+For example, in the simple RBC model, output needs to enter the resource constraint and is a simple function of
+productivity and capital. We can declare output <em>Y</em> as a var_tensor and use it as following:</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">parameters</span> alpha;
+<span class="k">var_shock</span> z;
+<span class="k">var_state</span> K;
+<span class="k">var_tensor</span> Y;
+
+... <span class="c">% Definition of z and K here</span>
+Y = z.*K.^(alpha); <span class="c">% Assign Y</span>
+
+<span class="k">var_policy</span> c K_next;
+inbound c 0 Y;  % <span class="k">var_tensor</span> can be used in inbound
+<span class="k">inbound</span> K_next 0 Y;
+
+<span class="k">model;</span>
+    resource_residual = Y + (1-delta)*K - c - K_next;
+    ...
+<span class="k">end;</span>
+</pre></div>
+</div>
+<p>As illustrated above, the advantage of using <a href="#id1"><span class="problematic" id="id2">*</span></a>var_tensor*s and constructing them before the model block is that they can be used to specify the bounds of policy variables, and they are used to avoid redundant evaluations, since these variables are functions of exogenous and endogenous state variables and do not depend on policy variables.</p>
+</dd></dl>
+
+<dl class="std declare">
 <dt id="declare-var_interp-var1-var2-...">
 <span id="declare-var_interp var1 var2 ..."></span><code class="sig-name descname">var_interp var1 var2 ...</code><a class="headerlink" href="#declare-var_interp-var1-var2-..." title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare policy functions from the last iteration to be evaluated in the current iteration.

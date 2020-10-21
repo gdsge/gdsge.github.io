@@ -340,7 +340,7 @@ Evp_interp = <span class="k">shock_trans</span> * vp;
 Ev_interp = <span class="k">shock_trans</span> * v;
 
 <span class="c">% Tensor</span>
-var_tensor kbar_next lbar Y r w budget;
+<span class="k">var_tensor</span> kbar_next lbar Y r w budget;
 <span class="c">% Forecasting rule</span>
 kbar_next = exp(log(kbar).*phi(z_idx*4+1) + phi(z_idx*4+2));
 lbar = exp(log(kbar).*phi(z_idx*4+3) + phi(z_idx*4+4));
@@ -497,7 +497,7 @@ post_simulate_iter;
 <span class="c">%% Generate random numbers</span>
 <span class="c">% Parameters</span>
 <span class="n">num_periods</span> <span class="p">=</span> <span class="mi">11000</span><span class="p">;</span>
-<span class="n">num_samples</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span>
+<span class="n">num_samples</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span> <span class="c">% Need around 8GB to run the simulation</span>
 
 <span class="c">% Transition matrix for aggregate shocks</span>
 <span class="n">shock_trans</span> <span class="p">=</span> <span class="n">IterRslt</span><span class="p">.</span><span class="n">shock_trans</span><span class="p">;</span>
@@ -570,7 +570,7 @@ post_simulate_iter;
 <span class="c">% Gini coefficients</span>
 <span class="n">samplePeriods</span> <span class="p">=</span> <span class="n">num_periods</span><span class="p">;</span>
 <span class="n">k</span> <span class="p">=</span> <span class="n">SimuRslt</span><span class="p">.</span><span class="n">k</span><span class="p">(:,</span><span class="n">samplePeriods</span><span class="p">);</span>
-<span class="n">ginicoeff</span><span class="p">(</span><span class="n">k</span><span class="p">(</span><span class="n">k</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">))</span>
+<span class="c">% ginicoeff(k(k&gt;=0)) % Uncomment this to calculate gini if you have ginicoeff routine</span>
 
 <span class="c">%%%%%%%%%%%%%%% MAIN ENDS HERE %%%%%%%%%%%%%%%%%%</span>
 <span class="k">function</span><span class="w"> </span>shock <span class="p">=</span><span class="w"> </span><span class="nf">gen_discrete_markov_rn_with_agg</span><span class="p">(</span>trans,numPaths,lenPath,initShock,aggIdx<span class="p">)</span><span class="w"></span>

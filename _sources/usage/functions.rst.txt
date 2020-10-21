@@ -59,6 +59,35 @@ Variable declaration
     The grid will be used for fixed-grid function approximations such as splines and linear interpolations.
     The range of the grid will be used for adaptive grid methods.
 
+.. declare:: var_tensor var1 var2 ...
+
+    Declare tensor variables that are simple functions of var_shock and var_state.
+
+    Some variables are simple functions of var_shock and var_state, and can be evaluated out of the model block.
+    For example, in the simple RBC model, output needs to enter the resource constraint and is a simple function of 
+    productivity and capital. We can declare output *Y* as a var_tensor and use it as following:
+
+    .. code-block:: GDSGE
+
+        parameters alpha;
+        var_shock z;
+        var_state K;
+        var_tensor Y;
+
+        ... % Definition of z and K here
+        Y = z.*K.^(alpha); % Assign Y
+
+        var_policy c K_next;
+        inbound c 0 Y;  % var_tensor can be used in inbound
+        inbound K_next 0 Y;
+
+        model;
+            resource_residual = Y + (1-delta)*K - c - K_next;
+            ...
+        end;
+
+    As illustrated above, the advantage of using *var_tensor*s and constructing them before the model block is that they can be used to specify the bounds of policy variables, and they are used to avoid redundant evaluations, since these variables are functions of exogenous and endogenous state variables and do not depend on policy variables.
+
 .. declare:: var_interp var1 var2 ...
 
     Declare policy functions from the last iteration to be evaluated in the current iteration.

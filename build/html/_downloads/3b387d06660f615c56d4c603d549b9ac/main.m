@@ -5,7 +5,7 @@ IterRslt = iter_ks1998(options);
 %% Generate random numbers
 % Parameters
 num_periods = 11000;
-num_samples = 10000;
+num_samples = 10000; % Need around 8GB to run the simulation
 
 % Transition matrix for aggregate shocks
 shock_trans = IterRslt.shock_trans;
@@ -78,7 +78,7 @@ sum(SimuRslt.k(:,num_periods)<0) / numel(SimuRslt.k(:,num_periods))
 % Gini coefficients
 samplePeriods = num_periods;
 k = SimuRslt.k(:,samplePeriods);
-ginicoeff(k(k>=0))
+% ginicoeff(k(k>=0)) % Uncomment this to calculate gini if you have ginicoeff routine
 
 %%%%%%%%%%%%%%% MAIN ENDS HERE %%%%%%%%%%%%%%%%%%
 function shock = gen_discrete_markov_rn_with_agg(trans,numPaths,lenPath,initShock,aggIdx)
