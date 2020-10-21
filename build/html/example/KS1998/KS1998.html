@@ -492,7 +492,7 @@ post_simulate_iter;
  99
 100</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">%% Solve the warm-up problems</span>
 <span class="n">options</span><span class="p">.</span><span class="n">k</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="s">&#39;points.kgd&#39;</span><span class="p">);</span> <span class="n">options</span><span class="p">.</span><span class="n">kMin</span> <span class="p">=</span> <span class="n">options</span><span class="p">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_ks1998</span><span class="p">;</span>
+<span class="n">IterRslt</span> <span class="p">=</span> <span class="n">iter_ks1998</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
 
 <span class="c">%% Generate random numbers</span>
 <span class="c">% Parameters</span>

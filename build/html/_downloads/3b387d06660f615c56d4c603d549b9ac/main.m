@@ -1,6 +1,6 @@
 %% Solve the warm-up problems
 options.k = csvread('points.kgd'); options.kMin = options.k(1);
-IterRslt = iter_ks1998;
+IterRslt = iter_ks1998(options);
 
 %% Generate random numbers
 % Parameters
