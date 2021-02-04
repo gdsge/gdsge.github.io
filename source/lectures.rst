@@ -19,7 +19,7 @@ Lecture slides: `gdsge_intro.pdf <_static/gdsge_intro.pdf>`_
 Lecture material (including gmod files and compiled files): :download:`intro_lecture_material <lectures/intro_lecture_material.zip>`
 
 You can compile gmod files by uploading them to servers:
-|br| [`Windows <http://122.112.231.135/>`_] [`MacOS <http://166.111.99.77:20000/>`_] 
+|br| [`Windows <http://166.111.99.77:50000/>`_] [`MacOS <http://166.111.99.77:20000/>`_] 
 
 Notice you also need to download GDSGE runtime files to run compiled files locally:
-|br| [`Windows <http://122.112.231.135/gdsge_win.zip>`_] [`MacOS <http://122.112.231.135/gdsge_mac.zip>`_] 
+|br| [`Windows <http://166.111.99.77:50000/gdsge_win.zip>`_] [`MacOS <http://166.111.99.77:50000/gdsge_mac.zip>`_] 
