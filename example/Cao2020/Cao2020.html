@@ -390,7 +390,7 @@ ZETrans = reshape(ZETrans,[4 4]);
 <span class="k">shock_trans</span> = ZETrans;
 
 <span class="c">% Tensor variables</span>
-var_tensor r w budget1 budget2;
+<span class="k">var_tensor</span> r w budget1 budget2;
 <span class="c">% Notice use dot operator</span>
 r = alpha*z.*(K./L).^(alpha-1);
 w = (1-alpha)*z.*(K./L).^alpha;
@@ -400,7 +400,7 @@ budget2 = (1-delta+r).*(2*K).*X + w.*e2;
 % Endogenous variables, bounds, and <span class="k">initial</span> values
 <span class="k">var_policy</span> c1 c2 Kp Xp lambda1 lambda2;
 <span class="c">% Set bound of endogenous variable</span>
-<span class="c">% note var_tensor can be used (budget1 budget2)</span>
+% note <span class="k">var_tensor</span> can be used (budget1 budget2)
 <span class="c">% note scalar defined before can be used (KMax)</span>
 <span class="k">inbound</span> c1 0 budget1;
 <span class="k">inbound</span> c2 0 budget2;
