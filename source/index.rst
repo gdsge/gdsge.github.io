@@ -28,6 +28,11 @@ by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an
 
 More examples and detailed instructions on gmod files and on how to use the toolbox are provided below.
 
+To edit the gmod file, open it in any text editor. If you are using Notepad++, you can import the syntax highlighter :download:`gdsge_notepad.xml <plugins/gdsge_notepad.xml>`, which highlights all keywords and options as shown below
+
+.. image:: plugins/notepad_screenshot.png
+    :scale: 80 %
+
 If you have comments, suggestions or coding questions for us, or would like to contribute GDSGE examples, please reach out to us at: gdsge.cln2020@gmail.com
 
 =================================
