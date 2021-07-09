@@ -19,7 +19,7 @@ The toolbox can be used to solve models in macroeconomics, international finance
 Try running your first example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
 by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an online compiler server deployed at
 
-[`Windows <http://166.111.99.96:50000/>`_] [`MacOS <http://166.111.99.96:20000/>`_](Updated 2/4/2021) 
+[`Windows <http://166.111.99.135:50000/>`_] [`MacOS <http://166.111.99.135:20000/>`_](Updated 2/4/2021) 
 
 .. |paper_link| raw:: html
 
