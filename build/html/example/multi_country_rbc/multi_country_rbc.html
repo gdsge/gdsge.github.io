@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>A Multi-country Business Cycle Model &mdash; GDSGE Homepage</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="A New-Keynesian Model with an Occasionally Binding Interest Rate Zero Lower Bound" href="../ZLB/zlb.html" />
+    <link rel="prev" title="Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)" href="../Cao2020/Cao2020.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> GDSGE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures.html">Lectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbc.html">Getting Started - A Simple RBC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rbc/rbcIrr.html">An RBC Model with Irreversible Investment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HL1996/HL1996.html">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Guvenen2009/Guvenen2009.html">Guvenen (2009): Asset Pricing with Heterogeneous IES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bianchi2011/Bianchi2011.html">Bianchi (2011): Sudden Stops in Open Economies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../safe_assets/safe_assets.html">Barro et al. (2017): Safe Assets with Rare Disasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandemic/GLSW2020.html">Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/functions.html">Toolbox API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../AdditionalExamples.html">Additional Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Huggett1997/Huggett1997.html">Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KS1998/KS1998.html">Krusell and Smith (1998): Heterogeneous Agent Models with Aggregate Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mendoza2010/Mendoza2010.html">Mendoza (2010): Sudden Stops with Asset Price Deflation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KM1997/CaoNie2017.html">Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cao2018/Cao2018.html">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cao2020/Cao2020.html">Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">A Multi-country Business Cycle Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-model">The Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#equilibrium-conditions">Equilibrium Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solutions">Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ZLB/zlb.html">A New-Keynesian Model with an Occasionally Binding Interest Rate Zero Lower Bound</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ContributedExamples.html">Contributed Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GDSGE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
+        
+      <li>A Multi-country Business Cycle Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a-multi-country-business-cycle-model">
+<h1>A Multi-country Business Cycle Model<a class="headerlink" href="#a-multi-country-business-cycle-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-model">
+<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
+<p>In this example we demonstrate the toolbox’s ability to handle models with high dimensional states, thanks to the sparse-grid interpolation method.
+The model is a complete-markets multi-country business cycle model. We show that the model with 15 countries and 30 continuous states can be solved in 10 minutes with decent accuracy on a regular desktop.</p>
+<p>There are <span class="math notranslate nohighlight">\(N\)</span> countries, indexed by <span class="math notranslate nohighlight">\(j\)</span>. Each country has one unit of consumers that supply labor exogenously. The consumers’ preference read</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}_0 \sum_{t=0}^{\infty}\beta^t \log(c_{j,t}).\]</div>
+<p>Production in a country <span class="math notranslate nohighlight">\(j\)</span> takes capital and labor according to a Cobb-Douglas production function:</p>
+<div class="math notranslate nohighlight">
+\[Y_{j,t}=\exp(z_{j,t})K_{j,t}^{\alpha},\]</div>
+<p>where <span class="math notranslate nohighlight">\(K_{j,t}\)</span> is capital and <span class="math notranslate nohighlight">\(z_{j,t}\)</span> is the log of country-j’s productivity that follows an AR(1) process, which is independent distributed across countries.
+Capital and labor are immobile.  Capital depreciations at rate <span class="math notranslate nohighlight">\(\delta\)</span> and  investment follows a standard technology:</p>
+<div class="math notranslate nohighlight">
+\[K_{j,t+1} =(1-\delta)K_{j,t} + i_{j,t}.\]</div>
+<p>The market is complete in that consumers can trade a full menu of Arrow securities.</p>
+</div>
+<div class="section" id="equilibrium-conditions">
+<h2>Equilibrium Conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this headline">¶</a></h2>
+<p>The complete-markets equilibrium can be characterized by the social planner’s solution:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\max_{c_{j,t},i_{j,t},K_{j,t+1}} \mathbb{E}_0 \sum_j \omega_j  \sum_{t=0}^{\infty} \beta^t \log(c_{j,t}),
+\\
+s.t. \quad \sum_j (c_{j,t}+i_{j,t})=\sum_j \exp(z_{j,t})K_{j,t}^{\alpha},
+\\
+K_{j,t+1} =(1-\delta)K_{j,t} + i_{j,t},
+\\
+\Rightarrow s.t.  \quad \sum_j (c_{j,t}+K_{j,t+1})=\sum_j \exp(z_{j,t})K_{j,t}^{\alpha}+(1-\delta)K_{j,t},\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega_j\)</span> is the Pareto weight assigned to consumers in country <span class="math notranslate nohighlight">\(j\)</span> that depends on the initial distribution of Arrow securities.  The first order conditions read</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\omega_j  u'(c_{j,t})=\lambda_t,
+\\
+-\lambda_t +\beta E_t \lambda_{t+1}[MPK_{j,t+1} + (1-\delta)]=0,\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(MPK_{j,t}\equiv \alpha \exp(z_{j,t})K_{j,t}^{\alpha-1}\)</span>, and <span class="math notranslate nohighlight">\(\lambda_t\)</span> is the Lagrangian multiplier associated with the world resource constraint.
+Therefor, the equilibrium conditions can be  stated as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}-\lambda_t + \beta \mathbb{E}_t \lambda_{t+1}[MPK_{j,t+1} + (1-\delta)]=0, \forall j
+\\
+\sum_j (c_{j,t}+K_{j,t+1})=\sum_j \exp(z_{j,t})K_{j,t}^{\alpha}+(1-\delta)K_{j,t},\end{split}\]</div>
+<p>for equilibrium objects <span class="math notranslate nohighlight">\((\lambda_t,K_{j,t+1})\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[c_{j,t}=u'^{-1}(\frac{\lambda_t}{\omega_j}).\]</div>
+</div>
+<div class="section" id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
+<p>We solve the recursive equilibrium defined over the state vector <span class="math notranslate nohighlight">\((z_1,K_1,z_2,K_2,...,z_N,K_N)\)</span> of length <span class="math notranslate nohighlight">\(2\times N\)</span>. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases at rate of the log of the dimension.</p>
+<p>The gmod code is listed below where one can find the detailed parameterization (<a class="reference download internal" download="" href="../../_downloads/31ee592d7e7e11a0688ec5f0f90be4a7/rbc.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbc</span></code></a>).</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">% Number of countries</span>
+#define N 15
+
+<span class="c">% Use asg</span>
+USE_SPLINE = 0; USE_ASG = 1;
+AsgMinLevel = 2;
+AsgMaxLevel = 2;
+AsgThreshold = 1e-2;
+AsgOutputMaxLevel = 4;
+AsgOutputThreshold = 1e-2;
+PrintFreq = 1;
+SaveFreq = inf;
+TolEq = 1e-5;
+SIMU_RESOLVE = 0; SIMU_INTERP = 1;
+
+<span class="c">% Parameters</span>
+<span class="k">parameters</span> beta sigma alpha delta numCountries;
+beta  = 0.99;		<span class="c">% discount factor</span>
+sigma = 2.0;		<span class="c">% CRRA coefficient</span>
+alpha = 0.36;		<span class="c">% capital share</span>
+delta = 0.025;		<span class="c">% depreciation rate</span>
+numCountries = N;
+
+<span class="c">% Innovations</span>
+<span class="k">parameters</span> rho_z sigma_z prob_z;
+rho_z = 0.9;        <span class="c">% First-order autocorrelation coefficient</span>
+sigma_z = 0.01;     <span class="c">% std of innovation of productivity</span>
+prob_z = 1/(2*N);   <span class="c">% Probability for each perturbation; used for integration</span>
+
+<span class="c">% Pareto weights</span>
+<span class="k">parameters</span> omega_vec;
+omega_vec = ones(1,N);
+  
+<span class="c">% Endogenous States</span>
+Kss  = (alpha/(1/beta - 1 + delta))^(1/(1-alpha));
+KPts = 2;   <span class="c">% placeholder</span>
+KMin = Kss*0.9;
+KMax = Kss*1.1;
+zMin = -0.05
+zMax = 0.05;
+zPts = 2;   <span class="c">% placeholder</span>
+#for i=1:N
+<span class="k">var_state</span> z#i;
+z#i = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
+#end
+#for i=1:N
+<span class="k">var_state</span> K#i;
+K#i = linspace(KMin,KMax,KPts); <span class="c">% placeholder</span>
+#end
+
+<span class="k">var_policy</span>_init lambda;
+<span class="k">inbound</span>_init lambda 0 1;
+<span class="k">model_init;</span>
+  <span class="c">% Construct vector from state</span>
+  vector z_vec[N];
+  vector K_vec[N];
+  #for i=1:N
+    z_vec(#i) = z#i;
+    K_vec(#i) = K#i;
+  #end
+
+  <span class="c">% Back out consumption from the marginal utility</span>
+  vector c_vec[N];
+  for i=1:N
+    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+  end
+  
+  <span class="c">% Calcualte resource residual</span>
+  resource_resid = 0;
+  for i=1:N
+    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_vec(i);
+  end
+  <span class="k">equations;</span>
+    resource_resid;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="c">% Interp</span>
+<span class="k">var_interp</span> lambda_interp;
+<span class="k">initial</span> lambda_interp lambda;
+lambda_interp = lambda;
+
+<span class="c">% Endogenous variables as unknowns of equations</span>
+<span class="k">var_policy</span> K_next[N]
+<span class="k">inbound</span> K_next 25 45;
+<span class="k">var_policy</span> lambda;
+<span class="k">inbound</span> lambda 0 1;
+
+<span class="k">model;</span>
+  <span class="c">% Construct vector from state</span>
+  vector z_vec[N];
+  vector K_vec[N];
+  #for i=1:N
+    z_vec(#i) = z#i;
+    K_vec(#i) = K#i;
+  #end
+  
+  <span class="c">% Prepare future states, under no perturbation</span>
+  vector state_next[2*N];
+  for i=1:N
+    <span class="c">% First N states is future productivity</span>
+    state_next(i) = rho_z*z_vec(i);
+    <span class="c">% Next N states if future capital</span>
+    state_next(N+i) = K_next(i);
+  end
+  
+  <span class="c">% Calculate marginal product of capital with no perturbation</span>
+  vector mpk_next[N];
+  for i=1:N
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+  end
+  
+  <span class="c">% Do a sparse quadrature by perturbing productivity once at a time</span>
+  vector euler_residual[N];
+  for i=1:N
+    euler_residual(i) = 0;
+  end
+  for i=1:N
+    <span class="c">% Modifty future productivity of the perturbed country</span>
+    <span class="c">% Positive innovation</span>
+    state_next(i) = rho_z*z_vec(i) + sigma_z;
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+    lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
+    #for j=1:N
+        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
+    #end
+    
+    <span class="c">% Negative innovation</span>
+    state_next(i) = rho_z*z_vec(i) - sigma_z;
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+    lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
+    #for j=1:N
+        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
+    #end
+    
+    <span class="c">% Revert the perturbation back</span>
+    state_next(i) = rho_z*z_vec(i);
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+  end
+
+  <span class="c">% Back out consumption from the marginal utility</span>
+  vector c_vec[N];
+  for i=1:N
+    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+  end
+  <span class="c">% Calcualte resource residual</span>
+  resource_resid = 0;
+  for i=1:N
+    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_next(i);
+  end
+  
+  <span class="c">% Record variables</span>
+  #for i=1:N
+    K_next_output#i = K_next(#i);
+    c#i = c_vec(#i);
+  #end
+  
+  <span class="k">equations;</span>
+    for i=1:N
+        euler_residual(i);
+    end
+    resource_resid;
+  <span class="k">end;</span>
+<span class="k">end;</span>
+
+<span class="k">simulate;</span>
+  <span class="k">num_samples</span> = 24;
+  <span class="k">num_periods</span> = 1000;
+  #for i=1:N
+    <span class="k">initial</span> shock 1;
+    <span class="k">initial</span> z#i 0;
+    <span class="k">initial</span> K#i Kss;
+    <span class="k">var_simu</span> K_next_output#i c#i;
+    z#i&#39; = z_exo(:,GNDSGE_t+1,#i);
+    K#i&#39; = K_next_output#i;
+  #end
+<span class="k">end;</span>
+</pre></div>
+</td></tr></table></div>
+<p>The code utilizes the macro feature of the toolbox. For example, the code block</p>
+<div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>42
+43
+44
+45</pre></div></td><td class="code"><div class="highlight"><pre><span></span>#for i=1:N
+<span class="k">var_state</span> z#i;
+z#i = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
+#end
+</pre></div>
+</td></tr></table></div>
+<p>expands to</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">var_state</span> z1;
+z1 = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
+
+<span class="k">var_state</span> z2;
+z2 = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
+
+...
+
+<span class="k">var_state</span> z15;
+z15 = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
+</pre></div>
+</div>
+<p>The strategy we use for integrating over future shocks follows the monomial integration proposed by <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/QE14">Judd, Maliar and Maliar (2011, QE)</a>,
+which calculates the integration by perturbing future innovation from zero along one dimension at a time. This is implemented by Line 118-139 of the code.</p>
+<p>The policy functions can be solved by simply calling <em>iterRslt = iter_rbc.m</em> after the gmod is compiled. The policy iteration takes around 10 minutes on a regular desktop (with a 12-core 2.5GHz CPU).</p>
+<p>Simulation, however, requires some manual configuration as now we need to feed in shocks generated from the actual AR(1) processes, instead of the realizations of shocks used for integration in solving the policy functions. Please refer to <a class="reference download internal" download="" href="../../_downloads/f1edd846e12d87a343f24dc299f41a75/main_simulate.m"><code class="xref download docutils literal notranslate"><span class="pre">main_simulate</span></code></a> for how to a Markov process using MATLAB’s built-in functions, and feed in the simulated processes into
+the toolbox-generated code.</p>
+<p>The file also contains procedures in calculating the Euler equation errors. The unit-free Euler equation error is defined as</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{E}_{j,t}=\Big|-1+\frac{ \beta \mathbb{E}_t u'(c_{j,t+1})[MPK_{j,t+1} + (1-\delta)]}{u'(c_{j,t})}\Big|.\]</div>
+<p>The error given one state can be calculated by simulating a large sample one period forward starting from this state, and integrating over these sample paths. The script file implements this procedure and reports the max and mean errors for a sample of states drawn from the ergodic distribution (running the calculation requires 16GB memory; set the number of paths lower to lower the memory requirement). The max error is 6.4E-4 and the mean error is 5.7E-4 across states in the ergodic set, demonstrating that the solutions are obtained with decent accuracy, despite the very sparse grid used for interpolation.</p>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>The current example demonstrates that the toolbox can handle models with high dimensional states, with dimension up to 30 on a regular desktop/laptop. However, we note that providing an accurate global solution to a highly-nonlinear albeit low-dimensional model is often much harder than providing a solution to a high-dimensional but less nonlinear model. Nevertheless, this means that one can solve standard medium New-Keynesian models with the toolbox (e.g., the benchmark model in Smets and Wouters (2007) has 9 exogenous and 11 endogenous state variables), and extend these models with nonlinear features such as an occasionally binding interest rate zero lower bound as in <a class="reference internal" href="../ZLB/zlb.html#zlb"><span class="std std-ref">the ZLB example</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ZLB/zlb.html" class="btn btn-neutral float-right" title="A New-Keynesian Model with an Occasionally Binding Interest Rate Zero Lower Bound" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Cao2020/Cao2020.html" class="btn btn-neutral float-left" title="Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Dan Cao, Wenlan Luo, and Guangyu Nie
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

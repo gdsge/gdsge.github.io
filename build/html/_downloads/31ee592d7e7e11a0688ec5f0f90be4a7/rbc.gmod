@@ -1,0 +1,177 @@
+% Number of countries
+#define N 15
+
+% Use asg
+USE_SPLINE = 0; USE_ASG = 1;
+AsgMinLevel = 2;
+AsgMaxLevel = 2;
+AsgThreshold = 1e-2;
+AsgOutputMaxLevel = 4;
+AsgOutputThreshold = 1e-2;
+PrintFreq = 1;
+SaveFreq = inf;
+TolEq = 1e-5;
+SIMU_RESOLVE = 0; SIMU_INTERP = 1;
+
+% Parameters
+parameters beta sigma alpha delta numCountries;
+beta  = 0.99;		% discount factor
+sigma = 2.0;		% CRRA coefficient
+alpha = 0.36;		% capital share
+delta = 0.025;		% depreciation rate
+numCountries = N;
+
+% Innovations
+parameters rho_z sigma_z prob_z;
+rho_z = 0.9;        % First-order autocorrelation coefficient
+sigma_z = 0.01;     % std of innovation of productivity
+prob_z = 1/(2*N);   % Probability for each perturbation; used for integration
+
+% Pareto weights
+parameters omega_vec;
+omega_vec = ones(1,N);
+  
+% Endogenous States
+Kss  = (alpha/(1/beta - 1 + delta))^(1/(1-alpha));
+KPts = 2;   % placeholder
+KMin = Kss*0.9;
+KMax = Kss*1.1;
+zMin = -0.05
+zMax = 0.05;
+zPts = 2;   % placeholder
+#for i=1:N
+var_state z#i;
+z#i = linspace(zMin,zMax,zPts); % placeholder
+#end
+#for i=1:N
+var_state K#i;
+K#i = linspace(KMin,KMax,KPts); % placeholder
+#end
+
+var_policy_init lambda;
+inbound_init lambda 0 1;
+model_init;
+  % Construct vector from state
+  vector z_vec[N];
+  vector K_vec[N];
+  #for i=1:N
+    z_vec(#i) = z#i;
+    K_vec(#i) = K#i;
+  #end
+
+  % Back out consumption from the marginal utility
+  vector c_vec[N];
+  for i=1:N
+    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+  end
+  
+  % Calcualte resource residual
+  resource_resid = 0;
+  for i=1:N
+    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_vec(i);
+  end
+  equations;
+    resource_resid;
+  end;
+end;
+
+% Interp
+var_interp lambda_interp;
+initial lambda_interp lambda;
+lambda_interp = lambda;
+
+% Endogenous variables as unknowns of equations
+var_policy K_next[N]
+inbound K_next 25 45;
+var_policy lambda;
+inbound lambda 0 1;
+
+model;
+  % Construct vector from state
+  vector z_vec[N];
+  vector K_vec[N];
+  #for i=1:N
+    z_vec(#i) = z#i;
+    K_vec(#i) = K#i;
+  #end
+  
+  % Prepare future states, under no perturbation
+  vector state_next[2*N];
+  for i=1:N
+    % First N states is future productivity
+    state_next(i) = rho_z*z_vec(i);
+    % Next N states if future capital
+    state_next(N+i) = K_next(i);
+  end
+  
+  % Calculate marginal product of capital with no perturbation
+  vector mpk_next[N];
+  for i=1:N
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+  end
+  
+  % Do a sparse quadrature by perturbing productivity once at a time
+  vector euler_residual[N];
+  for i=1:N
+    euler_residual(i) = 0;
+  end
+  for i=1:N
+    % Modifty future productivity of the perturbed country
+    % Positive innovation
+    state_next(i) = rho_z*z_vec(i) + sigma_z;
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+    lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
+    #for j=1:N
+        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
+    #end
+    
+    % Negative innovation
+    state_next(i) = rho_z*z_vec(i) - sigma_z;
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+    lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
+    #for j=1:N
+        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
+    #end
+    
+    % Revert the perturbation back
+    state_next(i) = rho_z*z_vec(i);
+    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+  end
+
+  % Back out consumption from the marginal utility
+  vector c_vec[N];
+  for i=1:N
+    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+  end
+  % Calcualte resource residual
+  resource_resid = 0;
+  for i=1:N
+    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_next(i);
+  end
+  
+  % Record variables
+  #for i=1:N
+    K_next_output#i = K_next(#i);
+    c#i = c_vec(#i);
+  #end
+  
+  equations;
+    for i=1:N
+        euler_residual(i);
+    end
+    resource_resid;
+  end;
+end;
+
+simulate;
+  num_samples = 24;
+  num_periods = 1000;
+  #for i=1:N
+    initial shock 1;
+    initial z#i 0;
+    initial K#i Kss;
+    var_simu K_next_output#i c#i;
+    z#i' = z_exo(:,GNDSGE_t+1,#i);
+    K#i' = K_next_output#i;
+  #end
+end;
