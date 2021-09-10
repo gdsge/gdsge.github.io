@@ -67,7 +67,7 @@ for equilibrium objects :math:`(\lambda_t,K_{j,t+1})`, where
 =======================
 Solutions
 =======================
-We solve the recursive equilibrium defined over the state vector :math:`(z_1,K_1,z_2,K_2,...,z_N,K_N)` of length :math:`2\times N`. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases at rate of the log of the dimension. 
+We solve the recursive equilibrium defined over the state vector :math:`(z_1,K_1,z_2,K_2,...,z_N,K_N)` of length :math:`2\times N`. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.
 
 The gmod code is listed below where one can find the detailed parameterization (:download:`rbc <rbc.gmod>`).
 
