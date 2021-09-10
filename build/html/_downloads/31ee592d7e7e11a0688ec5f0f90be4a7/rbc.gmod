@@ -118,7 +118,7 @@ model;
   for i=1:N
     % Modifty future productivity of the perturbed country
     % Positive innovation
-    state_next(i) = rho_z*z_vec(i) + sigma_z;
+    state_next(i) = rho_z*z_vec(i) + sigma_z*sqrt(numCountries);
     mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
     lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
     #for j=1:N
@@ -126,7 +126,7 @@ model;
     #end
     
     % Negative innovation
-    state_next(i) = rho_z*z_vec(i) - sigma_z;
+    state_next(i) = rho_z*z_vec(i) - sigma_z*sqrt(numCountries);
     mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
     lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
     #for j=1:N

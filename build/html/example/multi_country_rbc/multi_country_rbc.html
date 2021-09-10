@@ -224,7 +224,7 @@ Therefor, the equilibrium conditions can be  stated as:</p>
 </div>
 <div class="section" id="solutions">
 <h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
-<p>We solve the recursive equilibrium defined over the state vector <span class="math notranslate nohighlight">\((z_1,K_1,z_2,K_2,...,z_N,K_N)\)</span> of length <span class="math notranslate nohighlight">\(2\times N\)</span>. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases at rate of the log of the dimension.</p>
+<p>We solve the recursive equilibrium defined over the state vector <span class="math notranslate nohighlight">\((z_1,K_1,z_2,K_2,...,z_N,K_N)\)</span> of length <span class="math notranslate nohighlight">\(2\times N\)</span>. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.</p>
 <p>The gmod code is listed below where one can find the detailed parameterization (<a class="reference download internal" download="" href="../../_downloads/31ee592d7e7e11a0688ec5f0f90be4a7/rbc.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbc</span></code></a>).</p>
 <div class="highlight-GDSGE notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
@@ -522,7 +522,7 @@ lambda_interp = lambda;
   for i=1:N
     <span class="c">% Modifty future productivity of the perturbed country</span>
     <span class="c">% Positive innovation</span>
-    state_next(i) = rho_z*z_vec(i) + sigma_z;
+    state_next(i) = rho_z*z_vec(i) + sigma_z*sqrt(numCountries);
     mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
     lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
     #for j=1:N
@@ -530,7 +530,7 @@ lambda_interp = lambda;
     #end
     
     <span class="c">% Negative innovation</span>
-    state_next(i) = rho_z*z_vec(i) - sigma_z;
+    state_next(i) = rho_z*z_vec(i) - sigma_z*sqrt(numCountries);
     mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
     lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
     #for j=1:N
