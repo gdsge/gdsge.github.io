@@ -184,14 +184,14 @@
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
 <p>In this example we demonstrate the toolbox’s ability to handle models with high dimensional states, thanks to the sparse-grid interpolation method.
 The model is a complete-markets multi-country business cycle model. We show that the model with 15 countries and 30 continuous states can be solved in 10 minutes with decent accuracy on a regular desktop.</p>
-<p>There are <span class="math notranslate nohighlight">\(N\)</span> countries, indexed by <span class="math notranslate nohighlight">\(j\)</span>. Each country has one unit of consumers that supply labor exogenously. The consumers’ preference read</p>
+<p>There are <span class="math notranslate nohighlight">\(N\)</span> countries, indexed by <span class="math notranslate nohighlight">\(j\)</span>. Each country has one unit of consumers that supply labor exogenously. The consumers’ preference reads</p>
 <div class="math notranslate nohighlight">
-\[\mathbb{E}_0 \sum_{t=0}^{\infty}\beta^t \log(c_{j,t}).\]</div>
+\[\mathbb{E}_0 \sum_{t=0}^{\infty}\beta^t u(c_{j,t}).\]</div>
 <p>Production in a country <span class="math notranslate nohighlight">\(j\)</span> takes capital and labor according to a Cobb-Douglas production function:</p>
 <div class="math notranslate nohighlight">
 \[Y_{j,t}=\exp(z_{j,t})K_{j,t}^{\alpha},\]</div>
-<p>where <span class="math notranslate nohighlight">\(K_{j,t}\)</span> is capital and <span class="math notranslate nohighlight">\(z_{j,t}\)</span> is the log of country-j’s productivity that follows an AR(1) process, which is independent distributed across countries.
-Capital and labor are immobile.  Capital depreciations at rate <span class="math notranslate nohighlight">\(\delta\)</span> and  investment follows a standard technology:</p>
+<p>where <span class="math notranslate nohighlight">\(K_{j,t}\)</span> is capital and <span class="math notranslate nohighlight">\(z_{j,t}\)</span> is the log of country-j’s productivity that follows an AR(1) process, which is independently distributed across countries.
+Capital and labor are immobile.  Capital depreciates at rate <span class="math notranslate nohighlight">\(\delta\)</span> and  investment follows a standard technology:</p>
 <div class="math notranslate nohighlight">
 \[K_{j,t+1} =(1-\delta)K_{j,t} + i_{j,t}.\]</div>
 <p>The market is complete in that consumers can trade a full menu of Arrow securities.</p>
@@ -200,7 +200,7 @@ Capital and labor are immobile.  Capital depreciations at rate <span class="math
 <h2>Equilibrium Conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this headline">¶</a></h2>
 <p>The complete-markets equilibrium can be characterized by the social planner’s solution:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\max_{c_{j,t},i_{j,t},K_{j,t+1}} \mathbb{E}_0 \sum_j \omega_j  \sum_{t=0}^{\infty} \beta^t \log(c_{j,t}),
+\[\begin{split}\max_{c_{j,t},i_{j,t},K_{j,t+1}} \mathbb{E}_0 \sum_j \omega_j  \sum_{t=0}^{\infty} \beta^t u(c_{j,t}),
 \\
 s.t. \quad \sum_j (c_{j,t}+i_{j,t})=\sum_j \exp(z_{j,t})K_{j,t}^{\alpha},
 \\
@@ -213,7 +213,7 @@ K_{j,t+1} =(1-\delta)K_{j,t} + i_{j,t},
 \\
 -\lambda_t +\beta E_t \lambda_{t+1}[MPK_{j,t+1} + (1-\delta)]=0,\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(MPK_{j,t}\equiv \alpha \exp(z_{j,t})K_{j,t}^{\alpha-1}\)</span>, and <span class="math notranslate nohighlight">\(\lambda_t\)</span> is the Lagrangian multiplier associated with the world resource constraint.
-Therefor, the equilibrium conditions can be  stated as:</p>
+Therefore, the equilibrium conditions can be  stated as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}-\lambda_t + \beta \mathbb{E}_t \lambda_{t+1}[MPK_{j,t+1} + (1-\delta)]=0, \forall j
 \\
@@ -440,7 +440,7 @@ Kss  = (alpha/(1/beta - 1 + delta))^(1/(1-alpha));
 KPts = 2;   <span class="c">% placeholder</span>
 KMin = Kss*0.9;
 KMax = Kss*1.1;
-zMin = -0.05
+zMin = -0.05;
 zMax = 0.05;
 zPts = 2;   <span class="c">% placeholder</span>
 #for i=1:N
@@ -607,12 +607,12 @@ z15 = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
 <p>The strategy we use for integrating over future shocks follows the monomial integration proposed by <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/QE14">Judd, Maliar and Maliar (2011, QE)</a>,
 which calculates the integration by perturbing future innovation from zero along one dimension at a time. This is implemented by Line 118-139 of the code.</p>
 <p>The policy functions can be solved by simply calling <em>iterRslt = iter_rbc.m</em> after the gmod is compiled. The policy iteration takes around 10 minutes on a regular desktop (with a 12-core 2.5GHz CPU).</p>
-<p>Simulation, however, requires some manual configuration as now we need to feed in shocks generated from the actual AR(1) processes, instead of the realizations of shocks used for integration in solving the policy functions. Please refer to <a class="reference download internal" download="" href="../../_downloads/f1edd846e12d87a343f24dc299f41a75/main_simulate.m"><code class="xref download docutils literal notranslate"><span class="pre">main_simulate</span></code></a> for how to a Markov process using MATLAB’s built-in functions, and feed in the simulated processes into
+<p>Simulation, however, requires some manual configuration as now we need to feed in shocks generated from the actual AR(1) processes, instead of the realizations of shocks used for integration in solving the policy functions. Please refer to <a class="reference download internal" download="" href="../../_downloads/f1edd846e12d87a343f24dc299f41a75/main_simulate.m"><code class="xref download docutils literal notranslate"><span class="pre">main_simulate</span></code></a> for how to generate a Markov process using MATLAB’s built-in functions, and feed in the simulated processes into
 the toolbox-generated code.</p>
 <p>The file also contains procedures in calculating the Euler equation errors. The unit-free Euler equation error is defined as</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{E}_{j,t}=\Big|-1+\frac{ \beta \mathbb{E}_t u'(c_{j,t+1})[MPK_{j,t+1} + (1-\delta)]}{u'(c_{j,t})}\Big|.\]</div>
-<p>The error given one state can be calculated by simulating a large sample one period forward starting from this state, and integrating over these sample paths. The script file implements this procedure and reports the max and mean errors for a sample of states drawn from the ergodic distribution (running the calculation requires 16GB memory; set the number of paths lower to lower the memory requirement). The max error is 6.4E-4 and the mean error is 5.7E-4 across states in the ergodic set, demonstrating that the solutions are obtained with decent accuracy, despite the very sparse grid used for interpolation.</p>
+<p>The error given one state can be calculated by simulating a large sample one period forward starting from this state, and integrating over these sample paths. The script file implements this procedure and reports the max and mean errors for a sample of states drawn from the ergodic distribution (running the calculation requires 16GB memory; set the number of paths lower to reduce the memory requirement). The max error is 6.4E-4 and the mean error is 5.7E-4 across states in the ergodic set, demonstrating that the solutions are obtained with decent accuracy, despite the very sparse grid used for interpolation.</p>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s next<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>

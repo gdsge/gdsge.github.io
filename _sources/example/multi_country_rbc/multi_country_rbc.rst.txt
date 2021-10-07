@@ -10,18 +10,18 @@ The Model
 In this example we demonstrate the toolbox's ability to handle models with high dimensional states, thanks to the sparse-grid interpolation method.
 The model is a complete-markets multi-country business cycle model. We show that the model with 15 countries and 30 continuous states can be solved in 10 minutes with decent accuracy on a regular desktop.
 
-There are :math:`N` countries, indexed by :math:`j`. Each country has one unit of consumers that supply labor exogenously. The consumers' preference read
+There are :math:`N` countries, indexed by :math:`j`. Each country has one unit of consumers that supply labor exogenously. The consumers' preference reads
 
 .. math::
-    \mathbb{E}_0 \sum_{t=0}^{\infty}\beta^t \log(c_{j,t}).
+    \mathbb{E}_0 \sum_{t=0}^{\infty}\beta^t u(c_{j,t}).
 
 Production in a country :math:`j` takes capital and labor according to a Cobb-Douglas production function:
 
 .. math::
     Y_{j,t}=\exp(z_{j,t})K_{j,t}^{\alpha},
 
-where :math:`K_{j,t}` is capital and :math:`z_{j,t}` is the log of country-j's productivity that follows an AR(1) process, which is independent distributed across countries. 
-Capital and labor are immobile.  Capital depreciations at rate :math:`\delta` and  investment follows a standard technology:
+where :math:`K_{j,t}` is capital and :math:`z_{j,t}` is the log of country-j's productivity that follows an AR(1) process, which is independently distributed across countries. 
+Capital and labor are immobile.  Capital depreciates at rate :math:`\delta` and  investment follows a standard technology:
 
 .. math::
     K_{j,t+1} =(1-\delta)K_{j,t} + i_{j,t}.
@@ -36,7 +36,7 @@ Equilibrium Conditions
 The complete-markets equilibrium can be characterized by the social planner's solution:
 
 .. math::
-    \max_{c_{j,t},i_{j,t},K_{j,t+1}} \mathbb{E}_0 \sum_j \omega_j  \sum_{t=0}^{\infty} \beta^t \log(c_{j,t}),
+    \max_{c_{j,t},i_{j,t},K_{j,t+1}} \mathbb{E}_0 \sum_j \omega_j  \sum_{t=0}^{\infty} \beta^t u(c_{j,t}),
     \\
     s.t. \quad \sum_j (c_{j,t}+i_{j,t})=\sum_j \exp(z_{j,t})K_{j,t}^{\alpha},
     \\
@@ -52,7 +52,7 @@ where :math:`\omega_j` is the Pareto weight assigned to consumers in country :ma
     -\lambda_t +\beta E_t \lambda_{t+1}[MPK_{j,t+1} + (1-\delta)]=0,
     
 where :math:`MPK_{j,t}\equiv \alpha \exp(z_{j,t})K_{j,t}^{\alpha-1}`, and :math:`\lambda_t` is the Lagrangian multiplier associated with the world resource constraint.
-Therefor, the equilibrium conditions can be  stated as:
+Therefore, the equilibrium conditions can be  stated as:
 
 .. math::
     -\lambda_t + \beta \mathbb{E}_t \lambda_{t+1}[MPK_{j,t+1} + (1-\delta)]=0, \forall j
@@ -102,7 +102,7 @@ which calculates the integration by perturbing future innovation from zero along
 
 The policy functions can be solved by simply calling *iterRslt = iter_rbc.m* after the gmod is compiled. The policy iteration takes around 10 minutes on a regular desktop (with a 12-core 2.5GHz CPU).
 
-Simulation, however, requires some manual configuration as now we need to feed in shocks generated from the actual AR(1) processes, instead of the realizations of shocks used for integration in solving the policy functions. Please refer to :download:`main_simulate <main_simulate.m>` for how to a Markov process using MATLAB's built-in functions, and feed in the simulated processes into
+Simulation, however, requires some manual configuration as now we need to feed in shocks generated from the actual AR(1) processes, instead of the realizations of shocks used for integration in solving the policy functions. Please refer to :download:`main_simulate <main_simulate.m>` for how to generate a Markov process using MATLAB's built-in functions, and feed in the simulated processes into
 the toolbox-generated code. 
 
 The file also contains procedures in calculating the Euler equation errors. The unit-free Euler equation error is defined as
@@ -110,7 +110,7 @@ The file also contains procedures in calculating the Euler equation errors. The 
 .. math::
     \mathcal{E}_{j,t}=\Big|-1+\frac{ \beta \mathbb{E}_t u'(c_{j,t+1})[MPK_{j,t+1} + (1-\delta)]}{u'(c_{j,t})}\Big|.
 
-The error given one state can be calculated by simulating a large sample one period forward starting from this state, and integrating over these sample paths. The script file implements this procedure and reports the max and mean errors for a sample of states drawn from the ergodic distribution (running the calculation requires 16GB memory; set the number of paths lower to lower the memory requirement). The max error is 6.4E-4 and the mean error is 5.7E-4 across states in the ergodic set, demonstrating that the solutions are obtained with decent accuracy, despite the very sparse grid used for interpolation.
+The error given one state can be calculated by simulating a large sample one period forward starting from this state, and integrating over these sample paths. The script file implements this procedure and reports the max and mean errors for a sample of states drawn from the ergodic distribution (running the calculation requires 16GB memory; set the number of paths lower to reduce the memory requirement). The max error is 6.4E-4 and the mean error is 5.7E-4 across states in the ergodic set, demonstrating that the solutions are obtained with decent accuracy, despite the very sparse grid used for interpolation.
 
 ==========================
 What's next
