@@ -46,6 +46,8 @@ If you have comments, suggestions or coding questions for us, or would like to c
    example/Bianchi2011/Bianchi2011
    example/safe_assets/safe_assets
    example/pandemic/GLSW2020
+   example/multi_country_rbc/multi_country_rbc
+   example/ZLB/zlb
    usage/functions
    example/AdditionalExamples
    example/ContributedExamples

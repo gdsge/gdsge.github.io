@@ -11,6 +11,4 @@ Additional Examples
    KM1997/CaoNie2017
    Cao2018/Cao2018
    Cao2020/Cao2020
-   multi_country_rbc/multi_country_rbc
-   ZLB/zlb
    
