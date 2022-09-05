@@ -1,0 +1,100 @@
+% Toolbox options
+INTERP_ORDER = 4; EXTRAP_ORDER = 4;
+SIMU_RESOLVE = 0; SIMU_INTERP = 1;
+SaveFreq = inf; PrintFreq = 100; TolEq = 1e-5;
+% Parameters
+parameters alpha delta phi kMin;
+alpha = 0.36;   % capital share in production
+delta = 0.025;  % depreciation rate
+% phi_k_1 phi_k_0 phi_l_1 phi_l_0; for z in {bad, good}
+phi = [
+      0.96053     0.095014            0      -1.2228
+      0.96072     0.099212            0      -1.1583
+    ]';
+% States, use the ones as in Krusell and Smith (1998)
+var_state kbar k;
+kbar = [11.1 11.52 11.94 12.36];
+k = [0,1];      % A place holder, will be overwritten
+kMin = k(1);    % A place holder, will be overwritten
+% Shock process in Krusell and Smith (1998)
+var_shock beta e unemp z z_idx;
+shock_num = 12;
+ez_trans = [
+    0.5250 0.3500 0.0312 0.0938
+    0.0389 0.8361 0.0021 0.1229
+    0.0938 0.0312 0.2917 0.5833
+    0.0091 0.1159 0.0243 0.8507
+    ];
+beta_trans = [
+    0.9950 0.0050 0.0000
+    0.000625 0.99875 0.000625
+    0.0000 0.0050 0.9950
+    ];
+shock_trans = kron(ez_trans,beta_trans);
+z_idx_grid = [0, 1];
+z_grid = [0.99, 1.01];
+e_grid = [0.00, 0.3271];
+unemp_grid = [0.07, 0.00];  % unemployement transfer
+beta_grid = [0.9858 0.9894 0.9930];
+[beta,e,z] = ndgrid(beta_grid,e_grid,z_grid);
+[~,unemp,z_idx] = ndgrid(beta_grid,unemp_grid,z_idx_grid);
+beta=beta(:); e = e(:); unemp = unemp(:);
+z = z(:); z_idx = z_idx(:);
+
+% State transition functions
+var_interp Evp_interp Ev_interp;
+initial Evp_interp 1./(k+e+unemp-kMin);
+initial Ev_interp log(k+e+unemp-kMin);
+% Update
+Evp_interp = shock_trans * vp;
+Ev_interp = shock_trans * v;
+
+% Tensor
+var_tensor kbar_next lbar Y r w budget;
+% Forecasting rule
+kbar_next = exp(log(kbar).*phi(z_idx*4+1) + phi(z_idx*4+2));
+lbar = exp(log(kbar).*phi(z_idx*4+3) + phi(z_idx*4+4));
+% Interst rate and wage
+Y = z .* kbar.^alpha .* lbar.^(1-alpha)
+r = alpha*Y./kbar - delta;
+w = (1-alpha)*Y./lbar;
+budget = k.*(1+r) + e.*w + unemp;
+
+% Endogenous variables
+var_policy k_next lambda;
+inbound k_next kMin budget;
+inbound lambda 0 1.0;
+% Other variables out of the block
+var_aux c vp v l;
+% Used in simulation
+var_output c k_next l;
+
+model;
+  c = budget - k_next;
+  u_prime = 1/c;
+  [Evp_future,Ev_future] = GDSGE_INTERP_VEC(shock,kbar_next,k_next);
+  Evp_future = Evp_future;
+  euler_residual = -1 + beta*Evp_future/u_prime + lambda;
+  vp = (1+r)*u_prime;
+  v = log(c) + beta*Ev_future;
+  l = e;
+  equations;
+    euler_residual;
+    lambda*(k_next-kMin);
+  end;
+end;
+
+simulate;
+  num_periods = 11000;
+  num_samples = 10000;
+  initial k 1;
+  initial kbar 1;
+  initial shock 1;
+  var_simu c l;
+  k' = k_next;
+  kbar' = k_next;    % A place holder
+end;
+post_simulate_iter;
+  SimuRslt.kbar(:,GDSGE_t+1) = mean(SimuRslt.k(:,GDSGE_t+1));
+  SimuRslt.lbar(:,GDSGE_t) = mean(SimuRslt.l(:,GDSGE_t));
+end;

@@ -1,0 +1,46 @@
+% Parameters
+parameters betap rhop rho_pu sigmap phip r_lowerbar;
+betap = 0.99;
+rhop = 0.5;
+sigmap = 5;
+phip = 0.2;
+r_lowerbar = -(1/betap-1);
+rho_pu = 0.5;
+
+%Exogenous variables
+var_shock u;
+  u = [-0.05,0.05];
+shock_num = 2;
+shock_trans = [1/2,1/2;1/2,1/2];
+
+%Endogenous variables
+var_state pu q_last;
+  pu = [-0.2:0.02:0.2];
+  q_last = [-1:0.1:1];
+var_interp q_interp;
+initial q_interp 0;
+  q_interp = q;
+var_policy q r;
+inbound q -10 10;
+inbound r r_lowerbar 10;
+
+%Model
+model;
+  pu_future' = rho_pu*pu+u';
+  q_future' = q_interp'(pu_future',q);
+  Eq_future = GDSGE_EXPECT{q_future'};
+  rnot = MAX(r_lowerbar,phip*q);
+  equations;
+      betap*(1-rhop)*Eq_future+rhop*q_last-sigmap*r+pu-q;
+      r - rnot;
+  end;
+end;
+
+simulate;
+  initial pu 0;
+  initial q_last 0;
+  initial shock 2;  
+  var_simu q r;
+  q_last' = q;
+  pu' = pu_future';
+end;

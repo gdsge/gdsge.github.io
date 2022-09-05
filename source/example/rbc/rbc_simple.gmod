@@ -1,0 +1,42 @@
+% Parameters
+parameters beta sigma alpha delta rho_z;
+beta  = 0.99;		% discount factor
+sigma = 2.0;		% CRRA coefficient
+alpha = 0.36;		% capital share
+delta = 0.025;		% depreciation rate
+rho_z = 0.80;       % persistence in prod.
+
+% Exogenous variables
+var_shock z;
+z = [0.99, 1.01];
+shock_trans = [0.9, 0.1; 0.1, 0.9];
+shock_num = 2;
+
+% Endogenous variables
+var_state K;
+K = linspace(30,45,101);
+var_interp c_interp;
+initial c_interp z.*K.^alpha+(1-delta)*K;
+c_interp = c;
+var_policy K_next c;
+var_aux w;
+
+% Model
+model;
+  kret_next' = z'*alpha*K_next^(alpha-1) + 1-delta;
+  euler_residual = c^(-sigma) - beta*GDSGE_EXPECT{c_interp'(K_next)^(-sigma)*kret_next'};
+  market_clear = z*K^alpha + (1-delta)*K - c - K_next;
+  w = z*(1-alpha)*K^alpha;
+  equations;
+    euler_residual;
+    market_clear;
+  end;
+end;
+
+simulate;
+  initial K 35;
+  initial shock 1;
+  var_simu c K w;
+  K' = K_next;
+end;
+

@@ -21,12 +21,10 @@ shock_trans = [
     0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
     ];
 % Endogenous state variables
-var_state w1;  % wealth share
-w1 = linspace(-0.05,1.05,201);
+var_state c1;  % consumption
+c1 = linspace(0.2,0.8,101);
 % Policy variables and bounds that enter the equations
-var_policy c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb w1n[8];
-inbound c1 0.05 1.0;
-inbound c2 0.05 1.0;
+var_policy s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb c1n[8];
 inbound s1p 0.0 1.0;
 inbound nb1p 0.0 1.0;   % nb1p=b1p-Kb
 inbound nb2p 0.0 1.0;   
@@ -34,24 +32,25 @@ inbound ms1 0 1;        % Multipliers for constraints
 inbound ms2 0 1;
 inbound mb1 0 1;
 inbound mb2 0 1;
-inbound ps 0 3 adaptive(1.5);
-inbound pb 0 3 adaptive(1.5);
-inbound w1n -0.5 1.5;
+inbound ps 0 2 adaptive(1.5);
+inbound pb 0 2 adaptive(1.5);
+inbound c1n 0.0 1.0;
 % Other policy variables
-var_aux equity_premium;
+var_aux equity_premium c2 w1 flow;
 % Interpolation variables for policy and state transitions
-var_interp ps_future c1_future c2_future;
+var_interp ps_future flow_future;
 initial ps_future 0.0;
-initial c1_future w1.*d+eta1;
-initial c2_future (1-w1).*d+1-eta1;
+initial flow_future eta1;
 ps_future = ps;
-c1_future = c1;
-c2_future = c2;
+flow_future = flow;
 
 model;
-  % Evaluate interpolation
-  [psn',c1n',c2n'] = GDSGE_INTERP_VEC'(w1n');
-  % Calculate expectations that enter the Euler Equations
+  % Interpolation
+  [psn',flow_future'] = GDSGE_INTERP_VEC'(c1n');
+  % Goods market clear
+  c2n' = 1+d'-c1n';
+  c2 = 1+d-c1;
+  % Expectations in Euler Equations
   es1 = GDSGE_EXPECT{g'^(1-gamma)*(c1n'/c1)^(-gamma)*(psn'+d')/ps};
   es2 = GDSGE_EXPECT{g'^(1-gamma)*(c2n'/c2)^(-gamma)*(psn'+d')/ps};
   eb1 = GDSGE_EXPECT{g'^(-gamma)*(c1n'/c1)^(-gamma)/pb};
@@ -65,8 +64,10 @@ model;
   budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
   budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
   % Consistency equations
-  w1_consis' = (s1p*(psn'+d') + b1p/g')/(psn'+d') - w1n';
+  c1_consis' = s1p*(psn'+d') + b1p/g' + flow_future' - c1n';
   % Other policy variables
+  w1 = (c1 + ps*s1p + pb*b1p - eta1) / (ps + d);
+  flow = eta1 - ps*s1p - pb*b1p;
   equity_premium = GDSGE_EXPECT{(psn'+d')/ps*g'} - 1/pb;
   equations;
     -1+beta*es1+ms1;
@@ -78,17 +79,15 @@ model;
     mb1*nb1p;
     mb2*nb2p;
     b1p+b2p;
-    budget_1/w1;        % Normalized by total budget
-    budget_2/(1-w1);
-    w1_consis';
+    c1_consis';
   end;
 end;
 
 simulate;
   num_periods = 10000;
-  num_samples = 6;
-  initial w1 0.5;
+  num_samples = 24;
+  initial c1 0.5;
   initial shock 1;
-  var_simu c1 c2 ps pb equity_premium ms1 mb1;
-  w1' = w1n';
+  var_simu w1 c2 ps pb equity_premium;
+  c1' = c1n';
 end;

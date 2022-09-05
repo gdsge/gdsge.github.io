@@ -1,0 +1,121 @@
+#define N 8;
+SaveFreq = inf;
+% Parameters
+parameters beta gamma Kb;
+beta = 0.95;  % discount factor
+gamma = 1.5;  % CRRA coefficient
+Kb = -0.05;   % borrowing limit in ratio of aggregate output
+% Exogenous state variables
+var_shock g d eta1;
+% Enumerate exogenous states and transition matrix
+shock_num = N;
+g = [.9904 1.0470 .9904 1.0470 .9904 1.0470 .9904 1.0470];
+d = [.1402 .1437 .1561 .1599 .1402 .1437 .1561 .1599];
+eta1 = [.3772 .3772 .3772 .3772 .6228 .6228 .6228 .6228];
+shock_trans = [
+    0.3932 0.2245 0.0793 0.0453 0.1365 0.0779 0.0275 0.0158
+    0.3044 0.3470 0.0425 0.0484 0.1057 0.1205 0.0147 0.0168
+    0.0484 0.0425 0.3470 0.3044 0.0168 0.0147 0.1205 0.1057
+    0.0453 0.0793 0.2245 0.3932 0.0157 0.0275 0.0779 0.1366
+    0.1366 0.0779 0.0275 0.0157 0.3932 0.2245 0.0793 0.0453
+    0.1057 0.1205 0.0147 0.0168 0.3044 0.3470 0.0425 0.0484
+    0.0168 0.0147 0.1205 0.1057 0.0484 0.0425 0.3470 0.3044
+    0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
+    ];
+% Endogenous state variables
+var_state w1;  % wealth share
+w1 = linspace(-0.04,1.04,201);
+% Policy variables and bounds that enter the equations
+var_policy c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb;
+inbound c1 0.1 1;
+inbound c2 0.1 1;
+inbound s1p 0.0 1.0;
+inbound nb1p 0.0 1.0;   % nb1p=b1p-Kb
+inbound nb2p 0.0 1.0;   
+inbound ms1 0 1;        % Multipliers for constraints
+inbound ms2 0 1;
+inbound mb1 0 1;
+inbound mb2 0 1;
+inbound ps 0 10 adaptive(1.5);
+inbound pb 0 10 adaptive(1.5);
+% Other policy variables
+var_aux equity_premium w1n[N];
+% Interpolation variables for policy and state transitions
+var_interp ps_future c1_future c2_future;
+ergodic = shock_trans^50;
+ergodic = ergodic(1,:);
+deltabar = ergodic * d';
+etabar = ergodic * eta1';
+gammabar = ergodic * g';
+initial ps_future beta*deltabar*gammabar^(1-gamma)/(1-beta*gammabar^(1-gamma));;
+initial c1_future (1-deltabar)*etabar+0.5*deltabar;
+initial c2_future (1-deltabar)*(1-etabar)+0.5*deltabar;
+#for i=1:N
+  var_interp w1_future_#i;
+  initial w1_future_#i 0.5; % A place holder
+#end
+damp = 0.25;
+ps_future = ps_future*damp + (1-damp)*ps;
+c1_future = c1_future*damp + (1-damp)*c1;
+c2_future = c2_future*damp + (1-damp)*c2;
+index_current = @(vec,current_idx) squeeze(vec(:,current_idx,:));
+#for i=1:N
+  w1_future_#i = w1_future_#i*damp + (1-damp)*index_current(reshape(w1n,[shock_num GDSGE_SIZE]),#i);
+#end
+
+pre_model;
+  % Evaluate interpolation
+  w1n_fixed' = 0;
+  #for i=1:N
+    if shock==#i
+      w1n_fixed' = w1_future_#i'(w1);
+    end
+  #end
+  [psn',c1n',c2n'] = GDSGE_INTERP_VEC'[1:3](w1n_fixed');
+  es1_future = GDSGE_EXPECT{g'^(1-gamma)*(c1n')^(-gamma)*(psn'+d')};
+  es2_future = GDSGE_EXPECT{g'^(1-gamma)*(c2n')^(-gamma)*(psn'+d')};
+  eb1_future = GDSGE_EXPECT{g'^(-gamma)*(c1n')^(-gamma)};
+  eb2_future = GDSGE_EXPECT{g'^(-gamma)*(c2n')^(-gamma)};
+end;
+
+model;
+  % Calculate expectations that enter the Euler Equations
+  es1 = es1_future*c1^gamma/ps;
+  es2 = es2_future*c2^gamma/ps;
+  eb1 = eb1_future*c1^gamma/pb;
+  eb2 = eb2_future*c2^gamma/pb;
+  % Transform bond back
+  b1p = nb1p + Kb;
+  b2p = nb2p + Kb;
+  % Market clearing of shares
+  s2p = 1-s1p;
+  % Budget constraints
+  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
+  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
+  % Consistency equations
+  w1n' = (s1p*(psn'+d') + b1p/g')/(psn'+d');
+  % Other policy variables
+  equity_premium = GDSGE_EXPECT{(psn'+d')/ps*g'} - 1/pb;
+  equations;
+    -1+beta*es1+ms1;
+    -1+beta*es2+ms2;
+    -1+beta*eb1+mb1;
+    -1+beta*eb2+mb2;
+    ms1*s1p;
+    ms2*s2p;
+    mb1*nb1p;
+    mb2*nb2p;
+    b1p+b2p;
+    budget_1 / w1;
+    budget_2 / (1-w1);
+  end;
+end;
+
+simulate;
+  num_periods = 10000;
+  num_samples = 24;
+  initial w1 0.5;
+  initial shock 1;
+  var_simu c1 c2 ps pb equity_premium ms1 mb1;
+  w1' = w1n';
+end;

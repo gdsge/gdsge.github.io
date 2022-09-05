@@ -3,9 +3,11 @@ Getting Started - A Simple RBC Model
 ************************************
 
 .. _simpleRBC:
+
 ===============
 The Model
 ===============
+
 The model is a canonical complete-markets Real Business Cycle (RBC) model with a single productivity shock.
 This simple model can be approximated with linear solutions well,
 so using GDSGE to obatin global non-linear solutions is not necessary.
@@ -343,12 +345,91 @@ Nevertheless, the prime operators (') in both usages are associated with the tra
 
 The simulate block can also overwrite num_periods (default 1000) and num_samples (default 1).
 
+.. _COMPARE_DYNARE:
+
+=======================
+Comparisons with Dynare
+=======================
+
+`Dynare <https://www.dynare.org/>`_ is a MATLAB/Octave-based toolbox to solve a wide range of macroeconomic models including DSGE, OLG, perfect foresight and more.
+Dynare is specialized in solving DSGE models with local perturbation methods, whereas GDSGE is designed to obtain global solutions.
+
+As perhaps noted by experienced Dynare users, GDSGE follows the many design features of Dynare.
+However, due to the nature of global solutions, the gmod code file requires more user input which makes it a bit more lengthy than the Dynare mod file.
+In particular, the global solution requires the explicit definition of state variables and the STFPI algorithm requires the update rule for the policy functions, neither
+of which are needed by Dynare.
+
+For bridging Dynare users to GDSGE, below is a line-by-line walkthrough to convert the Dynare mod file into the GDSGE gmod file, for the simple RBC model listed here.
+Note some of the parameter values and code organizations have been slightly modified from the original gmod file, so as to enable the comparison. 
+The updated gmod file and and the corresponding Dynare mod file can be downloaded here: :download:`rbc_simple.gmod <rbc_simple.gmod>`; :download:`rbc_simple.mod <rbc_simple.mod>`
+
+.. image:: figures/comparison_with_dynare.jpg
+    :scale: 20 %
+
+In more details:
+
+-   Line 2-Line 7: definitions of parameters are exactly the same.
+
+-   Line 10-Line 13: the Dynare mod file defines the exogenous shocks
+    by specifying it to be a :code:`varexo` and a :code:`var` in the :code:`shocks`
+    block, whereas in the GDSGE gmod file the shock needs to be discretized
+    into a Markov chain, with the number of discrete values specified
+    in :code:`shock_num` and the Markov transition matrix specified in
+    :code:`shock_trans`.
+
+-   Line 15-Line 22: the Dynare mod file defines all endogenous variables,
+    regardless of them being state or jump variables, as :code:`var`. The
+    GDSGE gmod file needs to breakdown those variables into different
+    blocks: 
+
+        (1) :code:`var_state`: state variables (here, capital stock
+        :math:`K`), with the grid of each state variables explicitly specified
+        (here, by Line 17). 
+
+        (2) :code:`var_interp`: a subset of policy variables
+        that are necessary to evaluate the inter-temporal equilibrium conditions,
+        here, consumption :math:`c` in order to evaluate the Euler equations, renamed
+        to be *c_interp*; the initial value and the update rule for
+        each of the :code:`var_interp` also need to be specified (here, by
+        Line 19 and 20). 
+
+        (3) :code:`var_policy`: policy variables that directly
+        enter the system of equations as unknowns.
+        
+        (4) :code:`var_aux`: policy variables that are simple functions of state variables and other policy
+        variables and can be directly evaluated.
+
+-   Line 24-Line 34: the model block. In the Dynare model block, all intermediate
+    variables are defined with a prefix # and all other statements define
+    an equation of the equilibrium systems. In the GDSGE model block,
+    instead, each line represents an assignment, and the system of equations
+    needs to be defined in the :code:`equations` block explicitly.
+
+-   Line 36-Line 43: the model solver. Dynare requires the specification
+    of the initial value of steady state variables in the :code:`initval`
+    block, followed by :code:`steady` and :code:`stoch_simul` commands
+    to solve the steady state and the local solutions. GDSGE does not
+    require the input of the initial values in most cases; GDSGE solves an equilibrium system at each collocation point
+    to get the global solution, beyond the steady state. A :code:`simulate`
+    block needs to be specified instead, to specify the initial value
+    and the transition of state variables, which generates codes for Monte-Carlo
+    simulations.
+
+
 =====================
 What's Next?
 =====================
 
 The current example demonstrates the basic usage of the toolbox.
-You can proceed to :ref:`an extension with investment irreversibility <An RBC Model with Irreversible Investment>` that requires a global method, 
-or to a real example :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` which is the leading example in the toolbox paper.
+The global solutions obtained by GDSGE can be used to analyze models with highly nonlinear and state-dependent dynamics,
+such as models with an occasionally binding borrowing constraint or interest rate zero lower bound.
+An alternative method to analyze the nonlinear solutions is the piecewise local solution method, popularized by the method and toolbox
+OccBin (`Guerrieri and Iacoviello, 2015 <https://www.sciencedirect.com/science/article/pii/S0304393214001238>`_).
+
+We provide an example of an model with an occasionally binding interest rate zero lower bound that can be solved by both
+OccBin and GDSGE, to further introduce GDSGE to users who are familiar with Dynare and OccBin. See :ref:`A Simple Model with an Interest Rate ZLB <SIMPLE_ZLB>`.
+
+You can also proceed to :ref:`an extension of RBC model with investment irreversibility <An RBC Model with Irreversible Investment>` that requires a global method, 
+or to :ref:`Heaton and Lucas (1996) <Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices>` which is the leading example in the toolbox paper.
 
 Or you can proceed to :ref:`Toolbox API`.

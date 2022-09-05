@@ -40,6 +40,7 @@ If you have comments, suggestions or coding questions for us, or would like to c
    Home <self>
    lectures
    example/rbc/rbc
+   example/simple_zlb/simple_zlb
    example/rbc/rbcIrr
    example/HL1996/HL1996
    example/Guvenen2009/Guvenen2009
