@@ -1,4 +1,7 @@
 {
     "restructuredtext.preview.sphinx.disabled": true,
-    "restructuredtext.linter.disabled": true
+    "restructuredtext.linter.disabled": true,
+    "cSpell.words": [
+        "STFPI"
+    ]
 }
