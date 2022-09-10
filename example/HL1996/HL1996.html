@@ -634,7 +634,7 @@ especially for early iterations. Even with a large dampening parameter (0.75) th
 (measured by the metric between policy functions of adjacent iterations),
 although the Euler equation errors are  close to those of the STPFI benchmark.
 Due to its nested nature, the speed is also significantly slower than STPFI.
-<a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658">Guvenen (2009)</a> uses a similar nested fixed point algorithm for solving a richer asset pricing model.
+<a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6658">Guvenen (2009)</a> uses a similar nested fixed point algorithm for solving an asset pricing model with a richer setup.
 We demonstrate how to solve the model in the toolbox and discuss the performance comparison in more detail <a class="reference internal" href="../Guvenen2009/Guvenen2009.html#guvenen2009"><span class="std std-ref">here</span></a>.</p>
 <p>The third alternative algorithm,
 (6) in the table,
@@ -647,12 +647,12 @@ As shown in the table, the algorithm is  slower than STPFI, but  once converged 
 delivers solutions with similar accuracies.
 NFP-KS is slower because it incurs substantially higher number of evaluations of the consistency equations,
 which outweigh the benefits of solving a smaller system of equations each time.</p>
-<a class="reference internal image-reference" href="../../_images/TableR1.png"><img alt="../../_images/TableR1.png" src="../../_images/TableR1.png" style="width: 677.25px; height: 244.35px;" /></a>
+<a class="reference internal image-reference" href="../../_images/TableR1.png"><img alt="../../_images/TableR1.png" src="../../_images/TableR1.png" style="width: 665.5500000000001px; height: 239.4px;" /></a>
 <p>To understand what drives the difference in the performance across algorithms,
 we have produced a detailed breakdown of computation costs of all
 the listed algorithms. To summarize, the difference is mainly due to that
-other algorithms  economize on evaluations of certain groups of equilibrium conditions but require substantially more evaluations of  other groups,
-whereas the STPFI algorithm achieves a balance in evaluating different groups of equilibrium conditions.</p>
+other algorithms  economize on evaluations of a subset of equilibrium conditions but require substantially more evaluations of  other conditions,
+whereas the STPFI algorithm achieves a balance in evaluating all equilibrium conditions.</p>
 <p>In more detail, all algorithms are based on time iterations, and at
 each time step solve an equilibrium system of equations which involves
 evaluating equilibrium conditions repeatedly. The equilibrium conditions
@@ -664,11 +664,11 @@ equations), and consistency equations; different algorithms have comparative
 advantages in reducing the number of evaluations for a certain block.
 As shown in Table R1, the STPFI algorithm solves the whole short-term
 equilibrium system simultaneously, so the number of evaluations of
-the three categorizes are equal. This offers a useful benchmark to
+the three categories are equal. This offers a useful benchmark to
 understand the costs of each computation block for a typical economic
 model like the current one: the computation costs of intra-temporal
-and inter-temporal evaluations are of the same order of magnitude
-(the computation costs of evaluating inter-temporal conditions are still higher since they involve evaluating function approximations
+and inter-temporal evaluations, in terms of number of evaluations, are of the same order of magnitude
+(the computation time of evaluating inter-temporal conditions is still higher since they involve evaluating function approximations
 and integrations when constructing the expected values of future policies), whereas the costs of evaluating consistency equations are much smaller.
 This observation makes it clear why the STPFI algorithm can be potentially
 efficient: by including extra consistency equations in the equation
@@ -682,7 +682,7 @@ the paper, the TFI algorithm fixes the state transition function implied
 by the previous time step instead of solving a consistent one, and
 only updates the state transition function at the end of a time step.
 Such a design minimizes the number of evaluations for inter-temporal
-evaluations, since the value of future state variables do not depend
+evaluations, since the values of future state variables do not depend
 on policy variables within a time step, and thus all the expectation
 terms that enter the inter-temporal conditions are only evaluated
 once and then fixed when solving the system of intra-temporal equilibrium
@@ -707,7 +707,7 @@ future share prices when searching for consistent future wealth shares in the in
 because future share prices are also used in evaluating inter-temporal conditions, of which the computation costs are counted there.
 This explains why NFP-KS is a slower algorithm for the current  problem.</p>
 <p>The nested fixed point algorithm of Guvenen (2009) (Algorithm (5)) is the slowest as it involves solving an inner converged policy functions,
-holding the state transition functions at the outer loop that are potentially distant from equilibrium ones.
+holding the state transition functions at the outer loop that are potentially distant from the equilibrium ones.
 As shown, the required number of policy function iterations is much larger,
 despite that later policy function iterations can converge in only a few steps using the “warm-up” solutions.
 Besides, the nested iterative algorithm is not amenable  to an automated design,
