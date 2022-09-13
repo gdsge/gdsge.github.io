@@ -440,7 +440,7 @@ As shown, the two solutions (solid lines for wealth share as endogenous state an
 distinguishable.
 
 ======================================
-Comparison with alternative algorithms
+Comparison with Alternative Algorithms
 ======================================
 
 The Simultaneous Transition and Policy Function Iteration (STPFI) algorithm and toolbox especially demonstrates its strength at solving models with endogenous state variables that feature implicit laws of motions,
@@ -579,6 +579,37 @@ evaluations are more costly, such as models involving many Euler equations
 for multiple asset choices or with less complex intra-temporal conditions,
 or in models where the number of policy variables is large so reducing the system of equations is of first-order importance,
 the other algorithms may show their strength and likely to be superior.
+
+-------------------------------------
+Toolbox enabled by STPFI
+-------------------------------------
+
+Lastly, compared with nested algorithms such as NFP-KS (Algorithm (6)) and NFP-Guvenen (Algorithm (5)),
+the non-nested feature of STPFI also makes it more amenable to an automated design, for which the current toolbox can be developed.
+To demonstrate such an advantage, below we list the code that implements the NFP-KS algorithm as a comparison.
+The implementation can actually be done using the toolbox, by manually inserting C++ codes that are used to solve the inner problem
+(as a reminder, at each time step, the NFP-KS algorithm solves for consistent future endogenous states policy variables in the inner nest fixing values of policy variables,
+and solves for policy variables in the outer nest.)
+
+.. literalinclude:: HL1996_KS.gmod
+    :linenos:
+    :language: GDSGE
+
+As shown, Line 57-87 of the modified code is used to solve the inner problem, and codes for the equation solver need to be "included" (by Line 1 and 2, download the included file
+:download:`here <rtnewt.h>`).
+The *cxx;* block is essentially a hack implemented by the toolbox to insert a block of raw C++ codes. The block here defines the inner problem 
+(the inner lambda function eval_consis_resid defined starting at Line 61),
+which is a single-unknown equation for the future state variable given current policies, and calls the solver to solve the problem, for each future state. The Newton solver, used here,
+achieves high performance but requires a delicate choice of the initial point for the inner problem.
+The choice of the initial point of 0.5, guarantees that the solutions can be found across the state space and time iterations, with 
+values of policy variables not
+too distant from the equilibrium ones.
+
+Finally, the existence of the nested problem breaks the efficient automatic differentiation for calculating the Jacobian Matrix of the outer problem,
+since the nested problem needs to use an iterative solver that is not amenable to efficient automatic differentiation.
+As shown in Table R1 and discussed above, the inner problem requires substantially more number of evaluations of consistency equation (eval_consis_resid),
+which require repeatedly calling the interpolation procedure to evaluate future share prices at *off-equilibrium* wealth shares (Line 63).
+This makes the algorithm not as performanent as the STPFI.
 
 =====================
 What's Next?

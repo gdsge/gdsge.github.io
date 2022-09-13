@@ -51,7 +51,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#wealth-share-as-endogenous-state">Wealth Share as Endogenous State</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#evaluate-the-accuracy-of-solutions">Evaluate the Accuracy of Solutions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#consumption-share-as-the-endogenous-state">Consumption Share as the Endogenous State</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#comparison-with-alternative-algorithms">Comparison with alternative algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison-with-alternative-algorithms">Comparison with Alternative Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#toolbox-enabled-by-stpfi">Toolbox enabled by STPFI</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
@@ -188,7 +191,7 @@ despite the non-trivial state-transition functions, is to include the state vari
 <span class="linenos">30</span><span class="k">inbound</span> s1p 0.0 1.0;
 <span class="linenos">31</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
 <span class="linenos">32</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos">33</span><span class="k">inbound</span> ms1 0 1;        % Multipliers for constraints
+<span class="linenos">33</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
 <span class="linenos">34</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos">35</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos">36</span><span class="k">inbound</span> mb2 0 1;
@@ -219,7 +222,7 @@ despite the non-trivial state-transition functions, is to include the state vari
 <span class="linenos">61</span>  b2p = nb2p + Kb;
 <span class="linenos">62</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos">63</span>  s2p = 1-s1p;
-<span class="linenos">64</span>  <span class="c">% Budget constraints</span>
+<span class="linenos">64</span>  % Budget <span class="k">const</span>raints
 <span class="linenos">65</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos">66</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos">67</span>  <span class="c">% Consistency equations</span>
@@ -513,7 +516,7 @@ need to be defined as extra unknowns when evaluating the equation system.  The �
 <span class="linenos">28</span><span class="k">inbound</span> s1p 0.0 1.0;
 <span class="linenos">29</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
 <span class="linenos">30</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos">31</span><span class="k">inbound</span> ms1 0 1;        % Multipliers for constraints
+<span class="linenos">31</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
 <span class="linenos">32</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos">33</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos">34</span><span class="k">inbound</span> mb2 0 1;
@@ -545,7 +548,7 @@ need to be defined as extra unknowns when evaluating the equation system.  The �
 <span class="linenos">60</span>  b2p = nb2p + Kb;
 <span class="linenos">61</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos">62</span>  s2p = 1-s1p;
-<span class="linenos">63</span>  <span class="c">% Budget constraints</span>
+<span class="linenos">63</span>  % Budget <span class="k">const</span>raints
 <span class="linenos">64</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos">65</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos">66</span>  <span class="c">% Consistency equations</span>
@@ -603,7 +606,7 @@ This can be done by projecting the solutions to the same endogenous state. For e
 distinguishable.</p>
 </section>
 <section id="comparison-with-alternative-algorithms">
-<h2>Comparison with alternative algorithms<a class="headerlink" href="#comparison-with-alternative-algorithms" title="Permalink to this heading"></a></h2>
+<h2>Comparison with Alternative Algorithms<a class="headerlink" href="#comparison-with-alternative-algorithms" title="Permalink to this heading"></a></h2>
 <p>The Simultaneous Transition and Policy Function Iteration (STPFI) algorithm and toolbox especially demonstrates its strength at solving models with endogenous state variables that feature implicit laws of motions,
 like the current one (here, wealth share is such a state).</p>
 <p>We also compare the performance of the algorithm with alternative methods that can solve the current model. The results are summarized in the table below.</p>
@@ -722,6 +725,163 @@ evaluations are more costly, such as models involving many Euler equations
 for multiple asset choices or with less complex intra-temporal conditions,
 or in models where the number of policy variables is large so reducing the system of equations is of first-order importance,
 the other algorithms may show their strength and likely to be superior.</p>
+<section id="toolbox-enabled-by-stpfi">
+<h3>Toolbox enabled by STPFI<a class="headerlink" href="#toolbox-enabled-by-stpfi" title="Permalink to this heading"></a></h3>
+<p>Lastly, compared with nested algorithms such as NFP-KS (Algorithm (6)) and NFP-Guvenen (Algorithm (5)),
+the non-nested feature of STPFI also makes it more amenable to an automated design, for which the current toolbox can be developed.
+To demonstrate such an advantage, below we list the code that implements the NFP-KS algorithm as a comparison.
+The implementation can actually be done using the toolbox, by manually inserting C++ codes that are used to solve the inner problem
+(as a reminder, at each time step, the NFP-KS algorithm solves for consistent future endogenous states policy variables in the inner nest fixing values of policy variables,
+and solves for policy variables in the outer nest.)</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Parameters</span>
+<span class="linenos">  2</span>cinclude(&#39;rtnewt.h&#39;);
+<span class="linenos">  3</span>cinclude(&#39;stdlib.h&#39;);
+<span class="linenos">  4</span><span class="k">parameters</span> beta gamma Kb;
+<span class="linenos">  5</span>beta = 0.95;  <span class="c">% discount factor</span>
+<span class="linenos">  6</span>gamma = 1.5;  <span class="c">% CRRA coefficient</span>
+<span class="linenos">  7</span>Kb = -0.05;   <span class="c">% borrowing limit in ratio of aggregate output</span>
+<span class="linenos">  8</span><span class="c">% Exogenous state variables</span>
+<span class="linenos">  9</span><span class="k">var_shock</span> g d eta1;
+<span class="linenos"> 10</span><span class="c">% Enumerate exogenous states and transition matrix</span>
+<span class="linenos"> 11</span><span class="k">shock_num</span> = 8;
+<span class="linenos"> 12</span>g = [.9904 1.0470 .9904 1.0470 .9904 1.0470 .9904 1.0470];
+<span class="linenos"> 13</span>d = [.1402 .1437 .1561 .1599 .1402 .1437 .1561 .1599];
+<span class="linenos"> 14</span>eta1 = [.3772 .3772 .3772 .3772 .6228 .6228 .6228 .6228];
+<span class="linenos"> 15</span><span class="k">shock_trans</span> = [
+<span class="linenos"> 16</span>    0.3932 0.2245 0.0793 0.0453 0.1365 0.0779 0.0275 0.0158
+<span class="linenos"> 17</span>    0.3044 0.3470 0.0425 0.0484 0.1057 0.1205 0.0147 0.0168
+<span class="linenos"> 18</span>    0.0484 0.0425 0.3470 0.3044 0.0168 0.0147 0.1205 0.1057
+<span class="linenos"> 19</span>    0.0453 0.0793 0.2245 0.3932 0.0157 0.0275 0.0779 0.1366
+<span class="linenos"> 20</span>    0.1366 0.0779 0.0275 0.0157 0.3932 0.2245 0.0793 0.0453
+<span class="linenos"> 21</span>    0.1057 0.1205 0.0147 0.0168 0.3044 0.3470 0.0425 0.0484
+<span class="linenos"> 22</span>    0.0168 0.0147 0.1205 0.1057 0.0484 0.0425 0.3470 0.3044
+<span class="linenos"> 23</span>    0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
+<span class="linenos"> 24</span>    ];
+<span class="linenos"> 25</span><span class="c">% Endogenous state variables</span>
+<span class="linenos"> 26</span><span class="k">var_state</span> w1;  % wealth share
+<span class="linenos"> 27</span>w1 = linspace(-0.05,1.05,201);
+<span class="linenos"> 28</span><span class="c">% Policy variables and bounds that enter the equations</span>
+<span class="linenos"> 29</span><span class="k">var_policy</span> c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb;
+<span class="linenos"> 30</span><span class="k">inbound</span> c1 0.05 1.0;
+<span class="linenos"> 31</span><span class="k">inbound</span> c2 0.05 1.0;
+<span class="linenos"> 32</span><span class="k">inbound</span> s1p 0.0 1.0;
+<span class="linenos"> 33</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
+<span class="linenos"> 34</span><span class="k">inbound</span> nb2p 0.0 1.0;   
+<span class="linenos"> 35</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
+<span class="linenos"> 36</span><span class="k">inbound</span> ms2 0 1;
+<span class="linenos"> 37</span><span class="k">inbound</span> mb1 0 1;
+<span class="linenos"> 38</span><span class="k">inbound</span> mb2 0 1;
+<span class="linenos"> 39</span>inbound ps 0 3 <span class="k">adaptive</span>(1.5);
+<span class="linenos"> 40</span>inbound pb 0 3 <span class="k">adaptive</span>(1.5);
+<span class="linenos"> 41</span><span class="c">% Other policy variables</span>
+<span class="linenos"> 42</span><span class="k">var_aux</span> equity_premium w1n[8];
+<span class="linenos"> 43</span><span class="c">% Interpolation variables for policy and state transitions</span>
+<span class="linenos"> 44</span><span class="k">var_interp</span> ps_future c1_future c2_future;
+<span class="linenos"> 45</span><span class="k">initial</span> ps_future 0.0;
+<span class="linenos"> 46</span><span class="k">initial</span> c1_future w1.*d+eta1;
+<span class="linenos"> 47</span><span class="k">initial</span> c2_future (1-w1).*d+1-eta1;
+<span class="linenos"> 48</span>ps_future = ps;
+<span class="linenos"> 49</span>c1_future = c1;
+<span class="linenos"> 50</span>c2_future = c2;
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="k">model;</span>
+<span class="linenos"> 53</span>  <span class="c">% Transform bond back</span>
+<span class="linenos"> 54</span>  b1p = nb1p + Kb;
+<span class="linenos"> 55</span>  b2p = nb2p + Kb;
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span>  <span class="k">vector</span> w1nn[8];
+<span class="linenos"> 58</span>  <span class="k">cxx;</span>
+<span class="linenos"> 59</span>  for (int i_shock=1; i_shock&lt;=8; i_shock++)
+<span class="linenos"> 60</span>  {
+<span class="linenos"> 61</span>      <span class="k">auto</span> eval_consis_resid = [&amp;] (adouble w1_next)
+<span class="linenos"> 62</span>      {
+<span class="linenos"> 63</span>          <span class="k">auto</span> ps_next = ps_future_adouble(i_shock, w1_next);
+<span class="linenos"> 64</span>          <span class="k">auto</span> total_share_value = ps_next + d_GRID(i_shock);
+<span class="linenos"> 65</span>          <span class="k">auto</span> consis_resid = (s1p*total_share_value + b1p/g_GRID(i_shock)) / total_share_value - w1_next;
+<span class="linenos"> 66</span>          return consis_resid;
+<span class="linenos"> 67</span>      };
+<span class="linenos"> 68</span>      
+<span class="linenos"> 69</span>      
+<span class="linenos"> 70</span>      <span class="k">const</span> double delta = 1e-6;
+<span class="linenos"> 71</span>      <span class="k">const</span> double tol_eq = 1e-6;
+<span class="linenos"> 72</span>      <span class="k">auto</span> funcd_eval_consis_resid = [&amp;] (adouble w1_next, adouble* df)
+<span class="linenos"> 73</span>      {
+<span class="linenos"> 74</span>          <span class="k">auto</span> consis_resid = eval_consis_resid(w1_next);
+<span class="linenos"> 75</span>          <span class="k">auto</span> w1_next_plus = w1_next+delta;
+<span class="linenos"> 76</span>          <span class="k">auto</span> consis_resid_plus = eval_consis_resid(w1_next_plus);
+<span class="linenos"> 77</span>          *df = (consis_resid_plus - consis_resid) / (delta);
+<span class="linenos"> 78</span>          return consis_resid;
+<span class="linenos"> 79</span>      };
+<span class="linenos"> 80</span>      
+<span class="linenos"> 81</span>      <span class="k">const</span> double w1n_max = 1.5;
+<span class="linenos"> 82</span>      <span class="k">const</span> double w1n_min = -0.5;
+<span class="linenos"> 83</span>      a<span class="k">double</span> w1n0 = 0.5;
+<span class="linenos"> 84</span>      w1nn(i_shock) = rtnewt(funcd_eval_consis_resid, w1n_min, w1n_max, w1n0, tol_eq);
+<span class="linenos"> 85</span>  }
+<span class="linenos"> 86</span>  end<span class="k">cxx;</span>
+<span class="linenos"> 87</span>  w1n&#39; = w1nn&#39;; <span class="c">% Return the solution</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span>  <span class="c">% Evaluate interpolation</span>
+<span class="linenos"> 90</span>  [psn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
+<span class="linenos"> 91</span>  <span class="c">% Calculate expectations that enter the Euler Equations</span>
+<span class="linenos"> 92</span>  es1_future = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c1n&#39;)^(-gamma)*(psn&#39;+d&#39;)};
+<span class="linenos"> 93</span>  es2_future = <span class="k">GDSGE_EXPECT</span>{g&#39;^(1-gamma)*(c2n&#39;)^(-gamma)*(psn&#39;+d&#39;)};
+<span class="linenos"> 94</span>  eb1_future = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c1n&#39;)^(-gamma)};
+<span class="linenos"> 95</span>  eb2_future = <span class="k">GDSGE_EXPECT</span>{g&#39;^(-gamma)*(c2n&#39;)^(-gamma)};
+<span class="linenos"> 96</span>  es1 = es1_future*c1^gamma/ps;
+<span class="linenos"> 97</span>  es2 = es2_future*c2^gamma/ps;
+<span class="linenos"> 98</span>  eb1 = eb1_future*c1^gamma/pb;
+<span class="linenos"> 99</span>  eb2 = eb2_future*c2^gamma/pb;
+<span class="linenos">100</span>
+<span class="linenos">101</span>  <span class="c">% Market clearing of shares</span>
+<span class="linenos">102</span>  s2p = 1-s1p;
+<span class="linenos">103</span>  % Budget <span class="k">const</span>raints
+<span class="linenos">104</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
+<span class="linenos">105</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
+<span class="linenos">106</span>  <span class="c">% Consistency equations</span>
+<span class="linenos">107</span>  w1_consis&#39; = (s1p*(psn&#39;+d&#39;) + b1p/g&#39;)/(psn&#39;+d&#39;) - w1n&#39;;
+<span class="linenos">108</span>  <span class="c">% Other policy variables</span>
+<span class="linenos">109</span>  equity_premium = <span class="k">GDSGE_EXPECT</span>{(psn&#39;+d&#39;)/ps*g&#39;} - 1/pb;
+<span class="linenos">110</span>  <span class="k">equations;</span>
+<span class="linenos">111</span>    -1+beta*es1+ms1;
+<span class="linenos">112</span>    -1+beta*es2+ms2;
+<span class="linenos">113</span>    -1+beta*eb1+mb1;
+<span class="linenos">114</span>    -1+beta*eb2+mb2;
+<span class="linenos">115</span>    ms1*s1p;
+<span class="linenos">116</span>    ms2*s2p;
+<span class="linenos">117</span>    mb1*nb1p;
+<span class="linenos">118</span>    mb2*nb2p;
+<span class="linenos">119</span>    b1p+b2p;
+<span class="linenos">120</span>    budget_1/w1;        <span class="c">% Normalized by total budget</span>
+<span class="linenos">121</span>    budget_2/(1-w1);
+<span class="linenos">122</span>  <span class="k">end;</span>
+<span class="linenos">123</span><span class="k">end;</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span><span class="k">simulate;</span>
+<span class="linenos">126</span>  <span class="k">num_periods</span> = 10000;
+<span class="linenos">127</span>  <span class="k">num_samples</span> = 6;
+<span class="linenos">128</span>  <span class="k">initial</span> w1 0.5;
+<span class="linenos">129</span>  <span class="k">initial</span> shock 1;
+<span class="linenos">130</span>  <span class="k">var_simu</span> c1 c2 ps pb equity_premium ms1 mb1;
+<span class="linenos">131</span>  w1&#39; = w1n&#39;;
+<span class="linenos">132</span><span class="k">end;</span>
+</pre></div>
+</div>
+<p>As shown, Line 57-87 of the modified code is used to solve the inner problem, and codes for the equation solver need to be “included” (by Line 1 and 2, download the included file
+<a class="reference download internal" download="" href="../../_downloads/63e330054658679dc25944737fe283c4/rtnewt.h"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>).
+The <em>cxx;</em> block is essentially a hack implemented by the toolbox to insert a block of raw C++ codes. The block here defines the inner problem
+(the inner lambda function eval_consis_resid defined starting at Line 61),
+which is a single-unknown equation for the future state variable given current policies, and calls the solver to solve the problem, for each future state. The Newton solver, used here,
+achieves high performance but requires a delicate choice of the initial point for the inner problem.
+The choice of the initial point of 0.5, guarantees that the solutions can be found across the state space and time iterations, with
+values of policy variables not
+too distant from the equilibrium ones.</p>
+<p>Finally, the existence of the nested problem breaks the efficient automatic differentiation for calculating the Jacobian Matrix of the outer problem,
+since the nested problem needs to use an iterative solver that is not amenable to efficient automatic differentiation.
+As shown in Table R1 and discussed above, the inner problem requires substantially more number of evaluations of consistency equation (eval_consis_resid),
+which require repeatedly calling the interpolation procedure to evaluate future share prices at <em>off-equilibrium</em> wealth shares (Line 63).
+This makes the algorithm not as performanent as the STPFI.</p>
+</section>
 </section>
 <section id="what-s-next">
 <h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading"></a></h2>
