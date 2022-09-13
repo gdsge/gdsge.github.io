@@ -605,6 +605,9 @@ The choice of the initial point of 0.5, guarantees that the solutions can be fou
 values of policy variables not
 too distant from the equilibrium ones.
 
+Although doable, inserting add-hoc C++ codes like this tends to be inconvenient and err-prone, and thus not recommended to regular researchers.
+This example makes it clear why designing an interface that accommodates add-hoc nested algorithms is difficult, whereas it can be made with the STPFI algorithm.
+
 Finally, the existence of the nested problem breaks the efficient automatic differentiation for calculating the Jacobian Matrix of the outer problem,
 since the nested problem needs to use an iterative solver that is not amenable to efficient automatic differentiation.
 As shown in Table R1 and discussed above, the inner problem requires substantially more number of evaluations of consistency equation (eval_consis_resid),
