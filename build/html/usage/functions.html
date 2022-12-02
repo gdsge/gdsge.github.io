@@ -315,13 +315,13 @@ according to the order defined in <em>var_interp</em>. For example,</p>
 <span class="k">model;</span>
     x1_future = z;
     x2_future = z^2;
-    [y1_future,y2_future,y3_future] = GDSGE_INTERP_VEC(shock,x1_future,x2_future);
+    [y1_future,y2_future,y3_future] = <span class="k">GDSGE_INTERP_VEC</span>(shock,x1_future,x2_future);
 <span class="k">end;</span>
 </pre></div>
 </div>
 <p>The optional <em>vec_index</em> specifies a subset of <em>var_interp</em> to be evaluated. For example, the following skips the evaluation of y2.</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>...
-    [y1_future,y3_future] = GDSGE_INTERP_VEC[1,3](shock,x1_future,x2_future);
+    [y1_future,y3_future] = <span class="k">GDSGE_INTERP_VEC</span>[1,3](shock,x1_future,x2_future);
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -356,8 +356,8 @@ For example,</p>
 </pre></div>
 </div>
 <p>The line with <em>GDSGE_INTERP_VEC’</em> is equivalent to calling</p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>[y1_future(1),y2_future(1),y3_future(1)] = GDSGE_INTERP_VEC(1,x1_future(1),x2_future(1));
-[y1_future(2),y2_future(2),y3_future(2)] = GDSGE_INTERP_VEC(2,x1_future(2),x2_future(2));
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>[y1_future(1),y2_future(1),y3_future(1)] = <span class="k">GDSGE_INTERP_VEC</span>(1,x1_future(1),x2_future(1));
+[y1_future(2),y2_future(2),y3_future(2)] = <span class="k">GDSGE_INTERP_VEC</span>(2,x1_future(2),x2_future(2));
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -711,8 +711,8 @@ Default: the number of cores (via Matlab function <code class="docutils literal 
 <section id="debug">
 <h3>DEBUG<a class="headerlink" href="#debug" title="Permalink to this heading"></a></h3>
 <dl class="std option">
-<dt class="sig sig-object std" id="option-GNDSGE_DEBUG_EVAL_ONLY">
-<span class="sig-name descname"><span class="pre">GNDSGE_DEBUG_EVAL_ONLY</span></span><a class="headerlink" href="#option-GNDSGE_DEBUG_EVAL_ONLY" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object std" id="option-GDSGE_DEBUG_EVAL_ONLY">
+<span class="sig-name descname"><span class="pre">GDSGE_DEBUG_EVAL_ONLY</span></span><a class="headerlink" href="#option-GDSGE_DEBUG_EVAL_ONLY" title="Permalink to this definition"></a></dt>
 <dd><p>Only evaluate the system of equations instead of solving it.</p>
 </dd></dl>
 

@@ -219,7 +219,7 @@ guesses for these functions are obtained by solving a version of the model with 
 <span class="linenos"> 13</span>a1 = (((delta^(1/xsi))*xsi)/(xsi-1));
 <span class="linenos"> 14</span>a2 = (delta/(1-xsi));
 <span class="linenos"> 15</span>Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
-<span class="linenos"> 16</span>Bbar = -0.1*(1-theta)*Kss^theta; <span class="c">%borrowing constraint</span>
+<span class="linenos"> 16</span>Bbar = -0.1*(1-theta)*Kss^theta; %borrowing <span class="k">const</span>raint
 <span class="linenos"> 17</span>varianceScale = 1e4;
 <span class="linenos"> 18</span>
 <span class="linenos"> 19</span>TolEq = 1e-4;
@@ -327,7 +327,7 @@ guesses for these functions are obtained by solving a version of the model with 
 <span class="linenos">121</span>  b_h = (1-bn_shr)*chi*Kss/mu;
 <span class="linenos">122</span>  b_n = bn_shr*chi*Kss/(1-mu);
 <span class="linenos">123</span>    
-<span class="linenos">124</span>  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
+<span class="linenos">124</span>  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = <span class="k">GDSGE_INTERP_VEC</span>(shock,Knext,bn_shr_next);
 <span class="linenos">125</span>  EPD_square_future = EPD_square_future*varianceScale;
 <span class="linenos">126</span>  
 <span class="linenos">127</span>  vh =  ((1-beta)*(c_h^(1-rhoh)) + beta*(Evh_future^((1-rhoh)/(1-alpha))))^(1/(1-rhoh));
@@ -435,7 +435,7 @@ especially when the size of exogenous shocks is large.</p>
 </pre></div>
 </div>
 <p>and evaluating the approximation at the current <em>shock</em> only when evaluating the system of equations</p>
-<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">124</span>  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = GDSGE_INTERP_VEC(shock,Knext,bn_shr_next);
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">124</span>  [EEulerstock_future,EEulerbondh_future,EEulerbondn_future,EEulerf_future,Evh_future,Evn_future,EPD_future,EPD_square_future] = <span class="k">GDSGE_INTERP_VEC</span>(shock,Knext,bn_shr_next);
 </pre></div>
 </div>
 <p>where the <em>GDSGE_INTERP_VEC</em> takes the first argument <em>shock</em>, a reserved keyword referring

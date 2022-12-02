@@ -171,7 +171,7 @@ simulate;
     initial z#i 0;
     initial K#i Kss;
     var_simu K_next_output#i c#i;
-    z#i' = z_exo(:,GNDSGE_t+1,#i);
+    z#i' = z_exo(:,GDSGE_t+1,#i);
     K#i' = K_next_output#i;
   #end
 end;

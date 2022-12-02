@@ -199,7 +199,7 @@ which enable us to solve the decision problem with the toolbox.</p>
 <span class="linenos">54</span>  switch TASK
 <span class="linenos">55</span>    case &#39;ss&#39;
 <span class="linenos">56</span>    case &#39;transition&#39;
-<span class="linenos">57</span>      t = T - GNDSGE_Iter + 1;  <span class="c">% Convert forward to backward</span>
+<span class="linenos">57</span>      t = T - GDSGE_Iter + 1;  <span class="c">% Convert forward to backward</span>
 <span class="linenos">58</span>      r = r_t(t);
 <span class="linenos">59</span>      w = w_t(t);
 <span class="linenos">60</span>  end
@@ -209,7 +209,7 @@ which enable us to solve the decision problem with the toolbox.</p>
 <span class="linenos">64</span>  budget = k*(1+r) + e*w;
 <span class="linenos">65</span>  c = budget - k_next;
 <span class="linenos">66</span>  up = c^(-sigma);
-<span class="linenos">67</span>  [Evp_future] = GDSGE_INTERP_VEC(shock,k_next);
+<span class="linenos">67</span>  [Evp_future] = <span class="k">GDSGE_INTERP_VEC</span>(shock,k_next);
 <span class="linenos">68</span>  euler_residual = -1 + beta*Evp_future/up + lambda;
 <span class="linenos">69</span>  vp = up*(1+r);    <span class="c">% Envelope theorem</span>
 <span class="linenos">70</span>  

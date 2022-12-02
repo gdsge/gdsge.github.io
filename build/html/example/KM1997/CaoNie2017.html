@@ -200,9 +200,9 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos"> 95</span>  w = (1-nu)*A * h^nu * L^(-nu);
 <span class="linenos"> 96</span>  profit = (Y-w*L)/h;
 <span class="linenos"> 97</span>  
-<span class="linenos"> 98</span>  [cNext&#39;,cpNext&#39;,qp&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(Xp&#39;);
+<span class="linenos"> 98</span>  [cNext&#39;,cpNext&#39;,qp&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(Xp&#39;);
 <span class="linenos"> 99</span>  
-<span class="linenos">100</span>  Eqp = GNDSGE_EXPECT{qp&#39;};
+<span class="linenos">100</span>  Eqp = <span class="k">GDSGE_EXPECT</span>{qp&#39;};
 <span class="linenos">101</span>  
 <span class="linenos">102</span>  <span class="c">% Transform of variable</span>
 <span class="linenos">103</span>  b = a - m*Eqp*h;
@@ -211,18 +211,18 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">106</span>  bp = -b;
 <span class="linenos">107</span>  hp = H-h;
 <span class="linenos">108</span>  
-<span class="linenos">109</span>  <span class="c">% Implied by budget constraint</span>
+<span class="linenos">109</span>  % Implied by budget <span class="k">const</span>raint
 <span class="linenos">110</span>  budget1 = c-(q*X*H + Y-w*L - q*h - p*b);
 <span class="linenos">111</span>  budget2 = cp-(q*(1-X)*H + w*L - q*hp - p*bp);
 <span class="linenos">112</span>  
 <span class="linenos">113</span>  YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
 <span class="linenos">114</span>
 <span class="linenos">115</span>  <span class="c">% Equations in text</span>
-<span class="linenos">116</span>  eq10 = -1 + mu*m*Eqp*p/(q-profit) + beta1*GNDSGE_EXPECT{qp&#39;*cNext&#39;^(-sigma1)} / ((q-profit)*c^(-sigma1));
+<span class="linenos">116</span>  eq10 = -1 + mu*m*Eqp*p/(q-profit) + beta1*<span class="k">GDSGE_EXPECT</span>{qp&#39;*cNext&#39;^(-sigma1)} / ((q-profit)*c^(-sigma1));
 <span class="linenos">117</span>  eq11 = mu*a;
-<span class="linenos">118</span>  eq12 = -1 + mu + beta1 * GNDSGE_EXPECT{ cNext&#39;^(-sigma1) } / (p*c^(-sigma1));
-<span class="linenos">119</span>  eq13 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2*GNDSGE_EXPECT{ qp&#39;*cpNext&#39;^(-sigma2) } / (q*cp^(-sigma2));
-<span class="linenos">120</span>  eq14 = -1 + beta2 * GNDSGE_EXPECT{ cpNext&#39;^(-sigma2) } / (p*cp^(-sigma2));
+<span class="linenos">118</span>  eq12 = -1 + mu + beta1 * <span class="k">GDSGE_EXPECT</span>{ cNext&#39;^(-sigma1) } / (p*c^(-sigma1));
+<span class="linenos">119</span>  eq13 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2*<span class="k">GDSGE_EXPECT</span>{ qp&#39;*cpNext&#39;^(-sigma2) } / (q*cp^(-sigma2));
+<span class="linenos">120</span>  eq14 = -1 + beta2 * <span class="k">GDSGE_EXPECT</span>{ cpNext&#39;^(-sigma2) } / (p*cp^(-sigma2));
 <span class="linenos">121</span>  eq15 = -1 + L^(eta-1) / (w*cp^(-sigma2));
 <span class="linenos">122</span>  
 <span class="linenos">123</span>  <span class="c">% Consistency</span>
@@ -265,9 +265,9 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">160</span>  w = (1-nu)*A * h^nu * L^(-nu);
 <span class="linenos">161</span>  profit = (Y-w*L)/h;
 <span class="linenos">162</span>  
-<span class="linenos">163</span>  [cNext&#39;,cpNext&#39;,qp&#39;] = <span class="k">GNDSGE_INTERP_VEC</span>&#39;(Xp&#39;);
+<span class="linenos">163</span>  [cNext&#39;,cpNext&#39;,qp&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(Xp&#39;);
 <span class="linenos">164</span>  
-<span class="linenos">165</span>  Eqp = GNDSGE_EXPECT{qp&#39;};
+<span class="linenos">165</span>  Eqp = <span class="k">GDSGE_EXPECT</span>{qp&#39;};
 <span class="linenos">166</span>  
 <span class="linenos">167</span>  <span class="c">% Transform of variable</span>
 <span class="linenos">168</span>  b = a - m*Eqp*h;
@@ -276,14 +276,14 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">171</span>  bp = -b;
 <span class="linenos">172</span>  hp = H-h;
 <span class="linenos">173</span>  
-<span class="linenos">174</span>  <span class="c">% Implied by budget constraint</span>
+<span class="linenos">174</span>  % Implied by budget <span class="k">const</span>raint
 <span class="linenos">175</span>  budget2 = cp-(q*(1-X)*H + w*L - q*hp - p*bp);
 <span class="linenos">176</span>  
 <span class="linenos">177</span>  YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
 <span class="linenos">178</span>
 <span class="linenos">179</span>  <span class="c">% Equations in Guangyu&#39;s new note</span>
-<span class="linenos">180</span>  eq7 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2 * GNDSGE_EXPECT{ qp&#39;*cpNext&#39;^(-sigma2) } / (q*cp^(-sigma2));
-<span class="linenos">181</span>  eq8 = -1 + beta2 * GNDSGE_EXPECT{ cpNext&#39;^(-sigma2) } / (p*cp^(-sigma2));
+<span class="linenos">180</span>  eq7 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2 * <span class="k">GDSGE_EXPECT</span>{ qp&#39;*cpNext&#39;^(-sigma2) } / (q*cp^(-sigma2));
+<span class="linenos">181</span>  eq8 = -1 + beta2 * <span class="k">GDSGE_EXPECT</span>{ cpNext&#39;^(-sigma2) } / (p*cp^(-sigma2));
 <span class="linenos">182</span>  eq9 = -1 + L^(eta-1) / (w*cp^(-sigma2));
 <span class="linenos">183</span>  eq11 = -1 + (q - profit)/(m*Eqp*p);
 <span class="linenos">184</span>  
@@ -293,7 +293,7 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">188</span>  consis3 = (qp(3)*h+b) / (qp(3)*H) / Xp(3) - 1;
 <span class="linenos">189</span>  
 <span class="linenos">190</span>  <span class="k">equations;</span>
-<span class="linenos">191</span>    <span class="c">% budget constraint</span>
+<span class="linenos">191</span>    % budget <span class="k">const</span>raint
 <span class="linenos">192</span>    eq11; <span class="c">% This is equivalent to enterpreneur&#39;s budget when c and X = 0</span>
 <span class="linenos">193</span>    budget2;
 <span class="linenos">194</span>  

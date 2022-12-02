@@ -250,7 +250,7 @@ model;
   g_future' = MIN(MAX(muEps_g + rho_g*g + g_incr',g_lb),g_ub);
   cw_future' = MIN(MAX(muEps_cw + rho_cw*cw + cw_incr',cw_lb),cw_ub);
   fw_future' = MIN(MAX(muEps_fw + rho_fw*fw + fw_incr',fw_lb),fw_ub);
-  [rK_plus_qK_future',c_future',Y_future',pii_future'] = GNDSGE_INTERP_VEC'(K_next,g_future',cw_future',fw_future');
+  [rK_plus_qK_future',c_future',Y_future',pii_future'] = GDSGE_INTERP_VEC'(K_next,g_future',cw_future',fw_future');
   c_future' = c_future'*c_scale;
   Y_future' = Y_future'*Y_scale;
   
@@ -266,8 +266,8 @@ model;
   
   % Entrepreneurs
   c_times_g' = (1+g_future')^(-sigma) * c_future'^(-sigma);
-  euler_investment_future = GNDSGE_EXPECT{ (rK_plus_qK_future') * c_times_g' };
-  euler_bond_future = GNDSGE_EXPECT{ R/pii_future'*c_times_g' };
+  euler_investment_future = GDSGE_EXPECT{ (rK_plus_qK_future') * c_times_g' };
+  euler_bond_future = GDSGE_EXPECT{ R/pii_future'*c_times_g' };
 
   foc_bond = -1 + beta*exp(cw)*euler_bond_future/(c^-sigma);
   foc_investment = -1 + beta*exp(fw)*euler_investment_future/(qKp*c^-sigma);
@@ -280,20 +280,20 @@ model;
   % phi_prime_future' = pii_future'-pii_ss;
   
   % Phillips curve
-  % quadratic_c = epsilon/theta*(inv_X - (epsilon-1)/epsilon) + beta*GNDSGE_EXPECT{cp_future'^(-sigma2)*(1+g')^(1-sigma2)*pii_future'*(pii_future'-pii_ss)*Y_future'}/(cp^(-sigma2) * Y);
-  % quadratic_c = epsilon/theta*(inv_X - (epsilon-1)/epsilon) + beta*GNDSGE_EXPECT{c_future'^(-sigma1)*(1+g')^(1-sigma1)*pii_future'*(pii_future'-pii_ss)*Y_future'}/(c^(-sigma1) * Y);
+  % quadratic_c = epsilon/theta*(inv_X - (epsilon-1)/epsilon) + beta*GDSGE_EXPECT{cp_future'^(-sigma2)*(1+g')^(1-sigma2)*pii_future'*(pii_future'-pii_ss)*Y_future'}/(cp^(-sigma2) * Y);
+  % quadratic_c = epsilon/theta*(inv_X - (epsilon-1)/epsilon) + beta*GDSGE_EXPECT{c_future'^(-sigma1)*(1+g')^(1-sigma1)*pii_future'*(pii_future'-pii_ss)*Y_future'}/(c^(-sigma1) * Y);
   
   % pii_greater = (pii_ss + (pii_ss^2 + 4*quadratic_c)^0.5)/2;
   % phillips_curve = -pii + pii_greater;
   
   if price_adj_func==PRICE_ADJ_FUNC_SQR
-    phillips_curve = -pii*phi_prime + epsilon/theta*(inv_X - (epsilon-1)/epsilon) + beta*GNDSGE_EXPECT{c_future'^(-sigma)*(1+g_future')^(1-sigma)*pii_future'*phi_prime_future'*Y_future'}/(c^(-sigma) * Y) + mu_pii;
+    phillips_curve = -pii*phi_prime + epsilon/theta*(inv_X - (epsilon-1)/epsilon) + beta*GDSGE_EXPECT{c_future'^(-sigma)*(1+g_future')^(1-sigma)*pii_future'*phi_prime_future'*Y_future'}/(c^(-sigma) * Y) + mu_pii;
   end
   
   rK_plus_qK = rK + qK;
 
-  expectedCapitalReturn = GNDSGE_EXPECT{rK_plus_qK_future'} / qKp;
-  expectedBondReturn = GNDSGE_EXPECT{R/pii_future'};
+  expectedCapitalReturn = GDSGE_EXPECT{rK_plus_qK_future'} / qKp;
+  expectedBondReturn = GDSGE_EXPECT{R/pii_future'};
   
   equations;
     resource_residual;
@@ -313,9 +313,9 @@ end;
 
 post_simulate_iter;
   if overwrite_current_value==1
-    SimuRslt.g(:,GNDSGE_t+1) = g_off_grids_t(:,GNDSGE_t+1);
-    SimuRslt.cw(:,GNDSGE_t+1) = cw_off_grids_t(:,GNDSGE_t+1);
-    SimuRslt.fw(:,GNDSGE_t+1) = fw_off_grids_t(:,GNDSGE_t+1);
+    SimuRslt.g(:,GDSGE_t+1) = g_off_grids_t(:,GDSGE_t+1);
+    SimuRslt.cw(:,GDSGE_t+1) = cw_off_grids_t(:,GDSGE_t+1);
+    SimuRslt.fw(:,GDSGE_t+1) = fw_off_grids_t(:,GDSGE_t+1);
   end
 end;
 

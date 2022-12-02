@@ -18,12 +18,12 @@ kF = SimuRslt.kF(:,startIdx:endIdx);
 omega = SimuRslt.omega(:,startIdx:endIdx);
 bF = SimuRslt.bF(:,startIdx:endIdx);
 
-GNDSGE_PP = IterRslt.output_interp;
+GDSGE_PP = IterRslt.output_interp;
 output_var_index = IterRslt.output_var_index;
 NumThreads = feature('numcores');
 
 %% positive shock
-Interp_pos = myinterp_mex(int32(NumThreads),GNDSGE_PP.breaks,GNDSGE_PP.coefs,int32(GNDSGE_PP.pieces),int32(GNDSGE_PP.order),int32(GNDSGE_PP.dim),'not-a-knot',[shock(:)';kF(:)';omega(:)'],[],[],[]);
+Interp_pos = myinterp_mex(int32(NumThreads),GDSGE_PP.breaks,GDSGE_PP.coefs,int32(GDSGE_PP.pieces),int32(GDSGE_PP.order),int32(GDSGE_PP.dim),'not-a-knot',[shock(:)';kF(:)';omega(:)'],[],[],[]);
 kFnext=Interp_pos(output_var_index.kFpol,:)';
 omega_next_Neg=Interp_pos(output_var_index.omega_next(1),:)';
 omega_next_Nor=Interp_pos(output_var_index.omega_next(2),:)';

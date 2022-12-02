@@ -298,9 +298,9 @@ the borrowing constraint is tied to the price of an asset in fixed supply.</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">53</span>  [psn&#39;,c1n&#39;,c2n&#39;] = <span class="k">GDSGE_INTERP_VEC&#39;</span>(w1n&#39;);
 </pre></div>
 </div>
-<p><em>GNDSGE_INTERP_VEC</em> is a built-in function that evaluates function approximations for policy and state transition functions
+<p><em>GDSGE_INTERP_VEC</em> is a built-in function that evaluates function approximations for policy and state transition functions
 defined in <em>var_interp</em> once for all. The results are returned according to the order of variables defined in <em>var_interp</em>.
-The prime operator following <em>GNDSGE_INTERP_VEC</em> indicates that the approximation is done for each realization of the exogenous states.
+The prime operator following <em>GDSGE_INTERP_VEC</em> indicates that the approximation is done for each realization of the exogenous states.
 Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each realization of the future exogenous states.
 This step can be replaced by</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>psn&#39; = ps_future&#39;(w1n&#39;);
@@ -308,10 +308,10 @@ c1n&#39; = c1_future&#39;(w1n&#39;);
 c2n&#39; = c2_future&#39;(w1n&#39;);
 </pre></div>
 </div>
-<p>although at a lower speed since <em>GNDSGE_INTERP_VEC</em> evaluates function approximations with vectorization. (This is particular relevant
+<p>although at a lower speed since <em>GDSGE_INTERP_VEC</em> evaluates function approximations with vectorization. (This is particular relevant
 when using the adaptive sparse grid method as the coefficients are stored in a table with each entry referring to
-the coefficients across all vector dimensions. Therefore, using <em>GNDSGE_INTERP_VEC</em> instead of individual evaluations
-not only enables vectorization but also allows searching the table only once). <em>GNDSGE_INTERP_VEC</em> can also skip
+the coefficients across all vector dimensions. Therefore, using <em>GDSGE_INTERP_VEC</em> instead of individual evaluations
+not only enables vectorization but also allows searching the table only once). <em>GDSGE_INTERP_VEC</em> can also skip
 certain variables in <em>var_interp</em> when some of them are not necessary, and can be used without the prime operator but
 explicitly specifying the exogenous state that the approximation should be evaluated. This is relevant when
 the expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.

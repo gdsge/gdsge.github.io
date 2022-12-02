@@ -557,7 +557,7 @@ Miscellaneous
 DEBUG
 ----------------------------
 
-.. option:: GNDSGE_DEBUG_EVAL_ONLY
+.. option:: GDSGE_DEBUG_EVAL_ONLY
 
     Only evaluate the system of equations instead of solving it.
 

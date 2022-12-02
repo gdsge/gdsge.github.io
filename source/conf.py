@@ -34,7 +34,7 @@ class BCLLexer(RegexLexer):
 		var_output, var_aux, var_tensor,
         cxx;, endcxx;, auto, const, vector, double, adouble,
         GDSGE_MIN,
-		shock_num, shock_trans, var_state, var_policy, var_interp, model_init;, model;, end;, equations;, simulate;, initial, var_simu, num_periods, num_samples, GDSGE_EXPECT,GNDSGE_INTERP_VEC,inbound
+		shock_num, shock_trans, var_state, var_policy, var_interp, model_init;, model;, end;, equations;, simulate;, initial, var_simu, num_periods, num_samples, GDSGE_EXPECT,GNDSGE_INTERP_VEC,GDSGE_INTERP_VEC,inbound
 		"""
     keywordList = keywordListStr.split(',')
     keywordListPair = [( '(.*)(' + p.replace('\n','').replace('\t','').strip() + ')(.*)', bygroups(token.Text,token.Keyword,token.Text)) for p in keywordList]

@@ -167,9 +167,9 @@ Some built-in functions of the toolbox are used in this example.
     :lineno-start: 53
     :language: GDSGE
 
-*GNDSGE_INTERP_VEC* is a built-in function that evaluates function approximations for policy and state transition functions 
+*GDSGE_INTERP_VEC* is a built-in function that evaluates function approximations for policy and state transition functions 
 defined in *var_interp* once for all. The results are returned according to the order of variables defined in *var_interp*.
-The prime operator following *GNDSGE_INTERP_VEC* indicates that the approximation is done for each realization of the exogenous states.
+The prime operator following *GDSGE_INTERP_VEC* indicates that the approximation is done for each realization of the exogenous states.
 Accordingly, the returned values are vectors (of length 8 in the current example) corresponding to each realization of the future exogenous states.
 This step can be replaced by
 
@@ -179,10 +179,10 @@ This step can be replaced by
     c1n' = c1_future'(w1n');
     c2n' = c2_future'(w1n');
 
-although at a lower speed since *GNDSGE_INTERP_VEC* evaluates function approximations with vectorization. (This is particular relevant
+although at a lower speed since *GDSGE_INTERP_VEC* evaluates function approximations with vectorization. (This is particular relevant
 when using the adaptive sparse grid method as the coefficients are stored in a table with each entry referring to
-the coefficients across all vector dimensions. Therefore, using *GNDSGE_INTERP_VEC* instead of individual evaluations
-not only enables vectorization but also allows searching the table only once). *GNDSGE_INTERP_VEC* can also skip
+the coefficients across all vector dimensions. Therefore, using *GDSGE_INTERP_VEC* instead of individual evaluations
+not only enables vectorization but also allows searching the table only once). *GDSGE_INTERP_VEC* can also skip
 certain variables in *var_interp* when some of them are not necessary, and can be used without the prime operator but 
 explicitly specifying the exogenous state that the approximation should be evaluated. This is relevant when
 the expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.

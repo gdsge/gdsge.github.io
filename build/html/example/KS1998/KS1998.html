@@ -183,7 +183,7 @@ We present the heterogeneous-beta version of the model below.</p>
 <span class="linenos"> 72</span><span class="k">model;</span>
 <span class="linenos"> 73</span>  c = budget - k_next;
 <span class="linenos"> 74</span>  u_prime = 1/c;
-<span class="linenos"> 75</span>  [Evp_future,Ev_future] = GDSGE_INTERP_VEC(shock,kbar_next,k_next);
+<span class="linenos"> 75</span>  [Evp_future,Ev_future] = <span class="k">GDSGE_INTERP_VEC</span>(shock,kbar_next,k_next);
 <span class="linenos"> 76</span>  Evp_future = Evp_future;
 <span class="linenos"> 77</span>  euler_residual = -1 + beta*Evp_future/u_prime + lambda;
 <span class="linenos"> 78</span>  vp = (1+r)*u_prime;

@@ -200,7 +200,7 @@ However, the new converged solution would not differ significantly from the old 
 <span class="linenos"> 32</span><span class="k">inbound</span> s1p 0.0 1.0;
 <span class="linenos"> 33</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
 <span class="linenos"> 34</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos"> 35</span><span class="k">inbound</span> ms1 0 1;        % Multipliers for constraints
+<span class="linenos"> 35</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
 <span class="linenos"> 36</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos"> 37</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos"> 38</span><span class="k">inbound</span> mb2 0 1;
@@ -257,7 +257,7 @@ However, the new converged solution would not differ significantly from the old 
 <span class="linenos"> 89</span>  b2p = nb2p + Kb;
 <span class="linenos"> 90</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos"> 91</span>  s2p = 1-s1p;
-<span class="linenos"> 92</span>  <span class="c">% Budget constraints</span>
+<span class="linenos"> 92</span>  % Budget <span class="k">const</span>raints
 <span class="linenos"> 93</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos"> 94</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos"> 95</span>  <span class="c">% Consistency equations</span>

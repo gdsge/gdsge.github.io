@@ -109,7 +109,7 @@ implented this algorithm in the GDSGE gmod file below.</p>
 <span class="linenos">  6</span>alpha = 0.36; <span class="c">% capital share</span>
 <span class="linenos">  7</span>delta = 0.025; <span class="c">% depreciation rate</span>
 <span class="linenos">  8</span>rho = 0.90; <span class="c">%persistent of productivity shocks</span>
-<span class="linenos">  9</span>phi = 0.975; <span class="c">%investment irreversibility constraint</span>
+<span class="linenos">  9</span>phi = 0.975; %investment irreversibility <span class="k">const</span>raint
 <span class="linenos"> 10</span>tau = 0.2; <span class="c">%linear tax income</span>
 <span class="linenos"> 11</span>
 <span class="linenos"> 12</span>TolEq = 1e-6;
@@ -206,7 +206,7 @@ implented this algorithm in the GDSGE gmod file below.</p>
 <span class="linenos">103</span>   
 <span class="linenos">104</span>  Euler_future&#39; = Euler_interp&#39;(z_next&#39;,K_next);
 <span class="linenos">105</span>  
-<span class="linenos">106</span>  EEuler_future = GNDSGE_EXPECT{Euler_future&#39;};
+<span class="linenos">106</span>  EEuler_future = <span class="k">GDSGE_EXPECT</span>{Euler_future&#39;};
 <span class="linenos">107</span>   
 <span class="linenos">108</span>  muc_future&#39; = muc_interp&#39;(z_next&#39;,K_next);
 <span class="linenos">109</span>

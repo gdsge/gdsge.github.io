@@ -180,7 +180,7 @@ c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 <span class="linenos">39</span><span class="k">var_aux</span> w;
 <span class="linenos">40</span>
 <span class="linenos">41</span><span class="k">model;</span>
-<span class="linenos">42</span>  <span class="c">% Budget constraints</span>
+<span class="linenos">42</span>  % Budget <span class="k">const</span>raints
 <span class="linenos">43</span>  u_prime = c^(-sigma);
 <span class="linenos">44</span>  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
 <span class="linenos">45</span>  
@@ -364,7 +364,7 @@ directly included in the system of equations. For example wage is determined by 
 and can be evaluated according to <span class="math notranslate nohighlight">\(w=(1-\alpha)zK^{\alpha}\)</span>. These policy variables can be declared
 following keyword <code class="xref std std-declare docutils literal notranslate"><span class="pre">var_aux</span></code>.</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">model;</span>
-<span class="linenos">42</span>  <span class="c">% Budget constraints</span>
+<span class="linenos">42</span>  % Budget <span class="k">const</span>raints
 <span class="linenos">43</span>  u_prime = c^(-sigma);
 <span class="linenos">44</span>  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
 <span class="linenos">45</span>  

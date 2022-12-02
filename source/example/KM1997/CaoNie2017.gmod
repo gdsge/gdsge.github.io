@@ -95,9 +95,9 @@ model(X>0);
   w = (1-nu)*A * h^nu * L^(-nu);
   profit = (Y-w*L)/h;
   
-  [cNext',cpNext',qp'] = GNDSGE_INTERP_VEC'(Xp');
+  [cNext',cpNext',qp'] = GDSGE_INTERP_VEC'(Xp');
   
-  Eqp = GNDSGE_EXPECT{qp'};
+  Eqp = GDSGE_EXPECT{qp'};
   
   % Transform of variable
   b = a - m*Eqp*h;
@@ -113,11 +113,11 @@ model(X>0);
   YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
 
   % Equations in text
-  eq10 = -1 + mu*m*Eqp*p/(q-profit) + beta1*GNDSGE_EXPECT{qp'*cNext'^(-sigma1)} / ((q-profit)*c^(-sigma1));
+  eq10 = -1 + mu*m*Eqp*p/(q-profit) + beta1*GDSGE_EXPECT{qp'*cNext'^(-sigma1)} / ((q-profit)*c^(-sigma1));
   eq11 = mu*a;
-  eq12 = -1 + mu + beta1 * GNDSGE_EXPECT{ cNext'^(-sigma1) } / (p*c^(-sigma1));
-  eq13 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2*GNDSGE_EXPECT{ qp'*cpNext'^(-sigma2) } / (q*cp^(-sigma2));
-  eq14 = -1 + beta2 * GNDSGE_EXPECT{ cpNext'^(-sigma2) } / (p*cp^(-sigma2));
+  eq12 = -1 + mu + beta1 * GDSGE_EXPECT{ cNext'^(-sigma1) } / (p*c^(-sigma1));
+  eq13 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2*GDSGE_EXPECT{ qp'*cpNext'^(-sigma2) } / (q*cp^(-sigma2));
+  eq14 = -1 + beta2 * GDSGE_EXPECT{ cpNext'^(-sigma2) } / (p*cp^(-sigma2));
   eq15 = -1 + L^(eta-1) / (w*cp^(-sigma2));
   
   % Consistency
@@ -160,9 +160,9 @@ model(X==0);
   w = (1-nu)*A * h^nu * L^(-nu);
   profit = (Y-w*L)/h;
   
-  [cNext',cpNext',qp'] = GNDSGE_INTERP_VEC'(Xp');
+  [cNext',cpNext',qp'] = GDSGE_INTERP_VEC'(Xp');
   
-  Eqp = GNDSGE_EXPECT{qp'};
+  Eqp = GDSGE_EXPECT{qp'};
   
   % Transform of variable
   b = a - m*Eqp*h;
@@ -177,8 +177,8 @@ model(X==0);
   YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
 
   % Equations in Guangyu's new note
-  eq7 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2 * GNDSGE_EXPECT{ qp'*cpNext'^(-sigma2) } / (q*cp^(-sigma2));
-  eq8 = -1 + beta2 * GNDSGE_EXPECT{ cpNext'^(-sigma2) } / (p*cp^(-sigma2));
+  eq7 = -1 + phi*hp^(-sigmah) / (q*cp^(-sigma2)) + beta2 * GDSGE_EXPECT{ qp'*cpNext'^(-sigma2) } / (q*cp^(-sigma2));
+  eq8 = -1 + beta2 * GDSGE_EXPECT{ cpNext'^(-sigma2) } / (p*cp^(-sigma2));
   eq9 = -1 + L^(eta-1) / (w*cp^(-sigma2));
   eq11 = -1 + (q - profit)/(m*Eqp*p);
   

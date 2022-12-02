@@ -103,7 +103,7 @@ model;
    
   Euler_future' = Euler_interp'(z_next',K_next);
   
-  EEuler_future = GNDSGE_EXPECT{Euler_future'};
+  EEuler_future = GDSGE_EXPECT{Euler_future'};
    
   muc_future' = muc_interp'(z_next',K_next);
 

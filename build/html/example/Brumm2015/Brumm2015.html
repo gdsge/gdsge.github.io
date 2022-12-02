@@ -173,7 +173,7 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos"> 46</span><span class="c">% Variable for the last period</span>
 <span class="linenos"> 47</span><span class="k">var_policy</span>_init c1 c2 q1 theta11;
 <span class="linenos"> 48</span>
-<span class="linenos"> 49</span><span class="k">inbound</span>_init theta11 0 1; %agent 1: tree 1 holding, constrained by no-short selling condition
+<span class="linenos"> 49</span>inbound_init theta11 0 1; %agent 1: tree 1 holding, <span class="k">const</span>rained by no-short selling condition
 <span class="linenos"> 50</span><span class="k">inbound</span>_init q1 0 100;
 <span class="linenos"> 51</span><span class="k">inbound</span>_init c1 1e-10 1;
 <span class="linenos"> 52</span><span class="k">inbound</span>_init c2 1e-10 1;
@@ -198,11 +198,11 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos"> 71</span><span class="k">var_policy</span> c1 c2 theta11 theta21 nphi1 nphi2 mu_theta11 mu_theta21 mu_theta12 mu_theta22 muphi1 muphi2 q1 q2 p w1n[4];
 <span class="linenos"> 72</span><span class="k">inbound</span> c1 1e-10 1;
 <span class="linenos"> 73</span><span class="k">inbound</span> c2 1e-10 1;
-<span class="linenos"> 74</span><span class="k">inbound</span> theta11 0 1; %agent 1: tree 1 holding, constrained by no-short selling condition
-<span class="linenos"> 75</span><span class="k">inbound</span> theta21 0 1; %agent 1: tree 2 holding, constrained by no-short selling condition
+<span class="linenos"> 74</span>inbound theta11 0 1; %agent 1: tree 1 holding, <span class="k">const</span>rained by no-short selling condition
+<span class="linenos"> 75</span>inbound theta21 0 1; %agent 1: tree 2 holding, <span class="k">const</span>rained by no-short selling condition
 <span class="linenos"> 76</span><span class="k">inbound</span> nphi1 0 100;
 <span class="linenos"> 77</span><span class="k">inbound</span> nphi2 0 100;
-<span class="linenos"> 78</span><span class="k">inbound</span> mu_theta11 0 100; %multipliers on no-short selling constraint on trees
+<span class="linenos"> 78</span>inbound mu_theta11 0 100; %multipliers on no-short selling <span class="k">const</span>raint on trees
 <span class="linenos"> 79</span><span class="k">inbound</span> mu_theta21 0 100;
 <span class="linenos"> 80</span><span class="k">inbound</span> mu_theta12 0 100;
 <span class="linenos"> 81</span><span class="k">inbound</span> mu_theta22 0 100;
@@ -273,7 +273,7 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos">146</span>  EE2_q2= beta*(ev2^((rho2-alpha2)/(alpha2)))*expucq2f + muphi2*delta2*g_min*(q2p_min + d2)+ mu_theta22- q2;
 <span class="linenos">147</span>  EE2_p= beta*(ev2^((rho2-alpha2)/(alpha2)))*expuc2 + muphi2-p;
 <span class="linenos">148</span>
-<span class="linenos">149</span>  <span class="c">% Budget constraint agent 1</span>
+<span class="linenos">149</span>  % Budget <span class="k">const</span>raint agent 1
 <span class="linenos">150</span>  budget_1 = c1 + p*phi1 + theta11*q1 + theta21*q2 - e1 - w1*( q1+ q2 +d1 +d2);
 <span class="linenos">151</span>
 <span class="linenos">152</span>  <span class="c">% Consistency</span>

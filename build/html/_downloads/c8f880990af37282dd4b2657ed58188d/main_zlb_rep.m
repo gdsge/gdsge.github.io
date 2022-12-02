@@ -1,6 +1,6 @@
 % clear;
 % Uncomment to recompile
-gndsge_codegen('zlb_rep');
+gdsge_codegen('zlb_rep');
 options = struct;
 
 % No ZLB as warmup

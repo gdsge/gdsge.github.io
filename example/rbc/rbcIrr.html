@@ -142,7 +142,7 @@ and solve for <span class="math notranslate nohighlight">\(c_t,\mu_t,K'_t\)</spa
 <span class="linenos">  6</span>alpha = 0.36; <span class="c">% capital share</span>
 <span class="linenos">  7</span>delta = 0.025; <span class="c">% depreciation rate</span>
 <span class="linenos">  8</span>rho = 0.90; <span class="c">%persistent of productivity shocks</span>
-<span class="linenos">  9</span>phi = 0.975; <span class="c">%investment irreversibility constraint</span>
+<span class="linenos">  9</span>phi = 0.975; %investment irreversibility <span class="k">const</span>raint
 <span class="linenos"> 10</span>
 <span class="linenos"> 11</span>TolEq = 1e-6;
 <span class="linenos"> 12</span>SaveFreq = 50;
@@ -207,7 +207,7 @@ and solve for <span class="math notranslate nohighlight">\(c_t,\mu_t,K'_t\)</spa
 <span class="linenos"> 71</span><span class="k">var_aux</span> Y Euler K_next muc z_next[2] Inv;
 <span class="linenos"> 72</span>
 <span class="linenos"> 73</span><span class="k">model;</span>
-<span class="linenos"> 74</span>  <span class="c">%investment irreversiility constraint    </span>
+<span class="linenos"> 74</span>  %investment irreversiility <span class="k">const</span>raint    
 <span class="linenos"> 75</span>  Inv = invst + Imin;     
 <span class="linenos"> 76</span>  K_next = Inv + (1-delta)*K;
 <span class="linenos"> 77</span>  Y = z*(K^alpha);

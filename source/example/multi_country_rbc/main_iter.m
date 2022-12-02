@@ -1,4 +1,4 @@
-gndsge_codegen('rbc');
+gdsge_codegen('rbc');
 
 tt = tic;
 options = struct;
