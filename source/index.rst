@@ -26,8 +26,11 @@ by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an
 
    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3569013" target="_blank">Cao, Luo, and Nie (2020)</a>
 
+The toolbox source code can be found at: https://github.com/gdsge/gdsge, where you can download the most up-to-date version and setup your own local compiler.
 
 More examples and detailed instructions on gmod files and on how to use the toolbox are provided below.
+
+Lectures on the toolbox can be found at :ref:`Lectures <GDSGE_Lectures>`.
 
 If you have comments, suggestions or coding questions for us, or would like to contribute GDSGE examples, please reach out to us at: gdsge.cln2020@gmail.com
 
