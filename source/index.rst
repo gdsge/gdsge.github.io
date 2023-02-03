@@ -18,17 +18,20 @@ It parses the script into dynamic libraries which implement the actual computati
 The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, and related fields.
 
 Try running your first example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
-by uploading the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` to an online compiler server deployed at
+by downloading the toolbox source code :download:`gdsge_master.zip <https://cloud.tsinghua.edu.cn/f/2b648dea73b647a8a9e7/?dl=1>`
+and compiling the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` by running in MATLAB
 
-[`Windows <http://166.111.99.114:50000/>`_] [`MacOS <http://166.111.99.114:20000/>`_](Updated 4/29/2022) 
+.. code-block:: MATLAB
+
+   gdsge_codegen('HL1996')
 
 .. |paper_link| raw:: html
 
-   <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3569013" target="_blank">Cao, Luo, and Nie (2020)</a>
+   <a href="https://www.sciencedirect.com/science/article/pii/S1094202523000017" target="_blank">Cao, Luo, and Nie (2023)</a>
 
-The toolbox source code can be found at: https://github.com/gdsge/gdsge, where you can download the most up-to-date version and setup your own local compiler.
+The toolbox source code can be found at: https://github.com/gdsge/gdsge, where you can download the most up-to-date version, find detailed instructions for setting up the compiler, and submit issues.
 
-More examples and detailed instructions on gmod files and on how to use the toolbox are provided below.
+Examples and documentation of the toolbox are provided below.
 
 Lectures on the toolbox can be found at :ref:`Lectures <GDSGE_Lectures>`.
 
