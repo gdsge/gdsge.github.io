@@ -71,9 +71,9 @@ the first-order conditions in :math:`s^i_{t+1}` and :math:`b^i_{t+1}`:
 
 .. math::
     1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{\hat{c}^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{1-\gamma}\frac{\hat{p}_{t+1}^{s}+\hat{d}_{t+1}}{\hat{p}_{t}^{s}}\right]+\hat{\mu}^{i,s}_t\\
-    1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{c^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{-\gamma}\frac{1}{p_{t}^{b}}\right]+\hat{\mu}^{i,b}_t,
+    1& =\beta\mathbb{E}_{t}\left[\left(\frac{\hat{c}_{t+1}^{i}}{\hat{c}^i_t}\right)^{-\gamma}\left(\gamma_{t+1}^{a}\right)^{-\gamma}\frac{1}{p_{t}^{b}}\right]+\hat{\mu}^{i,b}_t,
 
-where :math:`\hat{\mu}^{i,s}_t` and :math:`\mu^{i,b}_t` are the Lagrangian multipliers on agent i's no short sale constraint and borrowing constraint, respectively.
+where :math:`\hat{\mu}^{i,s}_t` and :math:`\hat{\mu}^{i,b}_t` are the Lagrangian multipliers on agent i's no short sale constraint and borrowing constraint, respectively.
 The multipliers and portfolio choices satisfy the complementary-slackness conditions: 
 
 .. math::
