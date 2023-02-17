@@ -1,17 +1,17 @@
 **************************************************************************************
-Guerrieri et al. (2020): Negative Supply Shocks That Cause Demand Shortages
+Guerrieri et al. (2022): Negative Supply Shocks That Cause Demand Shortages
 **************************************************************************************
 
-.. _GLSW2020:
+.. _GLSW2022:
 ===============
 The Model
 ===============
 
-In this timely and important contribution, `Guerrieri, Lorenzoni, Straub, and Werning (2020) <http://economics.mit.edu/files/19351>`_  analyze the effects of supply shocks such as shutdowns, layoffs, and firm exits due to COVID-19. They show that in a two-sector model, these supply shocks can trigger changes in aggregate demand larger than the shocks themselves. This is the case when the elasticity of substitution across sectors is not too large and the inter-temporal elasticity of substitution is sufficiently high.
+In this timely and important contribution, `Guerrieri, Lorenzoni, Straub, and Werning (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_  analyze the effects of supply shocks such as shutdowns, layoffs, and firm exits due to COVID-19. They show that in a two-sector model, these supply shocks can trigger changes in aggregate demand larger than the shocks themselves. This is the case when the elasticity of substitution across sectors is not too large and the inter-temporal elasticity of substitution is sufficiently high.
 
 Their model is deterministic and the supply shock is unexpected. They also assume maximally tight borrowing constraint. We extend their model to allow for stochastic, recurrent shocks and more relaxed borrowing constraint. This extension can be solved easily using our toolbox.
 
-We follow closely the notation in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_. The total population is normalized to one, with a fraction
+We follow closely the notation in `Guerrieri et al. (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_. The total population is normalized to one, with a fraction
 :math:`\phi` of agents working in sector 1 and the remaining fraction :math:`1-\phi`
 of agents working in section 2. We assume that workers are perfectly
 specialized in their sector. Sector 1 is the contact-intensive sector that is directly affected by the supply shock.
@@ -55,7 +55,7 @@ in which
 which features constant elasticity of subsitution :math:`1/\rho` between the two goods
 and constant intertemporal elasticity of substitution :math:`1/\sigma`.
 
-As in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_, here
+As in `Guerrieri et al. (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_, here
 we set good 2 to be the numeraire, i.e., :math:`P_{2t}\equiv1`. Workers in sector :math:`j` maximize :eq:`utility_GLSW` subject to 
 
 .. math::
@@ -144,7 +144,7 @@ and slackness condition in equation :eq:`slackness_GLSW` for
 Calibration
 -----------
 
-We use quarters for model periods and standard parameters in the literature. For preferences, we use :math:`\beta = 0.99` as the quarterly discount factor. The inverse inter-temporal elasticity of substitution is set at :math:`\sigma = 0.5` (strictly less than :math:`1` as required by the analytical results  `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_ for supply shocks to trigger larger aggregate demand responses). We vary the inverse intra-temporal elasticity of substitution :math:`\rho` between :math:`0.1` and :math:`0.9`.
+We use quarters for model periods and standard parameters in the literature. For preferences, we use :math:`\beta = 0.99` as the quarterly discount factor. The inverse inter-temporal elasticity of substitution is set at :math:`\sigma = 0.5` (strictly less than :math:`1` as required by the analytical results  `Guerrieri et al. (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_ for supply shocks to trigger larger aggregate demand responses). We vary the inverse intra-temporal elasticity of substitution :math:`\rho` between :math:`0.1` and :math:`0.9`.
 
 For labor market parameters, we normalize :math:`\bar{n}` at :math:`1`. The share of the contact-intensive sector :math:`\phi` is set at :math:`0.2`. We assume that when the pandemic shocks hit, labor supply in the contact-intensive sector declines by :math:`50\%` (roughly consistent with the increase in unemployment claims in the U.S. during the pandemics). We assume that the pandemics last for 2 quarters on average, so :math:`\pi_2 = 0.5` and :math:`\pi_1` is chosen so that the economy stays in pandemics in around :math:`0.5\%` of the times (consistent with historical frequency). Borrowing limit :math:`\bar{A}` is set at :math:`30\%` of the wage in normal times. 
 For the benchmark results, we use :math:`\rho = 0.75>\sigma = 0.5`.
@@ -208,9 +208,9 @@ With some cosmetic modifications we get the following figure.
     :scale: 90 %
 
 The upper panel in the figure shows the interest rate as a function of the endogenous state variable :math:`a^1_t` in normal times (:math:`z=1`) and during pandemics (:math:`z=2`).
-Interest rate is lower during pandemics, which reflects that the aggregate demand response outweighs the supply shock, a result emphasized in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_. 
+Interest rate is lower during pandemics, which reflects that the aggregate demand response outweighs the supply shock, a result emphasized in `Guerrieri et al. (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_. 
 In addition, the figure also shows that the effect is stronger when the net worth of workers in the contact-intensive sector is low. 
-The lower panel plots the ergodic distribution of bond holding of workers in the contact_intensive sector. The possibility of pandemics leads these workers to do precautionary saving, sometimes up to the borrowing limit of workers in sector 2. However, the precautionary saving does not undo the results in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
+The lower panel plots the ergodic distribution of bond holding of workers in the contact_intensive sector. The possibility of pandemics leads these workers to do precautionary saving, sometimes up to the borrowing limit of workers in sector 2. However, the precautionary saving does not undo the results in `Guerrieri et al. (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_.
 
 Starting from the model's ergodic set, we can simulate the *generalized impulse response functions* by comparing two sets of sample paths drawn from the model's ergodic set: one benchmark, 
 the other with the *pandemic* shock hitting at the first period and the transition of the exogenous shock turned on. Download the MATLAB script file that calls the toolbox codes to simulate the 
@@ -224,7 +224,7 @@ workers in sector 1 suffer from a persistent, long-lasting wealth lost.
 
 To further investigate the robustness of the results, the following figure 
 plots the average interest rate before and after the pandemic shocks hit the economy as we vary :math:`\rho`. The figure shows that when :math:`\rho>\sigma` (more precisely :math:`1/\rho<1/\sigma`), interest rate drops when the pandemic shock hits, while it rises when :math:`\rho<\sigma` (:math:`1/\rho>1/\sigma`).
-This is exactly the result discussed in `Guerrieri et al. (2020) <http://economics.mit.edu/files/19351>`_.
+This is exactly the result discussed in `Guerrieri et al. (2022) <https://www.aeaweb.org/articles?id=10.1257/aer.20201063>`_.
 
 .. image:: figures/interest_rate_vary_rho.png
     :scale: 30 %
