@@ -40,9 +40,10 @@ class BCLLexer(RegexLexer):
     keywordListPair = [( '(.*)(' + p.replace('\n','').replace('\t','').strip() + ')(.*)', bygroups(token.Text,token.Keyword,token.Text)) for p in keywordList]
 
     tokens = {
-        'root': keywordListPair + [
+        'root': [
 			(r'%.*?$', token.Comment),
 			(r'(.*)(%.*?$)', bygroups(token.Text,token.Comment)),
+        ] + keywordListPair + [
 			(r'.*\n', token.Text),
         ]
     }

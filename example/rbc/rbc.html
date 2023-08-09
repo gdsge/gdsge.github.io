@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting Started - A Simple RBC Model &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Getting Started - A Simple RBC Model</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started - A Simple RBC Model</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -180,7 +184,7 @@ c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 <span class="linenos">39</span><span class="k">var_aux</span> w;
 <span class="linenos">40</span>
 <span class="linenos">41</span><span class="k">model;</span>
-<span class="linenos">42</span>  % Budget <span class="k">const</span>raints
+<span class="linenos">42</span>  <span class="c">% Budget constraints</span>
 <span class="linenos">43</span>  u_prime = c^(-sigma);
 <span class="linenos">44</span>  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
 <span class="linenos">45</span>  
@@ -364,7 +368,7 @@ directly included in the system of equations. For example wage is determined by 
 and can be evaluated according to <span class="math notranslate nohighlight">\(w=(1-\alpha)zK^{\alpha}\)</span>. These policy variables can be declared
 following keyword <code class="xref std std-declare docutils literal notranslate"><span class="pre">var_aux</span></code>.</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">model;</span>
-<span class="linenos">42</span>  % Budget <span class="k">const</span>raints
+<span class="linenos">42</span>  <span class="c">% Budget constraints</span>
 <span class="linenos">43</span>  u_prime = c^(-sigma);
 <span class="linenos">44</span>  kret_next&#39; = z&#39;*alpha*K_next^(alpha-1) + 1-delta;
 <span class="linenos">45</span>  

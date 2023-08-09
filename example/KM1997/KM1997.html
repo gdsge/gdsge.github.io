@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kiyotaki and Moore (1997): Credit Cycles &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -80,9 +84,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
-      <li>Kiyotaki and Moore (1997): Credit Cycles</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ContributedExamples.html">Contributed Examples</a></li>
+      <li class="breadcrumb-item active">Kiyotaki and Moore (1997): Credit Cycles</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -260,7 +264,7 @@ They found that market incompleteness is relatively more important than collater
 <span class="linenos"> 64</span><span class="k">inbound</span>_init kFpol       0  Kbar;
 <span class="linenos"> 65</span><span class="k">inbound</span>_init R           0 10;
 <span class="linenos"> 66</span><span class="k">inbound</span>_init q           0 10;
-<span class="linenos"> 67</span><span class="k">inbound</span>_init nbFpol      0 10;      % Transformaion nbFpol = bFpol + theta*q*kFpol
+<span class="linenos"> 67</span>inbound_init nbFpol      0 10;      <span class="c">% Transformaion nbFpol = bFpol + theta*q*kFpol</span>
 <span class="linenos"> 68</span><span class="k">inbound</span>_init muF          0 1;
 <span class="linenos"> 69</span>
 <span class="linenos"> 70</span><span class="k">var_aux</span>_init loglambdaF loglambdaG logaux;
@@ -335,14 +339,14 @@ They found that market incompleteness is relatively more important than collater
 <span class="linenos">139</span><span class="k">inbound</span> kFpol       0  Kbar;
 <span class="linenos">140</span>inbound R           0  1.5 <span class="k">adaptive</span>(1.5);
 <span class="linenos">141</span>inbound q           0 10 <span class="k">adaptive</span>(1.5);
-<span class="linenos">142</span>inbound nbFpol      0 10 <span class="k">adaptive</span>(1.5);      % Transformaion nbFpol = bFpol + theta*q*kFpol
+<span class="linenos">142</span>inbound nbFpol      0 10 adaptive(1.5);      <span class="c">% Transformaion nbFpol = bFpol + theta*q*kFpol</span>
 <span class="linenos">143</span><span class="k">inbound</span> muF         0 1;
 <span class="linenos">144</span><span class="k">inbound</span> omega_next  0 1;
 <span class="linenos">145</span>
 <span class="linenos">146</span><span class="c">%====================================================</span>
 <span class="linenos">147</span><span class="c">% Other equilibrium variables</span>
 <span class="linenos">148</span><span class="c">%====================================================</span>
-<span class="linenos">149</span><span class="k">var_aux</span> xF loglambdaF loglambdaG logaux bFpol Y bF; %qlow_next
+<span class="linenos">149</span>var_aux xF loglambdaF loglambdaG logaux bFpol Y bF; <span class="c">%qlow_next</span>
 <span class="linenos">150</span><span class="k">var_output</span> xF xG Y q R eta muF kFpol omega_next bF;
 <span class="linenos">151</span>
 <span class="linenos">152</span><span class="c">%====================================================</span>
@@ -409,11 +413,11 @@ They found that market incompleteness is relatively more important than collater
 <span class="linenos">213</span><span class="k">simulate;</span>
 <span class="linenos">214</span>   <span class="k">num_periods</span> = 1000;
 <span class="linenos">215</span>   <span class="k">num_samples</span> = 100;
-<span class="linenos">216</span>   <span class="k">initial</span> kF 0.05;%Kbar - (a/(alower*betaG*alpha))^(1/(alpha-1));
+<span class="linenos">216</span>   initial kF 0.05;<span class="c">%Kbar - (a/(alower*betaG*alpha))^(1/(alpha-1));</span>
 <span class="linenos">217</span>   <span class="k">initial</span> omega 0.01;
 <span class="linenos">218</span>   <span class="k">initial</span> shock 2;
 <span class="linenos">219</span>
-<span class="linenos">220</span>   <span class="k">var_simu</span> xF xG Y q R eta muF bF; % some variables
+<span class="linenos">220</span>   var_simu xF xG Y q R eta muF bF; <span class="c">% some variables</span>
 <span class="linenos">221</span>   kF&#39;=kFpol;
 <span class="linenos">222</span>   omega&#39; = omega_next&#39;;
 <span class="linenos">223</span><span class="k">end;</span>

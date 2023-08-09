@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -81,9 +85,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
-      <li>Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../AdditionalExamples.html">Additional Examples</a></li>
+      <li class="breadcrumb-item active">Cao and Nie (2017): Amplification and Asymmetry without Collateral Constraint</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,7 +105,7 @@ They show that the incomplete-markets structure of the model by itself can deliv
 the solution to the boundary of the state space right is crucial in solving the model. These features can be implemented very conveniently with the toolbox.</p>
 <p>Please see the paper for the details of the model.</p>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<span id="caonie2017"></span><h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/24e65ecb75e46dd6a072e9d2f45452a0/CaoNie2017.gmod"><code class="xref download docutils literal notranslate"><span class="pre">CaoNie2017.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Parameters</span>
 <span class="linenos">  2</span><span class="k">parameters</span> H beta2 beta1 sigma1 sigma2 sigmah eta m phi nu ABad AGood;
@@ -168,7 +172,7 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos"> 63</span>  <span class="k">end;</span>
 <span class="linenos"> 64</span><span class="k">end;</span>
 <span class="linenos"> 65</span>
-<span class="linenos"> 66</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 66</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 67</span><span class="k">var_policy</span> p q c h a cp L mu Xp[3];
 <span class="linenos"> 68</span>inbound p 0 2 <span class="k">adaptive</span>(1.5);
 <span class="linenos"> 69</span>inbound q 0 2 <span class="k">adaptive</span>(1.5);
@@ -211,7 +215,7 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">106</span>  bp = -b;
 <span class="linenos">107</span>  hp = H-h;
 <span class="linenos">108</span>  
-<span class="linenos">109</span>  % Implied by budget <span class="k">const</span>raint
+<span class="linenos">109</span>  <span class="c">% Implied by budget constraint</span>
 <span class="linenos">110</span>  budget1 = c-(q*X*H + Y-w*L - q*h - p*b);
 <span class="linenos">111</span>  budget2 = cp-(q*(1-X)*H + w*L - q*hp - p*bp);
 <span class="linenos">112</span>  
@@ -276,7 +280,7 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">171</span>  bp = -b;
 <span class="linenos">172</span>  hp = H-h;
 <span class="linenos">173</span>  
-<span class="linenos">174</span>  % Implied by budget <span class="k">const</span>raint
+<span class="linenos">174</span>  <span class="c">% Implied by budget constraint</span>
 <span class="linenos">175</span>  budget2 = cp-(q*(1-X)*H + w*L - q*hp - p*bp);
 <span class="linenos">176</span>  
 <span class="linenos">177</span>  YTilde = Y + phi*hp^(-sigmah)/(cp^(-sigma2)) * hp;
@@ -293,7 +297,7 @@ the solution to the boundary of the state space right is crucial in solving the 
 <span class="linenos">188</span>  consis3 = (qp(3)*h+b) / (qp(3)*H) / Xp(3) - 1;
 <span class="linenos">189</span>  
 <span class="linenos">190</span>  <span class="k">equations;</span>
-<span class="linenos">191</span>    % budget <span class="k">const</span>raint
+<span class="linenos">191</span>    <span class="c">% budget constraint</span>
 <span class="linenos">192</span>    eq11; <span class="c">% This is equivalent to enterpreneur&#39;s budget when c and X = 0</span>
 <span class="linenos">193</span>    budget2;
 <span class="linenos">194</span>  

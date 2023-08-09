@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Heaton and Lucas (1996): Transition Function Iteration &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -80,9 +84,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
-      <li>Heaton and Lucas (1996): Transition Function Iteration</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ContributedExamples.html">Contributed Examples</a></li>
+      <li class="breadcrumb-item active">Heaton and Lucas (1996): Transition Function Iteration</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -92,7 +96,7 @@
            <div itemprop="articleBody">
              
   <section id="heaton-and-lucas-1996-transition-function-iteration">
-<h1>Heaton and Lucas (1996): Transition Function Iteration<a class="headerlink" href="#heaton-and-lucas-1996-transition-function-iteration" title="Permalink to this heading"></a></h1>
+<span id="hl1996-tfi"></span><h1>Heaton and Lucas (1996): Transition Function Iteration<a class="headerlink" href="#heaton-and-lucas-1996-transition-function-iteration" title="Permalink to this heading"></a></h1>
 <p>In the <a class="reference internal" href="HL1996.html#heaton-and-lucas-1996-incomplete-markets-with-portfolio-choices"><span class="std std-ref">Heaton and Lucas (1996)</span></a> example,
 one of the challenges in solving the model
 is the fact that the endogenous state variable, agents 1’s wealth share (or consumption share), has an implicit law of motion.
@@ -164,7 +168,7 @@ one can switch back to the original gmod file in
 the consistency equations in order to make sure that these equations are satisfied with higher precision.
 However, the new converged solution would not differ significantly from the old one.</p>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<span id="hl1996tfiter"></span><h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/190db13bb08dc1b534af7c147e992950/HL1996TFIter.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996TFIter.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>#define N 8;
 <span class="linenos">  2</span>SaveFreq = inf;
@@ -191,16 +195,16 @@ However, the new converged solution would not differ significantly from the old 
 <span class="linenos"> 23</span>    0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
 <span class="linenos"> 24</span>    ];
 <span class="linenos"> 25</span><span class="c">% Endogenous state variables</span>
-<span class="linenos"> 26</span><span class="k">var_state</span> w1;  % wealth share
+<span class="linenos"> 26</span>var_state w1;  <span class="c">% wealth share</span>
 <span class="linenos"> 27</span>w1 = linspace(-0.04,1.04,201);
 <span class="linenos"> 28</span><span class="c">% Policy variables and bounds that enter the equations</span>
 <span class="linenos"> 29</span><span class="k">var_policy</span> c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb;
 <span class="linenos"> 30</span><span class="k">inbound</span> c1 0.1 1;
 <span class="linenos"> 31</span><span class="k">inbound</span> c2 0.1 1;
 <span class="linenos"> 32</span><span class="k">inbound</span> s1p 0.0 1.0;
-<span class="linenos"> 33</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
+<span class="linenos"> 33</span>inbound nb1p 0.0 1.0;   <span class="c">% nb1p=b1p-Kb</span>
 <span class="linenos"> 34</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos"> 35</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
+<span class="linenos"> 35</span>inbound ms1 0 1;        <span class="c">% Multipliers for constraints</span>
 <span class="linenos"> 36</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos"> 37</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos"> 38</span><span class="k">inbound</span> mb2 0 1;
@@ -220,7 +224,7 @@ However, the new converged solution would not differ significantly from the old 
 <span class="linenos"> 52</span><span class="k">initial</span> c2_future (1-deltabar)*(1-etabar)+0.5*deltabar;
 <span class="linenos"> 53</span>#for i=1:N
 <span class="linenos"> 54</span>  <span class="k">var_interp</span> w1_future_#i;
-<span class="linenos"> 55</span>  <span class="k">initial</span> w1_future_#i 0.5; % A place holder
+<span class="linenos"> 55</span>  initial w1_future_#i 0.5; <span class="c">% A place holder</span>
 <span class="linenos"> 56</span>#end
 <span class="linenos"> 57</span>damp = 0.25;
 <span class="linenos"> 58</span>ps_future = ps_future*damp + (1-damp)*ps;
@@ -257,7 +261,7 @@ However, the new converged solution would not differ significantly from the old 
 <span class="linenos"> 89</span>  b2p = nb2p + Kb;
 <span class="linenos"> 90</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos"> 91</span>  s2p = 1-s1p;
-<span class="linenos"> 92</span>  % Budget <span class="k">const</span>raints
+<span class="linenos"> 92</span>  <span class="c">% Budget constraints</span>
 <span class="linenos"> 93</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos"> 94</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos"> 95</span>  <span class="c">% Consistency equations</span>
@@ -297,21 +301,21 @@ Accordingly, these state transition functions need to be initialized, updated, a
 in the gmod file, replicated below</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">53</span>#for i=1:N
 <span class="linenos">54</span>  <span class="k">var_interp</span> w1_future_#i;
-<span class="linenos">55</span>  <span class="k">initial</span> w1_future_#i 0.5; % A place holder
+<span class="linenos">55</span>  initial w1_future_#i 0.5; <span class="c">% A place holder</span>
 <span class="linenos">56</span>#end
 </pre></div>
 </div>
 <p>This block expands to</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="k">var_interp</span> w1_future_1;
-<span class="k">initial</span> w1_future_1 0.5; % A place holder
+initial w1_future_1 0.5; <span class="c">% A place holder</span>
 
 <span class="k">var_interp</span> w1_future_2;
-<span class="k">initial</span> w1_future_2 0.5; % A place holder
+initial w1_future_2 0.5; <span class="c">% A place holder</span>
 
 ...
 
 <span class="k">var_interp</span> w1_future_8;
-<span class="k">initial</span> w1_future_8 0.5; % A place holder
+initial w1_future_8 0.5; <span class="c">% A place holder</span>
 </pre></div>
 </div>
 <p>In particular, the #for … #end block will repeat the code in the block, and replace the iterator with each value in the value list in the header line starting with #for. And the above code block thus declares

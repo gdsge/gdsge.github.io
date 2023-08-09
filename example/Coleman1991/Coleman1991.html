@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coleman (1991): A production economy with an income tax &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -79,9 +83,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
-      <li>Coleman (1991): A production economy with an income tax</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ContributedExamples.html">Contributed Examples</a></li>
+      <li class="breadcrumb-item active">Coleman (1991): A production economy with an income tax</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -99,7 +103,7 @@ This is one of the rare examples in which the convergence of the policy function
 <p>Students in the advanced macroeconomics class (Econ 608) at Georgetown University in Spring 2020 (Tae-Hun Chang, Chen Jin, Menghan Li, Yingqi Xu)
 implented this algorithm in the GDSGE gmod file below.</p>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<span id="coleman1991"></span><h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/c2b88b6c471f84374434d6281cc23d76/Coleman1991.gmod"><code class="xref download docutils literal notranslate"><span class="pre">Coleman1991.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Parameters</span>
 <span class="linenos">  2</span><span class="k">parameters</span> beta sigma alpha delta K_min K_max rho Imin tau;
@@ -109,7 +113,7 @@ implented this algorithm in the GDSGE gmod file below.</p>
 <span class="linenos">  6</span>alpha = 0.36; <span class="c">% capital share</span>
 <span class="linenos">  7</span>delta = 0.025; <span class="c">% depreciation rate</span>
 <span class="linenos">  8</span>rho = 0.90; <span class="c">%persistent of productivity shocks</span>
-<span class="linenos">  9</span>phi = 0.975; %investment irreversibility <span class="k">const</span>raint
+<span class="linenos">  9</span>phi = 0.975; <span class="c">%investment irreversibility constraint</span>
 <span class="linenos"> 10</span>tau = 0.2; <span class="c">%linear tax income</span>
 <span class="linenos"> 11</span>
 <span class="linenos"> 12</span>TolEq = 1e-6;
@@ -178,7 +182,7 @@ implented this algorithm in the GDSGE gmod file below.</p>
 <span class="linenos"> 75</span>
 <span class="linenos"> 76</span>muc_interp = muc;
 <span class="linenos"> 77</span>
-<span class="linenos"> 78</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 78</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 79</span>
 <span class="linenos"> 80</span><span class="k">var_policy</span> c invst mu;
 <span class="linenos"> 81</span>

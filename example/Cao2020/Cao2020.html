@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998) &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -84,9 +88,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
-      <li>Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../AdditionalExamples.html">Additional Examples</a></li>
+      <li class="breadcrumb-item active">Cao (2020): Continuum versus Finite Agents in Krusell and Smith (1998)</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -102,7 +106,7 @@ However, as noted in <a class="reference external" href="https://www.sciencedire
 In particular, when idiosyncratic shocks are perfectly persistent in Krusell-Smith type of models, these models become effectively the finite-agent models that could be solved using our toolbox.
 In this example, we solve and compare the aggregate outcomes in this special case of the model in <a class="reference external" href="https://www.journals.uchicago.edu/doi/abs/10.1086/250034">Krusell and Smith (1998)</a> to the outcomes in their original model where idiosyncratic shocks are not perfectly persistent.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="cao2020"></span><h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
 <p>There are two representative agents <span class="math notranslate nohighlight">\(h\in\left\{ 1,2\right\}\)</span> in
 the economy of mass <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> each. The agents share the same
 inter-temporal expected utility</p>
@@ -169,7 +173,7 @@ In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</s
 <span class="linenos"> 24</span><span class="k">shock_num</span> = 4;
 <span class="linenos"> 25</span>
 <span class="linenos"> 26</span><span class="k">var_shock</span> z e1 e2 L;
-<span class="linenos"> 27</span>% Set the length to be <span class="k">shock_num</span>
+<span class="linenos"> 27</span><span class="c">% Set the length to be shock_num</span>
 <span class="linenos"> 28</span>z=[0.99 1.01 0.99 1.01];
 <span class="linenos"> 29</span>L=[0.2944 0.3140 0.2944 0.3140];
 <span class="linenos"> 30</span>e1=[0.07*2*L(1) 0.07*2*L(2) 0.93*2*L(1) 0.93*2*L(2)];
@@ -196,10 +200,10 @@ In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</s
 <span class="linenos"> 51</span>budget1 = (1-delta+r).*(2*K).*(1-X) + w.*e1;
 <span class="linenos"> 52</span>budget2 = (1-delta+r).*(2*K).*X + w.*e2;
 <span class="linenos"> 53</span>
-<span class="linenos"> 54</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 54</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 55</span><span class="k">var_policy</span> c1 c2 Kp Xp lambda1 lambda2;
 <span class="linenos"> 56</span><span class="c">% Set bound of endogenous variable</span>
-<span class="linenos"> 57</span>% note <span class="k">var_tensor</span> can be used (budget1 budget2)
+<span class="linenos"> 57</span><span class="c">% note var_tensor can be used (budget1 budget2)</span>
 <span class="linenos"> 58</span><span class="c">% note scalar defined before can be used (KMax)</span>
 <span class="linenos"> 59</span><span class="k">inbound</span> c1 0 budget1;
 <span class="linenos"> 60</span><span class="k">inbound</span> c2 0 budget2;
@@ -224,7 +228,7 @@ In particular, let <span class="math notranslate nohighlight">\(\lambda^h_t\)</s
 <span class="linenos"> 79</span><span class="k">var_output</span> Xp Kp kp1 kp2;
 <span class="linenos"> 80</span>
 <span class="linenos"> 81</span><span class="k">model;</span>
-<span class="linenos"> 82</span>  % Budget <span class="k">const</span>raints
+<span class="linenos"> 82</span>  <span class="c">% Budget constraints</span>
 <span class="linenos"> 83</span>  kp1 = budget1 - c1;
 <span class="linenos"> 84</span>  kp2 = budget2 - c2;
 <span class="linenos"> 85</span>  

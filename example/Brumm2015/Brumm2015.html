@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brumm et al (2015): A GDSGE model with asset price bubble &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -80,9 +84,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
-      <li>Brumm et al (2015): A GDSGE model with asset price bubble</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ContributedExamples.html">Contributed Examples</a></li>
+      <li class="breadcrumb-item active">Brumm et al (2015): A GDSGE model with asset price bubble</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -123,7 +127,7 @@ To solve the last period problem, we use a <em>model_init</em> block that has a 
 than that of the main <em>model</em> block (see <a class="reference internal" href="../KM1997/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>
 for another example using a different <em>model_init</em>).</p>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<span id="bgks2015"></span><h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/be2d5dfc81249ae8c23142d1569e11c3/BGKS2015.gmod"><code class="xref download docutils literal notranslate"><span class="pre">BGKS2015.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">%Options</span>
 <span class="linenos">  2</span>SolMaxIter=20000;
@@ -153,7 +157,7 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos"> 26</span>
 <span class="linenos"> 27</span>
 <span class="linenos"> 28</span><span class="c">% Shock variables</span>
-<span class="linenos"> 29</span><span class="k">var_shock</span> g; %aggregate endowment growth rate
+<span class="linenos"> 29</span>var_shock g; <span class="c">%aggregate endowment growth rate</span>
 <span class="linenos"> 30</span>
 <span class="linenos"> 31</span><span class="c">% Shocks and transition matrix</span>
 <span class="linenos"> 32</span><span class="k">shock_num</span> = 4;
@@ -167,13 +171,13 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos"> 40</span>
 <span class="linenos"> 41</span>
 <span class="linenos"> 42</span><span class="c">% State variables</span>
-<span class="linenos"> 43</span><span class="k">var_state</span> w1;  % wealth share
+<span class="linenos"> 43</span>var_state w1;  <span class="c">% wealth share</span>
 <span class="linenos"> 44</span>w1 = linspace(0,1,240);
 <span class="linenos"> 45</span>
 <span class="linenos"> 46</span><span class="c">% Variable for the last period</span>
 <span class="linenos"> 47</span><span class="k">var_policy</span>_init c1 c2 q1 theta11;
 <span class="linenos"> 48</span>
-<span class="linenos"> 49</span>inbound_init theta11 0 1; %agent 1: tree 1 holding, <span class="k">const</span>rained by no-short selling condition
+<span class="linenos"> 49</span>inbound_init theta11 0 1; <span class="c">%agent 1: tree 1 holding, constrained by no-short selling condition</span>
 <span class="linenos"> 50</span><span class="k">inbound</span>_init q1 0 100;
 <span class="linenos"> 51</span><span class="k">inbound</span>_init c1 1e-10 1;
 <span class="linenos"> 52</span><span class="k">inbound</span>_init c2 1e-10 1;
@@ -198,15 +202,15 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos"> 71</span><span class="k">var_policy</span> c1 c2 theta11 theta21 nphi1 nphi2 mu_theta11 mu_theta21 mu_theta12 mu_theta22 muphi1 muphi2 q1 q2 p w1n[4];
 <span class="linenos"> 72</span><span class="k">inbound</span> c1 1e-10 1;
 <span class="linenos"> 73</span><span class="k">inbound</span> c2 1e-10 1;
-<span class="linenos"> 74</span>inbound theta11 0 1; %agent 1: tree 1 holding, <span class="k">const</span>rained by no-short selling condition
-<span class="linenos"> 75</span>inbound theta21 0 1; %agent 1: tree 2 holding, <span class="k">const</span>rained by no-short selling condition
+<span class="linenos"> 74</span>inbound theta11 0 1; <span class="c">%agent 1: tree 1 holding, constrained by no-short selling condition</span>
+<span class="linenos"> 75</span>inbound theta21 0 1; <span class="c">%agent 1: tree 2 holding, constrained by no-short selling condition</span>
 <span class="linenos"> 76</span><span class="k">inbound</span> nphi1 0 100;
 <span class="linenos"> 77</span><span class="k">inbound</span> nphi2 0 100;
-<span class="linenos"> 78</span>inbound mu_theta11 0 100; %multipliers on no-short selling <span class="k">const</span>raint on trees
+<span class="linenos"> 78</span>inbound mu_theta11 0 100; <span class="c">%multipliers on no-short selling constraint on trees</span>
 <span class="linenos"> 79</span><span class="k">inbound</span> mu_theta21 0 100;
 <span class="linenos"> 80</span><span class="k">inbound</span> mu_theta12 0 100;
 <span class="linenos"> 81</span><span class="k">inbound</span> mu_theta22 0 100;
-<span class="linenos"> 82</span><span class="k">inbound</span> muphi1 0 100; %multipliers on the bond position
+<span class="linenos"> 82</span>inbound muphi1 0 100; <span class="c">%multipliers on the bond position</span>
 <span class="linenos"> 83</span><span class="k">inbound</span> muphi2 0 100; 
 <span class="linenos"> 84</span><span class="k">inbound</span> q1 0 100;
 <span class="linenos"> 85</span><span class="k">inbound</span> q2 0 100;
@@ -273,7 +277,7 @@ for another example using a different <em>model_init</em>).</p>
 <span class="linenos">146</span>  EE2_q2= beta*(ev2^((rho2-alpha2)/(alpha2)))*expucq2f + muphi2*delta2*g_min*(q2p_min + d2)+ mu_theta22- q2;
 <span class="linenos">147</span>  EE2_p= beta*(ev2^((rho2-alpha2)/(alpha2)))*expuc2 + muphi2-p;
 <span class="linenos">148</span>
-<span class="linenos">149</span>  % Budget <span class="k">const</span>raint agent 1
+<span class="linenos">149</span>  <span class="c">% Budget constraint agent 1</span>
 <span class="linenos">150</span>  budget_1 = c1 + p*phi1 + theta11*q1 + theta21*q2 - e1 - w1*( q1+ q2 +d1 +d2);
 <span class="linenos">151</span>
 <span class="linenos">152</span>  <span class="c">% Consistency</span>

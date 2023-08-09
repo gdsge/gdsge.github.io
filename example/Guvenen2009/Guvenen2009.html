@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guvenen (2009): Asset Pricing with Heterogeneous IES &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -76,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Guvenen (2009): Asset Pricing with Heterogeneous IES</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Guvenen (2009): Asset Pricing with Heterogeneous IES</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -98,7 +102,7 @@ of inter-temporal substitution in consumption (EIS).</p>
 variables can be parameterized and integrated before solving the system of equilibrium equations, which greatly speeds up the computation.
 We illustrate how to use parameterized expectation with the toolbox in this example.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="guvenen2009"></span><h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
 <p>There are two types of infinitely-lived agents: stockholders
 (<span class="math notranslate nohighlight">\(h\)</span>) with measure <span class="math notranslate nohighlight">\(\mu\)</span>, and non-stockholders (<span class="math notranslate nohighlight">\(n\)</span>) with
 measure <span class="math notranslate nohighlight">\(1-\mu\)</span>. Agents have Epstein-Zin utility functions</p>
@@ -219,7 +223,7 @@ guesses for these functions are obtained by solving a version of the model with 
 <span class="linenos"> 13</span>a1 = (((delta^(1/xsi))*xsi)/(xsi-1));
 <span class="linenos"> 14</span>a2 = (delta/(1-xsi));
 <span class="linenos"> 15</span>Kss = ((1/beta-1+delta)/theta)^(1/(theta-1));
-<span class="linenos"> 16</span>Bbar = -0.1*(1-theta)*Kss^theta; %borrowing <span class="k">const</span>raint
+<span class="linenos"> 16</span>Bbar = -0.1*(1-theta)*Kss^theta; <span class="c">%borrowing constraint</span>
 <span class="linenos"> 17</span>varianceScale = 1e4;
 <span class="linenos"> 18</span>
 <span class="linenos"> 19</span>TolEq = 1e-4;
@@ -301,7 +305,7 @@ guesses for these functions are obtained by solving a version of the model with 
 <span class="linenos"> 95</span>EPD_interp = <span class="k">shock_trans</span>*(Ps+Div);
 <span class="linenos"> 96</span>EPD_square_interp = <span class="k">shock_trans</span>*(Ps+Div).^2 / varianceScale;
 <span class="linenos"> 97</span>
-<span class="linenos"> 98</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 98</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 99</span><span class="k">var_policy</span> c_h c_n Ps Pf Inv bn_shr_next lambdah lambdan;
 <span class="linenos">100</span>
 <span class="linenos">101</span><span class="k">inbound</span> c_h 1e-3 10;
@@ -348,7 +352,7 @@ guesses for these functions are obtained by solving a version of the model with 
 <span class="linenos">142</span>  Rs = EPD_future/Ps;
 <span class="linenos">143</span>  R_ep = Rs - 1/Pf;
 <span class="linenos">144</span>  <span class="c">% The following inline implements </span>
-<span class="linenos">145</span>  % std_ExcessR = (<span class="k">GDSGE_EXPECT</span>{(PD_future&#39;/Ps - Rs)^2})^0.5;
+<span class="linenos">145</span>  <span class="c">% std_ExcessR = (GDSGE_EXPECT{(PD_future&#39;/Ps - Rs)^2})^0.5;</span>
 <span class="linenos">146</span>  std_ExcessR = (EPD_square_future/(Ps^2) + Rs^2 - 2*EPD_future*Rs/Ps)^0.5;
 <span class="linenos">147</span>  SharpeRatio = R_ep/std_ExcessR;
 <span class="linenos">148</span>

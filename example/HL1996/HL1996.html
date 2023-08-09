@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -82,8 +86,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Heaton and Lucas (1996): Incomplete Markets with Portfolio Choices</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,7 +105,7 @@ incomplete markets, portfolio choices, occasionally binding constraint, non-stat
 We show how the model can be solved with wealth share or consumption share as the endogenous state, which are the two prominent approaches in the literature
 and naturally fit in our toolbox framework.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">ÔÉÅ</a></h2>
+<span id="hl1996"></span><h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">ÔÉÅ</a></h2>
 <p>This is an incomplete-markets model with two representative agents <span class="math notranslate nohighlight">\(i\in\mathcal{I}=\{1,2\}\)</span> who trade in equity shares and bonds.
 The aggregate state <span class="math notranslate nohighlight">\(z\in\boldsymbol{Z}\)</span>, which consists of capital income share, agents‚Äô income share, and aggregate endowment growth,
 follows a first-order Markov process. <span class="math notranslate nohighlight">\(p_{t}^{s}(z^t)\)</span> and <span class="math notranslate nohighlight">\(p_{t}^{b}(z^t)\)</span>
@@ -182,16 +186,16 @@ despite the non-trivial state-transition functions, is to include the state vari
 <span class="linenos">21</span>    0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
 <span class="linenos">22</span>    ];
 <span class="linenos">23</span><span class="c">% Endogenous state variables</span>
-<span class="linenos">24</span><span class="k">var_state</span> w1;  % wealth share
+<span class="linenos">24</span>var_state w1;  <span class="c">% wealth share</span>
 <span class="linenos">25</span>w1 = linspace(-0.05,1.05,201);
 <span class="linenos">26</span><span class="c">% Policy variables and bounds that enter the equations</span>
 <span class="linenos">27</span><span class="k">var_policy</span> c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb w1n[8];
 <span class="linenos">28</span><span class="k">inbound</span> c1 0.05 1.0;
 <span class="linenos">29</span><span class="k">inbound</span> c2 0.05 1.0;
 <span class="linenos">30</span><span class="k">inbound</span> s1p 0.0 1.0;
-<span class="linenos">31</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
+<span class="linenos">31</span>inbound nb1p 0.0 1.0;   <span class="c">% nb1p=b1p-Kb</span>
 <span class="linenos">32</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos">33</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
+<span class="linenos">33</span>inbound ms1 0 1;        <span class="c">% Multipliers for constraints</span>
 <span class="linenos">34</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos">35</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos">36</span><span class="k">inbound</span> mb2 0 1;
@@ -222,7 +226,7 @@ despite the non-trivial state-transition functions, is to include the state vari
 <span class="linenos">61</span>  b2p = nb2p + Kb;
 <span class="linenos">62</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos">63</span>  s2p = 1-s1p;
-<span class="linenos">64</span>  % Budget <span class="k">const</span>raints
+<span class="linenos">64</span>  <span class="c">% Budget constraints</span>
 <span class="linenos">65</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos">66</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos">67</span>  <span class="c">% Consistency equations</span>
@@ -509,14 +513,14 @@ need to be defined as extra unknowns when evaluating the equation system.  The ‚
 <span class="linenos">21</span>    0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
 <span class="linenos">22</span>    ];
 <span class="linenos">23</span><span class="c">% Endogenous state variables</span>
-<span class="linenos">24</span><span class="k">var_state</span> c1;  % consumption
+<span class="linenos">24</span>var_state c1;  <span class="c">% consumption</span>
 <span class="linenos">25</span>c1 = linspace(0.2,0.8,101);
 <span class="linenos">26</span><span class="c">% Policy variables and bounds that enter the equations</span>
 <span class="linenos">27</span><span class="k">var_policy</span> s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb c1n[8];
 <span class="linenos">28</span><span class="k">inbound</span> s1p 0.0 1.0;
-<span class="linenos">29</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
+<span class="linenos">29</span>inbound nb1p 0.0 1.0;   <span class="c">% nb1p=b1p-Kb</span>
 <span class="linenos">30</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos">31</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
+<span class="linenos">31</span>inbound ms1 0 1;        <span class="c">% Multipliers for constraints</span>
 <span class="linenos">32</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos">33</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos">34</span><span class="k">inbound</span> mb2 0 1;
@@ -548,7 +552,7 @@ need to be defined as extra unknowns when evaluating the equation system.  The ‚
 <span class="linenos">60</span>  b2p = nb2p + Kb;
 <span class="linenos">61</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos">62</span>  s2p = 1-s1p;
-<span class="linenos">63</span>  % Budget <span class="k">const</span>raints
+<span class="linenos">63</span>  <span class="c">% Budget constraints</span>
 <span class="linenos">64</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos">65</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos">66</span>  <span class="c">% Consistency equations</span>
@@ -758,16 +762,16 @@ and solves for policy variables in the outer nest.)</p>
 <span class="linenos"> 23</span>    0.0158 0.0275 0.0779 0.1365 0.0453 0.0793 0.2245 0.3932
 <span class="linenos"> 24</span>    ];
 <span class="linenos"> 25</span><span class="c">% Endogenous state variables</span>
-<span class="linenos"> 26</span><span class="k">var_state</span> w1;  % wealth share
+<span class="linenos"> 26</span>var_state w1;  <span class="c">% wealth share</span>
 <span class="linenos"> 27</span>w1 = linspace(-0.05,1.05,201);
 <span class="linenos"> 28</span><span class="c">% Policy variables and bounds that enter the equations</span>
 <span class="linenos"> 29</span><span class="k">var_policy</span> c1 c2 s1p nb1p nb2p ms1 ms2 mb1 mb2 ps pb;
 <span class="linenos"> 30</span><span class="k">inbound</span> c1 0.05 1.0;
 <span class="linenos"> 31</span><span class="k">inbound</span> c2 0.05 1.0;
 <span class="linenos"> 32</span><span class="k">inbound</span> s1p 0.0 1.0;
-<span class="linenos"> 33</span><span class="k">inbound</span> nb1p 0.0 1.0;   % nb1p=b1p-Kb
+<span class="linenos"> 33</span>inbound nb1p 0.0 1.0;   <span class="c">% nb1p=b1p-Kb</span>
 <span class="linenos"> 34</span><span class="k">inbound</span> nb2p 0.0 1.0;   
-<span class="linenos"> 35</span>inbound ms1 0 1;        % Multipliers for <span class="k">const</span>raints
+<span class="linenos"> 35</span>inbound ms1 0 1;        <span class="c">% Multipliers for constraints</span>
 <span class="linenos"> 36</span><span class="k">inbound</span> ms2 0 1;
 <span class="linenos"> 37</span><span class="k">inbound</span> mb1 0 1;
 <span class="linenos"> 38</span><span class="k">inbound</span> mb2 0 1;
@@ -835,7 +839,7 @@ and solves for policy variables in the outer nest.)</p>
 <span class="linenos">100</span>
 <span class="linenos">101</span>  <span class="c">% Market clearing of shares</span>
 <span class="linenos">102</span>  s2p = 1-s1p;
-<span class="linenos">103</span>  % Budget <span class="k">const</span>raints
+<span class="linenos">103</span>  <span class="c">% Budget constraints</span>
 <span class="linenos">104</span>  budget_1 = w1*(ps+d)+eta1 - c1 - ps*s1p - pb*b1p;
 <span class="linenos">105</span>  budget_2 = (1-w1)*(ps+d)+(1-eta1) - c2 - ps*s2p - pb*b2p;
 <span class="linenos">106</span>  <span class="c">% Consistency equations</span>

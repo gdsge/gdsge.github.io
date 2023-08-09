@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -84,9 +88,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
-      <li>Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../AdditionalExamples.html">Additional Examples</a></li>
+      <li class="breadcrumb-item active">Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -99,7 +103,7 @@
 <h1>Cao (2018): Speculation and Wealth Distribution under Beliefs Heterogeneity<a class="headerlink" href="#cao-2018-speculation-and-wealth-distribution-under-beliefs-heterogeneity" title="Permalink to this heading"></a></h1>
 <p>The models that we have seen so far are models with rational expectations. Our toolbox can be used to solve models without rational expectations. A recent example is <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a>.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="cao2018"></span><h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
 <p>The model in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018)</a> is
 similar to the one in <a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262030">Heaton and Lucas (1996)</a> with several main differences.
 First and foremost, the two representative agents might differ in their beliefs on the transition matrix for the exogenous Markov process.
@@ -161,7 +165,7 @@ Second, the agents  are subject to a collateral constraint, besides the short-se
 <span class="linenos"> 46</span>budget2 = e2+d.*(1-W);
 <span class="linenos"> 47</span>etotal = e1+e2+d; <span class="c">%etotal = 1</span>
 <span class="linenos"> 48</span>
-<span class="linenos"> 49</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 49</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 50</span><span class="k">var_policy</span> p q c1 c2 lambda1 lambda2 mu1 mu2 kp1 a1 a2 Wp[4];
 <span class="linenos"> 51</span>
 <span class="linenos"> 52</span>inbound p pl ph <span class="k">adaptive</span>(2);

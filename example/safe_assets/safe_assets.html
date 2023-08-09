@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barro et al. (2017): Safe Assets with Rare Disasters &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -76,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Barro et al. (2017): Safe Assets with Rare Disasters</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Barro et al. (2017): Safe Assets with Rare Disasters</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -100,7 +104,7 @@ nested fixed point solution method becomes unstable, since agents’ portfolio c
 Nevertheless, the toolbox, which solves the equilibrium as one single system of equations,
 can handle such parameterization fairly easily and uncovers novel theoretical results.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="barro2017"></span><h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
 <p>There are two groups of agents, <span class="math notranslate nohighlight">\(i=1,2\)</span> in the economy. Agents have
 an <a class="reference external" href="https://www.jstor.org/stable/1913778?seq=1#metadata_info_tab_contents">Epstein and
 Zin (1989)</a> -
@@ -222,11 +226,11 @@ unknowns.</p>
 <span class="linenos"> 25</span>p = (1-nu)/(rho+nu);
 <span class="linenos"> 26</span>pn = p;
 <span class="linenos"> 27</span>Re_n = (1+pn)*yn/p;
-<span class="linenos"> 28</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 28</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 29</span><span class="k">var_policy</span> shr_x1 Rf omega1n[2]
-<span class="linenos"> 30</span><span class="k">inbound</span> shr_x1 0 1;             % agent 1&#39;s equity share
-<span class="linenos"> 31</span><span class="k">inbound</span> Rf Re_n(2) Re_n(1);     % risk-free rate
-<span class="linenos"> 32</span><span class="k">inbound</span> omega1n 0 1.02;         % state next period
+<span class="linenos"> 30</span>inbound shr_x1 0 1;             <span class="c">% agent 1&#39;s equity share</span>
+<span class="linenos"> 31</span>inbound Rf Re_n(2) Re_n(1);     <span class="c">% risk-free rate</span>
+<span class="linenos"> 32</span>inbound omega1n 0 1.02;         <span class="c">% state next period</span>
 <span class="linenos"> 33</span>
 <span class="linenos"> 34</span><span class="c">% Other equilibrium variables</span>
 <span class="linenos"> 35</span><span class="k">var_aux</span> x1 x2 K1 b1 c1 c2 log_u1 log_u2 expectedRe;

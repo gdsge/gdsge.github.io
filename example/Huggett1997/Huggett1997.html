@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -84,9 +88,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../AdditionalExamples.html">Additional Examples</a> &raquo;</li>
-      <li>Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../AdditionalExamples.html">Additional Examples</a></li>
+      <li class="breadcrumb-item active">Huggett (1997): Steady States and Transition Paths in Heterogeneous Agent Models</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -223,7 +227,7 @@ which enable us to solve the decision problem with the toolbox.</p>
 <span class="linenos">78</span>  <span class="c">% The post_iter block will be called at the end of every policy iteration</span>
 <span class="linenos">79</span>  switch TASK
 <span class="linenos">80</span>    case &#39;transition&#39;
-<span class="linenos">81</span>      % The following code constructs function approximation for  <span class="k">var_output</span>
+<span class="linenos">81</span>      <span class="c">% The following code constructs function approximation for  var_output</span>
 <span class="linenos">82</span>      <span class="c">% and stores in IterRslt.output_interp</span>
 <span class="linenos">83</span>      OUTPUT_CONSTRUCT_CODE;
 <span class="linenos">84</span>      <span class="c">% Store the period-t equilbrium object</span>
@@ -234,8 +238,8 @@ which enable us to solve the decision problem with the toolbox.</p>
 <span class="linenos">89</span><span class="k">simulate;</span>
 <span class="linenos">90</span>  <span class="k">num_periods</span> = 1;
 <span class="linenos">91</span>  <span class="k">num_samples</span> = 10000;
-<span class="linenos">92</span>  <span class="k">initial</span> k kSs;    % A place holder
-<span class="linenos">93</span>  <span class="k">initial</span> shock 1;  % A place holder
+<span class="linenos">92</span>  initial k kSs;    <span class="c">% A place holder</span>
+<span class="linenos">93</span>  initial shock 1;  <span class="c">% A place holder</span>
 <span class="linenos">94</span>  <span class="k">var_simu</span> c;
 <span class="linenos">95</span>  k&#39; = k_next;
 <span class="linenos">96</span><span class="k">end;</span>

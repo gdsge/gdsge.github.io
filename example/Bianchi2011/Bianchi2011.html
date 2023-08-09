@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bianchi (2011): Sudden Stops in Open Economies &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Bianchi (2011): Sudden Stops in Open Economies</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Bianchi (2011): Sudden Stops in Open Economies</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -95,7 +99,7 @@ due to the presence of a borrowing constraint tied to a (good) price. We illustr
 with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a coarse and narrow grid of the state space,
 and then refine the state space to ensure it covers the ergodic set by reusing the compiled code.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="bianchi2011"></span><h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a> studies an incomplete-markets open economy model that can generate competitive equilibria featuring sudden stop episodes,
 resembling those experienced by many emerging economies.
 A sudden stop episode features a large output drop and current account reversals,
@@ -225,7 +229,7 @@ the optimization and markets clearing conditions.</p>
 <span class="linenos"> 60</span><span class="k">initial</span> lambda_interp lambda;
 <span class="linenos"> 61</span>lambda_interp = lambda;
 <span class="linenos"> 62</span>
-<span class="linenos"> 63</span>% Endogenous variables, bounds, and <span class="k">initial</span> values
+<span class="linenos"> 63</span><span class="c">% Endogenous variables, bounds, and initial values</span>
 <span class="linenos"> 64</span><span class="k">var_policy</span> nbNext mu cT pN;
 <span class="linenos"> 65</span><span class="k">inbound</span> nbNext 0.0 10.0;
 <span class="linenos"> 66</span><span class="k">inbound</span> mu 0.0 1.0;
@@ -253,7 +257,7 @@ the optimization and markets clearing conditions.</p>
 <span class="linenos"> 88</span>  <span class="c">% Price consistent</span>
 <span class="linenos"> 89</span>  price_consistency = pN - ((1-omega)/omega)*(cT/cN)^(eta+1);
 <span class="linenos"> 90</span>  
-<span class="linenos"> 91</span>  % budget <span class="k">const</span>raint
+<span class="linenos"> 91</span>  <span class="c">% budget constraint</span>
 <span class="linenos"> 92</span>  budget_residual = b*(1+r)+yT+pN*yN - (bNext+cT+pN*cN);
 <span class="linenos"> 93</span>  
 <span class="linenos"> 94</span>  <span class="k">equations;</span>
