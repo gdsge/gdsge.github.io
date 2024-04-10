@@ -21,10 +21,10 @@ GDSGE can now run on MATLAB Online! Log into the `MATLAB Online <https://matlab.
 
 .. code-block:: MATLAB
 
-   websave('gdsge.zip','https://github.com/gdsge/gdsge/archive/refs/tags/v0.1.3.zip')
+   websave('gdsge.zip','https://github.com/gdsge/gdsge/archive/refs/tags/v0.1.4.zip')
    unzip gdsge.zip
    mex -setup c++
-   cd gdsge-0.1.3/tests
+   cd gdsge-0.1.4/tests
    runtests
 
 These commands download the latest version of the toolbox, setup the mex compiler, and run the test examples.

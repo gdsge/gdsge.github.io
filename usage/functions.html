@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toolbox API &mdash; GDSGE Homepage</title>
@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +28,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            GDSGE
+            <a href="../index.html" class="icon icon-home"> GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,11 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../example/multi_country_rbc/multi_country_rbc.html">A Multi-country Business Cycle Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../example/ZLB/zlb.html">A New-Keynesian Model with an Occasionally Binding Interest Rate Zero Lower Bound</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbox API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#matlab-interface">MATLAB Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#iter_modname"><code class="docutils literal notranslate"><span class="pre">iter_modname()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#simulate_modname"><code class="docutils literal notranslate"><span class="pre">simulate_modname()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#matlab-interface">MATLAB Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variable-declaration">Variable declaration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#built-in-functions">Built-in functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#macros">Macros</a></li>
@@ -95,8 +87,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Toolbox API</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Toolbox API</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -114,11 +106,11 @@
 <span class="sig-name descname"><span class="pre">iter_modname</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#iter_modname" title="Permalink to this definition"></a></dt>
 <dd><p>Run policy iterations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>options</strong> – a Matlab struct that contains options and parameters to be overwritten.
 Notice only options that do not require recompiling can be overwritten. See <a class="reference internal" href="#options"><span class="std std-ref">Options</span></a></p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a Matlab struct that contains the structure of the problem and converged policy and state transition functions</p>
 </dd>
 </dl>
@@ -129,13 +121,13 @@ Notice only options that do not require recompiling can be overwritten. See <a c
 <span class="sig-name descname"><span class="pre">simulate_modname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IterRslt</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#simulate_modname" title="Permalink to this definition"></a></dt>
 <dd><p>Simulate models using policy/state transition functions contained in Matlab struct IterRslt.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IterRslt</strong> – results returned by the policy iteration procedure</p></li>
 <li><p><strong>options</strong> – a Matlab struct that contains options and parameters to be overwritten.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a Matlab struct that contains simulated panels of variables defined in <cite>var_simu</cite></p>
 </dd>
 </dl>
@@ -333,7 +325,7 @@ according to the order defined in <em>var_interp</em>. For example,</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shock</strong> – the index of exogenous state at which the evaluation is done. Keyword <em>shock</em> refers to the index at the current collocation point.</p></li>
 <li><p><strong>var_state</strong> – values of endogenous states</p></li>
@@ -369,7 +361,7 @@ For example,</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>var_state</strong> – values of endogenous states</p></li>
 <li><p><strong>vec_index</strong> – matlab integer vector that specifies the index of <em>var_interp</em> to be evaluated and returned.
@@ -384,7 +376,7 @@ Return all <em>var_interp</em> if omitted.</p></li>
 <span class="sig-name descname"><span class="pre">GDSGE_EXPECT{expression</span> <span class="pre">|</span> <span class="pre">trans_matrix=shock_trans}</span></span></dt>
 <dd><p>Calculate the conditional expectation of an expression.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>expression</strong> – mathematical expression to be calculated</p></li>
 <li><p><strong>trans_matrix</strong> – the Markov transition matrix used to form conditional probability. The default value is <em>shock_trans</em>.</p></li>
@@ -398,7 +390,7 @@ Return all <em>var_interp</em> if omitted.</p></li>
 <span class="sig-name descname"><span class="pre">GDSGE_MAX{expression}</span></span></dt>
 <dd><p>Calculate the maximum of expression across all realizations of exogenous states.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>expression</strong> – mathematical expression to be calculated</p>
 </dd>
 </dl>
@@ -409,7 +401,7 @@ Return all <em>var_interp</em> if omitted.</p></li>
 <span class="sig-name descname"><span class="pre">GDSGE_MIN{expression}</span></span></dt>
 <dd><p>Calculate the minimum of expression across all realizations of exogenous states.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>expression</strong> – mathematical expression to be calculated</p>
 </dd>
 </dl>
