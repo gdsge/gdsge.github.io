@@ -187,21 +187,21 @@ the optimization and markets clearing conditions.</p>
 <span class="linenos"> 22</span>
 <span class="linenos"> 23</span><span class="c">% Shocks</span>
 <span class="linenos"> 24</span><span class="k">var_shock</span> yT yN;
-<span class="linenos"> 25</span>yPts = 4;
-<span class="linenos"> 26</span><span class="k">shock_num</span>=16;
-<span class="linenos"> 27</span>
-<span class="linenos"> 28</span>yTEpsilonVar = 0.00219;
-<span class="linenos"> 29</span>yNEpsilonVar = 0.00167;
-<span class="linenos"> 30</span>rhoYT = 0.901;
-<span class="linenos"> 31</span>rhoYN = 0.225;
+<span class="linenos"> 25</span><span class="k">shock_num</span>=16;
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="c">% shocks are just placeholders; will overwrite</span>
+<span class="linenos"> 28</span>shock_trans = zeros(shock_num,<span class="k">shock_num</span>);
+<span class="linenos"> 29</span>yT = ones(1,<span class="k">shock_num</span>);
+<span class="linenos"> 30</span>yN = ones(1,<span class="k">shock_num</span>);
+<span class="linenos"> 31</span>
 <span class="linenos"> 32</span>
-<span class="linenos"> 33</span>[yTTrans,yT] = markovappr(rhoYT,yTEpsilonVar^0.5,1,yPts);
-<span class="linenos"> 34</span>[yNTrans,yN] = markovappr(rhoYN,yNEpsilonVar^0.5,1,yPts);
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span>
 <span class="linenos"> 35</span>
-<span class="linenos"> 36</span><span class="k">shock_trans</span> = kron(yNTrans,yTTrans);
-<span class="linenos"> 37</span>[yT,yN] = ndgrid(yT,yN);
-<span class="linenos"> 38</span>yT = exp(yT(:)&#39;);
-<span class="linenos"> 39</span>yN = exp(yN(:)&#39;);
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span>
 <span class="linenos"> 40</span>
 <span class="linenos"> 41</span><span class="c">% Define the last-period problem</span>
 <span class="linenos"> 42</span><span class="k">var_policy</span>_init dummy;
