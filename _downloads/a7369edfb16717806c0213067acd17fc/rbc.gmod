@@ -61,14 +61,14 @@ model_init;
 
   % Back out consumption from the marginal utility
   vector c_vec[N];
-  for i=1:N
-    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+  for ii=1:N
+    c_vec(ii) = (lambda / omega_vec(ii))^(-1/sigma);
   end
   
   % Calcualte resource residual
   resource_resid = 0;
-  for i=1:N
-    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_vec(i);
+  for ii=1:N
+    resource_resid = resource_resid + exp(z_vec(ii))*K_vec(ii)^alpha + (1-delta)*K_vec(ii) - c_vec(ii) - K_vec(ii);
   end
   equations;
     resource_resid;
@@ -96,57 +96,55 @@ model;
   #end
   
   % Prepare future states, under no perturbation
-  vector state_next[2*N];
-  for i=1:N
+  vector z_next[N];
+  for ii=1:N
     % First N states is future productivity
-    state_next(i) = rho_z*z_vec(i);
-    % Next N states if future capital
-    state_next(N+i) = K_next(i);
+    z_next(ii) = rho_z*z_vec(ii);
   end
   
   % Calculate marginal product of capital with no perturbation
   vector mpk_next[N];
-  for i=1:N
-    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+  for ii=1:N
+    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
   end
   
   % Do a sparse quadrature by perturbing productivity once at a time
   vector euler_residual[N];
-  for i=1:N
-    euler_residual(i) = 0;
+  for ii=1:N
+    euler_residual(ii) = 0;
   end
-  for i=1:N
+  for ii=1:N
     % Modifty future productivity of the perturbed country
     % Positive innovation
-    state_next(i) = rho_z*z_vec(i) + sigma_z*sqrt(numCountries);
-    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
-    lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
+    z_next(ii) = rho_z*z_vec(ii) + sigma_z*sqrt(numCountries);
+    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
+    lambda_future = lambda_interp(shock,#strcat_comma{z_next,1:N},#strcat_comma{K_next,1:N});
     #for j=1:N
         euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
     #end
     
     % Negative innovation
-    state_next(i) = rho_z*z_vec(i) - sigma_z*sqrt(numCountries);
-    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
-    lambda_future = GDSGE_INTERP_ARRAY_adouble(shock,state_next_GDSGE_GRID);
+    z_next(ii) = rho_z*z_vec(ii) - sigma_z*sqrt(numCountries);
+    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
+    lambda_future = lambda_interp(shock,#strcat_comma{z_next,1:N},#strcat_comma{K_next,1:N});
     #for j=1:N
         euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
     #end
     
     % Revert the perturbation back
-    state_next(i) = rho_z*z_vec(i);
-    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
+    z_next(ii) = rho_z*z_vec(ii);
+    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
   end
 
   % Back out consumption from the marginal utility
   vector c_vec[N];
-  for i=1:N
-    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+  for ii=1:N
+    c_vec(ii) = (lambda / omega_vec(ii))^(-1/sigma);
   end
   % Calcualte resource residual
   resource_resid = 0;
-  for i=1:N
-    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_next(i);
+  for ii=1:N
+    resource_resid = resource_resid + exp(z_vec(ii))*K_vec(ii)^alpha + (1-delta)*K_vec(ii) - c_vec(ii) - K_next(ii);
   end
   
   % Record variables
@@ -156,8 +154,8 @@ model;
   #end
   
   equations;
-    for i=1:N
-        euler_residual(i);
+    for ii=1:N
+        euler_residual(ii);
     end
     resource_resid;
   end;

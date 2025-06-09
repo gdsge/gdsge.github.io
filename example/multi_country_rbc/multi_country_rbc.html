@@ -133,7 +133,7 @@ Therefore, the equilibrium conditions can be  stated as:</p>
 </section>
 <section id="solutions">
 <h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading"></a></h2>
-<p>We solve the recursive equilibrium defined over the state vector <span class="math notranslate nohighlight">\((z_1,K_1,z_2,K_2,...,z_N,K_N)\)</span> of length <span class="math notranslate nohighlight">\(2\times N\)</span>. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.</p>
+<p>We solve the recursive equilibrium defined over the state vector <span class="math notranslate nohighlight">\((z_1,z_2,...,z_N,K_1,K_2,...,K_N)\)</span> of length <span class="math notranslate nohighlight">\(2\times N\)</span>. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.</p>
 <p>The gmod code is listed below where one can find the detailed parameterization (<a class="reference download internal" download="" href="../../_downloads/a7369edfb16717806c0213067acd17fc/rbc.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbc</span></code></a>).</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Number of countries</span>
 <span class="linenos">  2</span>#define N 15
@@ -198,14 +198,14 @@ Therefore, the equilibrium conditions can be  stated as:</p>
 <span class="linenos"> 61</span>
 <span class="linenos"> 62</span>  <span class="c">% Back out consumption from the marginal utility</span>
 <span class="linenos"> 63</span>  <span class="k">vector</span> c_vec[N];
-<span class="linenos"> 64</span>  for i=1:N
-<span class="linenos"> 65</span>    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
+<span class="linenos"> 64</span>  for ii=1:N
+<span class="linenos"> 65</span>    c_vec(ii) = (lambda / omega_vec(ii))^(-1/sigma);
 <span class="linenos"> 66</span>  end
 <span class="linenos"> 67</span>  
 <span class="linenos"> 68</span>  <span class="c">% Calcualte resource residual</span>
 <span class="linenos"> 69</span>  resource_resid = 0;
-<span class="linenos"> 70</span>  for i=1:N
-<span class="linenos"> 71</span>    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_vec(i);
+<span class="linenos"> 70</span>  for ii=1:N
+<span class="linenos"> 71</span>    resource_resid = resource_resid + exp(z_vec(ii))*K_vec(ii)^alpha + (1-delta)*K_vec(ii) - c_vec(ii) - K_vec(ii);
 <span class="linenos"> 72</span>  end
 <span class="linenos"> 73</span>  <span class="k">equations;</span>
 <span class="linenos"> 74</span>    resource_resid;
@@ -233,85 +233,83 @@ Therefore, the equilibrium conditions can be  stated as:</p>
 <span class="linenos"> 96</span>  #end
 <span class="linenos"> 97</span>  
 <span class="linenos"> 98</span>  <span class="c">% Prepare future states, under no perturbation</span>
-<span class="linenos"> 99</span>  <span class="k">vector</span> state_next[2*N];
-<span class="linenos">100</span>  for i=1:N
+<span class="linenos"> 99</span>  <span class="k">vector</span> z_next[N];
+<span class="linenos">100</span>  for ii=1:N
 <span class="linenos">101</span>    <span class="c">% First N states is future productivity</span>
-<span class="linenos">102</span>    state_next(i) = rho_z*z_vec(i);
-<span class="linenos">103</span>    <span class="c">% Next N states if future capital</span>
-<span class="linenos">104</span>    state_next(N+i) = K_next(i);
-<span class="linenos">105</span>  end
-<span class="linenos">106</span>  
-<span class="linenos">107</span>  <span class="c">% Calculate marginal product of capital with no perturbation</span>
-<span class="linenos">108</span>  <span class="k">vector</span> mpk_next[N];
-<span class="linenos">109</span>  for i=1:N
-<span class="linenos">110</span>    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
-<span class="linenos">111</span>  end
-<span class="linenos">112</span>  
-<span class="linenos">113</span>  <span class="c">% Do a sparse quadrature by perturbing productivity once at a time</span>
-<span class="linenos">114</span>  <span class="k">vector</span> euler_residual[N];
-<span class="linenos">115</span>  for i=1:N
-<span class="linenos">116</span>    euler_residual(i) = 0;
-<span class="linenos">117</span>  end
-<span class="linenos">118</span>  for i=1:N
-<span class="linenos">119</span>    <span class="c">% Modifty future productivity of the perturbed country</span>
-<span class="linenos">120</span>    <span class="c">% Positive innovation</span>
-<span class="linenos">121</span>    state_next(i) = rho_z*z_vec(i) + sigma_z*sqrt(numCountries);
-<span class="linenos">122</span>    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
-<span class="linenos">123</span>    lambda_future = GDSGE_INTERP_ARRAY_a<span class="k">double</span>(shock,state_next_GDSGE_GRID);
-<span class="linenos">124</span>    #for j=1:N
-<span class="linenos">125</span>        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
-<span class="linenos">126</span>    #end
-<span class="linenos">127</span>    
-<span class="linenos">128</span>    <span class="c">% Negative innovation</span>
-<span class="linenos">129</span>    state_next(i) = rho_z*z_vec(i) - sigma_z*sqrt(numCountries);
-<span class="linenos">130</span>    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
-<span class="linenos">131</span>    lambda_future = GDSGE_INTERP_ARRAY_a<span class="k">double</span>(shock,state_next_GDSGE_GRID);
-<span class="linenos">132</span>    #for j=1:N
-<span class="linenos">133</span>        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
-<span class="linenos">134</span>    #end
-<span class="linenos">135</span>    
-<span class="linenos">136</span>    <span class="c">% Revert the perturbation back</span>
-<span class="linenos">137</span>    state_next(i) = rho_z*z_vec(i);
-<span class="linenos">138</span>    mpk_next(i) = alpha*exp(state_next(i)) * K_next(i)^(alpha-1);
-<span class="linenos">139</span>  end
-<span class="linenos">140</span>
-<span class="linenos">141</span>  <span class="c">% Back out consumption from the marginal utility</span>
-<span class="linenos">142</span>  <span class="k">vector</span> c_vec[N];
-<span class="linenos">143</span>  for i=1:N
-<span class="linenos">144</span>    c_vec(i) = (lambda / omega_vec(i))^(-1/sigma);
-<span class="linenos">145</span>  end
-<span class="linenos">146</span>  <span class="c">% Calcualte resource residual</span>
-<span class="linenos">147</span>  resource_resid = 0;
-<span class="linenos">148</span>  for i=1:N
-<span class="linenos">149</span>    resource_resid = resource_resid + exp(z_vec(i))*K_vec(i)^alpha + (1-delta)*K_vec(i) - c_vec(i) - K_next(i);
-<span class="linenos">150</span>  end
-<span class="linenos">151</span>  
-<span class="linenos">152</span>  <span class="c">% Record variables</span>
-<span class="linenos">153</span>  #for i=1:N
-<span class="linenos">154</span>    K_next_output#i = K_next(#i);
-<span class="linenos">155</span>    c#i = c_vec(#i);
-<span class="linenos">156</span>  #end
-<span class="linenos">157</span>  
-<span class="linenos">158</span>  <span class="k">equations;</span>
-<span class="linenos">159</span>    for i=1:N
-<span class="linenos">160</span>        euler_residual(i);
-<span class="linenos">161</span>    end
-<span class="linenos">162</span>    resource_resid;
-<span class="linenos">163</span>  <span class="k">end;</span>
-<span class="linenos">164</span><span class="k">end;</span>
-<span class="linenos">165</span>
-<span class="linenos">166</span><span class="k">simulate;</span>
-<span class="linenos">167</span>  <span class="k">num_samples</span> = 24;
-<span class="linenos">168</span>  <span class="k">num_periods</span> = 1000;
-<span class="linenos">169</span>  #for i=1:N
-<span class="linenos">170</span>    <span class="k">initial</span> shock 1;
-<span class="linenos">171</span>    <span class="k">initial</span> z#i 0;
-<span class="linenos">172</span>    <span class="k">initial</span> K#i Kss;
-<span class="linenos">173</span>    <span class="k">var_simu</span> K_next_output#i c#i;
-<span class="linenos">174</span>    z#i&#39; = z_exo(:,GDSGE_t+1,#i);
-<span class="linenos">175</span>    K#i&#39; = K_next_output#i;
-<span class="linenos">176</span>  #end
-<span class="linenos">177</span><span class="k">end;</span>
+<span class="linenos">102</span>    z_next(ii) = rho_z*z_vec(ii);
+<span class="linenos">103</span>  end
+<span class="linenos">104</span>  
+<span class="linenos">105</span>  <span class="c">% Calculate marginal product of capital with no perturbation</span>
+<span class="linenos">106</span>  <span class="k">vector</span> mpk_next[N];
+<span class="linenos">107</span>  for ii=1:N
+<span class="linenos">108</span>    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
+<span class="linenos">109</span>  end
+<span class="linenos">110</span>  
+<span class="linenos">111</span>  <span class="c">% Do a sparse quadrature by perturbing productivity once at a time</span>
+<span class="linenos">112</span>  <span class="k">vector</span> euler_residual[N];
+<span class="linenos">113</span>  for ii=1:N
+<span class="linenos">114</span>    euler_residual(ii) = 0;
+<span class="linenos">115</span>  end
+<span class="linenos">116</span>  for ii=1:N
+<span class="linenos">117</span>    <span class="c">% Modifty future productivity of the perturbed country</span>
+<span class="linenos">118</span>    <span class="c">% Positive innovation</span>
+<span class="linenos">119</span>    z_next(ii) = rho_z*z_vec(ii) + sigma_z*sqrt(numCountries);
+<span class="linenos">120</span>    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
+<span class="linenos">121</span>    lambda_future = lambda_interp(shock,#strcat_comma{z_next,1:N},#strcat_comma{K_next,1:N});
+<span class="linenos">122</span>    #for j=1:N
+<span class="linenos">123</span>        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
+<span class="linenos">124</span>    #end
+<span class="linenos">125</span>    
+<span class="linenos">126</span>    <span class="c">% Negative innovation</span>
+<span class="linenos">127</span>    z_next(ii) = rho_z*z_vec(ii) - sigma_z*sqrt(numCountries);
+<span class="linenos">128</span>    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
+<span class="linenos">129</span>    lambda_future = lambda_interp(shock,#strcat_comma{z_next,1:N},#strcat_comma{K_next,1:N});
+<span class="linenos">130</span>    #for j=1:N
+<span class="linenos">131</span>        euler_residual(#j) = euler_residual(#j) + prob_z*(-lambda + beta*lambda_future*(mpk_next(#j)+(1-delta)));
+<span class="linenos">132</span>    #end
+<span class="linenos">133</span>    
+<span class="linenos">134</span>    <span class="c">% Revert the perturbation back</span>
+<span class="linenos">135</span>    z_next(ii) = rho_z*z_vec(ii);
+<span class="linenos">136</span>    mpk_next(ii) = alpha*exp(z_next(ii)) * K_next(ii)^(alpha-1);
+<span class="linenos">137</span>  end
+<span class="linenos">138</span>
+<span class="linenos">139</span>  <span class="c">% Back out consumption from the marginal utility</span>
+<span class="linenos">140</span>  <span class="k">vector</span> c_vec[N];
+<span class="linenos">141</span>  for ii=1:N
+<span class="linenos">142</span>    c_vec(ii) = (lambda / omega_vec(ii))^(-1/sigma);
+<span class="linenos">143</span>  end
+<span class="linenos">144</span>  <span class="c">% Calcualte resource residual</span>
+<span class="linenos">145</span>  resource_resid = 0;
+<span class="linenos">146</span>  for ii=1:N
+<span class="linenos">147</span>    resource_resid = resource_resid + exp(z_vec(ii))*K_vec(ii)^alpha + (1-delta)*K_vec(ii) - c_vec(ii) - K_next(ii);
+<span class="linenos">148</span>  end
+<span class="linenos">149</span>  
+<span class="linenos">150</span>  <span class="c">% Record variables</span>
+<span class="linenos">151</span>  #for i=1:N
+<span class="linenos">152</span>    K_next_output#i = K_next(#i);
+<span class="linenos">153</span>    c#i = c_vec(#i);
+<span class="linenos">154</span>  #end
+<span class="linenos">155</span>  
+<span class="linenos">156</span>  <span class="k">equations;</span>
+<span class="linenos">157</span>    for ii=1:N
+<span class="linenos">158</span>        euler_residual(ii);
+<span class="linenos">159</span>    end
+<span class="linenos">160</span>    resource_resid;
+<span class="linenos">161</span>  <span class="k">end;</span>
+<span class="linenos">162</span><span class="k">end;</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span><span class="k">simulate;</span>
+<span class="linenos">165</span>  <span class="k">num_samples</span> = 24;
+<span class="linenos">166</span>  <span class="k">num_periods</span> = 1000;
+<span class="linenos">167</span>  #for i=1:N
+<span class="linenos">168</span>    <span class="k">initial</span> shock 1;
+<span class="linenos">169</span>    <span class="k">initial</span> z#i 0;
+<span class="linenos">170</span>    <span class="k">initial</span> K#i Kss;
+<span class="linenos">171</span>    <span class="k">var_simu</span> K_next_output#i c#i;
+<span class="linenos">172</span>    z#i&#39; = z_exo(:,GDSGE_t+1,#i);
+<span class="linenos">173</span>    K#i&#39; = K_next_output#i;
+<span class="linenos">174</span>  #end
+<span class="linenos">175</span><span class="k">end;</span>
 </pre></div>
 </div>
 <p>The code utilizes the macro feature of the toolbox. For example, the code block</p>
@@ -332,6 +330,14 @@ z2 = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
 
 <span class="k">var_state</span> z15;
 z15 = linspace(zMin,zMax,zPts); <span class="c">% placeholder</span>
+</pre></div>
+</div>
+<p>The line</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">121</span>    lambda_future = lambda_interp(shock,#strcat_comma{z_next,1:N},#strcat_comma{K_next,1:N});
+</pre></div>
+</div>
+<p>expands to</p>
+<div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span>lambda_future = lambda_interp(shock,z_next(1),z_next(2),...,z_next(N),K_next(1),K_next(2),...,K_next(N));
 </pre></div>
 </div>
 <p>The strategy we use for integrating over future shocks follows the monomial integration proposed by <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.3982/QE14">Judd, Maliar and Maliar (2011, QE)</a>,

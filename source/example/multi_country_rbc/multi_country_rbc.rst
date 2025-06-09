@@ -67,7 +67,7 @@ for equilibrium objects :math:`(\lambda_t,K_{j,t+1})`, where
 =======================
 Solutions
 =======================
-We solve the recursive equilibrium defined over the state vector :math:`(z_1,K_1,z_2,K_2,...,z_N,K_N)` of length :math:`2\times N`. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.
+We solve the recursive equilibrium defined over the state vector :math:`(z_1,z_2,...,z_N,K_1,K_2,...,K_N)` of length :math:`2\times N`. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.
 
 The gmod code is listed below where one can find the detailed parameterization (:download:`rbc <rbc.gmod>`).
 
@@ -96,6 +96,19 @@ expands to
     
     var_state z15;
     z15 = linspace(zMin,zMax,zPts); % placeholder
+
+The line
+
+.. literalinclude:: rbc.gmod
+    :lines: 121-121
+    :lineno-start: 121
+    :language: GDSGE
+
+expands to
+
+.. code-block:: GDSGE
+
+    lambda_future = lambda_interp(shock,z_next(1),z_next(2),...,z_next(N),K_next(1),K_next(2),...,K_next(N));
 
 The strategy we use for integrating over future shocks follows the monomial integration proposed by `Judd, Maliar and Maliar (2011, QE) <https://onlinelibrary.wiley.com/doi/abs/10.3982/QE14>`_,
 which calculates the integration by perturbing future innovation from zero along one dimension at a time. This is implemented by Line 118-139 of the code.
