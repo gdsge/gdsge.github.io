@@ -31,8 +31,7 @@ These commands download the latest version of the toolbox, setup the mex compile
 These produce all results in the companion paper |paper_link|.
 
 With MATLAB on a local machine, try running the leading example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
-by downloading the toolbox source code :download:`gdsge_master.zip <https://cloud.tsinghua.edu.cn/f/2b648dea73b647a8a9e7/?dl=1>`
-and compiling the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` by running in MATLAB
+by downloading the toolbox source code at https://github.com/gdsge/gdsge/releases, and compiling the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` by running in MATLAB
 
 .. code-block:: MATLAB
 
@@ -42,7 +41,7 @@ and compiling the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` by r
 
    <a href="https://www.sciencedirect.com/science/article/pii/S1094202523000017" target="_blank">Cao, Luo, and Nie (2023)</a>
 
-The toolbox source code can be found at: https://github.com/gdsge/gdsge, where you can download the latest version of the toolbox, find detailed instructions for setting up the compiler, and submit issues.
+The toolbox source code is hosted at: https://github.com/gdsge/gdsge, where you can download the latest version of the toolbox, find detailed instructions for setting up the compiler, and submit issues.
 
 Examples and documentation of the toolbox are provided below.
 
