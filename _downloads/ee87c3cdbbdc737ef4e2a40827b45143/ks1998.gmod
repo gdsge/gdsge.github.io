@@ -1,5 +1,5 @@
 % Toolbox options
-INTERP_ORDER = 4; EXTRAP_ORDER = 4;
+INTERP_ORDER = 4; EXTRAP_ORDER = 2;
 SIMU_RESOLVE = 0; SIMU_INTERP = 1;
 SaveFreq = inf; PrintFreq = 100; TolEq = 1e-5;
 % Parameters
