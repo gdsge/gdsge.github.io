@@ -1,0 +1,13 @@
+[project]
+name = "gdsge-website"
+version = "0.2.0"
+description = "Sphinx build environment for the GDSGE toolbox website (www.gdsge.com)"
+requires-python = ">=3.11"
+dependencies = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "rst2pdf",
+]
+
+[tool.uv]
+package = false
