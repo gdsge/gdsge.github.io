@@ -1,1 +1,4 @@
 build/
+.venv/
+task20260702_bump_version.md
+debug.log
