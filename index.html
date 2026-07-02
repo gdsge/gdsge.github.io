@@ -1,21 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GDSGE: A Toolbox for Solving DSGE Models with Global Methods &mdash; GDSGE Homepage</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="#" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -69,8 +73,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>GDSGE: A Toolbox for Solving DSGE Models with Global Methods</li>
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">GDSGE: A Toolbox for Solving DSGE Models with Global Methods</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,7 +84,7 @@
            <div itemprop="articleBody">
              
   <section id="gdsge-a-toolbox-for-solving-dsge-models-with-global-methods">
-<h1>GDSGE: A Toolbox for Solving DSGE Models with Global Methods<a class="headerlink" href="#gdsge-a-toolbox-for-solving-dsge-models-with-global-methods" title="Permalink to this heading"></a></h1>
+<h1>GDSGE: A Toolbox for Solving DSGE Models with Global Methods<a class="headerlink" href="#gdsge-a-toolbox-for-solving-dsge-models-with-global-methods" title="Link to this heading"></a></h1>
 <p>Welcome to GDSGE’s documentation!</p>
 <p>GDSGE is a toolbox that solves nonlinear Dynamic Stochastic General Equilibrium (DSGE) models with a global method based on the Simultaneous Transition and Policy
 Function Iteration (STPFI) algorithm
@@ -88,19 +92,19 @@ introduced in <a href="https://www.sciencedirect.com/science/article/pii/S109420
 It allows users to define economic models in compact and intuitive scripts, called gmod files (gmod stands for global model).
 It parses the script into dynamic libraries which implement the actual computations (policy function iterations and Monte Carlo simulations) efficiently in C++, and provides a convenient MATLAB interface to researchers.</p>
 <p>The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, and related fields.</p>
-<p>GDSGE can now run on MATLAB Online! Log into the <a class="reference external" href="https://matlab.mathworks.com">MATLAB Online</a>. And run in the MATLAB command window</p>
-<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="nb">websave</span><span class="p">(</span><span class="s">&#39;gdsge.zip&#39;</span><span class="p">,</span><span class="s">&#39;https://github.com/gdsge/gdsge/archive/refs/tags/v0.1.5.zip&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="nb">unzip</span><span class="w"> </span><span class="n">gdsge</span><span class="p">.</span><span class="n">zip</span><span class="w"></span>
-<span class="nb">mex</span><span class="w"> </span><span class="o">-</span><span class="nb">setup</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="w"></span>
-<span class="nb">cd</span><span class="w"> </span><span class="n">gdsge</span><span class="o">-</span><span class="mf">0.1</span><span class="p">.</span><span class="mi">5</span><span class="o">/</span><span class="n">tests</span><span class="w"></span>
-<span class="nb">runtests</span><span class="w"></span>
+<p>To get started, run in the MATLAB command window</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="nb">websave</span><span class="p">(</span><span class="s">&#39;gdsge.zip&#39;</span><span class="p">,</span><span class="s">&#39;https://github.com/gdsge/gdsge/archive/refs/heads/main.zip&#39;</span><span class="p">)</span>
+<span class="nb">unzip</span><span class="w"> </span><span class="n">gdsge</span><span class="p">.</span><span class="n">zip</span>
+<span class="nb">mex</span><span class="w"> </span><span class="o">-</span><span class="nb">setup</span><span class="w"> </span><span class="n">c</span><span class="o">++</span>
+<span class="nb">cd</span><span class="w"> </span><span class="n">gdsge</span><span class="o">-</span><span class="n">main</span><span class="o">/</span><span class="n">tests</span>
+<span class="nb">runtests</span>
 </pre></div>
 </div>
-<p>These commands download the latest version of the toolbox, setup the mex compiler, and run the test examples.
+<p>These commands download the latest version of the toolbox, set up the mex compiler, and run the test examples.
+This works on Windows, macOS, and <a class="reference external" href="https://matlab.mathworks.com">MATLAB Online</a> (Linux).
 These produce all results in the companion paper <a href="https://www.sciencedirect.com/science/article/pii/S1094202523000017" target="_blank">Cao, Luo, and Nie (2023)</a>.</p>
-<p>With MATLAB on a local machine, try running the leading example, <a class="reference internal" href="example/HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a>,
-by downloading the toolbox source code at <a class="reference external" href="https://github.com/gdsge/gdsge/releases">https://github.com/gdsge/gdsge/releases</a>, and compiling the gmod file <a class="reference download internal" download="" href="_downloads/791c376360c9be721407d670f16fbf7d/HL1996.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996</span></code></a> by running in MATLAB</p>
-<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="n">gdsge_codegen</span><span class="p">(</span><span class="s">&#39;HL1996&#39;</span><span class="p">)</span><span class="w"></span>
+<p>Then try the leading example, <a class="reference internal" href="example/HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a>, by compiling the gmod file <a class="reference download internal" download="" href="_downloads/791c376360c9be721407d670f16fbf7d/HL1996.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996</span></code></a>: run in MATLAB</p>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="n">gdsge_codegen</span><span class="p">(</span><span class="s">&#39;HL1996&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The toolbox source code is hosted at: <a class="reference external" href="https://github.com/gdsge/gdsge">https://github.com/gdsge/gdsge</a>, where you can download the latest version of the toolbox, find detailed instructions for setting up the compiler, and submit issues.</p>
@@ -208,7 +212,7 @@ by downloading the toolbox source code at <a class="reference external" href="ht
 </ul>
 </div>
 <section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h2>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 </ul>

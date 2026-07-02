@@ -17,21 +17,21 @@ It parses the script into dynamic libraries which implement the actual computati
 
 The toolbox can be used to solve models in macroeconomics, international finance, asset pricing, and related fields.
 
-GDSGE can now run on MATLAB Online! Log into the `MATLAB Online <https://matlab.mathworks.com>`_. And run in the MATLAB command window
+To get started, run in the MATLAB command window
 
 .. code-block:: MATLAB
 
-   websave('gdsge.zip','https://github.com/gdsge/gdsge/archive/refs/tags/v0.1.5.zip')
+   websave('gdsge.zip','https://github.com/gdsge/gdsge/archive/refs/heads/main.zip')
    unzip gdsge.zip
    mex -setup c++
-   cd gdsge-0.1.5/tests
+   cd gdsge-main/tests
    runtests
 
-These commands download the latest version of the toolbox, setup the mex compiler, and run the test examples.
+These commands download the latest version of the toolbox, set up the mex compiler, and run the test examples.
+This works on Windows, macOS, and `MATLAB Online <https://matlab.mathworks.com>`_ (Linux).
 These produce all results in the companion paper |paper_link|.
 
-With MATLAB on a local machine, try running the leading example, :ref:`Heaton and Lucas (1996) <HL1996>`, 
-by downloading the toolbox source code at https://github.com/gdsge/gdsge/releases, and compiling the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>` by running in MATLAB
+Then try the leading example, :ref:`Heaton and Lucas (1996) <HL1996>`, by compiling the gmod file :download:`HL1996 <example/HL1996/HL1996.gmod>`: run in MATLAB
 
 .. code-block:: MATLAB
 

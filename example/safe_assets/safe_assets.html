@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barro et al. (2017): Safe Assets with Rare Disasters &mdash; GDSGE Homepage</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -76,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Barro et al. (2017): Safe Assets with Rare Disasters</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Barro et al. (2017): Safe Assets with Rare Disasters</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -87,7 +91,7 @@
            <div itemprop="articleBody">
              
   <section id="barro-et-al-2017-safe-assets-with-rare-disasters">
-<h1>Barro et al. (2017): Safe Assets with Rare Disasters<a class="headerlink" href="#barro-et-al-2017-safe-assets-with-rare-disasters" title="Permalink to this heading"></a></h1>
+<h1>Barro et al. (2017): Safe Assets with Rare Disasters<a class="headerlink" href="#barro-et-al-2017-safe-assets-with-rare-disasters" title="Link to this heading"></a></h1>
 <p>The model studies the creation of safe assets (risk-free bonds) between two agents with different
 risk aversion levels, in an endowment economy with rare disaster shocks. The model serves as an example to demonstrate how
 the toolbox can accommodate general recursive preferences such as <a class="reference external" href="https://www.jstor.org/stable/1913778?seq=1#metadata_info_tab_contents">Epstein and
@@ -100,7 +104,7 @@ nested fixed point solution method becomes unstable, since agents’ portfolio c
 Nevertheless, the toolbox, which solves the equilibrium as one single system of equations,
 can handle such parameterization fairly easily and uncovers novel theoretical results.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="barro2017"></span><h2>The Model<a class="headerlink" href="#the-model" title="Link to this heading"></a></h2>
 <p>There are two groups of agents, <span class="math notranslate nohighlight">\(i=1,2\)</span> in the economy. Agents have
 an <a class="reference external" href="https://www.jstor.org/stable/1913778?seq=1#metadata_info_tab_contents">Epstein and
 Zin (1989)</a> -
@@ -136,7 +140,7 @@ is</p>
 <p>As in <a class="reference external" href="https://academic.oup.com/ej/article/128/614/2258/5230957">Cao (2018, Appendix C.3, Extension 3)</a>, we can normalize the utility <span class="math notranslate nohighlight">\(U_{it}\)</span> and consumption <span class="math notranslate nohighlight">\(C_{it}\)</span> by
 <span class="math notranslate nohighlight">\(A_{it}\)</span> and write recursive utility as follows:</p>
 <div class="math notranslate nohighlight" id="equation-eq-normalized-utility-safeassets">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eq-normalized-utility-safeassets" title="Permalink to this equation"></a></span>\[u_{it}^{1-\theta}=\frac{\rho+\upsilon}{1+\rho}c_{i,t}^{1-\theta}+\frac{1-\upsilon}{1+\rho}\left(1-c_{it}\right)^{1-\theta}\left(\mathbb{E}_{t}\left[\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right]\right)^{\frac{1-\theta}{1-\gamma_{i}}},\]</div>
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-normalized-utility-safeassets" title="Link to this equation"></a></span>\[u_{it}^{1-\theta}=\frac{\rho+\upsilon}{1+\rho}c_{i,t}^{1-\theta}+\frac{1-\upsilon}{1+\rho}\left(1-c_{it}\right)^{1-\theta}\left(\mathbb{E}_{t}\left[\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right]\right)^{\frac{1-\theta}{1-\gamma_{i}}},\]</div>
 <p>in which <span class="math notranslate nohighlight">\(u_{it}=U_{it}/A_{it}\)</span>, <span class="math notranslate nohighlight">\(c_{it}=C_{it}/A_{it}\)</span>, and</p>
 <div class="math notranslate nohighlight">
 \[R_{i,t+1}=x_{it}R_{t+1}^{e}+\left(1-x_{it}\right)R_{t+1}^{f}\]</div>
@@ -146,10 +150,10 @@ is</p>
 <p>is the equity share of agent <span class="math notranslate nohighlight">\(i\)</span>’s portfolio holding. The FOCs for
 consumption and portfolio choices are</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-equation-safeassets">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eq-euler-equation-safeassets" title="Permalink to this equation"></a></span>\[\left(\rho+\upsilon\right)c_{i,t}^{-\theta}=\left(1-\upsilon\right)\left(1-c_{it}\right)^{-\theta}\left[\mathbb{E}_{t}\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right]^{\frac{1-\theta}{1-\gamma_{i}}},\]</div>
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-euler-equation-safeassets" title="Link to this equation"></a></span>\[\left(\rho+\upsilon\right)c_{i,t}^{-\theta}=\left(1-\upsilon\right)\left(1-c_{it}\right)^{-\theta}\left[\mathbb{E}_{t}\left(R_{i,t+1}u_{it+1}\right)^{1-\gamma_{i}}\right]^{\frac{1-\theta}{1-\gamma_{i}}},\]</div>
 <p>and</p>
 <div class="math notranslate nohighlight" id="equation-eq-foc-portfolio-choice">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eq-foc-portfolio-choice" title="Permalink to this equation"></a></span>\[\mathbb{E}_{t}\left[\frac{\left(R_{t+1}^{e}-R_{t+1}^{f}\right)u_{it+1}}{\left(R_{i,t+1}u_{it+1}\right)^{\gamma_{i}}}\right]=0.\]</div>
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-foc-portfolio-choice" title="Link to this equation"></a></span>\[\mathbb{E}_{t}\left[\frac{\left(R_{t+1}^{e}-R_{t+1}^{f}\right)u_{it+1}}{\left(R_{i,t+1}u_{it+1}\right)^{\gamma_{i}}}\right]=0.\]</div>
 <p>The choices of <span class="math notranslate nohighlight">\(c_{it}\)</span> and <span class="math notranslate nohighlight">\(x_{it}\)</span> are identical across agents
 of the same type <span class="math notranslate nohighlight">\(i\)</span>, and the portfolio choices of agent <span class="math notranslate nohighlight">\(i\)</span> are</p>
 <div class="math notranslate nohighlight">
@@ -157,15 +161,15 @@ of the same type <span class="math notranslate nohighlight">\(i\)</span>, and th
 b_{it} &amp; =\left(1-x_{it}\right)\left(1-c_{it}\right)\left(1+p_{t}\right)\omega_{it}.\end{split}\]</div>
 <p>In equilibrium, prices are determined such that markets clear:</p>
 <div class="math notranslate nohighlight" id="equation-eq-mc-goods">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eq-mc-goods" title="Permalink to this equation"></a></span>\[C_{1t}+C_{2t}  =Y_{t},\]</div>
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-mc-goods" title="Link to this equation"></a></span>\[C_{1t}+C_{2t}  =Y_{t},\]</div>
 <div class="math notranslate nohighlight" id="equation-eq-mc-equity">
-<span class="eqno">(8)<a class="headerlink" href="#equation-eq-mc-equity" title="Permalink to this equation"></a></span>\[K_{1t}+K_{2t}  =1,\]</div>
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-mc-equity" title="Link to this equation"></a></span>\[K_{1t}+K_{2t}  =1,\]</div>
 <div class="math notranslate nohighlight" id="equation-eq-mc-bond">
-<span class="eqno">(9)<a class="headerlink" href="#equation-eq-mc-bond" title="Permalink to this equation"></a></span>\[B_{1t}+B_{2t}  =0.\]</div>
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-mc-bond" title="Link to this equation"></a></span>\[B_{1t}+B_{2t}  =0.\]</div>
 <p>To achieve stationarity, we normalize <span class="math notranslate nohighlight">\(\left\{ B_{it},P_{t}\right\}\)</span> variables
 by <span class="math notranslate nohighlight">\(Y_{t}\)</span>. We define the wealth share of agent <span class="math notranslate nohighlight">\(i\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-consistency-safeassets">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eq-consistency-safeassets" title="Permalink to this equation"></a></span>\[\omega_{it}=K_{it-1}-\upsilon\left(K_{it-1}-\mu_{i}\right)+\frac{\left(1-\upsilon\right)R_{t}^{f}b_{it-1}}{\left(1+p_{t}\right)\left(1+g_{t}\right)}.\]</div>
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-consistency-safeassets" title="Link to this equation"></a></span>\[\omega_{it}=K_{it-1}-\upsilon\left(K_{it-1}-\mu_{i}\right)+\frac{\left(1-\upsilon\right)R_{t}^{f}b_{it-1}}{\left(1+p_{t}\right)\left(1+g_{t}\right)}.\]</div>
 <p>We see that given the market clearing conditions <a class="reference internal" href="#equation-eq-mc-equity">(8)</a>
 and <a class="reference internal" href="#equation-eq-mc-bond">(9)</a>,</p>
 <div class="math notranslate nohighlight">
@@ -193,7 +197,7 @@ consistency equation <a class="reference internal" href="#equation-eq-consistenc
 unknowns.</p>
 </section>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Link to this heading"></a></h2>
 <p>The model is solved with the following <a class="reference download internal" download="" href="../../_downloads/d8ecb7e96f66119bdcb7303bb39fb535/safe_assets.gmod"><code class="xref download docutils literal notranslate"><span class="pre">safe_assets.gmod</span></code></a> file</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Parameters</span>
 <span class="linenos">  2</span><span class="k">parameters</span> rho nu mu gamma1 gamma2;
@@ -332,7 +336,8 @@ on subsequent dynamics.</p>
 <p>4. Calculate the mean and standard deviation of the differences between simulated time series of the two sets. These arrive at the mean impulse responses and
 the standard deviations. Again, the above procedure can be conditional on a sub-population of the ergodic set so as to compute
 conditional impulse responses starting from states with certain properties of interests.</p>
-<a class="reference internal image-reference" href="../../_images/irf.png"><img alt="../../_images/irf.png" src="../../_images/irf.png" style="width: 512.0px; height: 410.8px;" /></a>
+<a class="reference internal image-reference" href="../../_images/irf.PNG"><img alt="../../_images/irf.PNG" height="411" src="../../_images/irf.PNG" width="512" />
+</a>
 <p>The figure plots the impulse responses after
 a one-time disaster using the baseline parameters in <a class="reference external" href="https://www.nber.org/papers/w20652">Barro et al. (2017)</a>.
 (For annual data, <span class="math notranslate nohighlight">\(\rho=0.02\)</span>, <span class="math notranslate nohighlight">\(\upsilon=0.02\)</span>, <span class="math notranslate nohighlight">\(\mu=0.5\)</span>, <span class="math notranslate nohighlight">\(\gamma_{1}=3.3\)</span>,
@@ -344,7 +349,8 @@ more demand for safe asset, and a higher equilibrium quantity and price (lower i
 <p>A final remark is on the price of safe assets, which exhibits non-monotonicity as the risk aversion of Agent 2
 <span class="math notranslate nohighlight">\(\gamma_2\)</span> increases, as shown in the figure below.
 This non-monotonicity is usually overlooked in the literature and uncovered by our solution method that can solve models with high <span class="math notranslate nohighlight">\(\gamma_2\)</span> robustly and accurately.</p>
-<a class="reference internal image-reference" href="../../_images/figure_Rf.png"><img alt="../../_images/figure_Rf.png" src="../../_images/figure_Rf.png" style="width: 467.0px; height: 414.5px;" /></a>
+<a class="reference internal image-reference" href="../../_images/figure_Rf.png"><img alt="../../_images/figure_Rf.png" height="414" src="../../_images/figure_Rf.png" width="467" />
+</a>
 <p>The mechanism behind the non-monotonicity can be
 understood by looking at two opposing forces. First, as <span class="math notranslate nohighlight">\(\gamma_{2}\)</span>
 gets larger, agent 2 becomes more risk-averse, and demand for more
@@ -363,10 +369,11 @@ dominates and <span class="math notranslate nohighlight">\(\bar{R}^{f}\)</span> 
 <span class="math notranslate nohighlight">\(\gamma_{2}\)</span>, since the wealth distribution <span class="math notranslate nohighlight">\(\omega_{1}\)</span> is almost
 degenerated to its upper limit.</p>
 <p>The figure below provides a comparison of two cases: <span class="math notranslate nohighlight">\(\gamma_{2}=8\)</span> versus <span class="math notranslate nohighlight">\(\gamma_{2}=10\)</span>. As <span class="math notranslate nohighlight">\(\gamma_2\)</span> increases, the wealth share of Agent 1 tends to be larger.</p>
-<a class="reference internal image-reference" href="../../_images/dist_Rf.png"><img alt="../../_images/dist_Rf.png" src="../../_images/dist_Rf.png" style="width: 465.0px; height: 381.5px;" /></a>
+<a class="reference internal image-reference" href="../../_images/dist_Rf.png"><img alt="../../_images/dist_Rf.png" height="382" src="../../_images/dist_Rf.png" width="465" />
+</a>
 </section>
 <section id="what-s-next">
-<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading"></a></h2>
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
 <p>This example illustrates that the toolbox algorithm is especially effective to solve models where portfolio choices are sensitive to the asset price,
 which are traditionally considered ill-behaved problems. In <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a>,
 we solve another model which is traditionally considered ill-behaved:

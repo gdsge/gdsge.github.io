@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A Multi-country Business Cycle Model &mdash; GDSGE Homepage</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -77,8 +81,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>A Multi-country Business Cycle Model</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">A Multi-country Business Cycle Model</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -88,9 +92,9 @@
            <div itemprop="articleBody">
              
   <section id="a-multi-country-business-cycle-model">
-<h1>A Multi-country Business Cycle Model<a class="headerlink" href="#a-multi-country-business-cycle-model" title="Permalink to this heading"></a></h1>
+<h1>A Multi-country Business Cycle Model<a class="headerlink" href="#a-multi-country-business-cycle-model" title="Link to this heading"></a></h1>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="mc-rbc"></span><h2>The Model<a class="headerlink" href="#the-model" title="Link to this heading"></a></h2>
 <p>In this example we demonstrate the toolbox’s ability to handle models with high dimensional states, thanks to the sparse-grid interpolation method.
 The model is a complete-markets multi-country business cycle model. We show that the model with 15 countries and 30 continuous states can be solved in 10 minutes with decent accuracy on a regular desktop.</p>
 <p>There are <span class="math notranslate nohighlight">\(N\)</span> countries, indexed by <span class="math notranslate nohighlight">\(j\)</span>. Each country has one unit of consumers that supply labor exogenously. The consumers’ preference reads</p>
@@ -106,7 +110,7 @@ Capital and labor are immobile.  Capital depreciates at rate <span class="math n
 <p>The market is complete in that consumers can trade a full menu of Arrow securities.</p>
 </section>
 <section id="equilibrium-conditions">
-<h2>Equilibrium Conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading"></a></h2>
+<h2>Equilibrium Conditions<a class="headerlink" href="#equilibrium-conditions" title="Link to this heading"></a></h2>
 <p>The complete-markets equilibrium can be characterized by the social planner’s solution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\max_{c_{j,t},i_{j,t},K_{j,t+1}} \mathbb{E}_0 \sum_j \omega_j  \sum_{t=0}^{\infty} \beta^t u(c_{j,t}),
@@ -132,7 +136,7 @@ Therefore, the equilibrium conditions can be  stated as:</p>
 \[c_{j,t}=u'^{-1}(\frac{\lambda_t}{\omega_j}).\]</div>
 </section>
 <section id="solutions">
-<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading"></a></h2>
+<h2>Solutions<a class="headerlink" href="#solutions" title="Link to this heading"></a></h2>
 <p>We solve the recursive equilibrium defined over the state vector <span class="math notranslate nohighlight">\((z_1,z_2,...,z_N,K_1,K_2,...,K_N)\)</span> of length <span class="math notranslate nohighlight">\(2\times N\)</span>. The model does not admit an analytical solution despite being simple. The numerical solution is challenging as the dimension of state space is high, and interpolation methods based on dense grids face the curse of dimensionality. In particular, the number of collocation points increases exponentially in the dimension if dense-grid methods are used. Instead, we use the adaptive-grid method that is shipped with the toolbox, with which the number of collocation points only increases in the dimension in a polynomial speed.</p>
 <p>The gmod code is listed below where one can find the detailed parameterization (<a class="reference download internal" download="" href="../../_downloads/a7369edfb16717806c0213067acd17fc/rbc.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbc</span></code></a>).</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Number of countries</span>
@@ -351,7 +355,7 @@ the toolbox-generated code.</p>
 <p>The error given one state can be calculated by simulating a large sample one period forward starting from this state, and integrating over these sample paths. The script file implements this procedure and reports the max and mean errors for a sample of states drawn from the ergodic distribution (running the calculation requires 16GB memory; set the number of paths lower to reduce the memory requirement). The max error is 6.4E-4 and the mean error is 5.7E-4 across states in the ergodic set, demonstrating that the solutions are obtained with decent accuracy, despite the very sparse grid used for interpolation.</p>
 </section>
 <section id="what-s-next">
-<h2>What’s next<a class="headerlink" href="#what-s-next" title="Permalink to this heading"></a></h2>
+<h2>What’s next<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
 <p>The current example demonstrates that the toolbox can handle models with high dimensional states, with dimension up to 30 on a regular desktop/laptop. However, we note that providing an accurate global solution to a highly-nonlinear albeit low-dimensional model is often much harder than providing a solution to a high-dimensional but less nonlinear model. Nevertheless, this means that one can solve standard medium New-Keynesian models with the toolbox (e.g., the benchmark model in Smets and Wouters (2007) has 9 exogenous and 11 endogenous state variables), and extend these models with nonlinear features such as an occasionally binding interest rate zero lower bound as in <a class="reference internal" href="../ZLB/zlb.html#zlb"><span class="std std-ref">the ZLB example</span></a>.</p>
 </section>
 </section>

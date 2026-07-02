@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brumm et al (2015): A GDSGE model with asset price bubble &mdash; GDSGE Homepage</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -80,9 +84,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../ContributedExamples.html">Contributed Examples</a> &raquo;</li>
-      <li>Brumm et al (2015): A GDSGE model with asset price bubble</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../ContributedExamples.html">Contributed Examples</a></li>
+      <li class="breadcrumb-item active">Brumm et al (2015): A GDSGE model with asset price bubble</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -92,7 +96,7 @@
            <div itemprop="articleBody">
              
   <section id="brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble">
-<h1>Brumm et al (2015): A GDSGE model with asset price bubble<a class="headerlink" href="#brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble" title="Permalink to this heading"></a></h1>
+<h1>Brumm et al (2015): A GDSGE model with asset price bubble<a class="headerlink" href="#brumm-et-al-2015-a-gdsge-model-with-asset-price-bubble" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/iere.12092">Brumm, Grill, Kubler, and Schmedders (2015)</a>
 study a GDSGE model with multiple assets with different degrees of collaterability.
 They find that a long-lived asset that never pays dividend but can be used as collateral to borrow can have strictly positive price in equilibrium.
@@ -123,7 +127,7 @@ To solve the last period problem, we use a <em>model_init</em> block that has a 
 than that of the main <em>model</em> block (see <a class="reference internal" href="../KM1997/CaoNie2017.html#caonie2017"><span class="std std-ref">Cao and Nie (2017)</span></a>
 for another example using a different <em>model_init</em>).</p>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<span id="bgks2015"></span><h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Link to this heading"></a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/be2d5dfc81249ae8c23142d1569e11c3/BGKS2015.gmod"><code class="xref download docutils literal notranslate"><span class="pre">BGKS2015.gmod</span></code></a></p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">%Options</span>
 <span class="linenos">  2</span>SolMaxIter=20000;
@@ -316,7 +320,7 @@ for another example using a different <em>model_init</em>).</p>
 </div>
 </section>
 <section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
 <p>In this example, agents <span class="math notranslate nohighlight">\(1\)</span> (<span class="math notranslate nohighlight">\(\alpha_1 = 0.5\)</span>) are less risk-averse than agents <span class="math notranslate nohighlight">\(2\)</span> (<span class="math notranslate nohighlight">\(\alpha_2 = -6\)</span>)
 so they tend to borrow to invest in the risky assets <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.
 Asset <span class="math notranslate nohighlight">\(1\)</span> nevers pays dividend (<span class="math notranslate nohighlight">\(\sigma_1=0\)</span>) but can be used as collateral to borrow (<span class="math notranslate nohighlight">\(\delta_1 = 1\)</span>).
@@ -326,7 +330,8 @@ The following figure shows the price of asset <span class="math notranslate nohi
 <div class="math notranslate nohighlight">
 \[\omega^1_t = \frac{\theta^1_{1,t}(q_{1,t}+d_{1,t})+\theta^1_{2,t}(q_{2,t}+d_{2,t})+\phi^1_t}{q_{1,t}+d_{1,t}+q_{2,t}+d_{2,t}}.\]</div>
 <p>The price of asset <span class="math notranslate nohighlight">\(1\)</span> be as high as several times aggregate output and tends to be higher when agents <span class="math notranslate nohighlight">\(1\)</span> are relatively richer.</p>
-<a class="reference internal image-reference" href="../../_images/BGKS2015Bubble.png"><img alt="../../_images/BGKS2015Bubble.png" src="../../_images/BGKS2015Bubble.png" style="width: 560.0px; height: 420.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/BGKS2015Bubble.png"><img alt="../../_images/BGKS2015Bubble.png" height="420" src="../../_images/BGKS2015Bubble.png" width="560" />
+</a>
 </section>
 </section>
 

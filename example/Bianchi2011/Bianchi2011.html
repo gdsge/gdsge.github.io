@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bianchi (2011): Sudden Stops in Open Economies &mdash; GDSGE Homepage</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Bianchi (2011): Sudden Stops in Open Economies</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Bianchi (2011): Sudden Stops in Open Economies</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -89,13 +93,13 @@
            <div itemprop="articleBody">
              
   <section id="bianchi-2011-sudden-stops-in-open-economies">
-<h1>Bianchi (2011): Sudden Stops in Open Economies<a class="headerlink" href="#bianchi-2011-sudden-stops-in-open-economies" title="Permalink to this heading"></a></h1>
+<h1>Bianchi (2011): Sudden Stops in Open Economies<a class="headerlink" href="#bianchi-2011-sudden-stops-in-open-economies" title="Link to this heading"></a></h1>
 <p>The benchmark model in <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a> provides an example in which the economic dynamics can be highly non-linear
 due to the presence of a borrowing constraint tied to a (good) price. We illustrate how to use the adaptive grid method
 with the toolbox to capture the non-linearity effectively. This example also introduces how to solve the model in a coarse and narrow grid of the state space,
 and then refine the state space to ensure it covers the ergodic set by reusing the compiled code.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<span id="bianchi2011"></span><h2>The Model<a class="headerlink" href="#the-model" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.101.7.3400">Bianchi (2011)</a> studies an incomplete-markets open economy model that can generate competitive equilibria featuring sudden stop episodes,
 resembling those experienced by many emerging economies.
 A sudden stop episode features a large output drop and current account reversals,
@@ -161,7 +165,7 @@ A recursive competitive equilibrium is <span class="math notranslate nohighlight
 the optimization and markets clearing conditions.</p>
 </section>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Link to this heading"></a></h2>
 <p>The recursive system can be solved using GDSGE with <a class="reference download internal" download="" href="../../_downloads/b32061ed3d76601106c4dafa0e027ea4/bianchi2011.gmod"><code class="xref download docutils literal notranslate"><span class="pre">bianchi2011.gmod</span></code></a> below</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Toolbox options</span>
 <span class="linenos">  2</span>USE_ASG=1; USE_SPLINE=0;
@@ -320,7 +324,7 @@ This is done by defining <span class="math notranslate nohighlight">\(nb_{t+1}=b
 In the evaluations of the equations, we transform <span class="math notranslate nohighlight">\(nb_{t+1}\)</span> back to <span class="math notranslate nohighlight">\(b_{t+1}\)</span> with the line defined above.</p>
 </section>
 <section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
 <p>Upload and compile the gmod file through the <a class="reference external" href="http://www.gdsge.com">online compiler</a>. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; options = struct;
 shock_process = load(&#39;shock_process.mat&#39;);
@@ -398,7 +402,8 @@ grid and reconstructs the values of the policy functions (using asg_output.eval,
 constructed from the converged solution.
 The second argument in asg_output.eval (<em>idx_bNext</em> and <em>idx_pN</em> here) refers to the index of policy functions according the order declared in <em>var_output</em>).
 These codes generate the following figure:</p>
-<a class="reference internal image-reference" href="../../_images/policy_combined.png"><img alt="../../_images/policy_combined.png" src="../../_images/policy_combined.png" style="width: 700.0px; height: 524.8000000000001px;" /></a>
+<a class="reference internal image-reference" href="../../_images/policy_combined.png"><img alt="../../_images/policy_combined.png" height="525" src="../../_images/policy_combined.png" width="700" />
+</a>
 <p>As shown in the figure, the policy functions are highly nonlinear: when the borrowing constraint binds,
 the price of non-tradable goods declines sharply in the level of exist borrowing; future borrowing declines,
 instead of increasing, as the economy goes further in debt, implying current account reversals.
@@ -423,7 +428,8 @@ print(&#39;figures/histogram_b.png&#39;,&#39;-dpng&#39;);
 </pre></div>
 </div>
 <p>which produces</p>
-<a class="reference internal image-reference" href="../../_images/histogram_b.png"><img alt="../../_images/histogram_b.png" src="../../_images/histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/histogram_b.png"><img alt="../../_images/histogram_b.png" height="328" src="../../_images/histogram_b.png" width="438" />
+</a>
 <p>This shows that the non-linear regions do exist in the ergodic set of the equilibrium and thus cannot be ignored,
 but due to precautionary motives, the frequency of the economy being in these regions cannot be determined ex-ante, highlighting the necessity of using a global solution method.</p>
 <p>A final remark to be made here is that the toolbox by default resolves the equilibrium system at each time step of the simulation, minimizing
@@ -432,11 +438,12 @@ the numerical error within a period. Alternatively, one can add the following li
 </pre></div>
 </div>
 <p>Directly interpolating the policy and state transition functions results in much faster speed for simulation. We plot the ergodic distribution obtained from the direct interpolation method below</p>
-<a class="reference internal image-reference" href="../../_images/histogram_b_interp.png"><img alt="../../_images/histogram_b_interp.png" src="../../_images/histogram_b_interp.png" style="width: 437.5px; height: 328.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/histogram_b_interp.png"><img alt="../../_images/histogram_b_interp.png" height="328" src="../../_images/histogram_b_interp.png" width="438" />
+</a>
 <p>As shown in the figure, for the current one-dimension model solved with the adaptive-grid method, the differences in simulations generated by the two methods are not visually distinguishable, highlighting the accuracy of the approximation method.</p>
 </section>
 <section id="the-planner-s-solution">
-<h2>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Permalink to this heading"></a></h2>
+<h2>The Planner’s solution<a class="headerlink" href="#the-planner-s-solution" title="Link to this heading"></a></h2>
 <p>The planner’s solution takes care of the effect of tradable/non-tradable consumption on the relative price.
 The planner’s solution differs from the competitive equilibrium by replacing the first order condition from</p>
 <div class="math notranslate nohighlight">
@@ -461,11 +468,13 @@ lambda = c^(-sigma)*partial_c_partial_cT / (1-mu*Psi);
 since the planner takes into account the effect of cutting down tradable consumption on relative price and the borrowing constraint,
 it chooses to accumulate less debt compared to the competitive equilibrium. This can be seen below by comparing the policy functions for
 next-period bond and the ergodic distributions of bond holdings for the two economies.</p>
-<a class="reference internal image-reference" href="../../_images/compare_b_policy.png"><img alt="../../_images/compare_b_policy.png" src="../../_images/compare_b_policy.png" style="width: 437.5px; height: 328.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/compare_histogram_b.png"><img alt="../../_images/compare_histogram_b.png" src="../../_images/compare_histogram_b.png" style="width: 437.5px; height: 328.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/compare_b_policy.png"><img alt="../../_images/compare_b_policy.png" height="328" src="../../_images/compare_b_policy.png" width="438" />
+</a>
+<a class="reference internal image-reference" href="../../_images/compare_histogram_b.png"><img alt="../../_images/compare_histogram_b.png" height="328" src="../../_images/compare_histogram_b.png" width="438" />
+</a>
 </section>
 <section id="what-s-next">
-<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading"></a></h2>
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
 <p>This example illustrates the power of the adaptive grid method to deal with non-linear models. Since the method is designed based on sparse grid,
 it solves effectively non-linear models with high-dimensional state space. See example <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3552189">Cao, Evans, and Luo (2020)</a> for a two-country Real Business Cycle model on the medium-run
 dynamics of exchange rate, in a model featuring portfolio choice, incomplete markets, and occasionally binding constraints, in which the dimension of the endogenous state space

@@ -1,22 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>An RBC Model with Irreversible Investment &mdash; GDSGE Homepage</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> GDSGE
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GDSGE
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -75,8 +79,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>An RBC Model with Irreversible Investment</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">An RBC Model with Irreversible Investment</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -86,10 +90,10 @@
            <div itemprop="articleBody">
              
   <section id="an-rbc-model-with-irreversible-investment">
-<h1>An RBC Model with Irreversible Investment<a class="headerlink" href="#an-rbc-model-with-irreversible-investment" title="Permalink to this heading"></a></h1>
+<h1>An RBC Model with Irreversible Investment<a class="headerlink" href="#an-rbc-model-with-irreversible-investment" title="Link to this heading"></a></h1>
 <p>The standard <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> can also be solved easily using local methods. Now we consider an extension which can only be solved properly using global methods. The model features an investment irreversibility constraint, which requires investment to be larger than a certain threshold.</p>
 <section id="the-model">
-<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading"></a></h2>
+<h2>The Model<a class="headerlink" href="#the-model" title="Link to this heading"></a></h2>
 <p>We augment the simple RBC model with two additional features.</p>
 <p>First, productivity follows a continuous AR(1) process</p>
 <div class="math notranslate nohighlight">
@@ -132,7 +136,7 @@ and solve for <span class="math notranslate nohighlight">\(c_t,\mu_t,K'_t\)</spa
 <p>We keep iterating until convergence.</p>
 </section>
 <section id="the-gmod-file">
-<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Permalink to this heading"></a></h2>
+<h2>The gmod File<a class="headerlink" href="#the-gmod-file" title="Link to this heading"></a></h2>
 <p>The recursive system can now be input to the GDSGE toolbox via a mod file <a class="reference download internal" download="" href="../../_downloads/565d31908e96d191d7346212f14133f6/rbcIrr.gmod"><code class="xref download docutils literal notranslate"><span class="pre">rbcIrr.gmod</span></code></a> below.</p>
 <div class="highlight-GDSGE notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% Parameters</span>
 <span class="linenos">  2</span><span class="k">parameters</span> beta sigma alpha delta K_min K_max rho Imin;
@@ -251,12 +255,15 @@ and solve for <span class="math notranslate nohighlight">\(c_t,\mu_t,K'_t\)</spa
 </pre></div>
 </div>
 <p>The toolbox solves the model and produces the policy functions. The following figure displays the investment policy function <span class="math notranslate nohighlight">\(I(z,K)\)</span>. The investment irreversibility constraint tends to bind when <span class="math notranslate nohighlight">\(K\)</span> is low or <span class="math notranslate nohighlight">\(z\)</span> is low.</p>
-<a class="reference internal image-reference" href="../../_images/policy_Inv.png"><img alt="../../_images/policy_Inv.png" src="../../_images/policy_Inv.png" style="width: 547.2px; height: 320.8px;" /></a>
+<a class="reference internal image-reference" href="../../_images/policy_Inv.png"><img alt="../../_images/policy_Inv.png" height="321" src="../../_images/policy_Inv.png" width="547" />
+</a>
 <p>We then use the policy functions to simulate the model. The following figures show the long run distributions of investment and capital.
 The investment irreversibility constraint binds around 20% of the times.
 The distribution of capital is asymmetric and skewed towards lower levels of capital. It is significantly different from the distribution in the <a class="reference internal" href="rbc.html#getting-started-a-simple-rbc-model"><span class="std std-ref">RBC model</span></a> without the irreversibility constraint.</p>
-<a class="reference internal image-reference" href="../../_images/histogram_Inv.png"><img alt="../../_images/histogram_Inv.png" src="../../_images/histogram_Inv.png" style="width: 448.0px; height: 336.0px;" /></a>
-<a class="reference internal image-reference" href="../../_images/histogram_K1.png"><img alt="../../_images/histogram_K1.png" src="../../_images/histogram_K1.png" style="width: 448.0px; height: 336.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/histogram_Inv.png"><img alt="../../_images/histogram_Inv.png" height="336" src="../../_images/histogram_Inv.png" width="448" />
+</a>
+<a class="reference internal image-reference" href="../../_images/histogram_K1.png"><img alt="../../_images/histogram_K1.png" height="336" src="../../_images/histogram_K1.png" width="448" />
+</a>
 </section>
 </section>
 
