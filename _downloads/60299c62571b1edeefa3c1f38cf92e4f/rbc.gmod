@@ -65,6 +65,6 @@ simulate;
   num_samples = 6;
   initial K Kss;
   initial shock 1;
-  var_simu c K w;
+  var_simu c w;
   K' = K_next;
 end;
