@@ -83,9 +83,7 @@ The recursive system can now be input to GDSGE via a mod file :download:`rbc.gmo
     :linenos:
     :language: GDSGE
 
-Compile the gmod file by running ``gdsge_codegen('rbc')`` in MATLAB from the folder that contains rbc.gmod, with the toolbox's ``src`` folder on the search path
-(see :ref:`Compiling a model <compiling_a_model>`).
-This generates the files used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, and the compiled mex file mex_rbc (e.g., mex_rbc.mexw64 on Windows).
+Compile it with ``gdsge_codegen('rbc')`` (see :ref:`Compiling a model <compiling_a_model>`), which generates iter_rbc.m, simulate_rbc.m, and the mex file mex_rbc.
 
 First, call iter_rbc.m in matlab to run the policy iterations and store the returned result in *IterRslt*, which produces
 

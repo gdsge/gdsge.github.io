@@ -215,9 +215,7 @@ c_t(z,K)+K'_t(z,K)=zK^{\alpha} + (1-\delta)K.\end{split}\]</div>
 <span class="linenos">70</span><span class="k">end;</span>
 </pre></div>
 </div>
-<p>Compile the gmod file by running <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('rbc')</span></code> in MATLAB from the folder that contains rbc.gmod, with the toolbox’s <code class="docutils literal notranslate"><span class="pre">src</span></code> folder on the search path
-(see <a class="reference internal" href="../../index.html#compiling-a-model"><span class="std std-ref">Compiling a model</span></a>).
-This generates the files used to solve and simulate the model: iter_rbc.m, simulate_rbc.m, and the compiled mex file mex_rbc (e.g., mex_rbc.mexw64 on Windows).</p>
+<p>Compile it with <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('rbc')</span></code> (see <a class="reference internal" href="../../index.html#compiling-a-model"><span class="std std-ref">Compiling a model</span></a>), which generates iter_rbc.m, simulate_rbc.m, and the mex file mex_rbc.</p>
 <p>First, call iter_rbc.m in matlab to run the policy iterations and store the returned result in <em>IterRslt</em>, which produces</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_rbc;
 

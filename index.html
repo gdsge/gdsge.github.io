@@ -103,36 +103,20 @@ It parses the script into dynamic libraries which implement the actual computati
 <p>These commands download the latest version of the toolbox, set up the mex compiler, and run the test examples.
 This works on Windows, macOS, and <a class="reference external" href="https://matlab.mathworks.com">MATLAB Online</a> (Linux).
 These produce all results in the companion paper <a href="https://www.sciencedirect.com/science/article/pii/S1094202523000017" target="_blank">Cao, Luo, and Nie (2023)</a>.</p>
-<p>Then try the leading example, <a class="reference internal" href="example/HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a>. Its gmod file
-<a class="reference download internal" download="" href="_downloads/791c376360c9be721407d670f16fbf7d/HL1996.gmod"><code class="xref download docutils literal notranslate"><span class="pre">HL1996.gmod</span></code></a> ships with the toolbox under <code class="docutils literal notranslate"><span class="pre">tests/HeatonLucas1996</span></code>.
-Continuing from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder above, run in MATLAB</p>
+<p>Then try the leading example, <a class="reference internal" href="example/HL1996/HL1996.html#hl1996"><span class="std std-ref">Heaton and Lucas (1996)</span></a>, from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder:</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="n">HeatonLucas1996</span>
-<span class="n">gdsge_codegen</span><span class="p">(</span><span class="s">&#39;HL1996&#39;</span><span class="p">)</span><span class="w">              </span><span class="c">% parse the gmod file, generate code, compile the mex file</span>
-<span class="n">IterRslt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">iter_HL1996</span><span class="p">;</span><span class="w">              </span><span class="c">% policy iterations</span>
-<span class="n">SimuRslt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">simulate_HL1996</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span><span class="w"> </span><span class="c">% Monte Carlo simulations</span>
+<span class="n">gdsge_codegen</span><span class="p">(</span><span class="s">&#39;HL1996&#39;</span><span class="p">)</span>
+<span class="n">IterRslt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">iter_HL1996</span><span class="p">;</span>
+<span class="n">SimuRslt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">simulate_HL1996</span><span class="p">(</span><span class="n">IterRslt</span><span class="p">);</span>
 </pre></div>
 </div>
 <p class="rubric" id="compiling-a-model">Compiling a model</p>
-<p>gmod files are compiled locally, on your own machine, by the C++ compiler that <code class="docutils literal notranslate"><span class="pre">mex</span> <span class="pre">-setup</span> <span class="pre">c++</span></code> configured; there is no separate compiler to install or service to upload to.
-To compile your own model, add the toolbox’s <code class="docutils literal notranslate"><span class="pre">src</span></code> folder to the MATLAB search path once per session
-(<code class="docutils literal notranslate"><span class="pre">runtests</span></code> does this for you), change directory to the folder that contains <code class="docutils literal notranslate"><span class="pre">&lt;model&gt;.gmod</span></code>, and run</p>
+<p>Add the toolbox’s <code class="docutils literal notranslate"><span class="pre">src</span></code> folder to the MATLAB path, change to the folder that contains <code class="docutils literal notranslate"><span class="pre">model.gmod</span></code>, and run</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="nb">addpath</span><span class="p">(</span><span class="s">&#39;path/to/gdsge-main/src&#39;</span><span class="p">)</span>
 <span class="n">gdsge_codegen</span><span class="p">(</span><span class="s">&#39;model&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This generates <code class="docutils literal notranslate"><span class="pre">iter_model.m</span></code>, <code class="docutils literal notranslate"><span class="pre">simulate_model.m</span></code> and <code class="docutils literal notranslate"><span class="pre">mex_model.cpp</span></code> in the current folder and compiles the mex file <code class="docutils literal notranslate"><span class="pre">mex_model</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">mex_model.mexw64</span></code> on Windows).
-Compiling again is fast if the model’s C++ code has not changed, because the mex file is reused.
-Then call <code class="docutils literal notranslate"><span class="pre">iter_model</span></code> to solve the model and <code class="docutils literal notranslate"><span class="pre">simulate_model</span></code> to simulate it (see <a class="reference internal" href="usage/functions.html#toolbox-api"><span class="std std-ref">Toolbox API</span></a>).
-Alternatively, <code class="docutils literal notranslate"><span class="pre">gdsge('model')</span></code> compiles, solves and simulates in one call.</p>
-<p>Optionally, run <code class="docutils literal notranslate"><span class="pre">gdsge_setup_sympy</span></code> once to enable the SymPy backend, which computes analytic Jacobians and requires Python (the command installs it for you through <code class="docutils literal notranslate"><span class="pre">uv</span></code>).
-The default backend needs only MATLAB and a C++ compiler.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since version 0.2 the toolbox has been rebuilt from the ground up, and all gmod files still run unchanged.
-The old online compiler has been retired. All compilation now happens locally with <code class="docutils literal notranslate"><span class="pre">gdsge_codegen</span></code>.
-See the <a class="reference external" href="https://github.com/gdsge/gdsge">toolbox README</a> for what’s new.
-The original toolbox is archived on the <a class="reference external" href="https://github.com/gdsge/gdsge/tree/legacy-0.1.x">legacy-0.1.x</a> branch.</p>
-</div>
+<p>This generates <code class="docutils literal notranslate"><span class="pre">iter_model.m</span></code> and <code class="docutils literal notranslate"><span class="pre">simulate_model.m</span></code> and compiles the mex file <code class="docutils literal notranslate"><span class="pre">mex_model</span></code>.</p>
 <p>The toolbox source code is hosted at: <a class="reference external" href="https://github.com/gdsge/gdsge">https://github.com/gdsge/gdsge</a>, where you can download the latest version of the toolbox, find detailed instructions for setting up the compiler, and submit issues.</p>
 <p>Examples and documentation of the toolbox are provided below.</p>
 <p>Lectures on the toolbox can be found at <a class="reference internal" href="lectures.html#gdsge-lectures"><span class="std std-ref">Lectures</span></a>.</p>

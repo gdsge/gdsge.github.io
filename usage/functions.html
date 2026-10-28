@@ -59,8 +59,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbox API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#matlab-interface">MATLAB Interface</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gdsge_codegen"><code class="docutils literal notranslate"><span class="pre">gdsge_codegen()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gdsge"><code class="docutils literal notranslate"><span class="pre">gdsge()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#iter_modname"><code class="docutils literal notranslate"><span class="pre">iter_modname()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simulate_modname"><code class="docutils literal notranslate"><span class="pre">simulate_modname()</span></code></a></li>
 </ul>
 </li>
@@ -117,49 +115,27 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="gdsge_codegen">
 <span class="sig-name descname"><span class="pre">gdsge_codegen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gdsge_codegen" title="Link to this definition"></a></dt>
-<dd><p>Compile a gmod file. Run it in the folder that contains <em>modname.gmod</em>, with the toolbox’s <code class="docutils literal notranslate"><span class="pre">src</span></code> folder on the MATLAB search path.
-It parses the gmod file, generates <em>iter_modname.m</em>, <em>simulate_modname.m</em> and <em>mex_modname.cpp</em> in the current folder, and compiles the mex file <em>mex_modname</em> with the C++ compiler configured by <code class="docutils literal notranslate"><span class="pre">mex</span> <span class="pre">-setup</span> <span class="pre">c++</span></code>.
-Compilation is skipped if the generated C++ code has not changed since the last call.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>modname</strong> – name of the gmod file without the extension, e.g., <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('rbc')</span></code> for <em>rbc.gmod</em></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>a Matlab struct that describes the parsed model</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gdsge">
-<span class="sig-name descname"><span class="pre">gdsge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gdsge" title="Link to this definition"></a></dt>
-<dd><p>Compile, solve and simulate a model in one call: runs <em>gdsge_codegen</em>, then <em>iter_modname</em> and <em>simulate_modname</em>.
-The solution is saved to <em>IterRslt_modname.mat</em>, and solving is skipped next time if the generated code has not changed.</p>
+<dd><p>Compile <em>modname.gmod</em> in the current folder into <em>iter_modname.m</em>, <em>simulate_modname.m</em> and the mex file <em>mex_modname</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>modname</strong> – name of the gmod file without the extension</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>a Matlab struct with fields <em>model</em>, <em>IterRslt</em> and <em>SmltRslt</em></p>
-</dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="iter_modname">
-<span class="sig-name descname"><span class="pre">iter_modname</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#iter_modname" title="Link to this definition"></a></dt>
-<dd><p>Run policy iterations.</p>
+<p>([options])</p>
+<blockquote>
+<div><p>Run policy iterations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>options</strong> – a Matlab struct that contains options and parameters to be overwritten.
+<dt class="field-odd">param options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a Matlab struct that contains options and parameters to be overwritten.
 Notice only options that do not require recompiling can be overwritten. See <a class="reference internal" href="#options"><span class="std std-ref">Options</span></a></p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">return<span class="colon">:</span></dt>
 <dd class="field-even"><p>a Matlab struct that contains the structure of the problem and converged policy and state transition functions</p>
 </dd>
 </dl>
-</dd></dl>
-
+</div></blockquote>
 <dl class="py function">
 <dt class="sig sig-object py" id="simulate_modname">
 <span class="sig-name descname"><span class="pre">simulate_modname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IterRslt</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#simulate_modname" title="Link to this definition"></a></dt>
