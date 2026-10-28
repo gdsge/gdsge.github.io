@@ -240,7 +240,7 @@ so the equation takes value between [0,1]. Accordingly, we have defined the mult
 These procedures are not necessary but are simple and effective ways to solve the system faster and more accurately.
 
 
-Now let's run the policy iterations by calling *iter_mendoza2010.m* returned from the online `GDSGE compiler <http://www.gdsge.com>`_, which produces output
+Now let's compile the gmod file with ``gdsge_codegen('mendoza2010')`` (see :ref:`Compiling a model <compiling_a_model>`) and run the policy iterations by calling the generated *iter_mendoza2010.m*, which produces output
 
 .. code-block:: MATLAB
 

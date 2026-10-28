@@ -240,7 +240,7 @@ and evaluating the approximation at the current *shock* only when evaluating the
 where the *GDSGE_INTERP_VEC* takes the first argument *shock*, a reserved keyword referring 
 to the index of the current exogenous shock.
 
-After processed by the `online compiler <http://www.gdsge.com>`_, we can run the returned file to run policy iterations:
+After compiling the gmod file with ``gdsge_codegen('guvenen2009')`` (see :ref:`Compiling a model <compiling_a_model>`), we can run the generated *iter* file to run policy iterations:
 
 .. code-block:: MATLAB
 

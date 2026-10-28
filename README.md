@@ -8,3 +8,17 @@ The toolbox can be used to solve models in macroeconomics, international finance
 Examples and detailed instructions on developing gmod files using the toolbox are provided on the website [www.gdsge.com](http://www.gdsge.com/)
 
 Toolbox source code can be found at [github.com/gdsge/gdsge](http://github.com/gdsge/gdsge)
+
+## Building this website
+
+The site is built with Sphinx; [uv](https://docs.astral.sh/uv/) manages the Python environment
+(`pyproject.toml` + `uv.lock`, no conda needed). Sources live in `source/`; the built HTML is
+copied to the repo root, which GitHub Pages serves.
+
+```powershell
+uv sync                          # once: create .venv from uv.lock
+powershell -File publish.ps1     # clean build into build/html, then copy it to the repo root
+```
+
+For a quick preview without publishing: `uv run sphinx-build -M html source build`, then open
+`build/html/index.html`.

@@ -188,7 +188,7 @@ explicitly specifying the exogenous state that the approximation should be evalu
 the expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
 See example :ref:`Guvenen (2009) <Guvenen2009>` for an example.
 
-After the gmod file is parsed and compiled by the `online compiler <http://www.gdsge.com>`_, first call the iter file in MATLAB, which produces
+After the gmod file is parsed and compiled with ``gdsge_codegen('HL1996')`` (see :ref:`Compiling a model <compiling_a_model>`), first call the iter file in MATLAB, which produces
 the following results
 
 .. code-block:: text

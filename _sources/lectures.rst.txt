@@ -19,6 +19,6 @@ This lecture introduces the concept of global solutions, the GDSGE framework, an
 
 Lecture slides: `gdsge_intro.pdf <_static/gdsge_intro.pdf>`_
 
-Lecture material (including gmod files and compiled files): :download:`intro_lecture_material <lectures/intro_lecture_material.zip>`
+Lecture material (including gmod files and compiled files): :download:`intro_lecture_material <lectures/intro_lecture_material.zip>`. The compiled files in the archive were produced by an earlier version of the toolbox; recompile the gmod files with the current version.
 
-See the instruction on https://github.com/gdsge/gdsge for how to compile gmod files.
+See :ref:`Compiling a model <compiling_a_model>` for how to compile gmod files with ``gdsge_codegen``.

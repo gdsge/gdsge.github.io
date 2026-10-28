@@ -320,7 +320,7 @@ certain variables in <em>var_interp</em> when some of them are not necessary, an
 explicitly specifying the exogenous state that the approximation should be evaluated. This is relevant when
 the expectation can be calculated before evaluating the equation system, so the evaluation is conditional on the current state.
 See example <a class="reference internal" href="../Guvenen2009/Guvenen2009.html#guvenen2009"><span class="std std-ref">Guvenen (2009)</span></a> for an example.</p>
-<p>After the gmod file is parsed and compiled by the <a class="reference external" href="http://www.gdsge.com">online compiler</a>, first call the iter file in MATLAB, which produces
+<p>After the gmod file is parsed and compiled with <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('HL1996')</span></code> (see <a class="reference internal" href="../../index.html#compiling-a-model"><span class="std std-ref">Compiling a model</span></a>), first call the iter file in MATLAB, which produces
 the following results</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; IterRslt = iter_HL1996;
 

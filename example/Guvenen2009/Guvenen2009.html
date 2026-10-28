@@ -444,7 +444,7 @@ especially when the size of exogenous shocks is large.</p>
 </div>
 <p>where the <em>GDSGE_INTERP_VEC</em> takes the first argument <em>shock</em>, a reserved keyword referring
 to the index of the current exogenous shock.</p>
-<p>After processed by the <a class="reference external" href="http://www.gdsge.com">online compiler</a>, we can run the returned file to run policy iterations:</p>
+<p>After compiling the gmod file with <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('guvenen2009')</span></code> (see <a class="reference internal" href="../../index.html#compiling-a-model"><span class="std std-ref">Compiling a model</span></a>), we can run the generated <em>iter</em> file to run policy iterations:</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">;</span>
 <span class="n">options</span><span class="p">.</span><span class="n">MaxIter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
 <span class="n">IterRslt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">iter_guvenen2009</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>

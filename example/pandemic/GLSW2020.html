@@ -325,7 +325,7 @@ For the benchmark results, we use <span class="math notranslate nohighlight">\(\
 <span class="linenos">126</span><span class="k">end;</span>
 </pre></div>
 </div>
-<p>With the generated files returned by the <a class="reference external" href="http://www.gdsge.com">online compiler</a>, we can run the <em>iter_GLSW</em> procedure to solve the policy iterations,
+<p>After compiling the gmod file with <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('GLSW')</span></code> (see <a class="reference internal" href="../../index.html#compiling-a-model"><span class="std std-ref">Compiling a model</span></a>), we can run the <em>iter_GLSW</em> procedure to solve the policy iterations,
 and then pass the converged solutions to the <em>simulate_GLSW</em> procedure to simulate the ergodic set of the model.</p>
 <p>We first solve the policy iterations by calling <em>iter_GLSW</em> in MATLAB, which produces</p>
 <div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">IterRslt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">iter_GLSW</span><span class="p">;</span>

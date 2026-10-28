@@ -6,6 +6,23 @@ Toolbox API
 MATLAB Interface
 ===========================
 
+.. function:: gdsge_codegen(modname)
+
+    Compile a gmod file. Run it in the folder that contains *modname.gmod*, with the toolbox's ``src`` folder on the MATLAB search path.
+    It parses the gmod file, generates *iter_modname.m*, *simulate_modname.m* and *mex_modname.cpp* in the current folder, and compiles the mex file *mex_modname* with the C++ compiler configured by ``mex -setup c++``.
+    Compilation is skipped if the generated C++ code has not changed since the last call.
+
+    :param modname: name of the gmod file without the extension, e.g., ``gdsge_codegen('rbc')`` for *rbc.gmod*
+    :return: a Matlab struct that describes the parsed model
+
+.. function:: gdsge(modname)
+
+    Compile, solve and simulate a model in one call: runs *gdsge_codegen*, then *iter_modname* and *simulate_modname*.
+    The solution is saved to *IterRslt_modname.mat*, and solving is skipped next time if the generated code has not changed.
+
+    :param modname: name of the gmod file without the extension
+    :return: a Matlab struct with fields *model*, *IterRslt* and *SmltRslt*
+
 .. function:: iter_modname([options])
 
     Run policy iterations.
@@ -336,7 +353,7 @@ The toolbox supports a set of macros to facilitate developing. The macro is goin
 Options
 ======================================
 
-An option named in all caps (e.g., USE_SPLINE) requires recompiling (via a local or remote compiler) when its value is changed.
+An option named in all caps (e.g., USE_SPLINE) requires recompiling (re-running *gdsge_codegen*) when its value is changed.
 Other options can be simply specified through a structure to overwrite existing values without recompiling. For example,
 
 .. code-block:: MATLAB

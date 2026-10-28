@@ -325,7 +325,7 @@ In the evaluations of the equations, we transform <span class="math notranslate 
 </section>
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
-<p>Upload and compile the gmod file through the <a class="reference external" href="http://www.gdsge.com">online compiler</a>. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set</p>
+<p>Compile the gmod file with <code class="docutils literal notranslate"><span class="pre">gdsge_codegen('bianchi2011')</span></code> in MATLAB (see <a class="reference internal" href="../../index.html#compiling-a-model"><span class="std std-ref">Compiling a model</span></a>). We first run policy iterations in a narrower state space, then expand it to cover the ergodic set</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; options = struct;
 shock_process = load(&#39;shock_process.mat&#39;);
 options.shock_trans = shock_process.shock_trans;

@@ -147,7 +147,7 @@ In the evaluations of the equations, we transform :math:`nb_{t+1}` back to :math
 ====================
 Results
 ====================
-Upload and compile the gmod file through the `online compiler <http://www.gdsge.com>`_. We first run policy iterations in a narrower state space, then expand it to cover the ergodic set
+Compile the gmod file with ``gdsge_codegen('bianchi2011')`` in MATLAB (see :ref:`Compiling a model <compiling_a_model>`). We first run policy iterations in a narrower state space, then expand it to cover the ergodic set
 
 .. code-block:: text
 
